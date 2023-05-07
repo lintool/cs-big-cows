@@ -16,8 +16,6 @@ def get_google_scholar_url(name):
     except StopIteration:
         return res
     
-    #from pdb import set_trace as
-    #bp()
     for comp in components:
         res[comp] = author[comp]
     return res

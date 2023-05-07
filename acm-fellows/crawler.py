@@ -5,7 +5,6 @@ import csv
 import os
 import time
 from gsc_crawler import get_google_scholar_url
-from pdb import set_trace as bp
 
 def profile_crawler(profile_url):
     response = requests.get(profile_url)
