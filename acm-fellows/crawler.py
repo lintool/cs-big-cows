@@ -6,20 +6,20 @@ import os
 import time
 from gsc_crawler import get_google_scholar_url
 
-def profile_crawler(profile_url):
+def profile_crawler(name, profile_url):
     response = requests.get(profile_url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    from pdb import set_trace as bp
-    bp()
+
     # extract data from acm web
-    name = soup.find('h1').text
+    last_name, first_name = name.split(", ")
+    full_name = soup.find('h1').text
     awards_info = soup.find_all('section', {'class': 'awards-winners__citation'})
     acm_award = next(award for award in awards_info if award.find('h2').a.text == 'ACM Fellows')
     location, year = acm_award.find('h3', {'class': 'awards-winners__location'}).text.split(' - ')
     citation = acm_award.find('p', {'class': "awards-winners__citation-short"}).text
 
     # extract gsc data
-    gsc_data = get_google_scholar_url(name)
+    gsc_data = get_google_scholar_url(full_name)
     if gsc_data:
         gsc_url = f'https://scholar.google.com/citations?user={gsc_data["scholar_id"]}'
         affiliation = gsc_data["affiliation"]
@@ -29,7 +29,7 @@ def profile_crawler(profile_url):
         affiliation = ''
         interests = '[]'
 
-    return [name, year, location, citation, profile_url, gsc_url, affiliation, interests]
+    return [last_name, first_name, year, location, citation, profile_url, gsc_url, affiliation, interests]
 
 # Define the URL of the page to be scraped
 url = "https://awards.acm.org/fellows/award-recipients"
@@ -55,7 +55,7 @@ with open(fileName, 'a' if fileExist else 'w', newline='') as file:
     writer = csv.writer(file)    
     # Write the header row
     if not fileExist:
-        writer.writerow(['Index', 'Name', 'Year', 'Location', 'Citation', 'ACM Fellow Profile', 'Google Scholar Profile', 'Affiliation', 'Interests'])
+        writer.writerow(['Index', 'Last Name', 'Given Name', 'Year', 'Location', 'Citation', 'ACM Fellow Profile', 'Google Scholar Profile', 'Affiliation', 'Interests'])
     else:
         with open(checkpoint, 'r') as f:
             index = int(f.readline().split(':')[-1])
@@ -64,9 +64,11 @@ with open(fileName, 'a' if fileExist else 'w', newline='') as file:
     
     for row in rows:
         try:
-            cols = row.find_all('td') 
-            profile_id = row.find('a', href=lambda href: href and 'award-recipient' in href)['href']
-            data = profile_crawler(f'https://awards.acm.org{profile_id}')
+            award_recipient = row.find('a', href=lambda href: href and 'award-recipient' in href)
+            profile_id = award_recipient['href']
+            name = ''.join([i if ord(i) < 128 else ' ' for i in award_recipient.text]) # remove non-ascii
+
+            data = profile_crawler(name, f'https://awards.acm.org{profile_id}')
             it += 1    
 
             data.insert(0, it)
