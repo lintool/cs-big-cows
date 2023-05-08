@@ -1,7 +1,7 @@
 import json
 from scholarly import scholarly, ProxyGenerator
 
-API_KEY = '31401f68f8da62908e94a55985ad5822'
+API_KEY = '2c0689f76068fc9463b07cac6970050e'
 
 components = ['name', 'scholar_id', 'affiliation', 'interests', 'citedby']
 pg = ProxyGenerator()

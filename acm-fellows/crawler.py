@@ -9,11 +9,16 @@ from gsc_crawler import get_google_scholar_url
 def profile_crawler(profile_url):
     response = requests.get(profile_url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    
-    # extract data
+    from pdb import set_trace as bp
+    bp()
+    # extract data from acm web
     name = soup.find('h1').text
-    location, year = soup.find("h3", {"class": "awards-winners__location"}).text.split('-')
-    citation = soup.find("p", {"class": "awards-winners__citation-short"}).text
+    awards_info = soup.find_all('section', {'class': 'awards-winners__citation'})
+    acm_award = next(award for award in awards_info if award.find('h2').a.text == 'ACM Fellows')
+    location, year = acm_award.find('h3', {'class': 'awards-winners__location'}).text.split(' - ')
+    citation = acm_award.find('p', {'class': "awards-winners__citation-short"}).text
+
+    # extract gsc data
     gsc_data = get_google_scholar_url(name)
     if gsc_data:
         gsc_url = f'https://scholar.google.com/citations?user={gsc_data["scholar_id"]}'
@@ -36,6 +41,9 @@ soup = BeautifulSoup(response.content, 'html.parser')
 # Find all the table rows (tr) in the table body (tbody)
 table_body = soup.find('tbody')
 rows = table_body.find_all('tr')
+
+# sort rows based on year
+rows.sort(key=lambda row: int(row.find('td', {'scope': 'row'}).text), reverse=True)
 
 it = 0
 checkpoint = 'last_iteration.txt'
