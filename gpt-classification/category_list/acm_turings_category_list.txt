@@ -1,0 +1,15 @@
+Artificial Intelligence and Machine Learning
+Algorithms and Complexity Theory
+Distributed Systems and Networks
+Programming Languages and Compilers
+Operating Systems
+Computer Architecture
+Cryptography and Security
+Database Systems
+Human-Computer Interaction
+Computer Graphics and Visualization
+Software Engineering
+Web and Internet Technologies
+Formal Methods and Verification
+Parallel and High-Performance Computing
+Theoretical Computer Science and Automata Theory
