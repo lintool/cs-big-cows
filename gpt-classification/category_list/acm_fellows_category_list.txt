@@ -1,0 +1,40 @@
+Algorithms and Data Structures
+Artificial Intelligence
+Computer Architecture
+Computer Graphics and Visualization
+Computer Networks
+Cryptography and Security
+Database Systems
+Distributed Systems
+Formal Methods and Verification
+Human-Computer Interaction
+Machine Learning
+Natural Language Processing
+Operating Systems
+Parallel and Distributed Computing
+Programming Languages and Compilers
+Robotics
+Software Engineering
+Theory of Computation
+Web and Internet Technologies
+Wireless and Mobile Computing
+Computer Vision
+Computer-Supported Cooperative Work
+Data Mining
+Embedded Systems
+Evolutionary Computation
+Fault-Tolerant Computing
+High-Performance Computing
+Information Retrieval
+Knowledge Representation and Reasoning
+Mobile Computing
+Multimedia Systems
+Network Security
+Pattern Recognition
+Performance Evaluation
+Privacy and Security
+Quantum Computing
+Recommender Systems
+Social Computing
+Speech and Audio Processing
+Virtual Reality

@@ -1,0 +1,1444 @@
+quality assurance, large scale software systems
+combinatorial scientific computing
+database management system technology
+tensor methods, probabilistic models, neural operators
+full-duplex wireless, open-source wireless research platforms
+software process, software measurement, human factors, software engineering
+theoretical computer science, cryptography, computational complexity, theory community
+large-scale systems, programming systems, software
+visual computing, technologies, applications, mentorship
+algorithmic game theory, mechanism design, sublinear algorithms, theoretical machine learning
+machine learning, industrial leadership, service to the field
+computer graphics, geometry processing, visual computing
+algorithms, data structures, geometric data analysis, retrieval
+computer graphics, geometry processing, scientific computing
+speech processing, deep learning applications
+machine learning, data mining, social computing, recommender systems
+secure computing, privacy-preserving machine learning
+machine learning, search, dialogue
+programming language design, implementation, program analysis, software security
+algorithms, architectures, applications, machine learning
+video compression, image compression, leadership, standardization
+text searching, compact data structures
+wireless networking, mobile computing
+tangible user interfaces, human-computer interaction
+software engineering research, translation, research standards, China
+human-computer interaction, information retrieval, productivity
+ubiquitous computing, usable privacy, security
+software design, analysis, usage, evaluation, information visualization
+evolutionary multi-objective optimization algorithms, multi-criterion decision support
+digital technology, socio-economic development, social justice
+computer security, medical devices
+emerging applications, computing technologies
+visual communication, computer graphics, human-computer interaction, information visualization
+program analysis, verification, parallelism, logic programming, IMDEA Software Institute
+geometric computer vision, AR/VR/MR, robotics, autonomous vehicles
+human-computer interaction, instrumental interaction, generative theory, community leadership
+machine learning, imbalanced data, graphs, interdisciplinary innovations
+columnar database systems, main-memory database systems, vectorized database systems
+memory hierarchy design
+high-performance integrated systems, ultra-low power edge circuits, architectures
+hardware/software co-design, power, thermal efficient embedded computing
+algorithm design, mentoring, community-building
+visual geometry, visual representations learning
+low-power, communication-based design, embedded systems
+foundations of cryptography
+software-defined wireless networking, agriculture, rural broadband
+subspace clustering, motion segmentation, computer vision
+online algorithms, quantum complexity theory
+analysis, testing, evolving systems, robotic systems
+mobile computing, pervasive computing, graceful aging, accessibility
+computer system security, performance analysis
+High Performance Computing, HPC techniques, machine learning
+multimedia networking, network representation
+question answering, information retrieval, natural language processing
+computer graphics, computer vision
+wireless networks, mobile computing
+software testing, analysis
+ubiquitous computing, large-scale behavioral studies
+approximation algorithms, online algorithms, stochastic algorithms, metric embeddings
+verifying concurrent programs, probabilistic systems, security, database systems
+human values, technical design process
+knowledge representation, reasoning, automatic planning, robotics
+large-scale object recognition, human detection, pose estimation
+SMT solvers, network verification
+ultra-low power wireless sensing systems
+query processing, optimization, cloud database systems
+information retrieval, human-computer interaction, computational health
+microelectronics security, trust
+geometry processing, mesh parameterization, perception-driven shape analysis, modeling
+cryptography
+proof theory, computational logic
+mobile systems, behavioral sensing, health interventions
+machine learning, algorithms, applications
+scalable machine learning, healthcare
+efficient algorithms, convex optimization, nonconvex optimization
+theoretical computer science, inference
+acquisition, representation, dissemination, web-knowledge, medical domain
+database search, graph algorithms
+research infrastructure, Internet interconnection point
+neuromorphic computing, deep-learning acceleration
+communication, concurrency, resource control, parallel systems
+human-computer interaction, accessible computing
+algorithmic analysis, dynamical systems
+cryptographic protocol design, cryptography education
+computer science education
+public-key cryptography
+computer architecture, performance analysis, modeling
+mobile systems, network systems
+computer security, e-crime measures
+complexity theory, combinatorial optimization
+computational complexity, information theory, algorithmic mechanism design
+data structures, biocomputing, big data
+robotic manipulation, manipulation path planning
+system-level design, embedded systems, assistive technologies, visually impaired
+visual tracking, face processing, low-level vision
+data mining algorithms, foundations
+human action recognition, leadership, undergraduate research experience
+artificial intelligence, multiagent systems, service-oriented computing, sociotechnical systems
+data privacy, access control, trust management
+software architecture
+peer-to-peer systems, online social networks
+computer graphics, geometry processing, visual computing
+high-performance computing systems, graph analytics, technical leadership, parallel computing
+electronic design automation, design for manufacturing, physical design
+information, social network mining
+data security, privacy
+foundations of cryptography
+geometric modeling, computer graphics
+cryptography, online algorithms, algorithmic game theory
+computer architecture, compilers
+software verification
+high-performance computing, storage, parallel I/O
+online learning, decision problems
+physiological signal sensing, individual health, wellbeing
+process algebra, model checking, runtime verification
+software verification, software testing, programming languages
+automated planning, resource-bounded reasoning, multi-agent systems
+modeling, appearance, physical materials
+statistical machine learning, information analysis, extraction, integration
+cyber security, data protection, privacy
+acquisition, representation, analysis, rendering, fabrication, 3D models
+power, thermal, reliability management
+software testing, analytics
+bioinformatics, medical informatics
+mining software repositories, defect prediction
+design, power-constrained, real-time embedded systems
+data integration, sharing, management, scientific applications
+communication, security protocols, ad hoc networks, sensor networks
+data privacy, cryptography
+cryptography
+algorithms, languages, numerical computing, scientific computing
+storage, computer systems
+programming languages, principles, logic, usability, trustworthiness
+understanding, web, web-based social networks
+design, energy-efficient, resilient computer architectures
+networks, distributed computer systems
+natural language processing, human-centered, linguistically inspired approaches
+network forensics, security, privacy, crimes against children
+theory of programming, application, engineering, software
+Linux Watch, SoulPad, wearable, mobile systems
+static program debugging, dynamic program debugging, verification methods
+power-efficient computer architectures, software design, hardware design
+networking infrastructure, data center networking, network operating systems, cloud networking
+adaptive real-time systems, real-time virtualization, wireless cyber-physical systems
+automated algorithm selection, configuration, optimization, machine learning
+bioinformatics, computational biology, knowledge mining, semantic data integration
+probabilistic state estimation, RGB-D perception, learning, robotics, computer vision
+signal processing, networking accelerators, architecture, design tools
+agile software development, software security, software engineering education, empirical research
+computer architectures, design, modeling, benchmarking
+human-computer interaction, information retrieval, computer-supported cooperative work, accessibility
+game design, virtual reality networking, body tracking
+network measurement, analysis
+vulnerability, social media networks, disinformation, manipulation, research
+science of programming languages, operational semantics, denotational semantics
+numerical algorithms, data analytics, leadership, computational science, engineering
+large-scale multimedia content understanding, indexing, retrieval
+information retrieval, topic detection, tracking
+design research, human-computer interaction
+robotics, machine perception, human-computer interaction, ubiquitous computing
+model checking, software, probabilistic systems
+logical methods, design, verification, computational systems
+operating systems theory, UNIX operating system, development
+artificial intelligence, computational game theory, multi-agent systems, machine learning, optimization
+wireless system security, cloud data security
+computer graphics
+network control, optimization, communication networks, applications
+automated software testing
+socially assistive robotics, human-robot systems
+high-performance parallel computing, distributed computing, computational science
+computational complexity theory, cryptography, program checking, foundations
+asymmetric public-key cryptography, promulgation, practical cryptographic key-exchange method, invention
+human-computer interaction, scenario-based design, contributions
+geometry processing, discrete differential geometry, contributions
+face recognition, computer vision, multimodal interaction
+theory of computation, probabilistic algorithms, cryptography, pioneering contributions
+foundations of cryptography, theoretical computer science, contributions
+algorithmic techniques, big data, hashing, approximation algorithms, metric embeddings, design
+empirical software engineering, data-driven software development, contributions
+power-efficient computer architectures, design, modeling, contribution
+numerical linear algebra, numerical stability analysis, communication of mathematics
+digital geometry processing, computer animation, computer graphics, visual computing, contributions
+programming languages, abstract interpretation, invention, development, contributions
+recommender systems, economics and computation, online communities, contributions
+automated planning, learning, multiagent systems, robotics, ecommerce, applications
+continuous state systems, logical, computational treatment, amenable
+data summarization, privacy enabling data management, analysis, contributions
+data semantics, knowledge-enhanced computing, contributions
+energy-efficient design methodologies, circuits, ultralow-power wireless sensors, computing devices, contributions
+data cleaning, data integration, contributions
+wireless systems, design, implementation, tools, contributions
+algorithmic electronic design automation, contributions
+distributed databases, column-store databases, deterministic databases, graph databases, stream databases, contributions
+mobile systems, security, privacy, usability, contributions
+computational biology, data integration, deep learning applications, genome interpretation, contributions
+collective intelligence, self-organizing systems, swarm robotics, contributions
+cryptography, computer security, contributions
+web science modeling, analytics, algorithms, contributions
+storage systems, computer systems, contributions
+high-performance computing systems, collaborative environments, tools, large-scale science initiatives, contributions
+storage system software, flash, byte-addressable non-volatile memory, contributions
+data management, sensor computing systems, contributions
+distributed systems design, contributions
+formal verification, inductive synthesis, cyber-physical systems, contributions
+compiler code generation, instruction level parallelism, customized microprocessor architectures, contributions
+multimedia technologies, leadership, scientific community, contributions
+visual content understanding, techniques, applications, contributions
+parallel methods, computational biology, leadership, data science, contributions
+virtualization technology, clusters, servers, networks, contributions
+theoretical foundations, real-world deployment, Internet congestion control, smart grid optimization, contributions
+computational biology, software, DNA sequence analysis, alignment, genome assembly
+computer science education
+artificial intelligence, heuristic search, multi-agent coordination
+knowledge representation, reasoning, logic programming, declarative problem solving
+artificial intelligence
+query optimization, scalable data processing, data programmability
+automated analysis, verification, real-time systems
+foundation, practice, data mining
+asymmetric public-key cryptography, cryptographic key-exchange method
+computing, learning from higher-order data
+nonvolatile memory technologies
+algorithms, large scale data processing
+process mining, process management, data science
+cloud storage, processor simulation, replay, feedback-directed optimization, systems, applications
+theory, practice, data, knowledge-base systems
+secure distributed computing, cryptographic protocols
+natural language processing, coreference resolution, information extraction, opinion extraction
+genetic computation, evolutionary computation
+security, privacy
+description logics, applications, data management, software engineering
+machine-learning-based cybersecurity, parallel hardware, database inference systems
+cybersecurity, research, leadership
+scalable distributed data systems
+mathematical software, service, profession
+quantum computing, computational complexity
+security, privacy, data, social network systems
+human-computer interaction, service, ACM
+memory management, programming language implementation
+security, internet, cybercrime
+volume rendering, visualization, computer graphics, computer vision
+operating systems, virtualization, computer science education
+multi-agent systems, game theory
+queuing networks, performance analysis, distributed programming, parallel programming, distributed simulation
+rendering, scene understanding
+trustworthy distributed computing, systems research, education, China
+machine learning, reasoning under uncertainty, responsible data science
+web search, web science
+robotics, multi-agent systems, diversity in computing
+specification, analysis, software
+robust distributed systems, modern cloud
+computational biology, algorithms, software, DNA sequence analysis, sequence assembly
+computational biology, algorithmic, machine learning, proteins, interactions
+AI, algorithmic game theory
+computational social science, network science, web science
+computational, proof complexity, applications, service
+quantum computing, information theory, randomized algorithms
+multi-agent systems, human-computer dialogue, multimodal interaction
+modeling, design, distributed systems
+design, optimization, energy-aware computing systems
+database concurrency control, community service
+location tracking algorithms
+theoretical computer science, mathematics, sciences, social sciences
+representation learning, applications
+design techniques, tools, implementation, evaluation, computer architectures
+natural language processing, data-driven language processing, graph-based language processing
+content delivery networks, distributed systems, scalable Internet services
+computing for disasters, robotics
+high performance computing, modern hardware platforms, domain-specific languages, compilation techniques
+knowledge representation, automated planning, semantic web services
+cellular network resilience, performance
+systems, wireless network security
+computer networking, mobile computing, wireless communications
+automated planning, human-aware AI systems, leadership
+algorithms, tensor decompositions, data science, community leadership
+cyber-physical systems, social sensing, real-time computing, control
+computational geometry, algorithms, data structures
+interconnection network routing algorithms, architectures, computing research
+game theory, social choice theory, mechanism design
+human-computer interaction, mixed reality, participatory design, leadership, ACM SIGCHI
+design, analysis, optimization, IoT, mobile systems
+face recognition, sign language recognition, multimedia systems
+trusted mobile systems, mobile services
+network traffic management, network traffic direction
+collaborative computing, Internet research ethics
+architecture exploration, design automation, spatially programmable computing fabrics, FPGAs
+theoretical computer science, mathematics
+image search, image retrieval, digital libraries, marine sciences, biology
+content distribution networks, computer networks theory
+geometric computing, robotics, automation
+computational markets, mechanism design, incentive engineering
+storage systems, memory systems, dependability, manageability, usability
+mobile wireless protocols, vehicular safety, traffic applications
+Internet measurement, network engineering
+computer graphics, non-photorealistic rendering, computer animation, machine learning
+security, privacy, data, applications
+reinforcement learning, neural networks, autonomous agents
+content delivery networks, algorithm design
+communication, mobile networks, developing regions
+information retrieval, language technologies
+knowledge bases, machine learning, visual understanding
+real-time systems, high-performance computing, multi-threading
+concurrent programming, formal methods, Actor Model
+Internet architecture, open source software
+feature selection, data mining, knowledge discovery, social computing
+privacy-enhancing cryptographic protocols, practical realization
+character animation, human simulation, humanoid robotics
+multimedia content analysis, social multimedia informatics
+circuit complexity, approximability, inapproximability, pseudorandomness
+broadening participation in computing, accessible voting technologies
+methods, tools, users, data, insights
+computer architecture, RISC-V instruction set, Agile hardware development
+wireless network protocols, mobile systems
+natural language processing, sentiment analysis, computational social science
+sequential decision making, artificial intelligence
+algorithmic graph theory, algorithmic game theory
+systems security, privacy, mobile systems
+operating systems, distributed information processing systems
+machine learning theory
+software data, meta-data, software tools, processes
+interactive machine learning, access, diversity, computing
+software testing, functional programming
+cryptography, indistinguishability obfuscation
+Information Security, Formal Methods
+data processing, analytics, data streaming, approximation, uncertainty
+wireless communication systems, protocols, broadening participation in computing
+automated reasoning
+program synthesis
+computational complexity, cryptography, public support for theoretical computer science
+shared memory, reconfigurability
+approximation algorithms, hardness of approximation, sublinear algorithms
+human-computer interaction, virtual reality, augmented reality, 3D user interfaces
+computational geometry, computational topology
+computer graphics
+wireless networks, sensing systems, Internet of things (IoT)
+knowledge sharing, distributed systems, World-Wide Web
+computational complexity, proof complexity
+network traffic modeling, congestion control, Internet economics
+system analysis, verification techniques, industrial practice
+bioinformatics, data mining
+error-correcting codes, complexity theory
+power management, datacenters, high-end computer systems
+high-performance architecture, memory dependence prediction, snooping coherence
+algorithms, systems, large-scale data center networks, societal networks
+machine learning theory, practice
+computational sustainability, artificial intelligence
+information retrieval, text data mining
+library automation, scholarly communication, information policy
+artificial intelligence, semantic web, semantic data integration
+combinatorial optimization, algorithmic computational biology
+machine intelligence, diagnostic imaging, image-guided interventions, computer vision
+systems security, network security
+high-performance computing, distributed systems, scientific data management
+virtual machines, cloud computing
+image analysis, video analysis, multimedia analysis, retrieval
+efficient algorithms, networking, big data
+wireless networks, architectures, throughput, analytics
+virtual machines
+information retrieval, digital libraries
+wireless LANs, wireless networks, cross-layer networking
+die-stacking, computer architecture
+recommenders, software engineering, program comprehension
+empirical measurement, systems, networking, security
+vision-based robotics, computer-enhanced interventional medicine
+compositional real-time scheduling, runtime verification
+congestion control, operating systems, virtual private networks
+parallel programming, high performance computing
+sensor networks, mobile sensing, cyber-physical systems
+end-user software engineering, gender biases, broadening participation
+logic in computer science, database theory, algorithms, computational complexity
+electronic design automation (EDA), algorithms
+computer vision, computer graphics, optimization, simulation
+computational complexity, randomized computation, circuit complexity
+performance modeling, distributed computing systems
+probabilistic multimodal models, human behavior, interactive systems
+machine learning, structured data, scientific communication
+semantic foundations, logical foundations, compilers, program verification systems
+computer architecture, memory systems
+artificial intelligence, data mining
+computer graphics rendering, physics-based computer vision
+parallel and distributed discrete event simulation
+complexity-theoretic foundations, cryptography
+multimedia content recognition, multimedia information retrieval
+complexity-theoretic foundations, cryptography
+computer vision, computer graphics
+user experience design, evaluation practices
+foundations of cryptography, multi-party computations, signatures, threshold, proactive protocol design
+robotics, motion planning, geometric algorithms
+algorithmic coding theory, pseudorandomness, complexity of approximate optimization
+systems security, network security, intrusion detection, anomaly detection, malware analysis
+low-dimensional models, computer vision, pattern recognition
+human-computer interaction, human-centered technology design
+protocols, network security, system security
+information technologies, computing technologies, children
+branch prediction, cache memory design
+large-scale distributed computing
+leadership, high performance computing, eScience
+machine learning, increasing participation of women in computer science
+computer vision
+transactional memory, data center architecture
+cryptography, computer security
+software modeling, Alloy
+distributed computing, graph algorithms
+data management, integration, biomedicine, finance, humanitarian applications
+human-computer interaction, interaction modes, user interface software formalisms
+sustainability sensing, low-power wireless sensing, mobile health
+cloud networking, storage, data management
+software prefetching, thread-level speculation
+geometric computing, data structures, graph algorithms
+computational photography, computer graphics rendering
+static program analysis
+artificial intelligence, Semantic Web
+human-computer interaction, user interface design tools, ubiquitous computing
+mobile computing, reliable distributed systems
+local network technology, internet measurement, research
+human-computer interaction, advocacy, empowerment, voice
+program verification
+low power multi-processor systems
+artificial intelligence, planning, learning, multi-agent systems, robotics
+column-store database systems, main-memory database systems
+computational complexity, distributed computing, algorithms
+computing theory, practical application
+data-driven studies, Internet security, Internet censorship
+expander graphs, derandomization, streaming algorithms
+Internet measurement, analysis
+applied cryptography, authentication, computer security
+human-computer interaction, design, human-centered technology
+global illumination, material capture, display, high-dynamic-range images
+theory, practice, probabilistic verification
+theory, practice, Internet routing, bridging protocols
+design, embedded systems, hardware-software codesign
+theoretical computer science
+power, energy, thermal management, servers, datacenters
+data science, data intensive computing, data mining
+performance, reliability, integrated circuits
+empirical foundations, theoretical foundations, multimodal systems, human-centered computer interfaces
+verification, programming languages, software engineering
+memory management, programming languages
+power aware computer architecture
+broadening participation, computing
+networked computing systems, mobile computing systems
+low-level computer vision, machine learning, computer graphics
+spoken language processing
+artificial intelligence, science, service to community
+machine learning, data mining
+design, implementation, evaluation, modern database systems
+cloud computing
+multiprocessor, memory architecture, design, evaluation
+knowledge discovery, data mining, opinion mining, sentiment analysis
+theory, practice, machine learning, data mining
+science, database privacy, cryptography, distributed computing
+theory, practice, probabilistic topic modeling, Bayesian machine learning
+low-power computing systems
+content distribution architectures, peer-to-peer networks
+high-dimensional geometric computing, streaming/sketching algorithms, Sparse Fourier Transform
+foundation, methodology, applications, data mining
+human-computer interaction, CHI community
+natural language processing, computational linguistics
+human-centered computing, development, health information technologies
+logical foundations, automatic theorem proving, types, programming languages
+description logics, data management, verification, data-driven processes
+security informatics, health informatics systems
+theory, practice, data management systems
+artificial intelligence, calculus, probabilistic reasoning, causal reasoning
+spoken language processing
+delay-tolerant networking
+power- and thermal-aware modeling, design, benchmarking, microprocessors, GPUs
+just-in-time compilation, optimization, compiler techniques, computer security
+coding theory, cryptography, parallel algorithms, derandomization
+theory, practice, software reliability engineering
+multi-agent systems, formalization, rational action, multi-agent environments
+robotics, broadening participation, computing
+automated formal verification, hardware, software systems
+computer, mobile systems security
+social computing, human-computer interaction
+computer graphics, geometry processing
+structured data representation, specification, impact, Web
+algorithms, convex sets, probability distributions
+theory, practice, automated analysis, verification, software
+software analysis, defect detection
+mathematical theory, algorithms, software, large-scale molecular phylogenetics, historical linguistics
+performance, reliability enhancement, flash-memory storage systems
+cryptography, information security
+cryptography, software research
+data provenance, foundations, information integration
+safe, high-performance functional programming languages, compilers, compiler verification
+sensor networks
+non-photorealistic rendering, multi-resolution representations, computer graphics
+theoretical computer science, complexity, on-line algorithms, resource tradeoffs, models of algorithmic paradigms
+algorithms, probabilistic methods, networks
+database technology, integrated data store
+robotics, sensor networks
+data structures, distributed computing, parallel computing
+artificial intelligence, human-computer interaction
+computing education, participation
+energy efficiency, server architectures
+computer vision, medical image computing
+database systems
+provably correct operating systems
+protocols, applications, algorithms, Internet multimedia
+large-scale data analysis, machine learning, computational mathematics
+high-performance database query processing, spatial data
+data mining, data stream query processing
+distributed systems, concurrent systems
+usable privacy, security
+software analysis, testing, verification
+machine learning, artificial intelligence, algorithmic game theory, computational social science
+coding theory, hashing algorithms, networking algorithms, data structures
+logical form, game semantics, categorical quantum mechanics, contextual semantics
+embedded architecture exploration, electronic design automation
+privacy, security
+internet security, privacy
+artificial intelligence, automated reasoning, representations
+pseudorandomness, derandomization, cryptography
+artificial intelligence, multi-agent systems, human-agent interaction, non-monotonic reasoning
+electronic design automation
+provenance management, computational reproducibility
+knowledge discovery, data mining
+computer networking, distributed systems, operating systems
+delegated computation, sublinear time algorithms, property testing
+database education, query processing, optimization
+data modeling, database design, database education
+SAT solvers, embedded software models
+secure hardware, energy-efficient hardware
+human-computer interaction
+natural-language processing, open-access systems, policy
+robust computing systems, testing
+machine learning, information retrieval
+sparse matrix algorithms, software
+ubiquitous computing, computer supported cooperative work
+LLVM compiler, parallel computing, software security
+randomized algorithms, dynamic graph algorithms, fault tolerant distributed computing
+power estimation, optimization, power-aware systems
+machine learning, algorithmic game theory, distributed computing, communication networks
+secure computing systems, languages, systems, information flow
+software engineering, multi-agent systems, computer science leadership
+knowledge discovery, data mining algorithms
+quantum communications, tactical networks, programming literacy
+human interaction, information systems, data practices, information policy
+natural language processing, research, education
+automated search, planning
+computer vision
+software architecture, software engineering
+computer graphics, user interface software, visual analytics
+approximation algorithms, design, analysis
+randomness extraction, pseudorandomness, complexity theory
+data management topics
+cross-layer wireless networking, wireless network coding, Internet congestion control
+concurrency, software
+industrial leadership, information retrieval, Web search
+communication, computation, intermittingly-connected networks
+mathematically-based methods, efficient implementation, programming languages
+artificial intelligence, pervasive computing, assistive technology, health
+Java, NeWS, Emacs, NetBeans, programming languages, tools, environments
+multiprocessor systems, multicore real-time systems, analysis
+science of information, social networks
+optimization methods, system-on-chip test automation, microfluidic biochips, sensor network infrastructure
+high performance computing, algorithms, software environments, socio-technical systems
+human-computer interaction, expertise
+information retrieval, computational linguistics
+conceptual modeling, requirements engineering, metadata management, computer science leadership, Germany
+provable security methods, cryptography
+multi-agent systems, teamwork, security games
+cryptography, security, privacy
+synchronization, concurrent programming
+probabilistic approaches, statistical approaches, data mining, machine learning
+wireless communication, control technologies
+probabilistic methods, data analysis, system simulation
+database theory, computational biology
+operating systems, networking research
+video technology, computing
+computer vision, image retrieval, digital watermarking
+parallel computing, high performance computing
+data mining, query processing
+image processing, computer vision, pattern recognition
+automated reasoning, constraint-based information, probabilistic information
+information retrieval, algorithms
+algorithmic approaches, program reliability, bioinformatics, computer science research community
+graph partitioning, single-commodity flows, multi-commodity flows
+database management, distributed databases, rule-processing, search computing
+database query optimization, spatial data management, data warehousing
+query languages, query optimization, data provenance
+software reliability, software quality
+computer vision, multimedia
+randomized algorithms, statistical physics
+physical design automation, design for manufacturability, microelectronic systems
+programming language semantics
+algorithm design, systems design
+artificial intelligence, automated reasoning, planning
+programming languages, type systems
+combinatorial optimization, graph algorithms
+programming languages, open-source research infrastructures
+database management systems
+knowledge representation, computational decision making
+high performance computing, compiler optimizations
+storage systems, performance, reliability
+aspect-oriented programming language design, implementation
+distributed systems, middleware, data management
+multithreaded programming, algorithms, automatic memory management
+networking, distributed systems, cloud computing
+geometric computing, design tools, integrated circuits
+human computer interaction, computer supported cooperative work
+computational geometry, broadening participation in computing
+hardware verification technology
+Boolean Satisfiability, hardware verification algorithms
+parallel languages, programmer productivity
+computer network, Internet applications, modeling, design
+data-centric parallel programming, parallel compilation theory, practice
+quality-of-service management, distributed multimedia systems
+image processing, computer vision
+massive data algorithmics
+finite model theory, database theory
+theory of computation
+network protocols, internet routing
+computer graphics, animation
+high performance database systems
+parallel data management
+artificial intelligence, statistical machine learning, bioinformatics
+computer communication networks, systems
+reliable distributed computing, theory, practice
+large scale artificial intelligence systems
+analysis, management, large data sets
+discrete optimization, computer vision
+database systems
+matrix computations, languages, compilers, architectures, parallel scientific computing
+graph drawing, algorithms, data structures, computer science education
+bioinformatics
+computer support, cooperative work, ubiquitous computing
+digital forensics, computer security education
+interconnection networks, supercomputers
+database theory, business process management
+wireless networking, broadening participation, computing
+software engineering, revision control systems
+Web data management
+data management, memory management, distributed systems
+artificial intelligence, logic, economics
+data center scalability, management
+search, information retrieval
+computer graphics
+spatio-temporal data management, distributed data management
+architecture, design, reconfigurable systems
+temporal data management, spatio-temporal data management
+fault-tolerant distributed computing
+machine learning, natural language processing
+probabilistic databases, semistructured data
+graph algorithms, computational geometry
+reasoning, decision-making, uncertainty
+distributed systems, e-commerce, content distribution
+computer network design
+high-performance processors, architecture
+query processing, data management systems
+distributed data management systems
+network control, routing
+high-performance computers, design
+optimizing compilers
+software applications, high-performance computing, diversity outreach
+human-computer interaction
+software verification, model checking
+parallel computing
+design, analysis, algorithms
+computer graphics
+computational geometry
+hardware simulation
+geometric computing, approximation algorithms
+distributed systems, service, computing community
+computational science
+data management, computing systems
+planning systems design, service, computing community
+geometric modeling, computer graphics
+visualization tools, computer animation
+full-system simulation
+computational geometry, service, computing community
+computer networking
+human-computer interaction
+human-computer interaction, computer animation
+simulated annealing, combinatorial optimization
+theory, practice, databases
+modeling, design, high-performance microarchitectures, soft-error tolerance
+computer architectures, technology modeling
+public policy leadership, security, privacy
+software analysis, defect detection
+database management systems
+scalable, fault-tolerant data management protocols
+automated debugging, mining software archives
+complexity theory, advancing women in computing
+energy management technology, mobile devices, service, computing community
+data mining, indexing, fractals, power laws
+design, analysis, algorithms
+software engineering tools, techniques, high performance, distributed supercomputers
+design, implementation, object-oriented programming languages
+empirical software engineering research, industrial practice
+XML data management, distributed information systems
+distributed microprocessor architectures, memory systems
+fault-tolerant distributed computing, theory, practice
+machine-learning models, natural language, biological sequences
+text-dominated data management, semi-structured data management
+parallel processor, memory system design
+security, wireless networks
+foundations, dynamic random networks, theoretical computer science
+functional programming
+shared-memory multiprocessor architectures, thread-level speculation.
+programming language design, theory, practice, computing community
+multi-core computing, warehouse scale data-center architectures, energy proportional computing
+robotic motion planning, computational biology
+measurement, analysis, networks, distributed systems
+theory, application, machine learning
+science, engineering, large-scale distributed computer systems
+machine perception, optical mouse
+algorithms, genome rearrangements, DNA sequencing, proteomics
+reliable storage, virtual machines
+graph algorithms
+semantic web, web science, service, ACM, international computing community
+software testing, distributed systems, service, software engineering community
+machine learning, natural language processing
+leadership, computing community, education, diversity, numerical optimization
+algorithms, automatic program parallelization
+efficient algorithms, string matching, data streams, internet ad auctions
+Human Computer Interaction
+hardware, language memory models, low-power, resilient systems
+human computer interface research, innovation
+large scale systems, network security
+programmable logic, reconfigurable architectures, design automation tools
+algorithmic contributions, computational geometry, networks, computational economics
+HPC, storage, parallel I/O
+design, analysis, algorithms
+volume visualization, applications
+computer vision, medical image analysis
+computer networking
+robotics, MEMS, computational molecular biology
+algorithms, geometric design, scientific visualization, computational biology, bioinformatics
+operating systems, distributed systems, scalable storage
+efficient algorithms, combinatorial optimization, randomization
+real-time systems, object-oriented language design, implementation
+theoretical computer science, algorithms, interdisciplinary applications, computing
+computing technology, education, research
+dependability, security, networks, systems
+embedded computing systems, ubiquitous computing systems
+human computer interaction, computer-mediated lifelong learning
+distributed computing, parallel computing
+knowledge discovery, data mining, similarity search, spatial data management, access methods, high-dimensional data
+parallel programming languages, collaborative computing, distributed computing
+science, engineering, large-scale distributed computer systems
+stochastic analysis, parallel storage, communication systems
+database management systems, data access technologies
+database systems, data management
+program analysis, procedural programming languages, object-oriented programming languages, aspect-oriented programming languages
+power-aware computing
+program analysis, parallel computing, software systems, errors, failures
+multimedia compression, communication
+data structures, algorithms, combinatorial problems, geometric problems
+distinguished service, ACM, computing education
+relational database technology
+geometric computing, computer graphics, robotics, GPU computing
+symbolic computation, algebraic algorithms, complexity theory
+data management, knowledge representation
+dependable computing, secure distributed computing
+recommender systems, social computing, collaborative computing
+physical database design, query processing, database management system architecture
+real-time distributed programs, logic programming
+metadata management, tools, integration, transformation, query, analysis
+program analysis, optimization, computer science research community
+algorithms, information retrieval techniques
+fault-tolerant distributed computing
+AI, natural language processing, HCI, human-centered design
+interaction design, social computing, service, ACM
+dynamic Bayes networks, anytime algorithms
+energy efficient large-scale cloud computing systems, design, engineering, operation
+handwritten document image analysis, recognition, retrieval
+meaning-based understanding, natural language, computers
+analysis, large data sets, data streams
+personal computing, object-oriented programming
+programming language theory, systems
+software engineering, programming languages
+dependable computing, computer history
+ACM, computing community
+distributed computing
+query processing, query languages
+ubiquitous computing research, education, home, health
+computer networking, distributed systems
+algorithms, data structures
+computer communication protocols
+compiler design, implementation
+electronic design automation
+Macsyma computer system, formula manipulation
+programming languages theory
+architecture, computer-aided design, field-programmable gate arrays
+human-computer interaction
+human-computer interaction, computer-supported cooperative work
+compilers, memory management
+computational geometry
+algorithms, complexity theory
+stochastic modeling
+computer security, verification of computer systems
+virtual machines
+computer security, fault-tolerant distributed computing
+approximation algorithms, mathematical programming
+rendering theory, systems
+compiler technology, performance enhancement tools
+high-performance memory systems
+computer music, physics-based sound synthesis, voice analysis/synthesis
+computer vision
+network control, management systems
+theorem provers, verification techniques
+algorithmic methodology, game theory
+computational photography
+computer-aided design tools, mixed-signal integrated circuits
+software, systems
+probabilistically checkable proofs, approximate solutions, NP-hard optimization problems
+computational complexity
+combinatorial auctions, mechanism design
+managing federated, active, heterogeneous databases
+technologies, parallel computing
+software engineering process discipline
+human-computer interaction
+program, system verification
+parallel, reconfigurable computing
+algorithms, web technology
+solid modeling, nanorobotics
+learning theory, algorithms
+database theory
+computer vision
+fault-tolerant distributed computing
+compiler support, parallel computing
+computer-aided design, integrated circuits, systems
+networking standards, internet applications
+artificial intelligence
+security, public policy, information technology
+transactions, memory management
+scalable, reliable internet services
+computer science education
+computer-supported collaborative work
+artificial intelligence, database systems
+multiprocessor computers, compiler optimization techniques
+content-based analysis, retrieval, multimedia
+complexity theory
+software design
+functional programming languages, object-oriented programming languages
+type theory, program analysis
+computer graphics
+computer graphics, computer vision
+compilers, program analysis
+programming languages, theory
+symbolic computation, computational biology
+computer graphics, vision
+algorithms, complexity theory
+computational biology, computational complexity
+reactive systems, hybrid systems
+programming environments, education, entertainment
+data semantics, web services
+computability, complexity theory
+mathematical foundations, optimizing parallelizing compilers
+parallel computing, distributed computing, reconfigurable computing
+computer-based systems, disabilities
+Internet measurement, engineering
+data integration, knowledge representation
+computer algebra, symbolic computation
+dataflow computing, verification
+broadening participation, computing
+user interface technology
+mentoring, numerical algorithms
+scalable distributed systems
+computer vision, computer graphics
+cognitive architectures, development
+distributed data management, database community
+computational complexity theory
+mechanized theorem proving
+programming languages, compilers, computer architecture
+algebraic specifications, abstract data types
+artificial intelligence, cognitive science
+federated database systems, research leadership
+information processing, web analysis
+protocol designs, packet switched networks
+information management, security
+programming languages, development environments
+system software, parallel computing, distributed computing
+parallel computing, distributed computing
+computational complexity, applications
+query processing, data mining
+network switching, queueing
+high-performance processors, memory systems
+multiprocessors on a chip, multi threaded processor design
+artificial intelligence, information retrieval
+parallel computing, databases, sensor networks
+distributed system software engineering, community service
+message passing protocols
+parallel computing, distributed computing
+resource management, data networks
+data management, database systems
+information retrieval, human-computer interaction
+formal verification, hybrid systems
+machine learning, data mining, knowledge discovery
+Internet measurement, intrusion detection
+database management systems
+measurement, analysis, computer networks
+planning algorithms
+shared-memory multiprocessing
+system verification, verifiable voting systems
+discrete-event simulation
+formal methods, international leadership
+interactive programming environments
+parallel computing, stochastic networks
+distributed database systems
+network architecture, protocols, algorithms
+active database systems, semi-structured database systems
+compiler construction, theory, practice
+compiler optimization, embedded computing
+real-time systems
+distributed systems, parallel systems
+distributed information management
+market-based computation, decentralized computation
+multiprocessor memory system design
+algorithms, data structures
+search systems, distributed data
+logic, computer science
+type systems, programming languages
+superscalar processors, multimedia architectures
+artificial intelligence, robotics
+mobile systems, ubiquitous systems
+UNIX, ACM
+database query processing, optimization
+packet processing, traffic management algorithms
+distributed systems, computer networks
+automated program analysis, synthesis
+theoretical computer science, quantum computation
+optimization, approximation algorithms
+parallel algorithms
+data networks, protocols
+shared-memory multiprocessing
+error-correcting codes
+functional programming languages
+object-oriented distributed computing
+distributed systems, mobile systems, parallel systems
+symbolic computation
+Information Systems
+computer architecture, performance analysis
+object-oriented programming languages
+memory consistency models, memory system design
+distributed computing systems, security, networking
+Internet, domain protocols, email protocols
+database systems, query processing, access methods
+security, mobile code
+high-performance computing systems
+computing technologies, people with disabilities
+database systems, query optimization
+system optimization
+functional programming languages
+processor architecture, design
+Pattern Recognition theory
+human discourse, Computational Molecular Biology
+Computational Molecular Biology
+computer science community, leadership, service
+information retrieval
+high-speed networking
+theoretical computer science
+high-performance computing
+data mining
+wireless communication systems, mobile computing, communications
+secure database systems
+bioinformatics
+computer architecture
+database technology
+human-computer interaction
+natural language processing
+multiprocessor architecture
+software testing, analysis
+systems design, protocols, scalable network services
+low power design, testing, digital systems
+functional programming languages
+pattern recognition, artificial intelligence
+knowledge discovery, data mining
+computer vision, multimedia information systems
+reliable software, secure software
+Internet architecture, protocols
+AI, machine learning
+human-computer interaction
+dependable systems, networks
+mobile networks
+image understanding, shape similarity, education in Computer Science
+system dependability modeling
+VLIW architectures, compilers
+database system access methods, concurrency control, recovery
+networks, devices
+computer graphics, non-photorealistic rendering
+transaction management
+computational science, computer science, community
+social computing, human-computer interaction, HCI, ACM
+algorithms, number theory, computational geometry
+scalable algorithms
+algorithms, flows, connectivity, matching
+database system research, practice
+storage systems, management
+network protocols, technical leadership, design, analysis
+computer systems, distributed information access, uncertainty modeling, reasoning
+distributed computing, mobile information access, computer systems research
+complexity theory, descriptive complexity, database theory
+computational geometry, applications
+vector, superscalar, VLIW architectures
+fault-tolerant distributed computing, BSD Unix, European distributed systems community
+multithreaded, shared memory multiprocessors, compiler technology
+machine learning
+testing, digital electronic circuits
+computer architecture, technical contributions, leadership
+interconnections networks, parallel computing, architecture, design 
+constraint-based languages, systems, applications, object-oriented programming, computers, society
+cache memories, performance measurement, professional society activities 
+parallel computing, distributed computing, debugging, performance measurement
+complexity theory, database theory, combinatorial optimization
+algorithms, discrete optimization
+computer communication, internet, architecture, protocols, security, telecommunications policy
+real-time communication protocols, packet-switching internetworks
+information security, professional ethics
+usability, high performance computing tools, leadership contributions
+communications, internet, community 
+information technology, transitioning internet, internet distance education technologies
+human-centered design, computing
+scientific computing, mathematical software, parallel methods, enabling technologies, high-performance computing
+formal methods, telecommunication software, research, tool development, large case studies, professional education
+information visualization, animated 3D user interfaces, multimedia message systems, hypertext systems, operating systems, programming languages
+database management, leadership, academia, service to ACM community
+heuristic search, analysis of algorithms, programming language methodology, computer science research, education
+fault tolerant computing, automatic test generation, design for test, formal verification, outstanding contributions
+network protocols, technical leadership, design, analysis
+test generation, fault simulation, sequential circuits, cache consistency protocols, interconnection networks, error detection
+operating systems, file systems, web caching, internet performance, internet standards
+distributed software engineering, requirements analysis, software architectures specification, analysis, distributed software configuration, evolution 
+computational complexity theory, service to international computer science research community
+RISC computer architectures, leadership, industrial research, measurement, computing, communication technologies
+qualitative representation, reasoning, physical systems, research teams
+types in programming languages, semantical basis, modern programming languages
+logic design, testing, fault-tolerant computer architecture
+scalable packet switches, integrated packet switching network, data, voice, video
+parallel algorithms, algebraic, combinatorial complexity, VLSI architectures, high-performance computing 
+dynamic failure, real-time fault-tolerant computing, theory 
+communication protocols, research, development
+system, transaction processing, real-time systems
+database management, leadership, academia, service to ACM community 
+moving object databases, distributed systems, fundamental contributions 
+distributed query optimization, distributed databases, distributed transaction processing, metadata management, schema integration
+randomized algorithms, theory, practice
+computer, network performance evaluation, national computer science education programs in France
+integrated circuits, systems, service to community, textbook 
+embedded computing 
+cryptographic complexity theory, authorization, trust management, massive-data-stream computation, algorithmic mechanism design 
+deductive databases, data mining, analysis, data visualization, data integration, outstanding professional service 
+multimedia communications, education, perceivable Quality of Service, multimedia systems, synchronization, education 
+information, system security, access control models, systems, professional leaderhip 
+computing systems, design, measurement, evaluation, reliable 
+founding, computer science departments, service to computing community, research 
+fault-tolerant computing, dependable computing, configurable network protocols, distributed systems, leadership, service to computing community 
+logic programming, foundations, legal reasoning, temporal reasoning, metalevel reasoning, default reasoning, argumentation 
+international computing community, ACM, education, outstanding service.
+Internet, strategic computing, digital libraries, digital object infrastructure, digital intellectual property protection technology.
+Multimedia instructions, processor architecture, instruction set architecture, RISC processors.
+Internet, scalable traffic control techniques.
+Algorithms, data structures, parallel computing, image-processing, sensor fusion, robotics, ACM.
+Computer-aided design, performance, reliability, CMOS VLSI, optoelectronic circuits, high performance computing, communications.
+Distributed databases, real-time systems, heterogeneous database integration, warehousing, semi-structured data, bioinformatics.
+Discrete algorithms, computational geometry, computer vision, VLSI design.
+Dynamic storage structures, scalable distributed file structures, multidatabases.
+Microarchitecture, computer science, engineering education.
+Database management, multidatabase research, academia, industry.
+Automatic programming, natural language dialogue processing, computer science education.
+Complexity theory, semantics of programming, graduate students.
+Parallel program synthesis, software engineering environments, requirements engineering, software engineering.
+Logic-programming research, Association for Logic Programming, SBProlog, XSB systems.
+Scalable Internet protocols, networking community.
+Relational databases, online transaction processing, decision support.
+Theory proving, automated deduction, book.
+Operating systems, networking, IP-based networking, modern Internet.
+Human-computer interaction, computer science, psychological science, research, system.
+Application scheduling, parallel distributed computing.
+Database management, community, undergraduate textbook, student mentoring, industry.
+Lambda Calculus, programming languages, Lazy Evaluation, Knuth-Morris-Pratt string search algorithm, Xerox Palo Alto Research Center, Carnegie Mellon.
+Medical informatics, leadership, service, ACM, computing community.
+Software, networked systems, introductory textbook, computer networks, ACM TOCS.
+Interconnection Networks, Parallel Processing.
+Packet switching, Internet, paper, book, inspiring.
+Scientific and parallel computing, computational science, engineering.
+Logic, computational systems, modeling.
+Software engineering, professional field, College of Computing.
+Databases, data models, type systems, languages, complex value, functional, object-oriented database languages, semi-structured data, heterogeneous database integration.
+Parallel computing, parallel algorithms, VLSI CAD, parallelizing compiler techniques, distributed memory multiprocessors.
+Database management systems, engineering.
+Distributed and parallel processing, software distributed shared memory.
+Ordered Binary Decision Diagrams, boolean functions, CAD, hardware, software verification, automated theorem proving, AI planning.
+Relational Database systems, SQL embedding, SQL compilation, optimizer, extensions, automatic data entry.
+Compilers, code-generator generators, program analysis, Schloss Dagstuhl.
+Research, technology, leadership, transfer of technology, ACM.
+Finite model theory, relational database theory, knowledge reasoning.
+Load balancing, partitioning, distributed processes.
+Reliable computing.
+Parallel computing, mathematical software, parallel architectures.
+Concurrent object-oriented programming systems, community, papers.
+Computer science education, ACM, profession.
+Compiler theory, real-time systems, software processes, software engineering.
+Logical design, IBM's parallel computing systems, Deep Blue Project, ACM Computer Chess Committee.
+Internet Routing, Timekeeping.
+Artificial Intelligence, memory-based reasoning, constraint-satisfaction techniques.
+Type theory, programming language design, Standard ML.
+VLSI CAD test, Fault-tolerant Systems Design, computer engineering, computer science education, research.
+PostScript Language, Interpreter, Adobe Systems.
+Computer graphics, ACM.
+Scientific computing, parallel processing, software engineering.
+Programming languages, software engineering, ACM, SIGSOFT.
+Computer software, PostScript language.
+Internet-based programs, international presence, computing.
+Virtual synchrony, fault-tolerant distributed computing.
+Language theory, software engineering, international leadership.
+Complexity theory, combinatorial, geometric algorithms.
+Interlisp programming environment, standards, Internet, World Wide Web.
+Geometric data structures, surfaces, algorithms, computer graphics, computer vision.
+Reduced instruction set computing (RISC) systems.
+Parallel computation, scaleable parallel systems architectures.
+Code improving transformations, program analysis algorithms, compilers, software engineering tools.
+Computational theory, complexity theory, compiler design, concurrency control, databases, systems.
+MACSYMA, symbolic processing systems, temporal databases, database community.
+Monte-Carlo rendering methods, antialiasing, motion blur, depth-of-field, glossy reflections, translucency, shading languages, physics-based shading, Renderman software.
+Originating, leadership, temporal databases, database community.
+Practical software engineering, academia, industry.
+Internet's End-to-End protocols.
+Development, enhancement, Interconnection Networks, End-to-End protocols.
+artificial intelligence, technical work, industrial applications, research leadership, community dedication
+analysis of algorithms, worst-case analysis, heuristics, scheduling, computational geometry
+computer science, robotics, ACM, community service
+discrete optimization, graphs, networks, logical analysis, Boolean functions, applications
+fuzzy sets, fuzzy expert systems, fuzzy hybrid systems
+computational complexity theory, academic computer science community
+computing sciences education, ACM, national and international arenas
+programming languages, compilers, ACM Transactions
+natural language processing, interdisciplinary research, artificial intelligence, cognitive science, information technology
+RISC, CAD tools, computer graphics systems
+database theory, object-oriented databases, database research leadership
+software engineering, software evolution, ACM, software engineering community
+Parallel Processing Architecture, Interconnection Networks, Parallelism Detection, Scheduling
+office information systems, ACM SIGOIS, conferences
+data communication networks, internet, privacy, security, policies, practices
+interprocedural compile-time analyses, general-purpose pointers
+programming language design, specification methodology, computing, public policy
+Model Checking, Allen Emerson, finite-state concurrent systems
+geometric algorithms, combinatorial algorithms, discrete mathematics, algorithmics
+design and analysis of algorithms, combinatorial optimization, network flows, approximation algorithms
+concurrent programming, SR programming language, Computing Research Association, National Science Foundation
+information processing, ACM
+parallel machine interconnection networks, reconfigurable parallel computers, parallel application mappings, heterogeneous computing systems
+research, graduate education, computer science, technology transfer, industry, science, engineering
+formal methods, programming languages, programming methodology, software development
+user-centered software design, programming languages community
+computer systems, architecture, Shared Virtual Memory
+programming languages, relational database technology, user interfaces, multimedia systems
+software engineering, testing, analysis, environments, process, computer science community
+software engineering, software testing, analysis, dedicated service, software engineering community
+computer science foundations, principles of database systems, complexity theory, combinatorial optimization
+semantics-directed compilation, partial evaluation, theory of computation, formal models, practical realization
+Entity-Relationship Model, systems analysis, design methodologies, CASE tools, repository systems
+Hybrid DE's, database, signature recognition, computer science education
+computing technology, networks, security, ethics, safety, responsible use
+Lisp/OOP community, standardization, Lucid
+computational geometry, parallel computing, string and pattern matching
+software engineering, software environments, ACM, SIGSOFT, software engineering community
+programming languages, theory of data, types, computability, sequential, higher-order languages
+computer network architectures, protocols, performance evaluation
+software engineering, professional societies, computing field
+computing technology, legal community
+multimedia, techniques, global impact
+operating systems, real-time systems, picture processing, software modelling, computer science texts
+software engineering, computer and software systems, environments, architectures, process models, cost models, quality models, risk models
+computer-human interaction, computing technology
+information retrieval, retrieval models, research results, practice
+education, practice, computer networks, performance evaluation, computing industry in Brazil
+computational geometry, theoretical algorithms, practical problems, computer graphics
+Computational Geometry, Design and Analysis of Algorithms
+modeling, analysis, computer and communications systems, impact, performance evaluation tools
+software engineering, software testing, metrics, theory of computation
+information systems, Management Information Systems
+compilers, programming languages, computer architecture, microporgramming, real-time systems, computer science, engineering education
+database system technology, storage management, distributed databases, transaction management, digital libraries
+computer graphics, computer vision, computerized cartography, chain code
+finite capacity queuing network models, Time Warp parallel simulations, traffic Control, ATM networks, mobility management, wireless networks
+algorithms, communication protocols, mobile networking
+group-enabled desktop applications, Computer Supported Cooperative Work
+lectures, books, papers, computer field, US computing community, national-level awards
+parallel processing systems, cache coherence protocols, memory latency
+theoretical contributions, parallel computing, robotics
+RISC technology, MIPS Computer Systems, compiler technology, instruction set architecture, processor design
+service, ACM, data base systems, computer/communication performance evaluation
+signal processing, control theory, computer music, combinatorial optimization
+Algorithmic motion planning, Davenport-Schinzel sequences, computational geometry, arrangements of surfaces, geometric algorithms, linear programming
+distributed computing, mathematical models, proof techniques, algorithms, impossibility results
+theory of computation, communication theory, information theory, mathematics
+information technology, European research, Data Division of CERN
+compiler and operating system software, high-performance computers, mainframes, vector processors, parallel processors.
+data structures, algorithms, geometric computation, combinatorial computation, spatial databases
+analytical performance modeling, database systems
+parallel languages, IT policy, UK, European
+parallel computation, educator, leader
+artificial intelligence, perception, diagnostic reasoning, robotic control, database, programming language semantics
+formal specification, verification, computer system security, reliability, software engineering
+theoretical computer science, influential work
+natural language processing, digital libraries, leadership, Computer Science
+mathematical analysis of algorithms, algorithm animation
+computational models, celestial mechanics, astrodynamics, transport lag systems, nuclear reactors, innovative computer architectures, software processes, USAFA computer science
+computer scientist, primes in NP, dynamic logic, SUN, concurrency
+empirical software engineering
+foundational issues of computer science
+information technology, computer graphics, database systems, parallel computing
+interconnection networks, high-performance computer architecture, system reliability, scheduling techniques
+students, operating systems, uniprocessors, distributed systems, MINIX, Amoeba
+fault tolerant computing, memory system performance measurement, women in computing, systers, Grace Hopper Celebration of Women in Computing
+operating system, parallel system software, science, technology, United States
+software engineering
+graph-theoretic models, computation, parallel algorithms, architectures, VLSI design, data structures
+knowledge-based systems, statistical methods, pattern recognition, leadership, artificial intelligence
+programming methodology, programming languages, distributed systems
+design, analysis, algorithms, computational geometry
+physical design research, design automation, conference leadership, electronic design automation publications
+real-time operating systems, optimizing compilers, computer architecture, software process, computer science education, service to computing profession
+information storage, retrieval, design, mathematical analysis, computer algorithms
+government science, technology policy, computer science, engineering, awareness, information technology
+associative network, relational database systems, innovative research, computer applications, automotive industry
+formal model, communication protocols, protocol engineering
+hierarchical data structures, spatial data bases, computer graphics, image processing, geographic information systems, robotics
+computer science research, operating systems, computer architecture, education, ACM
+behavior, future interaction, adaptive data compression, programming by demonstration, machine learning
+intermediate program representations, program optimization, parallelization, optimizing compilers
+distributed routing algorithms, peer networking, professional contributions, computer communication research
+mathematical software, ACM Transactions on Mathematical Software, high level systems, problem solving environments, scientific applications, numerical applications, computing profession
+Coons Award, international graphics standard efforts, industrial applications, medical applications
+high performance 3D graphics hardware systems
+computational complexity theory
+computer networks, research, education, CSNET, internationalization of the Internet
+theoretical computer science, educational applications, computing technology
+compiler technology, algorithms, implementation, analysis
+Computer Science Conferences, computer research, seminal computer research
+computer arithmetic, digital signal processing architectures, electronic CAD, ACM/SIG activities
+parallel computer architectures, computing research community
+software engineering, software architecture, abstract data types, software engineering education
+automata theory, formal languages, ACM, entrepreneurial
+Unix, Information Retrieval, multimedia Digital Libraries
+theoretical computer science, dedicated service, computer science community
+computer vision, hierarchical representation, active sensing, analysis guided synthesis, multidimensional modeling, computational sensors, multiprocessor architectures
+graph theory, practical problems, computer, dissemination, books
+efficient discrete event simulations
+control-theoretic approach, computer systems modeling, Doctoral Thesis
+data structures, combinatorial algorithms
+theoretical computer science, information theory, VLSI design, analysis, synthesis
+databases, multimedia systems, concurrency control, Computer Science education, ACM community
+real-time computing, research, leadership, service
+time-sharing system, MAD compiler, SIGPLAN chairman, CACM department editor, National ACM Lecturer, University of Massachusetts Computer Science Department chairman, textbook, Principles of Systems Programming
+computer system design, engineering education, government service
+compiler technology, computer programming languages, scheduling, analysis of algorithms
+simulation environments, editor, committee chair, conference organizer, ACM
+queuing networks, computer system performance evaluation
+Active Perception, machine perception, robotic, intelligent systems laboratory
+data structures, algorithms, multiprocessor scheduling, electronic computer aided design, parallel computing
+error-control coding theory, fault tolerant systems, ACM Lectureship, Chapter activities
+efficient algorithms, planar graphs, network flows, VLSI routing
+parallel algorithms research, thinking in parallel, fundamental theory, Computer Science
+reliable systems, software testing, analysis, academic, government administration, professional societies, research
+graphics, computer graphics, shape modeling, physically based modeling, teleological modeling
+computational complexity, analysis of algorithms, data structures, communication complexity, cryptographic protocols
+computer networks, communications, information resources policy, ACM, computing
+distributed computing, networking, computer graphics
+mass storage systems, computer algorithms, VLSI circuits
+fast multiplication algorithm, minimum message length principle, random number generation, computer architecture, numerical solution of ODE's, Australian Computer Science
+parallel database systems, database system benchmarking, object-oriented database systems, educator, technical leader
+ACM leadership, theoretical and applied computer science, public use of computing
+approximation algorithms, computational complexity, ACM service
+structural engineering, computer science, computer graphics
+formal languages, compiler design, algorithm analysis, databases, parallel computing, fault-tolerant computing, ACM service
+computer and communications security, open exchange of ideas and information
+software engineering
+ACM leadership, computing science research, computing science education
+query optimization, relational databases, object-oriented databases, editorial service
+computer systems, computer system performance analysis, technical leadership, educational leadership, disciplinary leadership
+computer graphics, researcher, director, mentor
+logic, computer science, scientific computation
+Computational Geometry, Parallel Algorithms, Theory of VLSI Layouts, Fault Diagnosis in Computer Systems, Algebraic Coding Theory
+semantics, methodology, algorithms, programming, concurrent systems, distributed systems, mission-critical settings
+information organization, retrieval, distinguished service, ACM
+database management systems, medical informatics, computer science community
+object-oriented analysis, object-oriented design, software architecture, reusable software components
+modeling, simulation theory, random number algorithms, information security, ACM's SIG publications
+high performance, parallel display architecture, graphic processors
+space projects, technology projects, speed, cost, computers
+educator, textbook author, data structures, software for geometry
+ray tracing, algorithm
+distributed computing, Parallel Program Design, UNITY
+foundations of computer science, compiler design, database systems, computer science education
+high performance, parallel computers, programming language design, program optimization
+computing, social impact, institutionalizing, ACM, Conference on Computers, Freedom, and Privacy
+software engineering practice, design automation, software development environments
+parallel computer programming, parallel computer architecture, theoretical foundations of computer science
+network management, scientific discipline
+algorithms, computer graphics, photographic realism
+theory of complexity, algorithms, ACM service
+supercomputing research, application to automotive industry, distinguished teaching, high-performance computing
+software safety, safety techniques, industry, worldwide
+object-oriented technologies, multiprocessing, program verification
+algorithms, theory of computation, computational complexity, parallel computing
+ACM President, programming language design, standardization, computing, author, lecturer
+complexity of algorithms, computing research, education community
+ACM leadership, educational efforts, publication efforts, computer scientists
+formal methods, software design, construction, Vienna Development Method (VDM)
+ACM leadership, Monograph Series editor, CACM Forum editor
+theoretical computer science research
+parallel algorithms, computational number theory, multiple-precision arithmetic, computational complexity, numerical analysis, Australian Computer Science
+logic, computational aspects, software system, Nuprl
+information systems, ACM SIG conference activities
+learning algorithms, parallel processing, interconnection networks
+Theory of Parallel Computing
+software development environments, programming languages, leadership, innovation, ACM's Special Interest Group on Programming Languages
+design and analysis of algorithms, theoretical computer science community
+LCF, mechanization, Scott's Logic of Computable Functions, ML, polymorphic type inference, CCS, concurrency, full abstraction
+management of professional society policies and operations, Space Program, technical activities, SHARE, AFIPS, ACM
+object-oriented programming, related programming techniques, Smalltalk, software methodologies, graphical user interface
+computer science curriculum, curriculum design, academic discipline
+computer science, education, graphics, user interfaces
+author, educator, human rights advocate, technical societies
+computer vision, image analysis
+
+C++ programming language
+0
+Programming Systems, Languages
+Scalable shared memory multiprocessors
+Personal computing environments, workstations, networks, operating systems, programming systems, security, document publishing
+Minicomputer, PDP-5, PDP-8, interactive timesharing computer, hardware descriptive language
+Computer science educational programs
+0
+Computing community, professional, technical contributions
+Computing community, computer scientist, educator, ACM leader
+Xerox Alto System, distributed personal computer system, time-sharing
+Automatic computational techniques, stiff differential equations
+Theoretical basis, logic programming, resolution theorem prover
+Finite Automata, Decision Problem, nondeterministic machines
+Programming environments, source-language debuggers, interpreter/compiler, change management, structure-based editing, logging facilities, interactive graphics, analysis
+0
+VisiCalc, data manipulation, personal computing
+Information technology
+Algorithmics, computing curricula, Israeli national councils, ministerial committees
+Supercomputing, shared memory multiprocessing, clustered memory hierarchies
+Programming system, EDSAC, computer
+Programming Systems, Languages, parallel programs
+System software design, Design Software for Ease of Extension and Contraction
+Teaching, mentorship, technical expertise
+Ethernet local area network, internet protocols, file servers, gateways, network interface cards
+INGRES, System R, database management system, relational data model, non-procedural query languages
+TEX, computer composition, high typographical quality
+PostScript page description language, implementation
+Performance evaluation, computing systems, computer program
+ACM Forum on Risks to the Public in the Use of Computers and Related Systems, security
+0
+AFIPS, Turing Award Committee, Government Organization Committee, Computer Science and Technology Board, National Academy of Sciences - National Research Council, NSF Office for Computing Activities, NSF COSERS Study
+Computer science curricula development, accreditation, national and international conferences, technical journal founding
+0
+Curriculum development, certification standards, vocational education, professional ethics
+Programming Systems, Languages
+Programming environments, source-language debuggers, interpreter/compiler, change management, structure-based editing, logging facilities, interactive graphics, analysis
+ACM Publications, Editorial Board, Journal of the ACM
+Database management systems, relational approach, database languages, query subsystems, database semantics, locking and recovery, inferential subsystems
+ALGOL, programming languages, structure, representation, implementation, graph theory
+PostScript page description language, implementation
+0
+Publications, publications policy
+Time-sharing, resource-sharing computer systems, CTSS, Multics
+Program Data Flow Analysis Procedure
+Conference management, SIG and ACM conferences
+ACM Distinguished Service Award, early days of the Association
+Institute for Certification of Computer Professionals, ACM's participation
+Computer architecture, pipelining, instruction look-ahead, cache memory
+Teaching introductory computer science, Scheme, Structure and Interpretation of Computer Programs
+Higher Order Symbolic Programming, lexical scoping, LISP
+ENIAC, ACE-Pilot Model, SWAC, Bendix G15, UC Berkeley Time-sharing Computer, Computer Handbook, Past President of the ACM
+Computer architecture, integrated circuits, Texas Instruments scientific computer
+Artificial intelligence, the psychology of human cognition, list processing
+ACM, Chairman of the External Activities Board, Intersociety Liaison Committee
+Relational data model, non-procedural query languages, QUEL, SQL, automatic query optimization, alternative storage structures, transactions, crash recovery, views, integrity, protection
+Computer graphics, Sketchpad, display file, screen
+0
+0
+Hardware, software design, data flow architectures
+Scientific freedom, human rights, ACM's support.
+ACM, volunteers, collective conscience, memory, professional staff, team, potential
+ACM, computing community, programing languages, history
+human intellect, hypertext, outline processors, video conferencing, NLS System, On Line System
+INGRES, System R, database management system, DBMS, relational data model, query languages
+ACM, computing community, computing standards, history of computing, computer science professionalism
+design, analysis, algorithms, data structures
+principal architect, SIG, ACM finances, team, leadership, Headquarters location
+artificial intelligence, recognition, own work
+integrated circuit, computer aided design, CAD systems, Caesar, Magic
+information-based complexity, computational finance, optimal iteration theory, parallel computing, national science policy, computing education, leadership
+
+computational complexity theory
+
+programming environments, source-language debuggers, integrated interpreter/compiler, change management, structure-based editing, logging facilities, interactive graphics, analysis
+SIGCHI, DataPlan Committee reports, development, growth, research, publication
+Publications Planning Committee, policy framework, implementation plan, ACM publications
+
+EDSAC, internally stored program, mercury delay line memory, Preparation of Programs for Electronic Digital Computers, program libraries
+Software Evolution, laws, Principle of Software Uncertainty, FEAST project
+processor organization, classification, computer arithmetic, performance evaluation
+INGRES, System R, database management system, DBMS, relational data model
+ACM Computer Chess Championship, major force, operation, author, competitors, OSTRICH, young ACM members
+
+computer languages, EULER, ALGOL-W, MODULA, PASCAL, pedagogically significant, foundation, future computer language, systems, architectural research
+
+Recovery Manager, System R Database Manager, best paper, Programming Systems and Languages
+information theory, data compression, error correction, digital communications, computation
+outstanding service, ACM, President, Council Member, Editorial Committee, Computing Surveys, Communications of the ACM, computing profession, author, editor, communicator
+parallel computers, interconnection network theory
+
+computation theory
+computing community boards, committees, seminars, international activities, systems analysts, programmers, managers, business data sector
+ACM's influence, computer and information systems curricula
+theory of algorithms, efficient algorithms, network flow, combinatorial optimization problems, polynomial-time computability
+numerical methods, automatic coding systems, error-detecting, error-correcting codes
+design, analysis, algorithms, data structures
+VisiCalc, data manipulation, personal computing industry
+Xerox Alto System, distributed personal computer system, practical alternative, time-sharing
+efficient and reliable software, theory of parsing, semantics of programming languages, automatic program verification, automatic program synthesis, analysis of algorithms
+
+cryptography
+programming environments, source-language debuggers, integrated interpreter/compiler, change management, structure-based editing, logging facilities, interactive graphics, analysis
+ACM's conferences, meetings, symposia, administration
+
+associative network, relational database systems, sustained leadership role, innovative research and development, computer applications, automotive industry
+theory and practice, computer performance modeling
+
+Axiomatic Proof Technique, Parallel Programs I, best paper, Programming Systems and Languages
+management structure, Headquarters operations, ACM, innovative programs, attract members, respond to member needs
+significant service, computer field, ACM, ANSI, IFIP, SHARE
+video graphics, ACM Video Review, teaching, computer graphics, dissemination, best work
+BASIC computer programming language, growth, standardization 
+
+
+TCP/IP Computer Communication Protocol Suite, vision, leadership, design, implementation, evolution, dissemination
+ACM, sister societies, AFIPS, IFIP, intellectual, political, social ties, information processing profession
+
+ACM Scholastic Programming Contest, well-funded program, widespread university participation, enhanced visibility, excitement, computing professional activities
+parallel algorithms, conception, design, implementation, commercialization, Connection Machine
+
+numerical analysis, floating-point computations
+
+
+
