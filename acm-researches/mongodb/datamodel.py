@@ -1,5 +1,3 @@
-from pdb import set_trace as bp
-
 class Author:
     schema = {
         "name": str,
@@ -28,21 +26,24 @@ class Publication:
         "title": str,
         "authors": list,
         "year": int,
-        "semantic_scholar_url": str
+        "abstract": str,
+        "ss_id": str
     }
 
-    def __init__(self, title, authors, year, semantic_scholar_url):
+    def __init__(self, title, authors, year, abstract, ss_id):
         self.title = title 
         self.authors = authors 
         self.year = year 
-        self.semantic_scholar_url = semantic_scholar_url
+        self.abstract = abstract
+        self.ss_id = ss_id
 
     def to_dict(self):
         return {
             "title": self.title,
             "authors": [author.to_dict() for author in self.authors],
             "year": self.year,
-            "semantic_scholar_url": self.semantic_scholar_url
+            "abstract": self.abstract,
+            "ss_id": self.ss_id
         }
 
     @staticmethod
