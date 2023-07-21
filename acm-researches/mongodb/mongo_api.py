@@ -1,6 +1,5 @@
 import pymongo
 from mongodb.datamodel import AuthorPublications
-from pdb import set_trace as bp
 
 # credential
 password = "asdfghjkl"
@@ -8,7 +7,8 @@ password = "asdfghjkl"
 class MongoDBAPI:
     def __init__(self, database_name, collection_name):
         self.client = pymongo.MongoClient(
-            f"mongodb+srv://researcherGPT:{password}@researchergpt.oquqsqd.mongodb.net/?retryWrites=true&w=majority"
+            f"mongodb+srv://researcherGPT:{password}@researchergpt.oquqsqd.mongodb.net/?retryWrites=true&w=majority",
+            serverSelectionTimeoutMS=60000
         )
         self.database_name = database_name
         self.db = self.client[database_name]
@@ -20,6 +20,7 @@ class MongoDBAPI:
             raise ValueError("Invalid data format. Data does not match the data model schema.")
 
         # Insert the data into the collection
+        bp()
         insert_result = self.collection.insert_many(data)
         return insert_result.inserted_ids
     

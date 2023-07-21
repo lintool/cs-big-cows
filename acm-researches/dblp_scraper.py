@@ -6,7 +6,6 @@ import pandas as pd
 from paper_search import semantic_scholar_search
 from mongodb.mongo_api import PublicationDB
 
-from pdb import set_trace as bp
 
 def crawl_dblp_author(dblp_url):
     response = requests.get(dblp_url)
@@ -31,12 +30,13 @@ def crawl_dblp_author(dblp_url):
         }
         for author_item in paper.find_all('span', itemprop='author')]
         year = int(paper.find('span', itemprop='datePublished').text)
-        semantic_scholar_url = semantic_scholar_search(title, author_name)
+        ss_paper = semantic_scholar_search(title, author_name)
         results.append({
             'title': title,
             'authors': authors,
             'year': year,
-            'semantic_scholar_url': semantic_scholar_url
+            'abstract': ss_paper.abstract if (ss_paper and ss_paper.abstract) else '',
+            'ss_id': ss_paper.ss_paper_id if ss_paper else '',
         })
     return results
 
@@ -49,9 +49,9 @@ if __name__ == "__main__":
     last_name = first_author['Last Name']
     dblp_profile = first_author['DBLP profile']
 
-    publication_db = PublicationDB("acm_turings")
     if dblp_profile != "":
         publications = crawl_dblp_author(dblp_profile)
+        publication_db = PublicationDB("acm_turings")
         publication_db.insert_data([{
             "name": f"{last_name}, {given_name}",
             "publications": publications
