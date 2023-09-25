@@ -101,6 +101,6 @@ def semantic_scholar_search(paper_name, author_name):
         ss_paper = SemanticScholar(ss_paper_id)
     except ValueError as e:
         # print(response.status_code)
-        # print(f'Publication "{paper_name}" not found in Semantic Scholar')
+        print(f'Publication "{paper_name}" not found in Semantic Scholar')
         return None
     return ss_paper

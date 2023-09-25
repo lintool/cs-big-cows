@@ -102,7 +102,7 @@ if __name__ == "__main__":
         dblp_profile = dblp_profile.values[0]
         if dblp_profile != "":
             publications = crawl_dblp_author(dblp_profile)
-            csv_file_path = f'acm_publications/acm_turings/{last_name}_{first_name}_publications.csv'
+            csv_file_path = f'acm_publications/acm_turings/{last_name}_{"_".join(first_name.split(" "))}_publications.csv'
             list_of_dicts_to_csv(publications, csv_file_path)
         else:
             print(f'Author {args.author} DBLP profile is not found, please update the ACM csv file.')
