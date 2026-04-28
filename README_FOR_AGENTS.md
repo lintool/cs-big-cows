@@ -47,6 +47,37 @@ There is no separate `data/acm_fellow_profiles.csv`. ACM profile URLs and propag
 
 Keep committed CSV files on Unix LF line endings. Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
 
+## ACM Fellows Directory
+
+The ACM Fellows directory is the source list for all ACM Fellows:
+
+```text
+https://awards.acm.org/fellows/award-recipients
+```
+
+Use this page to discover new ACM Fellows before running profile-page enrichment. The directory provides:
+
+- fellow name in `Last, Given` display order;
+- ACM Fellow profile URL;
+- ACM Fellows year;
+- region.
+
+It does not provide the full citation, DBLP profile, or Google Scholar profile. When adding directory-only rows to `data/acm_fellows.csv`, fill what is available:
+
+- `name`: convert `Last, Given` to clean `Given Last`;
+- `Year`: directory year;
+- `Location`: directory region, until the individual profile page provides a more specific location;
+- `ACM Fellow Profile`: directory profile URL;
+- leave `Citation`, `DBLP profile`, and `Google Scholar Profile` blank if unavailable.
+
+Keep `data/acm_fellows.csv` sorted by `Year` descending, then `name` ascending. Most recent Fellows should appear first.
+
+Direct `curl` requests to `awards.acm.org` may return a Cloudflare block page. If that happens, use a browser-capable fetch path or a text-rendered mirror for inspection, and keep any temporary scan reports under `.cache/`. The current local scan report path is:
+
+```text
+.cache/acm-fellows-directory-scan.json
+```
+
 ## ACM Fellow Profile Crawler
 
 `scripts/cache_acm_fellow_profiles.py` caches the `ACM Fellow Profile` URLs in the canonical ACM Fellows CSV:
