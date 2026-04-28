@@ -1,28 +1,148 @@
 # README For Agents
 
-This repository currently has one agent-oriented utility script under `scripts/`:
+This repository currently has two agent-oriented utility scripts under `scripts/`:
 
 ```text
+scripts/cache_acm_fellow_profiles.py
 scripts/validate_google_scholar_profiles.py
 ```
 
-Ignore the project `README.md` for this workflow. This file documents only the Google Scholar validator and its local cache/report files.
+Ignore the project `README.md` for these workflows. This file documents the local crawler/validator scripts and their local cache/report files.
 
 ## Local Python Environment
 
-Use Python 3.10 or newer from the repository root. The active validator script only uses the Python standard library, so no package install is required for the current workflow.
+Use Python 3.10 or newer from the repository root. The active crawler/validator scripts only use the Python standard library, so no package install is required for the current workflow.
 
 Recommended setup:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m py_compile scripts/validate_google_scholar_profiles.py
+python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/validate_google_scholar_profiles.py
 ```
 
 After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
 
-`requirements.txt` is retained for now but includes dependencies from older removed experiments. Do not install it just to run `scripts/validate_google_scholar_profiles.py`.
+`requirements.txt` is retained for now but includes dependencies from older removed experiments. Do not install it just to run the scripts documented here.
+
+## ACM Fellow Profile Crawler
+
+`scripts/cache_acm_fellow_profiles.py` caches the `ACM Fellow Profile` URLs in the canonical ACM Fellows CSV:
+
+```text
+data/acm-fellows.csv
+```
+
+The script:
+
+- reads ACM Fellows rows from `data/acm-fellows.csv` by default;
+- extracts unique non-empty `ACM Fellow Profile` URLs;
+- fetches each ACM profile page conservatively;
+- caches the complete fetched HTML page for reuse;
+- parses the page name, ACM Fellows award heading, location, year, and citation when available;
+- compares parsed fields against the CSV row;
+- writes a JSON cache and a JSON report;
+- does not modify CSV files.
+
+Basic commands:
+
+```bash
+python scripts/cache_acm_fellow_profiles.py --limit-new 0
+python scripts/cache_acm_fellow_profiles.py
+python scripts/cache_acm_fellow_profiles.py --refresh
+python scripts/cache_acm_fellow_profiles.py --data path/to/input.csv
+```
+
+Compile-check the script:
+
+```bash
+python -m py_compile scripts/cache_acm_fellow_profiles.py
+```
+
+Default cache path:
+
+```text
+.cache/acm-fellow-profile-cache.json
+```
+
+Default report path:
+
+```text
+.cache/acm-fellow-profile-report.json
+```
+
+Absolute paths in the current checkout:
+
+```text
+/Users/jimmylin/workspace/cs-big-cows/.cache/acm-fellow-profile-cache.json
+/Users/jimmylin/workspace/cs-big-cows/.cache/acm-fellow-profile-report.json
+```
+
+The ACM cache is keyed by profile URL. Each value contains the full `html`, fetch metadata, and parsed fields such as:
+
+```json
+{
+  "status": "ok",
+  "status_code": 200,
+  "title": "ACM Award Winner",
+  "page_name": "Fellow Name",
+  "award_heading": "ACM Fellows",
+  "location": "USA",
+  "year": "2022",
+  "citation": "For contributions ...",
+  "html": "<complete fetched HTML page>",
+  "fetched_at": "YYYY-MM-DDTHH:MM:SSZ"
+}
+```
+
+Other possible `status` values include:
+
+- `ok`: page fetched and the ACM Fellows award section was parsed.
+- `http_error`: ACM returned an HTTP error.
+- `url_error`: DNS/network/connection failure.
+- `timeout`: request timed out.
+- `invalid_url`: URL is not HTTP/HTTPS.
+- `no_name`: page fetched but no page name was parsed.
+- `no_fellow_award`: page fetched but no `ACM Fellows` award section was parsed.
+
+The report contains `review_candidates` for rows where the page did not parse cleanly, or parsed name/year/location/citation differs from the CSV. Treat these as review candidates, not automatic CSV fixes.
+
+## ACM Fellow Profile Index
+
+`data/acm-fellow-profiles.csv` is a compact index of ACM Fellow profile URLs derived from `data/acm-fellows.csv` and the ACM profile cache.
+
+Columns:
+
+- `name`: fellow name from the `name` column in `data/acm-fellows.csv`.
+- `profile`: ACM Fellow profile URL from the `ACM Fellow Profile` column.
+- `crawl_date`: date portion of the cache entry `fetched_at` timestamp.
+
+Regenerate it from the repo root after an ACM profile crawl:
+
+```bash
+python - <<'PY'
+import csv
+import json
+from pathlib import Path
+
+input_path = Path("data/acm-fellows.csv")
+cache_path = Path(".cache/acm-fellow-profile-cache.json")
+output_path = Path("data/acm-fellow-profiles.csv")
+
+cache = json.loads(cache_path.read_text(encoding="utf-8"))
+with input_path.open(newline="", encoding="utf-8") as infile:
+    rows = list(csv.DictReader(infile))
+
+with output_path.open("w", newline="", encoding="utf-8") as outfile:
+    writer = csv.DictWriter(outfile, fieldnames=["name", "profile", "crawl_date"])
+    writer.writeheader()
+    for row in rows:
+        profile = (row.get("ACM Fellow Profile") or "").strip()
+        fetched_at = str(cache.get(profile, {}).get("fetched_at") or "")
+        name = (row.get("name") or "").strip()
+        writer.writerow({"name": name, "profile": profile, "crawl_date": fetched_at[:10]})
+PY
+```
 
 ## Google Scholar Validator
 
@@ -147,7 +267,7 @@ The report is derived from the input CSV plus the cache. It contains:
 
 Each report entry includes:
 
-- `index`: ACM Fellows row index.
+- `index`: ACM Fellows CSV row number.
 - `name`: expected ACM fellow name.
 - `url`: Scholar profile URL.
 - `acm_profile`: ACM Fellow profile URL.
@@ -167,16 +287,23 @@ The validator is deliberately slow:
 - `--batch-pause` defaults to `120.0` seconds after each batch.
 - `--limit-new N` caps uncached requests for one run.
 
-Default behavior is therefore:
+Google Scholar default behavior is therefore:
 
 1. Fetch up to 20 uncached profiles.
 2. Wait 5 seconds after each fetch.
 3. Pause for 120 seconds after the batch.
 4. Write cache and report after every request.
 
-If block markers appear, stop the run and resume later without `--refresh`.
+The ACM Fellow profile crawler uses lighter defaults:
 
-## Block Detection
+- `--delay` defaults to `2.0` seconds between uncached requests.
+- `--batch-size` defaults to `50` uncached requests.
+- `--batch-pause` defaults to `60.0` seconds after each batch.
+- `--limit-new N` caps uncached requests for one run.
+
+If Google block markers appear while running the Scholar validator, stop the run and resume later without `--refresh`.
+
+## Google Scholar Block Detection
 
 The script marks a fetched page as `blocked` when the page looks like a Google block/interstitial page. It checks for markers such as:
 
