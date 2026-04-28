@@ -84,25 +84,20 @@ def load_rows(data_path: Path) -> list[dict[str, Any]]:
 
 
 def row_name(row: dict[str, Any]) -> str:
-    if row.get("Full Name"):
-        return str(row["Full Name"]).strip()
-
-    given_name = str(row.get("Given Name") or "").strip()
-    last_name_value = str(row.get("Last Name") or "").strip()
-    return " ".join(part for part in [given_name, last_name_value] if part)
+    return str(row.get("name") or "").strip()
 
 
 def unique_profiles(rows: list[dict[str, Any]]) -> list[ScholarProfile]:
     seen: set[str] = set()
     profiles: list[ScholarProfile] = []
-    for row in rows:
+    for row_number, row in enumerate(rows, start=1):
         url = (row.get("Google Scholar Profile") or "").strip()
         if not url or url in seen:
             continue
         seen.add(url)
         profiles.append(
             ScholarProfile(
-                index=int(row["Index"]),
+                index=row_number,
                 name=row_name(row),
                 url=url,
                 acm_profile=str(row.get("ACM Fellow Profile") or "").strip(),
