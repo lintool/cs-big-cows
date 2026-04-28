@@ -4,6 +4,7 @@ import csv
 
 import os
 import time
+from pathlib import Path
 from gsc_crawler import get_google_scholar_url
 
 def profile_crawler(name, profile_url):
@@ -48,7 +49,7 @@ rows.sort(key=lambda row: int(row.find('td', {'scope': 'row'}).text), reverse=Tr
 it = 0
 checkpoint = 'last_iteration.txt'
 
-fileName = 'acm_fellows.csv'
+fileName = Path(__file__).resolve().parents[1] / 'acm-fellows.csv'
 fileExist = os.path.isfile(fileName) and os.path.isfile(checkpoint)
 
 with open(fileName, 'a' if fileExist else 'w', newline='') as file:

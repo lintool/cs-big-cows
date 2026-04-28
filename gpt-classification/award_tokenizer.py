@@ -2,8 +2,11 @@ from gpt_tokenizer import GPTTokenizer
 import pandas as pd
 import time
 import argparse
+from pathlib import Path
 
 BATCH_SIZE = 60
+REPO_ROOT = Path(__file__).resolve().parents[1]
+MODULE_ROOT = Path(__file__).resolve().parent
 
 # batch list of items into list of batch of size batch_size
 def batch(iterable, batch_size):
@@ -22,7 +25,11 @@ class AwardTokenizer:
         self.batch_size = batch_size
         self.batch_index = 0
 
-        award_df = pd.read_csv(f"acm_csv/{csv_award_name}.csv")
+        if csv_award_name == "acm_fellows":
+            csv_path = REPO_ROOT / "acm-fellows.csv"
+        else:
+            csv_path = MODULE_ROOT / "acm_csv" / f"{csv_award_name}.csv"
+        award_df = pd.read_csv(csv_path)
         self.citations = award_df['Citation'].values.tolist()
     
     def __preprocess(self):

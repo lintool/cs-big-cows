@@ -15,7 +15,7 @@ ss_id: {Semantic scholar id of the publication}
 ```
   
 ## Setup
-First, import the `acm_fellows.csv` and `acm_turings.csv` into `acm_csv` folder.
+First, ensure the repository root has `acm-fellows.csv` and `acm_csv/acm_turings.csv` exists in this directory.
 Next, create a folder
 Next, run the following script to get publications data of certain author
 `python dblp_scraper.py '{last_name}, {first name}'`
@@ -37,4 +37,3 @@ with Semantic Scholar API (1 requests/second for batch api)
 2. Improve query accuracy for paper search, current implementation is by using paper name and author name, and still missing ~10% publications.
 
 3. Improve usability of `dblp_scraper.py` so it can be automated for all authors publications + fault tolerance handler.
-

@@ -5,8 +5,12 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import csv
 import time
+from pathlib import Path
 
 from paper_search import semantic_scholar_search
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+MODULE_ROOT = Path(__file__).resolve().parent
 
 def crawl_dblp_author(dblp_url):
     response = requests.get(dblp_url)
@@ -74,8 +78,8 @@ def list_of_dicts_to_csv(data, csv_path):
 
 if __name__ == "__main__":
     # load dataset
-    acm_turings_df = pd.read_csv('acm_csv/acm_turings.csv')
-    acm_fellows_df = pd.read_csv('acm_csv/acm_fellows.csv')
+    acm_turings_df = pd.read_csv(MODULE_ROOT / 'acm_csv' / 'acm_turings.csv')
+    acm_fellows_df = pd.read_csv(REPO_ROOT / 'acm-fellows.csv')
 
     # Create the argument parser
     parser = argparse.ArgumentParser(description='Search for authors in a DataFrame.')
