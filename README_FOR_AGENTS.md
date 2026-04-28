@@ -25,21 +25,44 @@ After activation, run commands with `python ...` from the repo root. If you choo
 
 `requirements.txt` is retained for now but includes dependencies from older removed experiments. Do not install it just to run the scripts documented here.
 
+## Data Layout
+
+Canonical CSV files live under `data/`:
+
+```text
+data/acm_fellows.csv
+data/google_scholar_profiles.csv
+data/turing_award_winners.csv
+```
+
+`data/acm_fellows.csv` is the canonical ACM Fellows table. Its current columns are:
+
+```text
+name,Year,Location,Citation,ACM Fellow Profile,DBLP profile,Google Scholar Profile
+```
+
+The `name` field should be a clean person name. Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP`.
+
+There is no separate `data/acm_fellow_profiles.csv`. ACM profile URLs and propagated ACM profile metadata belong in `data/acm_fellows.csv`.
+
+Keep committed CSV files on Unix LF line endings. Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
+
 ## ACM Fellow Profile Crawler
 
 `scripts/cache_acm_fellow_profiles.py` caches the `ACM Fellow Profile` URLs in the canonical ACM Fellows CSV:
 
 ```text
-data/acm-fellows.csv
+data/acm_fellows.csv
 ```
 
 The script:
 
-- reads ACM Fellows rows from `data/acm-fellows.csv` by default;
+- reads ACM Fellows rows from `data/acm_fellows.csv` by default;
 - extracts unique non-empty `ACM Fellow Profile` URLs;
 - fetches each ACM profile page conservatively;
 - caches the complete fetched HTML page for reuse;
 - parses the page name, ACM Fellows award heading, location, year, and citation when available;
+- normalizes parsed page names by removing leading honorifics such as `Dr.`, `Prof.`, `Professor`, and trailing credentials such as `PhD` / `Ph.D.`;
 - compares parsed fields against the CSV row;
 - writes a JSON cache and a JSON report;
 - does not modify CSV files.
@@ -84,7 +107,7 @@ The ACM cache is keyed by profile URL. Each value contains the full `html`, fetc
 {
   "status": "ok",
   "status_code": 200,
-  "title": "ACM Award Winner",
+  "title": "Fellow Name",
   "page_name": "Fellow Name",
   "award_heading": "ACM Fellows",
   "location": "USA",
@@ -107,54 +130,19 @@ Other possible `status` values include:
 
 The report contains `review_candidates` for rows where the page did not parse cleanly, or parsed name/year/location/citation differs from the CSV. Treat these as review candidates, not automatic CSV fixes.
 
-## ACM Fellow Profile Index
-
-`data/acm-fellow-profiles.csv` is a compact index of ACM Fellow profile URLs derived from `data/acm-fellows.csv` and the ACM profile cache.
-
-Columns:
-
-- `name`: fellow name from the `name` column in `data/acm-fellows.csv`.
-- `profile`: ACM Fellow profile URL from the `ACM Fellow Profile` column.
-- `crawl_date`: date portion of the cache entry `fetched_at` timestamp.
-
-Regenerate it from the repo root after an ACM profile crawl:
-
-```bash
-python - <<'PY'
-import csv
-import json
-from pathlib import Path
-
-input_path = Path("data/acm-fellows.csv")
-cache_path = Path(".cache/acm-fellow-profile-cache.json")
-output_path = Path("data/acm-fellow-profiles.csv")
-
-cache = json.loads(cache_path.read_text(encoding="utf-8"))
-with input_path.open(newline="", encoding="utf-8") as infile:
-    rows = list(csv.DictReader(infile))
-
-with output_path.open("w", newline="", encoding="utf-8") as outfile:
-    writer = csv.DictWriter(outfile, fieldnames=["name", "profile", "crawl_date"])
-    writer.writeheader()
-    for row in rows:
-        profile = (row.get("ACM Fellow Profile") or "").strip()
-        fetched_at = str(cache.get(profile, {}).get("fetched_at") or "")
-        name = (row.get("name") or "").strip()
-        writer.writerow({"name": name, "profile": profile, "crawl_date": fetched_at[:10]})
-PY
-```
+When propagating ACM crawl results into `data/acm_fellows.csv`, use only entries whose `status` is `ok`, and do not overwrite existing CSV values with blank parsed fields. The crawled page is newer than the original CSV for `name`, `Year`, `Location`, and `Citation`, but parsed names must remain clean names as described above.
 
 ## Google Scholar Validator
 
 `scripts/validate_google_scholar_profiles.py` validates the `Google Scholar Profile` URLs in the canonical ACM Fellows CSV:
 
 ```text
-data/acm-fellows.csv
+data/acm_fellows.csv
 ```
 
 The script:
 
-- reads ACM Fellows rows from `data/acm-fellows.csv` by default;
+- reads ACM Fellows rows from `data/acm_fellows.csv` by default;
 - extracts unique non-empty `Google Scholar Profile` URLs;
 - fetches each Scholar profile page conservatively;
 - caches the complete fetched HTML page for reuse;
@@ -163,7 +151,7 @@ The script:
 - writes a JSON cache and a JSON validation report;
 - does not modify CSV files.
 
-The script also still supports the older bundled `*-data.js` format via `--data`, but the canonical input for this repo is now `data/acm-fellows.csv`.
+The script also still supports the older bundled `*-data.js` format via `--data`, but the canonical input for this repo is now `data/acm_fellows.csv`.
 
 ## Basic Commands
 

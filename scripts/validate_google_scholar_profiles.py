@@ -29,7 +29,7 @@ from typing import Any
 
 
 APP_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATA = APP_ROOT / "data" / "acm-fellows.csv"
+DEFAULT_DATA = APP_ROOT / "data" / "acm_fellows.csv"
 DEFAULT_CACHE = APP_ROOT / ".cache" / "google-scholar-validation-cache.json"
 DEFAULT_REPORT = APP_ROOT / ".cache" / "google-scholar-validation-report.json"
 
@@ -47,7 +47,7 @@ class ScholarProfile:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Path to data/acm-fellows.csv or a bundled *-data.js file.")
+    parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Path to data/acm_fellows.csv or a bundled *-data.js file.")
     parser.add_argument("--cache", type=Path, default=DEFAULT_CACHE, help="JSON cache path.")
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT, help="JSON report path.")
     parser.add_argument("--delay", type=float, default=5.0, help="Seconds to wait between uncached requests.")
