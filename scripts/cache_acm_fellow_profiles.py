@@ -30,7 +30,7 @@ from typing import Any
 
 
 APP_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATA = APP_ROOT / "data" / "acm-fellows.csv"
+DEFAULT_DATA = APP_ROOT / "data" / "acm_fellows.csv"
 DEFAULT_CACHE = APP_ROOT / ".cache" / "acm-fellow-profile-cache.json"
 DEFAULT_REPORT = APP_ROOT / ".cache" / "acm-fellow-profile-report.json"
 
@@ -133,7 +133,7 @@ class AcmProfileParser(HTMLParser):
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Path to data/acm-fellows.csv.")
+    parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Path to data/acm_fellows.csv.")
     parser.add_argument("--cache", type=Path, default=DEFAULT_CACHE, help="JSON cache path.")
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT, help="JSON report path.")
     parser.add_argument("--delay", type=float, default=2.0, help="Seconds to wait between uncached requests.")
@@ -195,6 +195,20 @@ def clean_text(value: str) -> str:
     return normalize_space(value)
 
 
+def clean_person_name(value: str) -> str:
+    name = normalize_space(value)
+    name = re.sub(
+        r"^(?:prof\.dr\.ir\.|prof\.\s*dr\.-ing\.?|prof\.\s*dr\.?|professor|prof\.?|dr\.?|mr\.?|ms\.?|mrs\.?)\s+",
+        "",
+        name,
+        flags=re.IGNORECASE,
+    )
+    name = re.sub(r"^(?:dame|sir)\s+", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s+(?:ph\.?\s*d\.?|phd|dphil|ccp)\.?$", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s+\d{4,}$", "", name)
+    return normalize_space(name)
+
+
 def clean_title(value: str) -> str:
     title = normalize_space(value)
     return re.sub(r"\s*-\s*ACM Award Winner\s*$", "", title).strip()
@@ -209,7 +223,7 @@ def split_location_year(value: str) -> tuple[str, str]:
 
 
 def normalize_tokens(value: str) -> list[str]:
-    text = html.unescape(value or "").lower()
+    text = clean_person_name(value).lower()
     text = re.sub(r"[^a-z0-9\s.-]", " ", text)
     tokens = []
     for token in re.split(r"\s+", text):
@@ -254,7 +268,10 @@ def decode_body(body: bytes, headers: Any) -> str:
 def parse_profile_html(body: str) -> dict[str, str]:
     parser = AcmProfileParser()
     parser.feed(body)
-    return parser.parsed()
+    parsed = parser.parsed()
+    parsed["page_name"] = clean_person_name(parsed.get("page_name", ""))
+    parsed["title"] = clean_person_name(parsed.get("title", ""))
+    return parsed
 
 
 def fetch_profile(url: str) -> dict[str, Any]:
@@ -329,7 +346,7 @@ def build_report(profiles: list[AcmProfile], cache: dict[str, Any]) -> dict[str,
             continue
 
         status = cached.get("status", "unknown")
-        page_name = cached.get("page_name", "")
+        page_name = clean_person_name(str(cached.get("page_name") or ""))
         parsed_year = str(cached.get("year") or "").strip()
         parsed_location = str(cached.get("location") or "").strip()
         parsed_citation = str(cached.get("citation") or "").strip()
