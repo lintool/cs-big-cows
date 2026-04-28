@@ -1,12 +1,12 @@
-# CS Big Cows
+# CS Big Cows 🐮
 
 Data about major computer science award recipients and ACM Fellows: the "big cows" of CS.
 
 ## Data
 
-- `acm-fellows.csv`: canonical ACM Fellows dataset.
-- `turing-award-winners.csv`: canonical ACM A. M. Turing Award winners dataset.
-- `google-scholar-profiles.csv`: Google Scholar profile links for ACM Fellows.
+- [data/acm-fellows.csv](data/acm-fellows.csv): canonical ACM Fellows dataset.
+- [data/turing-award-winners.csv](data/turing-award-winners.csv): canonical ACM A. M. Turing Award winners dataset.
+- [data/google-scholar-profiles.csv](data/google-scholar-profiles.csv): Google Scholar profile links for ACM Fellows.
 
 ## Scripts
 
