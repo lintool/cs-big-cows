@@ -8,17 +8,33 @@ scripts/validate_google_scholar_profiles.py
 
 Ignore the project `README.md` for this workflow. This file documents only the Google Scholar validator and its local cache/report files.
 
+## Local Python Environment
+
+Use Python 3.10 or newer from the repository root. The active validator script only uses the Python standard library, so no package install is required for the current workflow.
+
+Recommended setup:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m py_compile scripts/validate_google_scholar_profiles.py
+```
+
+After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
+
+`requirements.txt` is retained for now but includes dependencies from older removed experiments. Do not install it just to run `scripts/validate_google_scholar_profiles.py`.
+
 ## Google Scholar Validator
 
 `scripts/validate_google_scholar_profiles.py` validates the `Google Scholar Profile` URLs in the canonical ACM Fellows CSV:
 
 ```text
-acm-fellows.csv
+data/acm-fellows.csv
 ```
 
 The script:
 
-- reads ACM Fellows rows from `acm-fellows.csv` by default;
+- reads ACM Fellows rows from `data/acm-fellows.csv` by default;
 - extracts unique non-empty `Google Scholar Profile` URLs;
 - fetches each Scholar profile page conservatively;
 - caches the complete fetched HTML page for reuse;
@@ -27,7 +43,7 @@ The script:
 - writes a JSON cache and a JSON validation report;
 - does not modify CSV files.
 
-The script also still supports the older bundled `*-data.js` format via `--data`, but the canonical input for this repo is now `acm-fellows.csv`.
+The script also still supports the older bundled `*-data.js` format via `--data`, but the canonical input for this repo is now `data/acm-fellows.csv`.
 
 ## Basic Commands
 
@@ -63,10 +79,16 @@ python -m py_compile scripts/validate_google_scholar_profiles.py
 
 ## Cache
 
-Default cache path:
+The validator uses repo-local cache files by default. From the repo root, the default cache path is:
 
 ```text
 .cache/google-scholar-validation-cache.json
+```
+
+Absolute path in the current checkout:
+
+```text
+/Users/jimmylin/workspace/cs-big-cows/.cache/google-scholar-validation-cache.json
 ```
 
 The cache is a JSON object keyed by Scholar profile URL. Each value contains fields such as:
@@ -97,14 +119,20 @@ The cache is intentionally idempotent:
 - pass `--refresh` to refetch cached URLs;
 - interrupted runs can be resumed safely because the cache is written after every request.
 
-The cache stores complete HTML, so it can become large. `.cache/` is ignored by Git.
+The cache stores complete HTML, so it can become large. `.cache/` is local-only and ignored by Git. If `.cache/` is missing, the validator creates it automatically when it writes the cache/report. A cache-only run with `--limit-new 0` creates an empty cache plus a report without downloading pages.
 
 ## Report
 
-Default report path:
+Default repo-local report path:
 
 ```text
 .cache/google-scholar-validation-report.json
+```
+
+Absolute path in the current checkout:
+
+```text
+/Users/jimmylin/workspace/cs-big-cows/.cache/google-scholar-validation-report.json
 ```
 
 The report is derived from the input CSV plus the cache. It contains:
