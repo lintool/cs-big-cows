@@ -166,11 +166,19 @@ def row_name(row: dict[str, str]) -> str:
     return str(row.get("name") or "").strip()
 
 
+def row_value(row: dict[str, str], *keys: str) -> str:
+    for key in keys:
+        value = row.get(key)
+        if value:
+            return str(value).strip()
+    return ""
+
+
 def unique_profiles(rows: list[dict[str, str]]) -> list[AcmProfile]:
     seen: set[str] = set()
     profiles: list[AcmProfile] = []
     for row_number, row in enumerate(rows, start=1):
-        url = (row.get("ACM Fellow Profile") or "").strip()
+        url = row_value(row, "ACM Fellow Profile", "acm_fellow_profile")
         if not url or url in seen:
             continue
         seen.add(url)
@@ -179,9 +187,9 @@ def unique_profiles(rows: list[dict[str, str]]) -> list[AcmProfile]:
                 index=row_number,
                 name=row_name(row),
                 url=url,
-                year=str(row.get("Year") or "").strip(),
-                location=str(row.get("Location") or "").strip(),
-                citation=str(row.get("Citation") or "").strip(),
+                year=row_value(row, "Year", "year"),
+                location=row_value(row, "Location", "location"),
+                citation=row_value(row, "Citation", "citation"),
             )
         )
     return profiles
@@ -265,6 +273,21 @@ def decode_body(body: bytes, headers: Any) -> str:
     return body.decode(charset or "utf-8", errors="replace")
 
 
+def looks_blocked(body: str) -> bool:
+    text = body.lower()
+    markers = [
+        "sorry, you have been blocked",
+        "cf-browser-verification",
+        "cf-chl-",
+        "cloudflare ray id",
+        "enable_cookies",
+        "our systems have detected unusual traffic",
+    ]
+    if any(marker in text for marker in markers):
+        return True
+    return "cloudflareapps" in text and "awards-winners__citation" not in text
+
+
 def parse_profile_html(body: str) -> dict[str, str]:
     parser = AcmProfileParser()
     parser.feed(body)
@@ -301,16 +324,20 @@ def fetch_profile(url: str) -> dict[str, Any]:
             body = decode_body(response.read(), response.headers)
             status_code = response.status
     except urllib.error.HTTPError as error:
+        body = decode_body(error.read(), error.headers)
         return {
-            "status": "http_error",
+            "status": "blocked" if looks_blocked(body) else "http_error",
             "status_code": error.code,
-            "html": decode_body(error.read(), error.headers),
+            "html": body,
             "fetched_at": fetched_at,
         }
     except urllib.error.URLError as error:
         return {"status": "url_error", "error": str(error.reason), "html": "", "fetched_at": fetched_at}
     except TimeoutError:
         return {"status": "timeout", "html": "", "fetched_at": fetched_at}
+
+    if looks_blocked(body):
+        return {"status": "blocked", "status_code": status_code, "html": body, "fetched_at": fetched_at}
 
     parsed = parse_profile_html(body)
     if not parsed.get("page_name"):
@@ -346,6 +373,8 @@ def build_report(profiles: list[AcmProfile], cache: dict[str, Any]) -> dict[str,
             continue
 
         status = cached.get("status", "unknown")
+        if status == "http_error" and looks_blocked(str(cached.get("html") or "")):
+            status = "blocked"
         page_name = clean_person_name(str(cached.get("page_name") or ""))
         parsed_year = str(cached.get("year") or "").strip()
         parsed_location = str(cached.get("location") or "").strip()

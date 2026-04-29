@@ -87,11 +87,19 @@ def row_name(row: dict[str, Any]) -> str:
     return str(row.get("name") or "").strip()
 
 
+def row_value(row: dict[str, Any], *keys: str) -> str:
+    for key in keys:
+        value = row.get(key)
+        if value:
+            return str(value).strip()
+    return ""
+
+
 def unique_profiles(rows: list[dict[str, Any]]) -> list[ScholarProfile]:
     seen: set[str] = set()
     profiles: list[ScholarProfile] = []
     for row_number, row in enumerate(rows, start=1):
-        url = (row.get("Google Scholar Profile") or "").strip()
+        url = row_value(row, "Google Scholar Profile", "google_scholar_profile")
         if not url or url in seen:
             continue
         seen.add(url)
@@ -100,7 +108,7 @@ def unique_profiles(rows: list[dict[str, Any]]) -> list[ScholarProfile]:
                 index=row_number,
                 name=row_name(row),
                 url=url,
-                acm_profile=str(row.get("ACM Fellow Profile") or "").strip(),
+                acm_profile=row_value(row, "ACM Fellow Profile", "acm_fellow_profile"),
             )
         )
     return profiles
