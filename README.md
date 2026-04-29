@@ -14,5 +14,7 @@ CSV files are kept in `data/` and use Unix LF line endings.
 
 - `scripts/validate_google_scholar_profiles.py`: validates ACM Fellows Google Scholar profile links and caches fetched Scholar pages for reuse.
 - `scripts/cache_acm_fellow_profiles.py`: caches ACM Fellow profile pages and reports parsed profile fields for comparison with `data/acm_fellows.csv`.
+- `scripts/cache_acm_fellow_profiles_playwright.py`: browser-backed ACM profile crawler for pages that require a real browser session.
 
 See [README_FOR_AGENTS.md](README_FOR_AGENTS.md) for crawler/cache details intended for future coding agents.
+See [data_notes.md](data_notes.md) for current known data oddities.

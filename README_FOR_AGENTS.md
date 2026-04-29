@@ -1,9 +1,10 @@
 # README For Agents
 
-This repository currently has two agent-oriented utility scripts under `scripts/`:
+This repository currently has three agent-oriented utility scripts under `scripts/`:
 
 ```text
 scripts/cache_acm_fellow_profiles.py
+scripts/cache_acm_fellow_profiles_playwright.py
 scripts/validate_google_scholar_profiles.py
 ```
 
@@ -11,7 +12,7 @@ Ignore the project `README.md` for these workflows. This file documents the loca
 
 ## Local Python Environment
 
-Use Python 3.10 or newer from the repository root. The active crawler/validator scripts only use the Python standard library, so no package install is required for the current workflow.
+Use Python 3.10 or newer from the repository root. The default crawler/validator scripts only use the Python standard library. The Playwright crawler is optional and requires Playwright plus a browser install.
 
 Recommended setup:
 
@@ -24,6 +25,13 @@ python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/validate_googl
 After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
 
 `requirements.txt` is retained for now but includes dependencies from older removed experiments. Do not install it just to run the scripts documented here.
+
+Optional Playwright setup:
+
+```bash
+python -m pip install playwright
+python -m playwright install chromium
+```
 
 ## Data Layout
 
@@ -38,7 +46,7 @@ data/turing_award_winners.csv
 `data/acm_fellows.csv` is the canonical ACM Fellows table. Its current columns are:
 
 ```text
-name,Year,Location,Citation,ACM Fellow Profile,DBLP profile,Google Scholar Profile
+name,year,location,citation,acm_fellow_profile,dblp_profile,google_scholar_profile
 ```
 
 The `name` field should be a clean person name. Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP`.
@@ -65,12 +73,12 @@ Use this page to discover new ACM Fellows before running profile-page enrichment
 It does not provide the full citation, DBLP profile, or Google Scholar profile. When adding directory-only rows to `data/acm_fellows.csv`, fill what is available:
 
 - `name`: convert `Last, Given` to clean `Given Last`;
-- `Year`: directory year;
-- `Location`: directory region, until the individual profile page provides a more specific location;
-- `ACM Fellow Profile`: directory profile URL;
-- leave `Citation`, `DBLP profile`, and `Google Scholar Profile` blank if unavailable.
+- `year`: directory year;
+- `location`: directory region, until the individual profile page provides a more specific location;
+- `acm_fellow_profile`: directory profile URL;
+- leave `citation`, `dblp_profile`, and `google_scholar_profile` blank if unavailable.
 
-Keep `data/acm_fellows.csv` sorted by `Year` descending, then `name` ascending. Most recent Fellows should appear first.
+Keep `data/acm_fellows.csv` sorted by `year` descending, then `name` ascending. Most recent Fellows should appear first.
 
 Direct `curl` requests to `awards.acm.org` may return a Cloudflare block page. If that happens, use a browser-capable fetch path or a text-rendered mirror for inspection, and keep any temporary scan reports under `.cache/`. The current local scan report path is:
 
@@ -80,7 +88,7 @@ Direct `curl` requests to `awards.acm.org` may return a Cloudflare block page. I
 
 ## ACM Fellow Profile Crawler
 
-`scripts/cache_acm_fellow_profiles.py` caches the `ACM Fellow Profile` URLs in the canonical ACM Fellows CSV:
+`scripts/cache_acm_fellow_profiles.py` caches the `acm_fellow_profile` URLs in the canonical ACM Fellows CSV:
 
 ```text
 data/acm_fellows.csv
@@ -89,7 +97,7 @@ data/acm_fellows.csv
 The script:
 
 - reads ACM Fellows rows from `data/acm_fellows.csv` by default;
-- extracts unique non-empty `ACM Fellow Profile` URLs;
+- extracts unique non-empty `acm_fellow_profile` URLs;
 - fetches each ACM profile page conservatively;
 - caches the complete fetched HTML page for reuse;
 - parses the page name, ACM Fellows award heading, location, year, and citation when available;
@@ -153,6 +161,7 @@ Other possible `status` values include:
 
 - `ok`: page fetched and the ACM Fellows award section was parsed.
 - `http_error`: ACM returned an HTTP error.
+- `blocked`: ACM returned a Cloudflare/interstitial-style page instead of profile content.
 - `url_error`: DNS/network/connection failure.
 - `timeout`: request timed out.
 - `invalid_url`: URL is not HTTP/HTTPS.
@@ -161,11 +170,57 @@ Other possible `status` values include:
 
 The report contains `review_candidates` for rows where the page did not parse cleanly, or parsed name/year/location/citation differs from the CSV. Treat these as review candidates, not automatic CSV fixes.
 
-When propagating ACM crawl results into `data/acm_fellows.csv`, use only entries whose `status` is `ok`, and do not overwrite existing CSV values with blank parsed fields. The crawled page is newer than the original CSV for `name`, `Year`, `Location`, and `Citation`, but parsed names must remain clean names as described above.
+When propagating ACM crawl results into `data/acm_fellows.csv`, use only entries whose `status` is `ok`, and do not overwrite existing CSV values with blank parsed fields. The crawled page is newer than the original CSV for `name`, `year`, `location`, and `citation`, but parsed names must remain clean names as described above.
+
+Current ACM profile crawl notes:
+
+- The 2026-04-29 browser/CDP retry resolved all previously cached `blocked` pages.
+- The current report has 1,629 `ok` entries, 0 `blocked` entries, and 11 `http_error` entries.
+- The 11 `http_error` entries are ACM 404 pages. They are documented in `data_notes.md`.
+
+## ACM Fellow Playwright Crawler
+
+`scripts/cache_acm_fellow_profiles_playwright.py` is a browser-backed companion to `scripts/cache_acm_fellow_profiles.py`. Use it when direct Python requests return `blocked` pages but the public ACM profile page works in a browser.
+
+It uses the same input CSV, cache, report, parser, and report builder:
+
+```text
+data/acm_fellows.csv
+.cache/acm-fellow-profile-cache.json
+.cache/acm-fellow-profile-report.json
+```
+
+Basic commands:
+
+```bash
+python scripts/cache_acm_fellow_profiles_playwright.py --limit-new 2
+python scripts/cache_acm_fellow_profiles_playwright.py --retry-status blocked --limit-new 2
+python scripts/cache_acm_fellow_profiles_playwright.py --headed --retry-status blocked --limit-new 2
+python scripts/cache_acm_fellow_profiles_playwright.py --headed --channel chrome --retry-status blocked --limit-new 2
+python scripts/cache_acm_fellow_profiles_playwright.py --headed --channel chrome --pause-before-read --retry-status blocked --limit-new 1
+python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked --limit-new 2
+python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked --delay 4 --delay-jitter 2 --batch-size 25 --batch-size-jitter 5 --batch-pause 90 --batch-pause-jitter 30
+python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked --delay 4 --delay-jitter 2 --batch-size 25 --batch-size-jitter 5 --batch-pause 90 --batch-pause-jitter 30 --limit-batches 2
+```
+
+The script uses a persistent Chromium profile by default:
+
+```text
+.cache/playwright-acm-profile
+```
+
+Use `--headed` when ACM requires interactive browser state. If a manual challenge or cookie prompt appears, use `--pause-before-read`, complete the challenge in the opened browser window, then press Enter in the terminal so the script caches the final page HTML. Subsequent runs reuse the same local profile. `--channel chrome` uses an installed Chrome browser instead of the bundled Playwright Chromium when available. Keep the profile under `.cache/` and do not commit it.
+
+If ACM works in a manually launched Chrome profile, connect to it over CDP:
+
+```bash
+open -na "Google Chrome" --args --remote-debugging-port=9222 --user-data-dir="$PWD/.cache/chrome-acm-cdp"
+python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked --limit-new 2
+```
 
 ## Google Scholar Validator
 
-`scripts/validate_google_scholar_profiles.py` validates the `Google Scholar Profile` URLs in the canonical ACM Fellows CSV:
+`scripts/validate_google_scholar_profiles.py` validates the `google_scholar_profile` URLs in the canonical ACM Fellows CSV:
 
 ```text
 data/acm_fellows.csv
@@ -174,7 +229,7 @@ data/acm_fellows.csv
 The script:
 
 - reads ACM Fellows rows from `data/acm_fellows.csv` by default;
-- extracts unique non-empty `Google Scholar Profile` URLs;
+- extracts unique non-empty `google_scholar_profile` URLs;
 - fetches each Scholar profile page conservatively;
 - caches the complete fetched HTML page for reuse;
 - extracts the Scholar page title;
@@ -316,9 +371,13 @@ Google Scholar default behavior is therefore:
 The ACM Fellow profile crawler uses lighter defaults:
 
 - `--delay` defaults to `2.0` seconds between uncached requests.
+- `--delay-jitter` defaults to `0.0`; when set, the actual sleep is randomized by plus/minus that many seconds and clamped at zero.
 - `--batch-size` defaults to `50` uncached requests.
+- `--batch-size-jitter` defaults to `0`; when set, each batch target is randomized by plus/minus that many requests and clamped to at least 1.
 - `--batch-pause` defaults to `60.0` seconds after each batch.
+- `--batch-pause-jitter` defaults to `0.0`; when set, the actual cooldown is randomized by plus/minus that many seconds and clamped at zero.
 - `--limit-new N` caps uncached requests for one run.
+- `--limit-batches N` caps completed batches for one run.
 
 If Google block markers appear while running the Scholar validator, stop the run and resume later without `--refresh`.
 
