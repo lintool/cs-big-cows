@@ -2,8 +2,8 @@
 
 ## ACM Fellow profile crawl oddities
 
-As of the 2026-04-29 ACM Fellow profile crawl, `data/acm_fellows.csv` contains
-1,640 ACM Fellow profile URLs. The local cache/report live under `.cache/` and
+As of the 2026-04-30 ACM Fellow profile crawl, `data/acm_fellows.csv` contains
+1,639 ACM Fellow profile URLs. The local cache/report live under `.cache/` and
 are intentionally not committed.
 
 Current cached profile status counts:
@@ -11,14 +11,14 @@ Current cached profile status counts:
 ```text
 Status       Count  Meaning
 ----------  -----  ---------------------------------------------
-ok           1629  Profile page fetched and parsed successfully.
+ok           1628  Profile page fetched and parsed successfully.
 blocked         0  No blocked/interstitial pages remain.
 http_error     11  ACM returned real 404 pages.
 missing         0  No missing ACM profile URLs.
 ```
 
-Total profiles: 1,640. Cached profiles: 1,640. Review candidates: 215. The
-current report was generated at `2026-04-29T01:45:49Z`.
+Total profiles: 1,639. Cached profiles: 1,639. Review candidates: 14. The
+current report was generated at `2026-04-30T11:12:37Z`.
 
 The following people appear in `data/acm_fellows.csv`, but their individual ACM
 profile URLs currently return ACM 404 pages with page name

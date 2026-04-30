@@ -6,26 +6,24 @@ This repository currently has four agent-oriented utility scripts under `scripts
 scripts/cache_acm_fellow_profiles.py
 scripts/cache_acm_fellow_profiles_playwright.py
 scripts/cache_dblp_profiles.py
-scripts/validate_google_scholar_profiles.py
+scripts/cache_google_scholar_profiles.py
 ```
 
-Ignore the project `README.md` for these workflows. This file documents the local crawler/validator scripts and their local cache/report files.
+Ignore the project `README.md` for these workflows. This file documents the local crawler scripts and their local cache/report files.
 
 ## Local Python Environment
 
-Use Python 3.10 or newer from the repository root. The default crawler/validator scripts only use the Python standard library. The Playwright crawler is optional and requires Playwright plus a browser install.
+Use Python 3.10 or newer from the repository root. The default crawler scripts only use the Python standard library. The Playwright crawler is optional and requires Playwright plus a browser install.
 
 Recommended setup:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/cache_dblp_profiles.py scripts/validate_google_scholar_profiles.py
+python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/cache_dblp_profiles.py scripts/cache_google_scholar_profiles.py
 ```
 
 After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
-
-`requirements.txt` is retained for now but includes dependencies from older removed experiments. Do not install it just to run the scripts documented here.
 
 Optional Playwright setup:
 
@@ -40,6 +38,7 @@ Canonical CSV files live under `data/`:
 
 ```text
 data/acm_fellows.csv
+data/dblp_profiles.csv
 data/google_scholar_profiles.csv
 data/turing_award_winners.csv
 ```
@@ -176,7 +175,7 @@ When propagating ACM crawl results into `data/acm_fellows.csv`, use only entries
 Current ACM profile crawl notes:
 
 - The 2026-04-29 browser/CDP retry resolved all previously cached `blocked` pages.
-- The current report has 1,629 `ok` entries, 0 `blocked` entries, and 11 `http_error` entries.
+- The current report has 1,628 `ok` entries, 0 `blocked` entries, and 11 `http_error` entries.
 - The 11 `http_error` entries are ACM 404 pages. They are documented in `data_notes.md`.
 
 ## DBLP Profile Crawler
@@ -293,9 +292,9 @@ open -na "Google Chrome" --args --remote-debugging-port=9222 --user-data-dir="$P
 python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked --limit-new 2
 ```
 
-## Google Scholar Validator
+## Google Scholar Profile Crawler
 
-`scripts/validate_google_scholar_profiles.py` validates the `google_scholar_profile` URLs in the canonical ACM Fellows CSV:
+`scripts/cache_google_scholar_profiles.py` validates the `google_scholar_profile` URLs in the canonical ACM Fellows CSV:
 
 ```text
 data/acm_fellows.csv
@@ -305,11 +304,13 @@ The script:
 
 - reads ACM Fellows rows from `data/acm_fellows.csv` by default;
 - extracts unique non-empty `google_scholar_profile` URLs;
+- canonicalizes Scholar URLs to `https://scholar.google.com/citations?user=...`;
 - fetches each Scholar profile page conservatively;
 - caches the complete fetched HTML page for reuse;
+- treats cached fetchable entries without `html` as incomplete and refetchable;
 - extracts the Scholar page title;
 - compares the expected ACM fellow name against the Scholar title;
-- writes a JSON cache and a JSON validation report;
+- writes a JSON cache and a JSON report;
 - does not modify CSV files.
 
 The script also still supports the older bundled `*-data.js` format via `--data`, but the canonical input for this repo is now `data/acm_fellows.csv`.
@@ -319,45 +320,52 @@ The script also still supports the older bundled `*-data.js` format via `--data`
 Run a no-network report rebuild from existing cache:
 
 ```bash
-python scripts/validate_google_scholar_profiles.py --limit-new 0
+python scripts/cache_google_scholar_profiles.py --limit-new 0
 ```
 
-Run or resume validation with default pacing:
+Run or resume crawling with default pacing:
 
 ```bash
-python scripts/validate_google_scholar_profiles.py
+python scripts/cache_google_scholar_profiles.py
 ```
 
 Force refetch of cached URLs:
 
 ```bash
-python scripts/validate_google_scholar_profiles.py --refresh
+python scripts/cache_google_scholar_profiles.py --refresh
+```
+
+Retry cached entries with a specific status:
+
+```bash
+python scripts/cache_google_scholar_profiles.py --retry-status blocked
+python scripts/cache_google_scholar_profiles.py --retry-status http_error --limit-new 3
 ```
 
 Use a custom input file:
 
 ```bash
-python scripts/validate_google_scholar_profiles.py --data path/to/input.csv
+python scripts/cache_google_scholar_profiles.py --data path/to/input.csv
 ```
 
 Compile-check the script:
 
 ```bash
-python -m py_compile scripts/validate_google_scholar_profiles.py
+python -m py_compile scripts/cache_google_scholar_profiles.py
 ```
 
 ## Cache
 
-The validator uses repo-local cache files by default. From the repo root, the default cache path is:
+The crawler uses repo-local cache files by default. From the repo root, the default cache path is:
 
 ```text
-.cache/google-scholar-validation-cache.json
+.cache/google-scholar-profile-cache.json
 ```
 
 Absolute path in the current checkout:
 
 ```text
-/Users/jimmylin/workspace/cs-big-cows/.cache/google-scholar-validation-cache.json
+/Users/jimmylin/workspace/cs-big-cows/.cache/google-scholar-profile-cache.json
 ```
 
 The cache is a JSON object keyed by Scholar profile URL. Each value contains fields such as:
@@ -388,20 +396,20 @@ The cache is intentionally idempotent:
 - pass `--refresh` to refetch cached URLs;
 - interrupted runs can be resumed safely because the cache is written after every request.
 
-The cache stores complete HTML, so it can become large. `.cache/` is local-only and ignored by Git. If `.cache/` is missing, the validator creates it automatically when it writes the cache/report. A cache-only run with `--limit-new 0` creates an empty cache plus a report without downloading pages.
+The cache stores complete HTML, so it can become large. `.cache/` is local-only and ignored by Git. If `.cache/` is missing, the crawler creates it automatically when it writes the cache/report. A cache-only run with `--limit-new 0` creates an empty cache plus a report without downloading pages.
 
 ## Report
 
 Default repo-local report path:
 
 ```text
-.cache/google-scholar-validation-report.json
+.cache/google-scholar-profile-report.json
 ```
 
 Absolute path in the current checkout:
 
 ```text
-/Users/jimmylin/workspace/cs-big-cows/.cache/google-scholar-validation-report.json
+/Users/jimmylin/workspace/cs-big-cows/.cache/google-scholar-profile-report.json
 ```
 
 The report is derived from the input CSV plus the cache. It contains:
@@ -409,6 +417,8 @@ The report is derived from the input CSV plus the cache. It contains:
 - `generated_at`
 - `total_profiles`
 - `cached_profiles`
+- `html_cached_profiles`
+- `incomplete_cached_profiles`
 - `status_counts`
 - `mismatch_count`
 - `mismatches`
@@ -429,19 +439,28 @@ Use report mismatches as review candidates, not automatic fixes. Some mismatches
 
 ## Cool-Off Strategy
 
-The validator is deliberately slow:
+The crawler is deliberately slow:
 
-- `--delay` defaults to `5.0` seconds between uncached requests.
-- `--batch-size` defaults to `20` uncached requests.
-- `--batch-pause` defaults to `120.0` seconds after each batch.
+- `--delay` defaults to `5.0` base seconds between uncached requests.
+- `--delay-jitter` defaults to `2.0`; the actual delay is `delay + random(0, jitter)`.
+- `--batch-size` defaults to `25` uncached requests.
+- `--batch-size-jitter` defaults to `0`; each batch target is randomized by plus/minus that many requests and clamped to at least 1.
+- `--batch-pause` defaults to `120.0` base seconds after each batch.
+- `--batch-pause-jitter` defaults to `30.0`; the actual pause is `batch-pause + random(0, jitter)`.
+- `--max-retries` defaults to `1` for transient failures.
+- `--backoff` defaults to `10.0` seconds with exponential growth between retries.
+- `--backoff-jitter` defaults to `5.0`; retry waits add `random(0, jitter)`.
 - `--limit-new N` caps uncached requests for one run.
+- `--retry-status STATUS` refetches cached entries with a specific status.
 
 Google Scholar default behavior is therefore:
 
-1. Fetch up to 20 uncached profiles.
-2. Wait 5 seconds after each fetch.
-3. Pause for 120 seconds after the batch.
+1. Fetch up to 25 uncached profiles.
+2. Wait 5 to 7 seconds after each fetch.
+3. Pause for 120 to 150 seconds after the batch.
 4. Write cache and report after every request.
+
+Because the Scholar crawler now requires full-page cache entries, older metadata-only entries are counted as `incomplete_cached_profiles` in the report and will be fetched again on a normal resume unless capped by `--limit-new`.
 
 The ACM Fellow profile crawler uses lighter defaults:
 
@@ -467,7 +486,7 @@ The DBLP profile crawler uses plain HTTP by default and adds randomized pacing:
 - `--backoff-jitter` defaults to `5.0`; retry waits add `random(0, jitter)`.
 - `--limit-new N` caps uncached requests for one run.
 
-If Google block markers appear while running the Scholar validator, stop the run and resume later without `--refresh`.
+If Google block markers appear while running the Scholar crawler, stop the run and resume later without `--refresh`.
 
 ## Google Scholar Block Detection
 
