@@ -28,6 +28,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -49,6 +50,86 @@ class ScholarProfile:
     name: str
     url: str
     acm_profile: str = ""
+
+
+class ScholarProfileParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.stack: list[tuple[str, dict[str, str]]] = []
+        self.title_parts: list[str] = []
+        self.affiliation_parts: list[str] = []
+        self.interest_parts: list[str] = []
+        self.interests: list[str] = []
+        self.og_title = ""
+        self._in_title = False
+        self._current_field: str | None = None
+        self._field_depth: int | None = None
+        self._seen_affiliation = False
+        self._interest_depth: int | None = None
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attr_dict = {key.lower(): value or "" for key, value in attrs}
+        self.stack.append((tag, attr_dict))
+        classes = set(attr_dict.get("class", "").split())
+        element_id = attr_dict.get("id", "")
+
+        if tag == "title":
+            self._in_title = True
+        elif tag == "meta" and attr_dict.get("property", "").lower() == "og:title":
+            self.og_title = attr_dict.get("content", "").strip()
+        elif element_id == "gsc_prf_int":
+            self._interest_depth = len(self.stack)
+        elif (
+            tag == "div"
+            and "gsc_prf_il" in classes
+            and element_id != "gsc_prf_ivh"
+            and self._interest_depth is None
+            and not self._seen_affiliation
+        ):
+            self._current_field = "affiliation"
+            self._field_depth = len(self.stack)
+            self._seen_affiliation = True
+        elif tag == "a" and self._interest_depth is not None and "gsc_prf_inta" in classes:
+            self._current_field = "interest"
+            self._field_depth = len(self.stack)
+            self.interest_parts = []
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
+
+        if self._current_field == "interest" and self._field_depth == len(self.stack):
+            interest = normalize_space("".join(self.interest_parts))
+            if interest:
+                self.interests.append(interest)
+            self.interest_parts = []
+            self._current_field = None
+            self._field_depth = None
+        elif self._current_field == "affiliation" and self._field_depth == len(self.stack):
+            self._current_field = None
+            self._field_depth = None
+
+        if self._interest_depth == len(self.stack):
+            self._interest_depth = None
+
+        if self.stack:
+            self.stack.pop()
+
+    def handle_data(self, data: str) -> None:
+        if self._in_title:
+            self.title_parts.append(data)
+        elif self._current_field == "affiliation":
+            self.affiliation_parts.append(data)
+        elif self._current_field == "interest":
+            self.interest_parts.append(data)
+
+    def parsed(self) -> dict[str, Any]:
+        title = self.og_title or " ".join(self.title_parts)
+        return {
+            "title": clean_scholar_name(title),
+            "affiliation": clean_affiliation("".join(self.affiliation_parts)),
+            "interests": self.interests,
+        }
 
 
 def parse_args() -> argparse.Namespace:
@@ -189,17 +270,58 @@ def compatible_name(expected: str, observed: str) -> bool:
     return len(expected_set & observed_set) >= 2
 
 
+def normalize_space(value: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(value or "")).strip()
+
+
+def has_non_ascii(value: str) -> bool:
+    return any(ord(char) > 127 for char in value)
+
+
+def clean_scholar_name(value: str) -> str:
+    name = normalize_space(value)
+    name = re.sub(r"\s*-\s*Google Scholar\s*$", "", name, flags=re.IGNORECASE).strip()
+    name = re.sub(
+        r"^(?:prof\.dr\.ir\.|prof\.\s*dr\.-ing\.?|prof\.\s*dr\.?|professor|prof\.?|doctor|dr\.?)\s+",
+        "",
+        name,
+        flags=re.IGNORECASE,
+    )
+
+    name = name.replace("（", "(").replace("）", ")")
+    name = re.sub(r"\s+fellow\b.*$", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s+e-agi\b.*$", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s+(?:ph\.?\s*d\.?|phd|dphil)\.?$", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s*,\s*(?:jr\.?|sr\.?|ph\.?\s*d\.?|phd|dphil|aka\b.*|fellow\b.*|.*:.*)$", "", name, flags=re.IGNORECASE)
+
+    if "," in name:
+        name = name.split(",", 1)[0]
+
+    def strip_non_ascii_parenthetical(match: re.Match[str]) -> str:
+        text = match.group(0)
+        return "" if has_non_ascii(text) else text
+
+    name = re.sub(r"\s*\([^()]*\)", strip_non_ascii_parenthetical, name)
+    name = re.sub(r"(?<=[a-z])fellow\b.*$", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s+fellow\b.*$", "", name, flags=re.IGNORECASE)
+    return normalize_space(name)
+
+
+def clean_affiliation(value: str) -> str:
+    affiliation = normalize_space(value)
+    affiliation = re.sub(r"(?<=[a-z.]),(?=[A-Z])", ", ", affiliation)
+    affiliation = re.sub(r"\s+,", ",", affiliation)
+    return affiliation.strip()
+
+
+def parse_profile_html(body: str) -> dict[str, Any]:
+    parser = ScholarProfileParser()
+    parser.feed(body)
+    return parser.parsed()
+
+
 def extract_title(body: str) -> str:
-    og_match = re.search(r'<meta property="og:title" content="([^"]+)"', body, re.I)
-    if og_match:
-        return html.unescape(og_match.group(1)).strip()
-
-    title_match = re.search(r"<title>(.*?)</title>", body, re.I | re.S)
-    if title_match:
-        title = html.unescape(re.sub(r"\s+", " ", title_match.group(1))).strip()
-        return re.sub(r"\s*-\s*Google Scholar\s*$", "", title).strip()
-
-    return ""
+    return parse_profile_html(body).get("title", "")
 
 
 def is_blocked_page(body: str) -> bool:
@@ -295,7 +417,8 @@ def fetch_profile_once(url: str) -> dict[str, Any]:
     except (TimeoutError, socket.timeout):
         return {"status": "timeout", "title": "", "html": "", "fetched_at": fetched_at}
 
-    title = extract_title(body)
+    parsed = parse_profile_html(body)
+    title = parsed.get("title", "")
     if is_blocked_page(body):
         status = "blocked"
     elif not title:
@@ -303,7 +426,15 @@ def fetch_profile_once(url: str) -> dict[str, Any]:
     else:
         status = "ok"
 
-    return {"status": status, "status_code": status_code, "title": title, "html": body, "fetched_at": fetched_at}
+    return {
+        "status": status,
+        "status_code": status_code,
+        "title": title,
+        "affiliation": parsed.get("affiliation", ""),
+        "interests": parsed.get("interests", []),
+        "html": body,
+        "fetched_at": fetched_at,
+    }
 
 
 def fetch_profile(url: str, max_retries: int, backoff: float, backoff_jitter: float) -> dict[str, Any]:
@@ -329,6 +460,18 @@ def needs_html_refetch(cached: dict[str, Any]) -> bool:
     return cached.get("status") in HTML_REQUIRED_STATUSES and not cached.get("html")
 
 
+def enrich_cache_from_html(cache: dict[str, Any]) -> None:
+    for cached in cache.values():
+        body = cached.get("html")
+        if not body:
+            continue
+        parsed = parse_profile_html(body)
+        if parsed.get("title"):
+            cached["title"] = parsed["title"]
+        cached["affiliation"] = parsed.get("affiliation", "")
+        cached["interests"] = parsed.get("interests", [])
+
+
 def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[str, Any]:
     entries = []
     status_counts: dict[str, int] = {}
@@ -350,7 +493,7 @@ def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[
             continue
 
         status = cached.get("status", "unknown")
-        title = cached.get("title", "")
+        title = clean_scholar_name(cached.get("title", ""))
         match = compatible_name(profile.name, title) if status == "ok" else None
         entries.append(
             {
@@ -361,6 +504,8 @@ def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[
                 "status": status,
                 "status_code": cached.get("status_code"),
                 "title": title,
+                "affiliation": cached.get("affiliation", ""),
+                "interests": cached.get("interests", []),
                 "html_cached": bool(cached.get("html")),
                 "match": match,
                 "fetched_at": cached.get("fetched_at"),
@@ -387,6 +532,7 @@ def main() -> int:
     rows = load_rows(args.data)
     profiles = unique_profiles(rows)
     cache: dict[str, Any] = normalize_cache_keys(load_json(args.cache, {}))
+    enrich_cache_from_html(cache)
     retry_statuses = set(args.retry_status)
 
     new_requests = 0

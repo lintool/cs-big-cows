@@ -6,7 +6,7 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 
 - [data/acm_fellows.csv](data/acm_fellows.csv): canonical ACM Fellows dataset, including ACM profile, DBLP, and Google Scholar links.
 - [data/dblp_profiles.csv](data/dblp_profiles.csv): known DBLP profile links for ACM Fellows.
-- [data/google_scholar_profiles.csv](data/google_scholar_profiles.csv): known Google Scholar profile links for ACM Fellows.
+- [data/google_scholar_profiles.csv](data/google_scholar_profiles.csv): known Google Scholar profile links, affiliations, and keyword interests for ACM Fellows.
 - [data/turing_award_winners.csv](data/turing_award_winners.csv): canonical ACM A. M. Turing Award winners dataset.
 
 CSV files are kept in `data/` and use Unix LF line endings.
