@@ -1,10 +1,11 @@
 # README For Agents
 
-This repository currently has three agent-oriented utility scripts under `scripts/`:
+This repository currently has four agent-oriented utility scripts under `scripts/`:
 
 ```text
 scripts/cache_acm_fellow_profiles.py
 scripts/cache_acm_fellow_profiles_playwright.py
+scripts/cache_dblp_profiles.py
 scripts/validate_google_scholar_profiles.py
 ```
 
@@ -19,7 +20,7 @@ Recommended setup:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/validate_google_scholar_profiles.py
+python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/cache_dblp_profiles.py scripts/validate_google_scholar_profiles.py
 ```
 
 After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
@@ -177,6 +178,80 @@ Current ACM profile crawl notes:
 - The 2026-04-29 browser/CDP retry resolved all previously cached `blocked` pages.
 - The current report has 1,629 `ok` entries, 0 `blocked` entries, and 11 `http_error` entries.
 - The 11 `http_error` entries are ACM 404 pages. They are documented in `data_notes.md`.
+
+## DBLP Profile Crawler
+
+`scripts/cache_dblp_profiles.py` caches the `dblp_profile` URLs in the canonical ACM Fellows CSV:
+
+```text
+data/acm_fellows.csv
+```
+
+The script:
+
+- reads ACM Fellows rows from `data/acm_fellows.csv` by default;
+- extracts unique non-empty `dblp_profile` URLs;
+- fetches each DBLP profile page with plain Python `urllib`;
+- caches the complete fetched HTML page for reuse;
+- extracts the DBLP profile title from page metadata, `h1`, or `<title>`;
+- compares the expected ACM fellow name against the DBLP title;
+- writes a JSON cache and JSON report;
+- does not modify CSV files.
+
+Basic commands:
+
+```bash
+python scripts/cache_dblp_profiles.py --limit-new 0
+python scripts/cache_dblp_profiles.py --limit-new 2
+python scripts/cache_dblp_profiles.py
+python scripts/cache_dblp_profiles.py --refresh
+python scripts/cache_dblp_profiles.py --retry-status http_error --limit-new 3
+python scripts/cache_dblp_profiles.py --data path/to/input.csv
+```
+
+Compile-check the script:
+
+```bash
+python -m py_compile scripts/cache_dblp_profiles.py
+```
+
+Default cache path:
+
+```text
+.cache/dblp-profile-cache.json
+```
+
+Default report path:
+
+```text
+.cache/dblp-profile-report.json
+```
+
+The DBLP cache is keyed by profile URL. Each value contains the full `html`, fetch metadata, and parsed fields such as:
+
+```json
+{
+  "status": "ok",
+  "status_code": 200,
+  "title": "DBLP Profile Title",
+  "html": "<complete fetched HTML page>",
+  "fetched_at": "YYYY-MM-DDTHH:MM:SSZ"
+}
+```
+
+Other possible `status` values include:
+
+- `ok`: page fetched and a title was extracted.
+- `http_error`: DBLP returned an HTTP error.
+- `blocked`: fetched page appears to be a bot block/interstitial page.
+- `url_error`: DNS/network/connection failure.
+- `timeout`: request timed out.
+- `invalid_url`: URL is not HTTP/HTTPS.
+- `no_title`: page fetched but no usable title was found.
+
+The report contains `review_candidates` for non-`ok` rows and title/name mismatches. Treat these as review candidates, not automatic CSV fixes. The title matcher is intentionally permissive because some DBLP author pages include fuller names than the ACM CSV.
+
+Use `--retry-status STATUS` to retry cached entries with a specific status without refreshing the whole cache. This is useful for revisiting cached `http_error`, `blocked`, or transient failure entries.
 
 ## ACM Fellow Playwright Crawler
 
@@ -378,6 +453,19 @@ The ACM Fellow profile crawler uses lighter defaults:
 - `--batch-pause-jitter` defaults to `0.0`; when set, the actual cooldown is randomized by plus/minus that many seconds and clamped at zero.
 - `--limit-new N` caps uncached requests for one run.
 - `--limit-batches N` caps completed batches for one run.
+
+The DBLP profile crawler uses plain HTTP by default and adds randomized pacing:
+
+- `--delay` defaults to `2.0` base seconds between uncached requests.
+- `--delay-jitter` defaults to `1.0`; the actual delay is `delay + random(0, jitter)`.
+- `--batch-size` defaults to `50` uncached requests.
+- `--batch-size-jitter` defaults to `5`; each batch target is randomized by plus/minus that many requests and clamped to at least 1.
+- `--batch-pause` defaults to `60.0` base seconds after each batch.
+- `--batch-pause-jitter` defaults to `15.0`; the actual pause is `batch-pause + random(0, jitter)`.
+- `--max-retries` defaults to `2` for transient failures.
+- `--backoff` defaults to `10.0` seconds with exponential growth between retries.
+- `--backoff-jitter` defaults to `5.0`; retry waits add `random(0, jitter)`.
+- `--limit-new N` caps uncached requests for one run.
 
 If Google block markers appear while running the Scholar validator, stop the run and resume later without `--refresh`.
 
