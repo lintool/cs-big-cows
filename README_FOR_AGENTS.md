@@ -308,7 +308,7 @@ The script:
 - fetches each Scholar profile page conservatively;
 - caches the complete fetched HTML page for reuse;
 - treats cached fetchable entries without `html` as incomplete and refetchable;
-- extracts the Scholar page title;
+- extracts the Scholar page title, affiliation, and keyword interests;
 - compares the expected ACM fellow name against the Scholar title;
 - writes a JSON cache and a JSON report;
 - does not modify CSV files.
@@ -375,6 +375,8 @@ The cache is a JSON object keyed by Scholar profile URL. Each value contains fie
   "status": "ok",
   "status_code": 200,
   "title": "Scholar Profile Title",
+  "affiliation": "Scholar profile affiliation",
+  "interests": ["Keyword 1", "Keyword 2"],
   "html": "<complete fetched HTML page>",
   "fetched_at": "YYYY-MM-DDTHH:MM:SSZ"
 }
@@ -432,8 +434,18 @@ Each report entry includes:
 - `acm_profile`: ACM Fellow profile URL.
 - `status`: cache status for the Scholar URL.
 - `title`: extracted Scholar profile title.
+- `affiliation`: extracted Scholar profile affiliation.
+- `interests`: extracted Scholar profile keyword interests as a JSON array.
 - `match`: `true`, `false`, or `null`.
 - `fetched_at`: cache timestamp, when available.
+
+When propagating Scholar crawl data into `data/google_scholar_profiles.csv`, keep the CSV columns in this order:
+
+```text
+name,profile,crawl_date,affiliation,interests
+```
+
+The `interests` CSV cell is a JSON array string, not a semicolon-delimited list.
 
 Use report mismatches as review candidates, not automatic fixes. Some mismatches are harmless diacritic or formatting differences, such as `Urs Hoelzle` versus `Urs Hölzle`.
 
