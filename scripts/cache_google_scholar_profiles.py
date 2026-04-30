@@ -4,11 +4,13 @@
 The script is intentionally conservative:
 
 - cached URLs, including cached HTML pages, are never fetched again unless --refresh is passed
-- each uncached request waits --delay seconds before the next one
-- every --batch-size uncached requests, the script pauses for --batch-pause seconds
+- cached entries without a stored HTML page are treated as incomplete and fetched again
+- each uncached request waits --delay seconds, plus optional --delay-jitter
+- every jittered batch of uncached requests, the script pauses for --batch-pause seconds, plus optional jitter
+- transient fetch failures are retried with exponential backoff
 - cache and report files are written after every request so runs can be resumed
 
-The script does not modify the app data files. It only writes validation output.
+The script does not modify the app data files. It only writes cache and report output.
 """
 
 from __future__ import annotations
@@ -17,7 +19,9 @@ import argparse
 import csv
 import html
 import json
+import random
 import re
+import socket
 import sys
 import time
 import urllib.error
@@ -30,11 +34,13 @@ from typing import Any
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA = APP_ROOT / "data" / "acm_fellows.csv"
-DEFAULT_CACHE = APP_ROOT / ".cache" / "google-scholar-validation-cache.json"
-DEFAULT_REPORT = APP_ROOT / ".cache" / "google-scholar-validation-report.json"
+DEFAULT_CACHE = APP_ROOT / ".cache" / "google-scholar-profile-cache.json"
+DEFAULT_REPORT = APP_ROOT / ".cache" / "google-scholar-profile-report.json"
 
 SUFFIXES = {"jr", "jr.", "sr", "sr.", "ii", "iii", "iv"}
 PARTICLES = {"al", "bin", "da", "de", "del", "den", "der", "di", "du", "la", "le", "van", "von"}
+TRANSIENT_HTTP_STATUS = {408, 425, 429, 500, 502, 503, 504}
+HTML_REQUIRED_STATUSES = {"ok", "blocked", "http_error", "no_title"}
 
 
 @dataclass(frozen=True)
@@ -50,10 +56,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Path to data/acm_fellows.csv or a bundled *-data.js file.")
     parser.add_argument("--cache", type=Path, default=DEFAULT_CACHE, help="JSON cache path.")
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT, help="JSON report path.")
-    parser.add_argument("--delay", type=float, default=5.0, help="Seconds to wait between uncached requests.")
-    parser.add_argument("--batch-size", type=int, default=20, help="Uncached requests per batch.")
-    parser.add_argument("--batch-pause", type=float, default=120.0, help="Seconds to pause after each batch.")
+    parser.add_argument("--delay", type=float, default=5.0, help="Base seconds to wait between uncached requests.")
+    parser.add_argument("--delay-jitter", type=float, default=2.0, help="Random extra seconds added to --delay.")
+    parser.add_argument("--batch-size", type=int, default=25, help="Base uncached requests per batch.")
+    parser.add_argument("--batch-size-jitter", type=int, default=0, help="Random +/- adjustment to --batch-size.")
+    parser.add_argument("--batch-pause", type=float, default=120.0, help="Base seconds to pause after each batch.")
+    parser.add_argument("--batch-pause-jitter", type=float, default=30.0, help="Random extra seconds added to --batch-pause.")
+    parser.add_argument("--max-retries", type=int, default=1, help="Retries for transient fetch failures.")
+    parser.add_argument("--backoff", type=float, default=10.0, help="Base seconds for exponential retry backoff.")
+    parser.add_argument("--backoff-jitter", type=float, default=5.0, help="Random extra seconds added to retry backoff.")
     parser.add_argument("--limit-new", type=int, default=None, help="Optional cap on uncached requests this run.")
+    parser.add_argument(
+        "--retry-status",
+        action="append",
+        default=[],
+        help="Refetch cached URLs whose status matches this value. May be passed multiple times.",
+    )
     parser.add_argument("--refresh", action="store_true", help="Refetch URLs even when cached.")
     return parser.parse_args()
 
@@ -95,11 +113,30 @@ def row_value(row: dict[str, Any], *keys: str) -> str:
     return ""
 
 
+def canonical_scholar_url(url: str) -> str:
+    parsed = urllib.parse.urlparse(url.strip())
+    query = urllib.parse.parse_qs(parsed.query)
+    user = (query.get("user") or [""])[0].strip()
+    if "scholar.google." in parsed.netloc.lower() and parsed.path == "/citations" and user:
+        return f"https://scholar.google.com/citations?user={user}"
+    return url.strip()
+
+
+def normalize_cache_keys(cache: dict[str, Any]) -> dict[str, Any]:
+    normalized: dict[str, Any] = {}
+    for url, item in cache.items():
+        key = canonical_scholar_url(url)
+        existing = normalized.get(key)
+        if existing is None or (not existing.get("html") and item.get("html")):
+            normalized[key] = item
+    return normalized
+
+
 def unique_profiles(rows: list[dict[str, Any]]) -> list[ScholarProfile]:
     seen: set[str] = set()
     profiles: list[ScholarProfile] = []
     for row_number, row in enumerate(rows, start=1):
-        url = row_value(row, "Google Scholar Profile", "google_scholar_profile")
+        url = canonical_scholar_url(row_value(row, "Google Scholar Profile", "google_scholar_profile"))
         if not url or url in seen:
             continue
         seen.add(url)
@@ -180,7 +217,39 @@ def decode_body(body: bytes, headers: Any) -> str:
     return body.decode(charset or "latin1", errors="replace")
 
 
-def fetch_profile(url: str) -> dict[str, Any]:
+def read_error_body(error: urllib.error.HTTPError) -> str:
+    try:
+        return decode_body(error.read(), error.headers)
+    except (ConnectionError, OSError) as read_error:
+        return f"Could not read HTTP error body: {read_error}"
+
+
+def should_retry(result: dict[str, Any]) -> bool:
+    status = result.get("status")
+    return (
+        status in {"url_error", "timeout"}
+        or status == "http_error"
+        and result.get("status_code") in TRANSIENT_HTTP_STATUS
+    )
+
+
+def is_transient_failure(result: dict[str, Any]) -> bool:
+    return result.get("status") in {"url_error", "timeout"} or (
+        result.get("status") == "http_error" and result.get("status_code") in TRANSIENT_HTTP_STATUS
+    )
+
+
+def sleep_seconds(base: float, jitter: float) -> float:
+    return max(0.0, base + random.uniform(0, max(0.0, jitter)))
+
+
+def batch_target(base: int, jitter: int) -> int:
+    if jitter <= 0:
+        return max(1, base)
+    return max(1, base + random.randint(-jitter, jitter))
+
+
+def fetch_profile_once(url: str) -> dict[str, Any]:
     parsed_url = urllib.parse.urlparse(url)
     if parsed_url.scheme not in {"http", "https"} or not parsed_url.netloc:
         return {
@@ -212,12 +281,18 @@ def fetch_profile(url: str) -> dict[str, Any]:
             "status": "http_error",
             "status_code": error.code,
             "title": "",
-            "html": decode_body(error.read(), error.headers),
+            "html": read_error_body(error),
             "fetched_at": fetched_at,
         }
     except urllib.error.URLError as error:
-        return {"status": "url_error", "error": str(error.reason), "title": "", "html": "", "fetched_at": fetched_at}
-    except TimeoutError:
+        return {
+            "status": "url_error",
+            "error": str(error.reason),
+            "title": "",
+            "html": "",
+            "fetched_at": fetched_at,
+        }
+    except (TimeoutError, socket.timeout):
         return {"status": "timeout", "title": "", "html": "", "fetched_at": fetched_at}
 
     title = extract_title(body)
@@ -229,6 +304,29 @@ def fetch_profile(url: str) -> dict[str, Any]:
         status = "ok"
 
     return {"status": status, "status_code": status_code, "title": title, "html": body, "fetched_at": fetched_at}
+
+
+def fetch_profile(url: str, max_retries: int, backoff: float, backoff_jitter: float) -> dict[str, Any]:
+    attempts = 0
+    while True:
+        result = fetch_profile_once(url)
+        if attempts >= max_retries or not should_retry(result):
+            if attempts:
+                result["attempts"] = attempts + 1
+            return result
+
+        pause = sleep_seconds(backoff * (2**attempts), backoff_jitter)
+        print(
+            f"  transient {result.get('status')} {result.get('status_code') or ''}; "
+            f"retrying in {pause:.1f}s",
+            flush=True,
+        )
+        time.sleep(pause)
+        attempts += 1
+
+
+def needs_html_refetch(cached: dict[str, Any]) -> bool:
+    return cached.get("status") in HTML_REQUIRED_STATUSES and not cached.get("html")
 
 
 def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[str, Any]:
@@ -261,7 +359,9 @@ def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[
                 "url": profile.url,
                 "acm_profile": profile.acm_profile,
                 "status": status,
+                "status_code": cached.get("status_code"),
                 "title": title,
+                "html_cached": bool(cached.get("html")),
                 "match": match,
                 "fetched_at": cached.get("fetched_at"),
             }
@@ -273,6 +373,8 @@ def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "total_profiles": len(profiles),
         "cached_profiles": sum(1 for profile in profiles if profile.url in cache),
+        "html_cached_profiles": sum(1 for profile in profiles if cache.get(profile.url, {}).get("html")),
+        "incomplete_cached_profiles": sum(1 for profile in profiles if needs_html_refetch(cache.get(profile.url, {}))),
         "status_counts": status_counts,
         "mismatch_count": len(mismatches),
         "mismatches": mismatches,
@@ -284,33 +386,46 @@ def main() -> int:
     args = parse_args()
     rows = load_rows(args.data)
     profiles = unique_profiles(rows)
-    cache: dict[str, Any] = load_json(args.cache, {})
+    cache: dict[str, Any] = normalize_cache_keys(load_json(args.cache, {}))
+    retry_statuses = set(args.retry_status)
 
     new_requests = 0
     batch_requests = 0
+    current_batch_target = batch_target(args.batch_size, args.batch_size_jitter)
 
     for position, profile in enumerate(profiles, start=1):
-        if not args.refresh and profile.url in cache:
+        cached = cache.get(profile.url)
+        refetch_status = bool(cached and cached.get("status") in retry_statuses)
+        incomplete_cache = bool(cached and needs_html_refetch(cached))
+        if cached and not args.refresh and not refetch_status and not incomplete_cache:
             continue
 
         if args.limit_new is not None and new_requests >= args.limit_new:
             break
 
-        if batch_requests >= args.batch_size:
-            print(f"Pausing {args.batch_pause:.0f}s after {batch_requests} uncached requests.", flush=True)
-            time.sleep(args.batch_pause)
+        if batch_requests >= current_batch_target:
+            pause = sleep_seconds(args.batch_pause, args.batch_pause_jitter)
+            print(f"Pausing {pause:.1f}s after {batch_requests} uncached requests.", flush=True)
+            time.sleep(pause)
             batch_requests = 0
+            current_batch_target = batch_target(args.batch_size, args.batch_size_jitter)
 
         print(f"[{position}/{len(profiles)}] fetching {profile.name}: {profile.url}", flush=True)
-        cache[profile.url] = fetch_profile(profile.url)
+        result = fetch_profile(profile.url, args.max_retries, args.backoff, args.backoff_jitter)
+        if cached and is_transient_failure(result):
+            cached["last_fetch_error"] = result
+            cache[profile.url] = cached
+        else:
+            cache[profile.url] = result
         new_requests += 1
         batch_requests += 1
 
         atomic_write_json(args.cache, cache)
         atomic_write_json(args.report, build_report(profiles, cache))
 
-        if args.delay > 0:
-            time.sleep(args.delay)
+        delay = sleep_seconds(args.delay, args.delay_jitter)
+        if delay > 0:
+            time.sleep(delay)
 
     atomic_write_json(args.cache, cache)
     report = build_report(profiles, cache)
@@ -318,6 +433,7 @@ def main() -> int:
 
     print(
         f"Done. profiles={report['total_profiles']} cached={report['cached_profiles']} "
+        f"html_cached={report['html_cached_profiles']} incomplete={report['incomplete_cached_profiles']} "
         f"mismatches={report['mismatch_count']} report={args.report}",
         flush=True,
     )
