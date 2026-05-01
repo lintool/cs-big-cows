@@ -1,10 +1,13 @@
 # README For Agents
 
-This repository currently has four agent-oriented utility scripts under `scripts/`:
+This repository currently has seven agent-oriented utility scripts under `scripts/`:
 
 ```text
+scripts/analyze_acm_fellow_universities.py
+scripts/build_csrankings_profiles.py
 scripts/cache_acm_fellow_profiles.py
 scripts/cache_acm_fellow_profiles_playwright.py
+scripts/cache_csrankings.py
 scripts/cache_dblp_profiles.py
 scripts/cache_google_scholar_profiles.py
 ```
@@ -20,7 +23,7 @@ Recommended setup:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m py_compile scripts/cache_acm_fellow_profiles.py scripts/cache_dblp_profiles.py scripts/cache_google_scholar_profiles.py
+python -m py_compile scripts/analyze_acm_fellow_universities.py scripts/build_csrankings_profiles.py scripts/cache_acm_fellow_profiles.py scripts/cache_csrankings.py scripts/cache_dblp_profiles.py scripts/cache_google_scholar_profiles.py
 ```
 
 After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
@@ -38,6 +41,7 @@ Canonical CSV files live under `data/`:
 
 ```text
 data/acm_fellows.csv
+data/csrankings_profiles.csv
 data/dblp_profiles.csv
 data/google_scholar_profiles.csv
 data/turing_award_winners.csv
@@ -52,6 +56,12 @@ name,year,location,citation,acm_fellow_profile,dblp_profile,google_scholar_profi
 The `name` field should be a clean person name. Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP`.
 
 There is no separate `data/acm_fellow_profiles.csv`. ACM profile URLs and propagated ACM profile metadata belong in `data/acm_fellows.csv`.
+
+`data/csrankings_profiles.csv` contains CSRankings faculty rows that align to exactly one known DBLP profile from `data/dblp_profiles.csv`. Its columns are:
+
+```text
+name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
+```
 
 Keep committed CSV files on Unix LF line endings. Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
 
@@ -251,6 +261,182 @@ Other possible `status` values include:
 The report contains `review_candidates` for non-`ok` rows and title/name mismatches. Treat these as review candidates, not automatic CSV fixes. The title matcher is intentionally permissive because some DBLP author pages include fuller names than the ACM CSV.
 
 Use `--retry-status STATUS` to retry cached entries with a specific status without refreshing the whole cache. This is useful for revisiting cached `http_error`, `blocked`, or transient failure entries.
+
+## CSRankings Crawler
+
+`scripts/cache_csrankings.py` downloads the CSRankings faculty CSV shards from GitHub and stores them in the repo-local cache. It treats `csrankings-x.csv` as the documented shard family:
+
+```text
+https://raw.githubusercontent.com/emeryberger/CSrankings/gh-pages/csrankings-{letter}.csv
+```
+
+The script:
+
+- downloads `csrankings-a.csv` through `csrankings-z.csv` by default;
+- caches raw CSV shards under `.cache/csrankings/`;
+- validates the expected CSV header `name,affiliation,homepage,scholarid,orcid`;
+- writes a JSON report;
+- skips cached shards unless `--refresh` is passed;
+- does not modify files under `data/`.
+
+Basic commands:
+
+```bash
+python scripts/cache_csrankings.py --limit-new 0
+python scripts/cache_csrankings.py --letters a,b
+python scripts/cache_csrankings.py
+python scripts/cache_csrankings.py --refresh
+python scripts/cache_csrankings.py --cache-dir path/to/cache --report path/to/report.json
+```
+
+Compile-check the script:
+
+```bash
+python -m py_compile scripts/cache_csrankings.py
+```
+
+Default cache directory:
+
+```text
+.cache/csrankings/
+```
+
+Default report path:
+
+```text
+.cache/csrankings-report.json
+```
+
+The report contains:
+
+- `generated_at`
+- `source`
+- `base_url`
+- `cache_dir`
+- `total_shards`
+- `cached_shards`
+- `status_counts`
+- `entries`
+
+Each entry includes the shard letter, source URL, cache path, status, status code, row count, and fetch timestamp when available. Possible `status` values include:
+
+- `ok`: CSV was fetched or cached and has the expected header plus data rows.
+- `missing`: shard has not been cached yet.
+- `http_error`: GitHub returned an HTTP error.
+- `url_error`: DNS/network/connection failure.
+- `timeout`: request timed out.
+- `bad_csv`: downloaded content could not be parsed as CSV.
+- `bad_header`: downloaded content did not have the expected CSRankings header.
+- `empty`: downloaded content had no data rows.
+
+The CSRankings crawler defaults are:
+
+- `--delay 0.5`
+- `--delay-jitter 0.5`
+- `--batch-size 10`
+- `--batch-size-jitter 2`
+- `--batch-pause 10.0`
+- `--batch-pause-jitter 5.0`
+- `--max-retries 2`
+- `--backoff 5.0`
+- `--backoff-jitter 2.0`
+- `--limit-new N` caps uncached requests for one run.
+- `--letters a,b,c` restricts the shard set for testing or targeted refreshes.
+
+## CSRankings DBLP Alignment
+
+`scripts/build_csrankings_profiles.py` builds `data/csrankings_profiles.csv` from known DBLP profiles and cached CSRankings shards.
+
+The script:
+
+- reads `.cache/csrankings/csrankings-[a-z].csv`;
+- reads `data/dblp_profiles.csv`;
+- loops through DBLP profiles and includes only profiles that align to exactly one CSRankings row;
+- preserves the original CSRankings columns;
+- appends `crawl_date` and `dblp_profile`;
+- writes `.cache/csrankings-profiles-report.json` with included, unmatched DBLP, and ambiguous DBLP counts.
+
+Basic commands:
+
+```bash
+python scripts/build_csrankings_profiles.py
+python scripts/build_csrankings_profiles.py --crawl-date 2026-05-01
+python scripts/build_csrankings_profiles.py --cache-dir path/to/csrankings-cache --output data/csrankings_profiles.csv
+```
+
+Compile-check the script:
+
+```bash
+python -m py_compile scripts/build_csrankings_profiles.py
+```
+
+The output CSV columns are:
+
+```text
+name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
+```
+
+The matching policy is conservative. The script normalizes names by ignoring case, punctuation, diacritics, common honorifics, suffixes, and excess whitespace. It accepts exact normalized name matches and compatible first-name/initial plus last-name matches. It excludes unmatched and ambiguous rows instead of writing weak guesses.
+
+The alignment report is `.cache/csrankings-profiles-report.json`. It contains:
+
+- `generated_at`
+- `cache_dir`
+- `dblp_profiles`
+- `output`
+- `crawl_date`
+- `csrankings_rows`
+- `dblp_profiles_rows`
+- `included_rows`
+- `unmatched_dblp_profiles`
+- `ambiguous_dblp_profiles`
+- `unmatched_sample`
+- `ambiguous`
+
+When asked to check or validate CSRankings profiles, join `data/csrankings_profiles.csv` with `data/dblp_profiles.csv` on `dblp_profile` and flag suspicious name mismatches. Names should match modulo minor variations such as accent characters, diacritics, periods, punctuation, initials, spacing, hyphens, and capitalization. For suspicious rows, report the CSRankings name, DBLP name, affiliation, DBLP profile URL, and why it looks like a different person. Do not modify CSV files during validation unless the user explicitly asks.
+
+Use the repo-local skill `skills/refresh-csrankings` when asked to refresh CSRankings and rebuild this DBLP-aligned output.
+
+## ACM Fellow University Analysis
+
+`scripts/analyze_acm_fellow_universities.py` counts ACM Fellow university affiliations from joined Google Scholar and CSRankings profile data.
+
+The script:
+
+- reads `data/acm_fellows.csv`;
+- joins Google Scholar affiliations through `google_scholar_profile`;
+- joins CSRankings affiliations through `dblp_profile`;
+- extracts university-like organizations from both affiliation fields;
+- normalizes common university variants;
+- counts every distinct normalized university found per fellow;
+- prints a count-descending plain text table.
+
+Basic commands:
+
+```bash
+python scripts/analyze_acm_fellow_universities.py
+python scripts/analyze_acm_fellow_universities.py --min-count 5
+python scripts/analyze_acm_fellow_universities.py --examples 3
+python scripts/analyze_acm_fellow_universities.py --show-warnings
+python scripts/analyze_acm_fellow_universities.py --show-warnings --warnings-limit 100
+```
+
+Compile-check the script:
+
+```bash
+python -m py_compile scripts/analyze_acm_fellow_universities.py
+```
+
+Counting semantics:
+
+- A fellow can count toward multiple universities if Scholar and CSRankings provide distinct universities.
+- The same normalized university from multiple sources counts once per fellow.
+- Companies and generic job titles should not be counted as universities.
+- Common variants such as `MIT`, `Massachusetts Inst. of Technology`, `CMU`, `UC Berkeley`, `UCLA`, `UIUC`, `Georgia Tech`, and `UBC` are normalized.
+- Preserve `University of British Columbia` as distinct from `Columbia University`.
+- The helper prints normalization warnings to stderr with `--show-warnings` when it suppresses ambiguous captures such as generic parent institutions or substring collisions. Use `--warnings-limit N` to control how many warnings are shown.
+
+Use the repo-local skill `skills/analyze-acm-fellows` when asked about ACM Fellow university distribution or affiliation counts.
 
 ## ACM Fellow Playwright Crawler
 
