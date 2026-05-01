@@ -123,11 +123,29 @@ def compatible_name(left: str, right: str) -> bool:
     if not compatible_token(left_tokens[0], right_tokens[0]):
         return False
 
-    left_middle = [token for token in left_tokens[1:-1] if len(token) > 1 and token not in PARTICLES]
-    right_middle = [token for token in right_tokens[1:-1] if len(token) > 1 and token not in PARTICLES]
-    return all(any(compatible_token(token, candidate) for candidate in right_tokens[1:-1]) for token in left_middle) and all(
-        any(compatible_token(token, candidate) for candidate in left_tokens[1:-1]) for token in right_middle
-    )
+    left_middle = [token for token in left_tokens[1:-1] if token not in PARTICLES]
+    right_middle = [token for token in right_tokens[1:-1] if token not in PARTICLES]
+    if bool(left_middle) != bool(right_middle):
+        return False
+
+    left_full_middle = [token for token in left_middle if len(token) > 1]
+    right_full_middle = [token for token in right_middle if len(token) > 1]
+    if not all(any(compatible_token(token, candidate) for candidate in right_middle) for token in left_full_middle):
+        return False
+    if not all(any(compatible_token(token, candidate) for candidate in left_middle) for token in right_full_middle):
+        return False
+
+    left_unmatched_initials = [
+        token for token in left_middle if len(token) == 1 and not any(compatible_token(token, candidate) for candidate in right_full_middle)
+    ]
+    right_unmatched_initials = [
+        token for token in right_middle if len(token) == 1 and not any(compatible_token(token, candidate) for candidate in left_full_middle)
+    ]
+    if left_unmatched_initials and right_unmatched_initials:
+        return all(any(compatible_token(token, candidate) for candidate in right_unmatched_initials) for token in left_unmatched_initials) and all(
+            any(compatible_token(token, candidate) for candidate in left_unmatched_initials) for token in right_unmatched_initials
+        )
+    return True
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
