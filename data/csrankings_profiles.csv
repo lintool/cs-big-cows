@@ -1,4 +1,12 @@
 name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
+Adam Wierman,California Inst. of Technology,https://adamwierman.com,4OvOdSgAAAAJ,0000-0002-5923-0199,2026-05-01,https://dblp.org/pid/56/4447
+Aggelos Kiayias,University of Edinburgh,http://www.inf.ed.ac.uk/people/staff/Aggelos_Kiayias.html,P_L_vZAAAAAJ,0000-0003-2451-1430,2026-05-01,https://dblp.org/pid/47/3682
+Alessandro Orso,University of Georgia,https://engineering.uga.edu/team_member/alex-orso,wCfYkMkAAAAJ,0000-0003-4516-9320,2026-05-01,https://dblp.org/pid/35/805
+Antonio Torralba 0001,Massachusetts Inst. of Technology,http://web.mit.edu/torralba/www,8cxDHS4AAAAJ,0000-0003-4915-0256,2026-05-01,https://dblp.org/pid/t/AntonioBTorralba
+Ariel D. Procaccia,Harvard University,http://procaccia.info,8ZpV-lkAAAAJ,0000-0002-8774-5827,2026-05-01,https://dblp.org/pid/p/ArielDProcaccia
+Baoquan Chen,Peking University,https://cfcs.pku.edu.cn/baoquan,iHWtrEAAAAAJ,0000-0003-4702-036X,2026-05-01,https://dblp.org/pid/23/4197
+Cristina Conati,University of British Columbia,http://www.cs.ubc.ca/~conati,Ytp9oFQAAAAJ,0000-0002-8434-9335,2026-05-01,https://dblp.org/pid/34/5056
+Cynthia Rudin,Duke University,https://users.cs.duke.edu/~cynthia/home.html,mezKJyoAAAAJ,0000-0003-4283-2780,2026-05-01,https://dblp.org/pid/62/6936
 Alex Pothen,Purdue University,https://www.cs.purdue.edu/people/faculty/apothen,_Fah5fwAAAAJ,0000-0002-3421-3325,2026-05-01,https://dblp.org/pid/03/854
 Alfons Kemper,TU Munich,https://db.in.tum.de/~kemper,5n3YivwAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/k/AlfonsKemper
 Anima Anandkumar,California Inst. of Technology,http://tensorlab.cms.caltech.edu/users/anima,bEcLezcAAAAJ,0000-0002-6974-6797,2026-05-01,https://dblp.org/pid/25/1529
@@ -482,3 +490,165 @@ Chun-Lei Liu,Univ. of California - Berkeley,https://people.eecs.berkeley.edu/~ch
 David Harel,Weizmann Institute of Science,http://www.wisdom.weizmann.ac.il/~dharel,E20Gzu0AAAAJ,0000-0001-7240-3931,2026-05-01,https://dblp.org/pid/h/DavidHarel
 Robert E. Tarjan,Princeton University,https://www.cs.princeton.edu/~ret,lazJixIAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/t/RobertEndreTarjan
 Ronald L. Rivest,Massachusetts Inst. of Technology,http://people.csail.mit.edu/rivest,6qE0tdAAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/r/RonaldLRivest
+Deming Chen,Univ. of Illinois at Urbana-Champaign,https://www.ece.illinois.edu/directory/profile/dchen,A_A_LrsAAAAJ,0000-0002-3016-0270,2026-05-01,https://dblp.org/pid/37/1234
+Denys Poshyvanyk,College of William and Mary,http://www.cs.wm.edu/~denys,gyLFs0IAAAAJ,0000-0002-5626-7586,2026-05-01,https://dblp.org/pid/02/320
+Eytan Adar,University of Michigan,http://www.cond.org,4tMapHYAAAAJ,0000-0003-1911-836X,2026-05-01,https://dblp.org/pid/a/EytanAdar
+Gail-Joon Ahn,Arizona State University,http://www.public.asu.edu/~gahn1,_dzO69sAAAAJ,0000-0002-4271-1666,2026-05-01,https://dblp.org/pid/a/GailJoonAhn
+George Candea,EPFL,http://dslab.epfl.ch/people/candea,Yd-SGH8AAAAJ,0009-0002-8107-6535,2026-05-01,https://dblp.org/pid/c/GeorgeCandea
+Hanghang Tong,Univ. of Illinois at Urbana-Champaign,http://tonghanghang.org,RaINcuUAAAAJ,0000-0003-4405-3887,2026-05-01,https://dblp.org/pid/58/1757
+Javier Esparza,TU Munich,https://www7.in.tum.de/people/detail/index.php?id=people.detail&arg=33,c9qgPSYAAAAJ,0000-0001-9862-4919,2026-05-01,https://dblp.org/pid/e/JEsparza
+Junfeng Yang,Columbia University,http://www.cs.columbia.edu/~junfeng,JJ9AvbAAAAAJ,0009-0000-2277-6545,2026-05-01,https://dblp.org/pid/71/3724
+Ken-ichi Kawarabayashi,National Inst. of Informatics,https://kklab.nii.ac.jp/en,NOSCHOLARPAGE,0000-0001-6056-4287,2026-05-01,https://dblp.org/pid/45/6846
+Kian-Lee Tan,National University of Singapore,https://www.comp.nus.edu.sg/~tankl,NOSCHOLARPAGE,0000-0001-9315-4057,2026-05-01,https://dblp.org/pid/t/KianLeeTan
+Kwang-Ting Cheng,HKUST,http://www.ust.hk/about-hkust/senior-adm/dean-of-engineering,NOSCHOLARPAGE,0000-0002-3885-4912,2026-05-01,https://dblp.org/pid/c/KwangTingCheng
+Luca P. Carloni,Columbia University,http://www.cs.columbia.edu/~luca,sEAoh3MAAAAJ,0000-0001-5600-8931,2026-05-01,https://dblp.org/pid/68/2644
+Lujo Bauer,Carnegie Mellon University,http://www.ece.cmu.edu/~lbauer,5cJzDZEAAAAJ,0000-0002-8209-6792,2026-05-01,https://dblp.org/pid/32/3440
+Marco Dorigo,Université libre de Bruxelles,https://iridia.ulb.ac.be/~mdorigo/HomePageDorigo,PwYT6EMAAAAJ,0000-0002-3971-0507,2026-05-01,https://dblp.org/pid/d/MarcoDorigo
+Mohamed F. Mokbel,University of Minnesota,http://www-users.cs.umn.edu/~mokbel,GHz1ZVIAAAAJ,0000-0002-6686-1757,2026-05-01,https://dblp.org/pid/94/5893
+Rajkumar Buyya,University of Melbourne,http://www.buyya.com,7xN6JqYAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/b/RajkumarBuyya
+Ratul Mahajan,University of Washington,https://ratul.org,Sh1yq5QAAAAJ,0009-0005-8005-6948,2026-05-01,https://dblp.org/pid/81/6327
+Sheelagh Carpendale,Simon Fraser University,https://www.cs.sfu.ca/~sheelagh,43LLX2kAAAAJ,0000-0002-5127-9780,2026-05-01,https://dblp.org/pid/c/MSheelaghTCarpendale
+Stephanie Weirich,University of Pennsylvania,https://www.cis.upenn.edu/~sweirich,NOSCHOLARPAGE,0000-0002-6756-9168,2026-05-01,https://dblp.org/pid/w/StephanieWeirich
+Sven Apel,Saarland University,https://www.se.cs.uni-saarland.de/apel,_4ssMloAAAAJ,0000-0003-3687-2233,2026-05-01,https://dblp.org/pid/a/SvenApel
+Swarat Chaudhuri,University of Texas at Austin,https://www.cs.utexas.edu/~swarat,9j6RBYQAAAAJ,0000-0002-6859-1391,2026-05-01,https://dblp.org/pid/37/6100
+Sylvia Ratnasamy,Univ. of California - Berkeley,http://www.eecs.berkeley.edu/~sylvia,sAdDcvQAAAAJ,0000-0002-0524-9425,2026-05-01,https://dblp.org/pid/68/5579
+Tadayoshi Kohno,University of Washington,http://homes.cs.washington.edu/~yoshi,s_YDrrgAAAAJ,0000-0002-4899-226X,2026-05-01,https://dblp.org/pid/k/TadayoshiKohno
+Wolfgang Heidrich,KAUST,http://vccimaging.org/People/heidriw,IQSbom0AAAAJ,0000-0002-4227-8508,2026-05-01,https://dblp.org/pid/h/WolfgangHeidrich
+Wolfgang Lehner,TU Dresden,https://wwwdb.inf.tu-dresden.de/team/head/wolfgang-lehner,YYzvyMQAAAAJ,0000-0001-8107-2775,2026-05-01,https://dblp.org/pid/l/WLehner
+Xiaohua Jia,City University of Hong Kong,https://www.cs.cityu.edu.hk/~jia,L5iEhq0AAAAJ,0000-0001-8702-8302,2026-05-01,https://dblp.org/pid/j/XiaohuaJia
+Yan Solihin,University of Central Florida,https://sites.google.com/view/arpers,sUQFclgAAAAJ,0000-0002-8863-941X,2026-05-01,https://dblp.org/pid/11/2624
+Abhik Roychoudhury,National University of Singapore,https://www.comp.nus.edu.sg/~abhik,UxFWSJIAAAAJ,0000-0002-7127-1137,2026-05-01,https://dblp.org/pid/04/5884
+Ashish Goel,Stanford University,https://web.stanford.edu/~ashishg/ashishg.html,B_rKfusAAAAJ,0000-0002-6598-4712,2026-05-01,https://dblp.org/pid/g/AshishGoel
+Brian Curless,University of Washington,http://homes.cs.washington.edu/~curless,tlh8i7gAAAAJ,0000-0002-0095-5400,2026-05-01,https://dblp.org/pid/c/BrianCurless
+Cláudio T. Silva,New York University,https://ctsilva.github.io,YIwiAAsAAAAJ,0000-0003-2452-2295,2026-05-01,https://dblp.org/pid/s/ClaudioTSilva
+Dana Randall,Georgia Institute of Technology,http://people.math.gatech.edu/~randall,6wCEmNYAAAAJ,0000-0002-1152-2627,2026-05-01,https://dblp.org/pid/62/3610
+Diane Joyce Cook,Washington State University,http://www.eecs.wsu.edu/~cook,VpfWvTUAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/c/DianeJCook
+Falko Dressler,TU Berlin,https://www2.tkn.tu-berlin.de/team/dressler,sK8213AAAAAJ,0000-0002-1989-1750,2026-05-01,https://dblp.org/pid/d/FalkoDressler
+Fred Chong,University of Chicago,http://people.cs.uchicago.edu/~ftchong,U6OVPVMAAAAJ,0000-0001-9282-4645,2026-05-01,https://dblp.org/pid/c/FTChong
+Guoliang Xing,Chinese University of Hong Kong,https://staff.ie.cuhk.edu.hk/~glxing,kI5JKs8AAAAJ,0000-0003-1772-7751,2026-05-01,https://dblp.org/pid/63/4542
+Irwin King,Chinese University of Hong Kong,https://www.cse.cuhk.edu.hk/irwin.king,MXvC7tkAAAAJ,0000-0001-8106-6447,2026-05-01,https://dblp.org/pid/k/IrwinKing
+Justin Zobel,University of Melbourne,http://people.eng.unimelb.edu.au/jzobel,uEHvqE8AAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/z/JZobel
+Luca de Alfaro,Univ. of California - Santa Cruz,https://users.soe.ucsc.edu/~luca,gkACFVcAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/d/LucadeAlfaro
+Maarten de Rijke,University of Amsterdam,https://staff.fnwi.uva.nl/m.derijke,AVDkgFIAAAAJ,0000-0002-1086-0202,2026-05-01,https://dblp.org/pid/r/MdRijke
+Marc Alexa,TU Berlin,https://www.cg.tu-berlin.de/team/prof-dr-marc-alexa,KNwXLLsAAAAJ,0000-0002-9854-8466,2026-05-01,https://dblp.org/pid/a/MarcAlexa
+Marcelo Arenas,UC Chile,http://marceloarenas.cl,YHR0wkkAAAAJ,0000-0003-3678-1868,2026-05-01,https://dblp.org/pid/76/6735
+Marsha Chechik,University of Toronto,http://www.cs.toronto.edu/~chechik,CYfxRVIAAAAJ,0000-0002-6301-3517,2026-05-01,https://dblp.org/pid/c/MarshaChechik
+Michal Feldman,Tel Aviv University,https://www.cs.tau.ac.il/~mfeldman,IKjIhTwAAAAJ,0000-0002-2915-8405,2026-05-01,https://dblp.org/pid/43/1464
+Mira Mezini,TU Darmstadt,http://www.stg.tu-darmstadt.de/staff/mira_mezini,ESQUnJEAAAAJ,0000-0001-6563-7537,2026-05-01,https://dblp.org/pid/m/MiraMezini
+Mohan Kankanhalli,National University of Singapore,http://www.comp.nus.edu.sg/~mohan,6Lx_eowAAAAJ,0000-0002-4846-2015,2026-05-01,https://dblp.org/pid/09/3613
+Naren Ramakrishnan,Virginia Tech,http://people.cs.vt.edu/naren,fMJwG7MAAAAJ,0000-0002-1821-9743,2026-05-01,https://dblp.org/pid/r/NarenRamakrishnan
+Nate Foster,EPFL,https://people.epfl.ch/nate.foster,AH5j40kAAAAJ,0000-0002-6557-684X,2026-05-01,https://dblp.org/pid/15/3253
+Niklas Elmqvist,Aarhus University,https://cs.au.dk/~elm,LoQXe24AAAAJ,0000-0001-5805-5301,2026-05-01,https://dblp.org/pid/e/NiklasElmqvist
+Rasmus Pagh,University of Copenhagen,https://di.ku.dk/english/staff/?pure=en/persons/309342,VO4oS8UAAAAJ,0000-0002-1516-9306,2026-05-01,https://dblp.org/pid/p/RasmusPagh
+Sudip Misra,IIT Kharagpur,http://cse.iitkgp.ac.in/~smisra,h33l-A8AAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/36/1023
+Thad Starner,Georgia Institute of Technology,http://www.cc.gatech.edu/home/thad,qr8Vo9IAAAAJ,0000-0001-8442-7842,2026-05-01,https://dblp.org/pid/s/ThadStarner
+Aditya Akella,University of Texas at Austin,http://pages.cs.wisc.edu/~akella,d_rxnzAAAAAJ,0000-0002-5920-170X,2026-05-01,https://dblp.org/pid/a/AdityaAkella
+Björn W. Schuller,Imperial College London,https://www.doc.ic.ac.uk/~bschulle,TxKNCSoAAAAJ,0000-0002-6478-8699,2026-05-01,https://dblp.org/pid/54/4934
+Chandra Chekuri,Univ. of Illinois at Urbana-Champaign,http://chekuri.cs.illinois.edu,7j3itaMAAAAJ,0000-0003-3035-1699,2026-05-01,https://dblp.org/pid/82/3212
+Elaine Shi,Carnegie Mellon University,http://elaineshi.com,rejzeocAAAAJ,0000-0002-5605-1048,2026-05-01,https://dblp.org/pid/80/4580
+Emmett Witchel,University of Texas at Austin,https://www.cs.utexas.edu/users/witchel,k4oSgRkAAAAJ,0000-0002-1391-2880,2026-05-01,https://dblp.org/pid/76/6082
+Jeffrey S. Foster,Tufts University,http://www.cs.umd.edu/~jfoster,QWPwfsgAAAAJ,0000-0001-8043-1166,2026-05-01,https://dblp.org/pid/18/2050
+Kwan-Liu Ma,Univ. of California - Davis,http://www.cs.ucdavis.edu/~ma,LgL2HpkAAAAJ,0000-0001-8086-0366,2026-05-01,https://dblp.org/pid/93/5838
+Maria-Florina Balcan,Carnegie Mellon University,https://www.cs.cmu.edu/~ninamf,LWlN_BUAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/b/MariaFlorinaBalcan
+Mikhail Belkin,Univ. of California - San Diego,https://datascience.ucsd.edu/staff-members/mikhail-belkin,Iwd9DdkAAAAJ,0009-0005-8633-3926,2026-05-01,https://dblp.org/pid/41/2337
+Nicole Immorlica,Yale University,https://engineering.yale.edu/academic-study/departments/computer-science/people/nicole-immorlica,_1hCq3UAAAAJ,0000-0003-4180-4657,2026-05-01,https://dblp.org/pid/43/3631
+Phoebe Sengers,Cornell University,http://www.cs.cornell.edu/people/sengers,6c5cf1wAAAAJ,0000-0002-5778-5262,2026-05-01,https://dblp.org/pid/s/PhoebeSengers
+Rolf Drechsler,University of Bremen,http://www.informatik.uni-bremen.de/agra/eng/team.php,9v_MAAIAAAAJ,0000-0002-9872-1740,2026-05-01,https://dblp.org/pid/d/RolfDrechsler
+Sharad Mehrotra,Univ. of California - Irvine,https://www.ics.uci.edu/~sharad,MTZaRW4AAAAJ,0000-0003-1667-5435,2026-05-01,https://dblp.org/pid/m/SharadMehrotra
+Steffen Staab,University of Stuttgart,https://www.ki.uni-stuttgart.de/institute/team/Staab-00004,QvpcUn8AAAAJ,0000-0002-0780-4154,2026-05-01,https://dblp.org/pid/s/SteffenStaab
+Trent Jaeger,Univ. of California - Riverside,http://www.trentjaeger.com,JS8aznIAAAAJ,0000-0002-4964-1170,2026-05-01,https://dblp.org/pid/45/576
+Vineet Bafna,Univ. of California - San Diego,http://cseweb.ucsd.edu/~vbafna,NzQu5SwAAAAJ,0000-0002-5810-6241,2026-05-01,https://dblp.org/pid/b/VineetBafna
+Wenjing Lou,Virginia Tech,http://www.cnsr.ictas.vt.edu/WJLou.html,hM8uAwoAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/73/3673
+Yoshua Bengio,University of Montreal,http://www.iro.umontreal.ca/~bengioy,kukA0LcAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/56/953
+Ahmed E. Hassan,Queen’s University,http://www.cs.queensu.ca/~ahmed,9hwXx34AAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/h/AhmedEHassan
+Kevin Fu,Northeastern University,https://web.eecs.umich.edu/~kevinfu,pZQuSyUAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/f/KevinFu
+Rafael Pass,Tel Aviv University,https://sites.google.com/view/rafaelpass,_7IzKZQAAAAJ,0000-0001-7440-5690,2026-05-01,https://dblp.org/pid/p/RPass
+A. Prasad Sistla,University of Illinois at Chicago,https://www.cs.uic.edu/Sistla,NOSCHOLARPAGE,0009-0005-8331-7912,2026-05-01,https://dblp.org/pid/s/APrasadSistla
+Rafail Ostrovsky,Univ. of California - Los Angeles,http://www.cs.ucla.edu/~rafail,UvFrX04AAAAJ,0000-0002-1501-1330,2026-05-01,https://dblp.org/pid/o/RafailOstrovsky
+José Meseguer 0001,Univ. of Illinois at Urbana-Champaign,http://formal.cs.illinois.edu/meseguer,KZFo7ZkAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/m/JoseMeseguer
+Ran Canetti,Boston University,https://www.bu.edu/cs/profiles/ran-canetti,-PWcE1YAAAAJ,0000-0002-5479-7540,2026-05-01,https://dblp.org/pid/c/RanCanetti
+Sanjit A. Seshia,Univ. of California - Berkeley,https://people.eecs.berkeley.edu/~sseshia,SlZavnIAAAAJ,0000-0001-6190-8707,2026-05-01,https://dblp.org/pid/s/SanjitASeshia
+Sven Koenig,Univ. of California - Irvine,http://idm-lab.org,tpoh43QAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/k/SvenKoenig
+Johan Håstad,KTH Royal Inst. of Technology,http://www.csc.kth.se/~johanh,n0QrdEMAAAAJ,0000-0002-5379-345X,2026-05-01,https://dblp.org/pid/47/3155
+Onur Mutlu,ETH Zurich,https://people.inf.ethz.ch/omutlu,7XyGUGkAAAAJ,0000-0002-0075-2312,2026-05-01,https://dblp.org/pid/m/OnurMutlu
+Wenke Lee,Georgia Institute of Technology,http://wenke.gtisc.gatech.edu,nfkH5V4AAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/29/5976
+Michael Franz,Univ. of California - Irvine,http://www.michaelfranz.com,NOSCHOLARPAGE,0000-0001-5911-2275,2026-05-01,https://dblp.org/pid/f/MichaelFranz
+Adam Finkelstein,Princeton University,https://www.cs.princeton.edu/~af,a959F6AAAAAJ,0000-0001-9130-8411,2026-05-01,https://dblp.org/pid/f/AdamFinkelstein
+Gene Tsudik,Univ. of California - Irvine,http://www.ics.uci.edu/~gts,WLvuu74AAAAJ,0000-0002-8467-8614,2026-05-01,https://dblp.org/pid/08/1183
+Gustavo Alonso,ETH Zurich,https://people.inf.ethz.ch/alonso,fkNjVcIAAAAJ,0000-0002-4396-6695,2026-05-01,https://dblp.org/pid/a/GustavoAlonso
+Stefan Savage,Univ. of California - San Diego,http://cseweb.ucsd.edu/~savage,_JhgbioAAAAJ,0000-0001-6617-8029,2026-05-01,https://dblp.org/pid/s/StefanSavage
+Venu Govindaraju,University at Buffalo,https://cubs.buffalo.edu/about-the-director,ruIgbscAAAAJ,0000-0002-5318-7409,2026-05-01,https://dblp.org/pid/g/VenuGovindaraju
+Jitendra Malik,Univ. of California - Berkeley,https://people.eecs.berkeley.edu/~malik,oY9R5YQAAAAJ,0000-0003-3695-1580,2026-05-01,https://dblp.org/pid/58/2944
+Joel Moses,Massachusetts Inst. of Technology,https://esd.mit.edu/Faculty_Pages/moses/moses.htm,NOSCHOLARPAGE,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/62/5917
+Lui Sha,Univ. of Illinois at Urbana-Champaign,https://cs.illinois.edu/directory/profile/lrs,SlXqNooAAAAJ,0000-0002-5578-0791,2026-05-01,https://dblp.org/pid/67/5282
+George Varghese,Univ. of California - Los Angeles,http://web.cs.ucla.edu/~varghese,SEnY0XQAAAAJ,0000-0002-8218-5701,2026-05-01,https://dblp.org/pid/v/GeorgeVarghese
+Reinhard Wilhelm,Saarland University,http://rw4.cs.uni-saarland.de/people/wilhelm.shtml,cmvUbRUAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/w/ReinhardWilhelm
+Philip S. Yu,University of Illinois at Chicago,https://www.cs.uic.edu/PSYu,D0lL1r0AAAAJ,0000-0002-3491-5968,2026-05-01,https://dblp.org/pid/y/PhilipSYu
+Raj Jain,Washington University in St. Louis,https://www.cse.wustl.edu/~jain,runT3RsAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/j/RajJain
+Peter J. Denning,Naval Postgraduate School,http://faculty.nps.edu/vitae/cgi-bin/vita.cgi?p=display_vita&id=1074712364,bfs3-ZoAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/d/PJDenning
+Jiaya Jia,HKUST,https://cse.hkust.edu.hk/admin/people/faculty/profile/jia,XPAkzTEAAAAJ,0000-0002-1246-553X,2026-05-01,https://dblp.org/pid/31/5649
+Bashar Ahmad Nuseibeh,Open University UK,http://stem.open.ac.uk/people/ban25,aUQ8O9gAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/26/1319
+Clark Barrett,Stanford University,https://theory.stanford.edu/~barrett,BtwmZfQAAAAJ,0000-0002-9522-3084,2026-05-01,https://dblp.org/pid/b/ClarkWBarrett
+Guoliang Li 0001,Tsinghua University,http://dbgroup.cs.tsinghua.edu.cn/ligl,s9n7-fQAAAAJ,0000-0002-1398-0621,2026-05-01,https://dblp.org/pid/181/2628
+Shrikanth Narayanan,University of Southern California,http://sail.usc.edu/people/shri.php,8EDHmYkAAAAJ,0000-0002-1052-6204,2026-05-01,https://dblp.org/pid/19/3899
+Tim Roughgarden,Columbia University,http://timroughgarden.org,0lcJYs8AAAAJ,0000-0002-7163-8306,2026-05-01,https://dblp.org/pid/r/TimRoughgarden
+Nenad Medvidovic,University of Southern California,https://softarch.usc.edu/~neno,kqW_-2gAAAAJ,0000-0002-1906-4878,2026-05-01,https://dblp.org/pid/65/1728
+Noam Nisan,Hebrew University of Jerusalem,http://www.cs.huji.ac.il/~noam,zXQZPnMAAAAJ,0000-0003-3106-6304,2026-05-01,https://dblp.org/pid/n/NoamNisan
+Odest Chadwicke Jenkins,University of Michigan,http://ohseejay.org,dp5LnVAAAAAJ,0000-0003-3750-7334,2026-05-01,https://dblp.org/pid/99/4449
+Paolo Ferragina,University of Pisa,http://pages.di.unipi.it/ferragina,3EILU3MAAAAJ,0000-0003-1353-360X,2026-05-01,https://dblp.org/pid/f/PaoloFerragina
+Oded Regev 0001,New York University,http://www.cims.nyu.edu/~regev,3-gk0ioAAAAJ,0000-0002-8616-3163,2026-05-01,https://dblp.org/pid/r/OdedRegev
+Peter Müller 0001,ETH Zurich,http://www.pm.inf.ethz.ch/people/personal/pmueller-pers.html,iJ0qZckAAAAJ,0000-0001-7001-2566,2026-05-01,https://dblp.org/pid/m/PMuller1
+Hai Jin 0001,HUST,http://faculty.hust.edu.cn/jinhai/en/index.htm,o02W0aEAAAAJ,0000-0002-3934-7605,2026-05-01,https://dblp.org/pid/98/4156
+Ke Yi 0001,HKUST,https://www.cse.ust.hk/~yike,dWcZPFEAAAAJ,0000-0002-2178-3716,2026-05-01,https://dblp.org/pid/43/1219-1
+Jeffrey Michael Heer,University of Washington,http://homes.cs.washington.edu/~jheer,vlgs4G4AAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/27/4508
+Zi Helen Huang,University of Queensland,http://staff.itee.uq.edu.au/huang,PnBlwhgAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/70/6862
+David Lo 0001,Singapore Management University,http://www.mysmu.edu/faculty/davidlo,IFg0H1wAAAAJ,0000-0002-4367-7201,2026-05-01,https://dblp.org/pid/89/6793-1
+Kenneth R. Koedinger,Carnegie Mellon University,http://pact.cs.cmu.edu/koedinger.html,_8DDVkAAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/93/3741
+Arindam Banerjee 0001,Univ. of Illinois at Urbana-Champaign,https://arindam.cs.illinois.edu,RY7cuPAAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/82/4807
+Stefano Leonardi 0001,Sapienza University of Rome,https://sites.google.com/a/uniroma1.it/stefanoleonardi-eng,p5LCHHEAAAAJ,0000-0002-9809-7191,2026-05-01,https://dblp.org/pid/l/StefanoLeonardi
+Michael Backes 0001,CISPA Helmholtz Center,https://cispa.de/en/people/backes,ZVS3KOEAAAAJ,0000-0002-7130-9211,2026-05-01,https://dblp.org/pid/b/MichaelBackes1
+Wei-Ying Ma,City University of Hong Kong,https://scholars.cityu.edu.hk/en/persons/weiyma,SToCbu8AAAAJ,0000-0002-7384-0735,2026-05-01,https://dblp.org/pid/m/WYMa
+Wenliang Du 0001,Zhejiang University,https://person.zju.edu.cn/wenliangdu,1aMkcasAAAAJ,0000-0002-4257-2010,2026-05-01,https://dblp.org/pid/d/WenliangDu
+Jie Tang 0001,Tsinghua University,http://keg.cs.tsinghua.edu.cn/jietang,n1zDCkQAAAAJ,0000-0003-3487-4593,2026-05-01,https://dblp.org/pid/t/JieTang
+Albrecht Schmidt 0001,LMU Munich,https://www.en.um.informatik.uni-muenchen.de/people/professors/schmidt/index.html,qM5jR7YAAAAJ,0000-0003-3890-1990,2026-05-01,https://dblp.org/pid/s/AlbrechtSchmidt1
+Andreas Krause 0001,ETH Zurich,https://las.inf.ethz.ch/krausea,eDHv58AAAAAJ,0000-0001-7260-9673,2026-05-01,https://dblp.org/pid/87/1831-1
+Haibo Chen 0001,Shanghai Jiao Tong University,http://ipads.se.sjtu.edu.cn/~hbchen,qd9xSkYAAAAJ,0000-0002-9720-0361,2026-05-01,https://dblp.org/pid/31/6601-1
+Nikhil Bansal 0001,University of Michigan,https://www.win.tue.nl/~nikhil,3Lmd6AMAAAAJ,0000-0002-6290-0894,2026-05-01,https://dblp.org/pid/69/5601
+Manuel Blum 0001,Carnegie Mellon University,https://www.cs.cmu.edu/~mblum,7S-LSKoAAAAJ,0000-0002-0982-4845,2026-05-01,https://dblp.org/pid/b/ManuelBlum
+Tao Xie 0001,Peking University,https://taoxiease.github.io,DhhH9J4AAAAJ,0000-0002-6731-216X,2026-05-01,https://dblp.org/pid/x/TaoXie
+Jacob O. Wobbrock,University of Washington,http://faculty.washington.edu/wobbrock,TmZ3howAAAAJ,0000-0003-3675-5491,2026-05-01,https://dblp.org/pid/18/6907
+Ramesh K. Sitaraman,Univ. of Massachusetts Amherst,https://groups.cs.umass.edu/ramesh,Hj4o7GYAAAAJ,0000-0003-0558-6875,2026-05-01,https://dblp.org/pid/s/RameshKSitaraman
+Mona Singh 0001,Princeton University,https://www.cs.princeton.edu/~mona,JpAehzgAAAAJ,0000-0001-8271-6026,2026-05-01,https://dblp.org/pid/73/6093-1
+Yuan Xie 0001,HKUST,https://seng.hkust.edu.hk/about/people/faculty/yuan-xie,dK2ZuDcAAAAJ,0000-0003-2093-1788,2026-05-01,https://dblp.org/pid/x/YuanXie
+Frank Mueller 0001,North Carolina State University,http://moss.csc.ncsu.edu/~mueller,1hEE9ZsAAAAJ,0000-0002-0258-0294,2026-05-01,https://dblp.org/pid/46/2933-1
+Angelos Dennis Keromytis,Georgia Institute of Technology,https://angelosk.github.io,mncyWbcAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/k/AngelosDKeromytis
+Qiang Yang 0001,HKUST,http://www.cs.ust.hk/~qyang,6vQP4KIAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/82/6362-1
+Rajesh Gupta 0001,Univ. of California - San Diego,http://mesl.ucsd.edu/gupta,I1w51gUAAAAJ,0000-0002-6489-7633,2026-05-01,https://dblp.org/pid/213/9138-1
+Timothy A. Davis 0001,Texas A&M University,http://faculty.cse.tamu.edu/davis,gNMqz_4AAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/81/2844-1
+Madhu Sudan 0001,Harvard University,http://madhu.seas.harvard.edu,D-RwB3YAAAAJ,0000-0003-3718-6489,2026-05-01,https://dblp.org/pid/s/MadhuSudan
+Tao Jiang 0001,Univ. of California - Riverside,http://www.cs.ucr.edu/~jiang,XUhsCZwAAAAJ,0000-0003-3833-4498,2026-05-01,https://dblp.org/pid/j/TaoJiang-1
+Vipin Kumar 0001,University of Minnesota,http://www-users.cs.umn.edu/~kumar,BnxU9TEAAAAJ,0000-0002-9040-2665,2026-05-01,https://dblp.org/pid/k/VipinKumar-1
+David B. Shmoys,Cornell University,https://people.orie.cornell.edu/shmoys,rD8a4hQAAAAJ,0000-0003-3882-901X,2026-05-01,https://dblp.org/pid/s/DavidBShmoys
+David Clark 0001,University College London,http://www0.cs.ucl.ac.uk/people/D.Clark.html,Vch_do8AAAAJ,0000-0002-7004-934X,2026-05-01,https://dblp.org/pid/c/DavidDClark
+Hui Xiong 0001,HKUST,https://www.hkust-gz.edu.cn/people/hui-xiong,cVDF1tkAAAAJ,0000-0001-6016-6465,2026-05-01,https://dblp.org/pid/262/1686-1
+Lei Chen 0002,HKUST,https://www.cse.ust.hk/~leichen,gtglwgYAAAAJ,0000-0002-8257-5806,2026-05-01,https://dblp.org/pid/c/LeiChen0002
+Michael D. Bailey,Georgia Institute of Technology,https://faculty.cc.gatech.edu/~mbailey,sMnocAYAAAAJ,0000-0002-0250-9164,2026-05-01,https://dblp.org/pid/359/0958
+Seffi Naor,Technion,http://www.cs.technion.ac.il/~naor,xGbDr7YAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/n/JosephNaor
+Zhu Han 0001,University of Houston,http://www2.egr.uh.edu/~zhan2,ty7wIXoAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/83/514
+Antonio González 0001,Polytechnic Univ. of Catalonia,http://people.ac.upc.es/antonio,WegaFkUAAAAJ,0000-0002-0009-0996,2026-05-01,https://dblp.org/pid/g/AntonioGonzalez1
+Kui Ren 0001,Zhejiang University,https://person.zju.edu.cn/kuiren,uuQA_rcAAAAJ,0000-0003-3441-6277,2026-05-01,https://dblp.org/pid/20/6179-1
+Kun Zhou 0001,Zhejiang University,http://mypage.zju.edu.cn/kunzhou,N-iYby0AAAAJ,0000-0003-4243-6112,2026-05-01,https://dblp.org/pid/48/3927-1
+Laurie A. Williams,North Carolina State University,http://collaboration.csc.ncsu.edu/laurie,Cln2viUAAAAJ,0000-0003-3300-6540,2026-05-01,https://dblp.org/pid/w/LaurieAWilliams
+Yiran Chen 0001,Duke University,https://ece.duke.edu/faculty/yiran-chen,3G-nnjMAAAAJ,0000-0002-1486-8412,2026-05-01,https://dblp.org/pid/80/1641
+Elizabeth F. Churchill,MBZUAI,https://mbzuai.ac.ae/study/faculty/elizabeth-churchill,wZB07xAAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/99/3360
+Alberto L. Sangiovanni-Vincentelli,Univ. of California - Berkeley,https://www2.eecs.berkeley.edu/Faculty/Homepages/sangiovanni-vicentelli.html,AhgjQ2QAAAAJ,0000-0003-1298-8389,2026-05-01,https://dblp.org/pid/s/ALSangiovanniV
+Jian Ma 0004,Carnegie Mellon University,http://www.cs.cmu.edu/~jianma,kDZcBhkAAAAJ,0000-0002-4202-5834,2026-05-01,https://dblp.org/pid/26/4870-4
+Jun Zhu 0001,Tsinghua University,http://ml.cs.tsinghua.edu.cn/~jun/index.shtml,axsP38wAAAAJ,0000-0002-6254-2388,2026-05-01,https://dblp.org/pid/50/2644-1
+Li Xiong 0001,Emory University,https://cs.emory.edu/~lxiong,jJ8BLgsAAAAJ,0000-0001-7354-0428,2026-05-01,https://dblp.org/pid/39/3530-1
+Lin Zhong 0001,Yale University,https://cpsc.yale.edu/people/lin-zhong,hJPN-G8AAAAJ,0000-0003-0840-167X,2026-05-01,https://dblp.org/pid/27/2552-1
+Jian Pei 0001,Duke University,https://sites.google.com/view/jpei/jian-peis-homepage,zIMEVKsAAAAJ,0000-0002-2200-8711,2026-05-01,https://dblp.org/pid/p/JianPei
+Hong Mei 0001,Peking University,http://sei.pku.edu.cn/~meih/index_en.html,b-ZYIwoAAAAJ,0000-0003-2380-3976,2026-05-01,https://dblp.org/pid/14/2036
+Wang Yi 0001,Uppsala University,http://user.it.uu.se/~yi,_ynjrUUAAAAJ,0000-0002-2994-6110,2026-05-01,https://dblp.org/pid/y/WangYi
+Hui Zhang 0005,University College London,http://mig.cs.ucl.ac.uk/index.php?n=People.GHZhang,Ii9_OYMAAAAJ,0000-0002-5426-2140,2026-05-01,https://dblp.org/pid/57/1907-2
+Yi Ma 0001,University of Hong Kong,https://ai.hku.hk/index.php/people/academic-staff/mayi,XqLiBQMAAAAJ,0000-0000-0000-0000,2026-05-01,https://dblp.org/pid/69/1112-1
+S. Sudarshan 0001,IIT Bombay,https://www.cse.iitb.ac.in/~sudarsha,KtP9-zYAAAAJ,0000-0002-6230-2288,2026-05-01,https://dblp.org/pid/s/SSudarshan1
