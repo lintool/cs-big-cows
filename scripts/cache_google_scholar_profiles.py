@@ -35,6 +35,7 @@ from typing import Any
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA = APP_ROOT / "data" / "acm_fellows.csv"
+DEFAULT_OUTPUT = APP_ROOT / "data" / "google_scholar_profiles.csv"
 DEFAULT_CACHE = APP_ROOT / ".cache" / "google-scholar-profile-cache.json"
 DEFAULT_REPORT = APP_ROOT / ".cache" / "google-scholar-profile-report.json"
 
@@ -42,6 +43,22 @@ SUFFIXES = {"jr", "jr.", "sr", "sr.", "ii", "iii", "iv"}
 PARTICLES = {"al", "bin", "da", "de", "del", "den", "der", "di", "du", "la", "le", "van", "von"}
 TRANSIENT_HTTP_STATUS = {408, 425, 429, 500, 502, 503, 504}
 HTML_REQUIRED_STATUSES = {"ok", "blocked", "http_error", "no_title"}
+PROFILE_CSV_COLUMNS = [
+    "name",
+    "profile",
+    "crawl_date",
+    "affiliation",
+    "interests",
+    "citations",
+    "h_index",
+    "i10_index",
+    "citations_since_5y_ago",
+    "h_index_since_5y_ago",
+    "i10_index_since_5y_ago",
+    "first_citation_year",
+    "citation_by_year",
+]
+STAT_COLUMNS = PROFILE_CSV_COLUMNS[5:11]
 
 
 @dataclass(frozen=True)
@@ -135,6 +152,8 @@ class ScholarProfileParser(HTMLParser):
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Path to data/acm_fellows.csv or a bundled *-data.js file.")
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="CSV path to write enriched Scholar profile rows.")
+    parser.add_argument("--no-write-csv", action="store_true", help="Skip writing the enriched Scholar profile CSV.")
     parser.add_argument("--cache", type=Path, default=DEFAULT_CACHE, help="JSON cache path.")
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT, help="JSON report path.")
     parser.add_argument("--delay", type=float, default=5.0, help="Base seconds to wait between uncached requests.")
@@ -317,7 +336,59 @@ def clean_affiliation(value: str) -> str:
 def parse_profile_html(body: str) -> dict[str, Any]:
     parser = ScholarProfileParser()
     parser.feed(body)
-    return parser.parsed()
+    parsed = parser.parsed()
+    parsed.update(parse_profile_stats(body))
+    citation_by_year = parse_citation_by_year(body)
+    parsed["first_citation_year"] = min(citation_by_year) if citation_by_year else ""
+    parsed["citation_by_year"] = citation_by_year
+    return parsed
+
+
+def strip_tags(value: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html.unescape(value or ""))).strip()
+
+
+def parse_profile_stats(body: str) -> dict[str, str]:
+    stats = {column: "" for column in STAT_COLUMNS}
+    match = re.search(r'<table[^>]+id=["\']gsc_rsb_st["\'][^>]*>(.*?)</table>', body or "", re.S | re.I)
+    if not match:
+        return stats
+
+    labels = {"Citations": "citations", "h-index": "h_index", "i10-index": "i10_index"}
+    for row_html in re.findall(r"<tr[^>]*>(.*?)</tr>", match.group(1), re.S | re.I):
+        cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row_html, re.S | re.I)
+        values = [strip_tags(cell).replace(",", "") for cell in cells]
+        if len(values) >= 3 and values[0] in labels:
+            base = labels[values[0]]
+            stats[base] = values[1]
+            stats[f"{base}_since_5y_ago"] = values[2]
+    return stats
+
+
+def parse_citation_by_year(body: str) -> dict[str, int]:
+    match = re.search(r'<div class="gsc_md_hist_b">(.*?)</div>', body or "", re.S | re.I)
+    if not match:
+        return {}
+
+    chart = match.group(1)
+    years = [
+        (int(right), year)
+        for right, year in re.findall(r'<span class="gsc_g_t"[^>]*style="[^"]*right:(\d+)px[^"]*"[^>]*>(\d{4})</span>', chart)
+    ]
+    if not years:
+        return {}
+
+    counts_by_right: dict[int, int] = {}
+    for right, bar in re.findall(r'<a[^>]+class="gsc_g_a"[^>]*style="[^"]*right:(\d+)px[^"]*"[^>]*>(.*?)</a>', chart, re.S | re.I):
+        label = re.search(r'<span class="gsc_g_al">([^<]*)</span>', bar, re.S | re.I)
+        value = strip_tags(label.group(1)).replace(",", "") if label else ""
+        counts_by_right[int(right)] = int(value) if value.isdigit() else 0
+
+    series: dict[str, int] = {}
+    for year_right, year in years:
+        nearby = [count for right, count in counts_by_right.items() if abs(right - year_right) <= 8]
+        series[year] = nearby[0] if nearby else 0
+    return series
 
 
 def extract_title(body: str) -> str:
@@ -432,6 +503,14 @@ def fetch_profile_once(url: str) -> dict[str, Any]:
         "title": title,
         "affiliation": parsed.get("affiliation", ""),
         "interests": parsed.get("interests", []),
+        "citations": parsed.get("citations", ""),
+        "h_index": parsed.get("h_index", ""),
+        "i10_index": parsed.get("i10_index", ""),
+        "citations_since_5y_ago": parsed.get("citations_since_5y_ago", ""),
+        "h_index_since_5y_ago": parsed.get("h_index_since_5y_ago", ""),
+        "i10_index_since_5y_ago": parsed.get("i10_index_since_5y_ago", ""),
+        "first_citation_year": parsed.get("first_citation_year", ""),
+        "citation_by_year": parsed.get("citation_by_year", {}),
         "html": body,
         "fetched_at": fetched_at,
     }
@@ -470,6 +549,10 @@ def enrich_cache_from_html(cache: dict[str, Any]) -> None:
             cached["title"] = parsed["title"]
         cached["affiliation"] = parsed.get("affiliation", "")
         cached["interests"] = parsed.get("interests", [])
+        for column in STAT_COLUMNS:
+            cached[column] = parsed.get(column, "")
+        cached["first_citation_year"] = parsed.get("first_citation_year", "")
+        cached["citation_by_year"] = parsed.get("citation_by_year", {})
 
 
 def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[str, Any]:
@@ -506,6 +589,14 @@ def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[
                 "title": title,
                 "affiliation": cached.get("affiliation", ""),
                 "interests": cached.get("interests", []),
+                "citations": cached.get("citations", ""),
+                "h_index": cached.get("h_index", ""),
+                "i10_index": cached.get("i10_index", ""),
+                "citations_since_5y_ago": cached.get("citations_since_5y_ago", ""),
+                "h_index_since_5y_ago": cached.get("h_index_since_5y_ago", ""),
+                "i10_index_since_5y_ago": cached.get("i10_index_since_5y_ago", ""),
+                "first_citation_year": cached.get("first_citation_year", ""),
+                "citation_by_year": cached.get("citation_by_year", {}),
                 "html_cached": bool(cached.get("html")),
                 "match": match,
                 "fetched_at": cached.get("fetched_at"),
@@ -522,9 +613,69 @@ def build_report(profiles: list[ScholarProfile], cache: dict[str, Any]) -> dict[
         "incomplete_cached_profiles": sum(1 for profile in profiles if needs_html_refetch(cache.get(profile.url, {}))),
         "status_counts": status_counts,
         "mismatch_count": len(mismatches),
+        "stats_profiles": sum(
+            1
+            for profile in profiles
+            if cache.get(profile.url, {}).get("citations") and cache.get(profile.url, {}).get("h_index")
+        ),
         "mismatches": mismatches,
         "entries": entries,
     }
+
+
+def crawl_date(cached: dict[str, Any] | None, fallback: str = "") -> str:
+    fetched_at = (cached or {}).get("fetched_at", "")
+    if re.match(r"\d{4}-\d{2}-\d{2}", fetched_at):
+        return fetched_at[:10]
+    return fallback
+
+
+def load_existing_profile_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open(newline="", encoding="utf-8") as file:
+        return list(csv.DictReader(file))
+
+
+def output_row_from_cache(name: str, profile_url: str, cached: dict[str, Any] | None, existing: dict[str, str] | None = None) -> dict[str, str]:
+    existing = existing or {}
+    row = {column: "" for column in PROFILE_CSV_COLUMNS}
+    row["name"] = clean_scholar_name((cached or {}).get("title", "")) or existing.get("name", "") or name
+    row["profile"] = profile_url
+    row["crawl_date"] = crawl_date(cached, existing.get("crawl_date", ""))
+    row["affiliation"] = (cached or {}).get("affiliation", existing.get("affiliation", ""))
+    row["interests"] = json.dumps((cached or {}).get("interests", []), ensure_ascii=False)
+    for column in STAT_COLUMNS:
+        row[column] = str((cached or {}).get(column, existing.get(column, "")) or "")
+    row["first_citation_year"] = str((cached or {}).get("first_citation_year", existing.get("first_citation_year", "")) or "")
+    row["citation_by_year"] = json.dumps((cached or {}).get("citation_by_year", {}), ensure_ascii=False, separators=(",", ":"))
+    return row
+
+
+def write_profile_csv(path: Path, profiles: list[ScholarProfile], cache: dict[str, Any]) -> int:
+    output_rows: list[dict[str, str]] = []
+    seen: set[str] = set()
+
+    for existing in load_existing_profile_rows(path):
+        profile_url = canonical_scholar_url(existing.get("profile", ""))
+        if not profile_url or profile_url in seen:
+            continue
+        cached = cache.get(profile_url)
+        output_rows.append(output_row_from_cache(existing.get("name", ""), profile_url, cached, existing))
+        seen.add(profile_url)
+
+    for profile in profiles:
+        if profile.url in seen:
+            continue
+        output_rows.append(output_row_from_cache(profile.name, profile.url, cache.get(profile.url)))
+        seen.add(profile.url)
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=PROFILE_CSV_COLUMNS, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(output_rows)
+    return len(output_rows)
 
 
 def main() -> int:
@@ -576,11 +727,15 @@ def main() -> int:
     atomic_write_json(args.cache, cache)
     report = build_report(profiles, cache)
     atomic_write_json(args.report, report)
+    output_rows = None
+    if not args.no_write_csv:
+        output_rows = write_profile_csv(args.output, profiles, cache)
 
     print(
         f"Done. profiles={report['total_profiles']} cached={report['cached_profiles']} "
         f"html_cached={report['html_cached_profiles']} incomplete={report['incomplete_cached_profiles']} "
-        f"mismatches={report['mismatch_count']} report={args.report}",
+        f"stats={report['stats_profiles']} mismatches={report['mismatch_count']} report={args.report}"
+        + (f" output={args.output} output_rows={output_rows}" if output_rows is not None else ""),
         flush=True,
     )
     return 0
