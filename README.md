@@ -12,6 +12,10 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 
 CSV files are kept in `data/` and use Unix LF line endings.
 
+## Visualization
+
+- [ACM Fellow citation timelines](https://lintool.github.io/cs-big-cows/scholar_citations.html): static visualization generated from ACM Fellow rows joined to Google Scholar citation-by-year data. The GitHub Pages source is `docs/`, where this is served from `scholar_citations.html`.
+
 ## Scripts
 
 - `scripts/cache_google_scholar_profiles.py`: validates Google Scholar profile links, caches fetched Scholar pages for reuse, and writes `data/google_scholar_profiles.csv`.
@@ -21,6 +25,7 @@ CSV files are kept in `data/` and use Unix LF line endings.
 - `scripts/cache_csrankings.py`: caches CSRankings faculty CSV shards from GitHub under `.cache/`.
 - `scripts/build_csrankings_profiles.py`: builds `data/csrankings_profiles.csv` from cached CSRankings shards and known DBLP profiles.
 - `scripts/analyze_acm_fellow_universities.py`: counts normalized ACM Fellow university affiliations from joined Scholar and CSRankings data.
+- `scripts/build_scholar_citation_visualization.py`: regenerates `docs/scholar_citations.html` from `data/acm_fellows.csv` and `data/google_scholar_profiles.csv`.
 
 See [README_FOR_AGENTS.md](README_FOR_AGENTS.md) for crawler/cache details intended for future coding agents.
 See [data_notes.md](data_notes.md) for current known data oddities.
