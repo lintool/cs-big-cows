@@ -637,6 +637,14 @@ def load_existing_profile_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(file))
 
 
+def json_cell(cached_value: Any, existing_value: str, empty_value: Any, compact: bool = False) -> str:
+    if cached_value is None:
+        return existing_value or json.dumps(empty_value, ensure_ascii=False, separators=(",", ":"))
+    if compact:
+        return json.dumps(cached_value, ensure_ascii=False, separators=(",", ":"))
+    return json.dumps(cached_value, ensure_ascii=False)
+
+
 def output_row_from_cache(name: str, profile_url: str, cached: dict[str, Any] | None, existing: dict[str, str] | None = None) -> dict[str, str]:
     existing = existing or {}
     row = {column: "" for column in PROFILE_CSV_COLUMNS}
@@ -644,11 +652,11 @@ def output_row_from_cache(name: str, profile_url: str, cached: dict[str, Any] | 
     row["profile"] = profile_url
     row["crawl_date"] = crawl_date(cached, existing.get("crawl_date", ""))
     row["affiliation"] = (cached or {}).get("affiliation", existing.get("affiliation", ""))
-    row["interests"] = json.dumps((cached or {}).get("interests", []), ensure_ascii=False)
+    row["interests"] = json_cell((cached or {}).get("interests"), existing.get("interests", ""), [])
     for column in STAT_COLUMNS:
         row[column] = str((cached or {}).get(column, existing.get(column, "")) or "")
     row["first_citation_year"] = str((cached or {}).get("first_citation_year", existing.get("first_citation_year", "")) or "")
-    row["citation_by_year"] = json.dumps((cached or {}).get("citation_by_year", {}), ensure_ascii=False, separators=(",", ":"))
+    row["citation_by_year"] = json_cell((cached or {}).get("citation_by_year"), existing.get("citation_by_year", ""), {}, compact=True)
     return row
 
 

@@ -1,10 +1,11 @@
 # README For Agents
 
-This repository currently has seven agent-oriented utility scripts under `scripts/`:
+This repository currently has eight agent-oriented utility scripts under `scripts/`:
 
 ```text
 scripts/analyze_acm_fellow_universities.py
 scripts/build_csrankings_profiles.py
+scripts/build_scholar_citation_visualization.py
 scripts/cache_acm_fellow_profiles.py
 scripts/cache_acm_fellow_profiles_playwright.py
 scripts/cache_csrankings.py
@@ -12,7 +13,7 @@ scripts/cache_dblp_profiles.py
 scripts/cache_google_scholar_profiles.py
 ```
 
-Ignore the project `README.md` for these workflows. This file documents the local crawler scripts and their local cache/report files.
+Ignore the project `README.md` for these workflows. This file documents the local crawler, analysis, visualization, and cache/report workflows.
 
 ## Local Python Environment
 
@@ -23,7 +24,7 @@ Recommended setup:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m py_compile scripts/analyze_acm_fellow_universities.py scripts/build_csrankings_profiles.py scripts/cache_acm_fellow_profiles.py scripts/cache_csrankings.py scripts/cache_dblp_profiles.py scripts/cache_google_scholar_profiles.py
+python -m py_compile scripts/analyze_acm_fellow_universities.py scripts/build_csrankings_profiles.py scripts/build_scholar_citation_visualization.py scripts/cache_acm_fellow_profiles.py scripts/cache_csrankings.py scripts/cache_dblp_profiles.py scripts/cache_google_scholar_profiles.py
 ```
 
 After activation, run commands with `python ...` from the repo root. If you choose not to create a virtual environment, use `python3 ...` consistently.
@@ -660,6 +661,46 @@ The `citation_by_year` CSV cell is a compact JSON object string.
 The `*_since_5y_ago` columns correspond to Scholar's moving recent-window column, whose label changes over time.
 
 Use report mismatches as review candidates, not automatic fixes. Some mismatches are harmless diacritic or formatting differences, such as `Urs Hoelzle` versus `Urs Hölzle`.
+
+## Google Scholar Citation Visualization
+
+`scripts/build_scholar_citation_visualization.py` regenerates the static ACM Fellow citation timeline:
+
+```text
+docs/scholar_citations.html
+```
+
+The generator:
+
+- reads `data/acm_fellows.csv`;
+- joins Scholar rows from `data/google_scholar_profiles.csv` by `google_scholar_profile`;
+- embeds the joined data directly in the output HTML;
+- sorts rows by ACM Fellows `year` descending, then `name` ascending;
+- renders one row per ACM Fellow;
+- hides rows without Scholar citation-by-year data by default;
+- provides a `Show missing Scholar data` checkbox and author search box;
+- shows citations and h-index as separate right-aligned columns;
+- renders per-author citation-by-year bars with the most recent year at the right edge.
+
+Regenerate the visualization after changing ACM Fellow rows or Scholar citation fields:
+
+```bash
+python scripts/build_scholar_citation_visualization.py
+```
+
+Use custom paths only for testing:
+
+```bash
+python scripts/build_scholar_citation_visualization.py --acm path/to/acm_fellows.csv --scholar path/to/google_scholar_profiles.csv --output path/to/scholar_citations.html
+```
+
+Compile-check the script:
+
+```bash
+python -m py_compile scripts/build_scholar_citation_visualization.py
+```
+
+The generated HTML is pure static HTML with embedded data, but it loads D3 v7 from a CDN. Opening the file directly in a browser is enough for local inspection when network access to the CDN is available. Commit the regenerated HTML when the source data or generator changes.
 
 ## Cool-Off Strategy
 
