@@ -494,10 +494,10 @@ The script:
 - fetches each Scholar profile page conservatively;
 - caches the complete fetched HTML page for reuse;
 - treats cached fetchable entries without `html` as incomplete and refetchable;
-- extracts the Scholar page title, affiliation, and keyword interests;
+- extracts the Scholar page title, affiliation, keyword interests, citation count, h-index, i10-index, and first citation year;
 - compares the expected ACM fellow name against the Scholar title;
 - writes a JSON cache and a JSON report;
-- does not modify CSV files.
+- writes `data/google_scholar_profiles.csv` by default.
 
 The script also still supports the older bundled `*-data.js` format via `--data`, but the canonical input for this repo is now `data/acm_fellows.csv`.
 
@@ -534,6 +534,13 @@ Use a custom input file:
 python scripts/cache_google_scholar_profiles.py --data path/to/input.csv
 ```
 
+Use a custom output file, or skip CSV output:
+
+```bash
+python scripts/cache_google_scholar_profiles.py --output path/to/google_scholar_profiles.csv
+python scripts/cache_google_scholar_profiles.py --no-write-csv
+```
+
 Compile-check the script:
 
 ```bash
@@ -563,6 +570,14 @@ The cache is a JSON object keyed by Scholar profile URL. Each value contains fie
   "title": "Scholar Profile Title",
   "affiliation": "Scholar profile affiliation",
   "interests": ["Keyword 1", "Keyword 2"],
+  "citations": "12345",
+  "h_index": "67",
+  "i10_index": "89",
+  "citations_since_5y_ago": "2345",
+  "h_index_since_5y_ago": "45",
+  "i10_index_since_5y_ago": "56",
+  "first_citation_year": "2005",
+  "citation_by_year": {"2005": 126, "2006": 148},
   "html": "<complete fetched HTML page>",
   "fetched_at": "YYYY-MM-DDTHH:MM:SSZ"
 }
@@ -609,6 +624,7 @@ The report is derived from the input CSV plus the cache. It contains:
 - `incomplete_cached_profiles`
 - `status_counts`
 - `mismatch_count`
+- `stats_profiles`
 - `mismatches`
 - `entries`
 
@@ -622,16 +638,26 @@ Each report entry includes:
 - `title`: extracted Scholar profile title.
 - `affiliation`: extracted Scholar profile affiliation.
 - `interests`: extracted Scholar profile keyword interests as a JSON array.
+- `citations`: all-time Scholar citations.
+- `h_index`: all-time Scholar h-index.
+- `i10_index`: all-time Scholar i10-index.
+- `citations_since_5y_ago`: recent Scholar citations.
+- `h_index_since_5y_ago`: recent Scholar h-index.
+- `i10_index_since_5y_ago`: recent Scholar i10-index.
+- `first_citation_year`: earliest year shown in Scholar's `Citations per year` chart.
+- `citation_by_year`: JSON object mapping year strings to citation counts from Scholar's `Citations per year` chart.
 - `match`: `true`, `false`, or `null`.
 - `fetched_at`: cache timestamp, when available.
 
-When propagating Scholar crawl data into `data/google_scholar_profiles.csv`, keep the CSV columns in this order:
+`data/google_scholar_profiles.csv` is written in this column order:
 
 ```text
-name,profile,crawl_date,affiliation,interests
+name,profile,crawl_date,affiliation,interests,citations,h_index,i10_index,citations_since_5y_ago,h_index_since_5y_ago,i10_index_since_5y_ago,first_citation_year,citation_by_year
 ```
 
 The `interests` CSV cell is a JSON array string, not a semicolon-delimited list.
+The `citation_by_year` CSV cell is a compact JSON object string.
+The `*_since_5y_ago` columns correspond to Scholar's moving recent-window column, whose label changes over time.
 
 Use report mismatches as review candidates, not automatic fixes. Some mismatches are harmless diacritic or formatting differences, such as `Urs Hoelzle` versus `Urs Hölzle`.
 
