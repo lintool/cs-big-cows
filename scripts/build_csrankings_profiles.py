@@ -22,7 +22,7 @@ from typing import Any
 
 
 APP_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CACHE_DIR = APP_ROOT / ".cache" / "csrankings"
+DEFAULT_CACHE_DIR = APP_ROOT.parent / "bigcows-crawler" / ".cache" / "csrankings"
 DEFAULT_DBLP_PROFILES = APP_ROOT / "data" / "dblp_profiles.csv"
 DEFAULT_OUTPUT = APP_ROOT / "data" / "csrankings_profiles.csv"
 DEFAULT_REPORT = APP_ROOT / ".cache" / "csrankings-profiles-report.json"

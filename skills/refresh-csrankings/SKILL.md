@@ -15,22 +15,22 @@ Use this skill only inside the `cs-big-cows` repository.
    git status --short --branch
    ```
 
-2. Refresh or inspect the CSRankings cache with `scripts/cache_csrankings.py`.
+2. Refresh or inspect the CSRankings cache with `../bigcows-crawler/scripts/cache_csrankings.py`.
 
    - For a full refresh, use:
 
      ```bash
-     python scripts/cache_csrankings.py --refresh
+     python ../bigcows-crawler/scripts/cache_csrankings.py --refresh
      ```
 
    - For a small test, use:
 
      ```bash
-     python scripts/cache_csrankings.py --letters a,b --delay 0 --delay-jitter 0
+     python ../bigcows-crawler/scripts/cache_csrankings.py --letters a,b --delay 0 --delay-jitter 0
      ```
 
-   - The cache lives under `.cache/csrankings/` and must not be committed.
-   - The cache report is `.cache/csrankings-report.json`.
+   - The cache lives under `../bigcows-crawler/.cache/csrankings/` and must not be committed.
+   - The cache report is `../bigcows-crawler/.cache/csrankings-report.json`.
 
 3. Build the DBLP-aligned output:
 
@@ -94,4 +94,4 @@ Validation means:
 - Do not edit `data/dblp_profiles.csv` unless the user explicitly asks.
 - Do not commit `.cache/` artifacts.
 - Treat alignment counts as a review surface; investigate surprising drops in `included_rows`.
-- If the CSRankings cache is incomplete and the user asked for a full refresh, run `scripts/cache_csrankings.py --refresh` before rebuilding the output.
+- If the CSRankings cache is incomplete and the user asked for a full refresh, run `../bigcows-crawler/scripts/cache_csrankings.py --refresh` before rebuilding the output.
