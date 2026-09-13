@@ -2,27 +2,31 @@
 
 ## ACM Fellow profile crawl oddities
 
-As of the 2026-04-30 ACM Fellow profile crawl, `data/acm_fellows.csv` contains
-1,639 ACM Fellow profile URLs. The local cache/report live under `../bigcows-crawler/.cache/` and
-are intentionally not committed.
+On 2026-09-13, the `acm_fellow_profile` cells for 11 HTTP 404 URLs were cleared
+in `data/acm_fellows.csv`, and those URLs were removed from the shared cache.
+All 11 Fellow rows and their other fields were preserved. The cleanup initially
+used cached responses from April 28–29, 2026; later browser checks also found
+those individual pages unavailable. No verified replacements were found.
 
-Current cached profile status counts:
+After reconciliation and duplicate consolidation, the dataset contains 1,638
+Fellows: 1,627 nonempty ACM profile URLs and 11 blank profile cells. The fresh
+recrawl completed at `2026-09-13T19:53:05Z`: all 1,627 URLs have complete cached
+HTML and status `ok`, with no remaining fetch failures or duplicate HTML captures.
+The CSV was not changed by the recrawl. The previous shared cache was preserved;
+the fresh cache/report live in `../bigcows-crawler/.cache/acm-recrawl-2026-09-13/`
+and are not committed.
 
-```text
-Status       Count  Meaning
-----------  -----  ---------------------------------------------
-ok           1628  Profile page fetched and parsed successfully.
-blocked         0  No blocked/interstitial pages remain.
-http_error     11  ACM returned real 404 pages.
-missing         0  No missing ACM profile URLs.
-```
+Three field differences remain for review; preserve the existing CSV values:
 
-Total profiles: 1,639. Cached profiles: 1,639. Review candidates: 14. The
-current report was generated at `2026-04-30T11:12:37Z`.
+- Nikolaj Bjørner: ACM displays `Bjorner Nikolaj`.
+- Frank Wm Tompa: the current profile has no parsed citation.
+- Richard R. Burton: ACM's citation ends with `analysi`, missing the final `s`.
 
-The following people appear in `data/acm_fellows.csv`, but their individual ACM
-profile URLs currently return ACM 404 pages with page name
-`404 - Your Page Could Not Be Found`:
+An initial stale-page capture for Antonio Gonzalez contained the preceding Andrew
+Tomkins page. It was preserved separately and refetched correctly after switching
+to the reusable crawler's stronger page-clearing check. It is not a CSV error.
+
+The affected people and their former profile URLs are recorded here for provenance:
 
 | Name | ACM Fellow profile URL | Status |
 | --- | --- | --- |
@@ -38,27 +42,44 @@ profile URLs currently return ACM 404 pages with page name
 | Peter Elias | https://awards.acm.org/award-recipients/elias_1192715 | 404 |
 | Roger M Needham | https://awards.acm.org/award-recipients/needham_1674183 | 404 |
 
-No replacement URLs have been confirmed for these entries. Treat the ACM
-directory/profile URL as the current CSV value unless ACM fixes or replaces the
-individual profile page.
+No replacement URLs have been confirmed for these entries. Keep their profile
+cells blank until a valid replacement is verified; retain the ACM Fellow rows.
 
 ## ACM crawling notes
 
-Direct `urllib` requests and fresh Playwright browser profiles can be blocked by
-ACM/Cloudflare. From the `cs-big-cows` directory, the working approach is to use the Playwright crawler against a
-user-launched Chrome instance with remote debugging enabled:
+The recommended approach as of 2026-09-13 is **regular Safari through AppleScript**
+on macOS. Direct HTTP, Playwright-controlled Chrome (including incognito), and
+Safari WebDriver encountered repeated blocking in the fresh recrawl. Native
+Safari AppleScript navigation/source access sustained the completed recrawl; the
+reusable crawler handled its final 1,022 fetches.
+
+From `cs-big-cows`, use the reusable shared crawler:
 
 ```sh
-open -na "Google Chrome" --args --remote-debugging-port=9222 --user-data-dir="$PWD/../bigcows-crawler/.cache/chrome-acm-cdp"
-python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_playwright.py --data data/acm_fellows.csv --cdp-url http://127.0.0.1:9222 --retry-status blocked
+python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv
 ```
 
-The crawler is idempotent and cache-backed. Use `--retry-status blocked` to
-refresh blocked cache entries, and use `--refresh` only when intentionally
-recrawling already-successful pages.
-
-The successful retry used randomized pacing, for example:
+For a fresh, resumable crawl that preserves the previous cache, choose a new
+cache directory and repeat the same command to resume:
 
 ```sh
-python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_playwright.py --data data/acm_fellows.csv --cdp-url http://127.0.0.1:9222 --retry-status blocked --delay 4 --delay-jitter 2 --batch-size 25 --batch-size-jitter 5 --batch-pause 90 --batch-pause-jitter 30
+python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv --cache ../bigcows-crawler/.cache/acm-refresh/cache.json --report ../bigcows-crawler/.cache/acm-refresh/report.json
 ```
+
+The defaults are 5–7 seconds between profiles and 60–90 seconds every 25 fetch
+attempts, plus bounded backoff on errors. Approve macOS permission for the
+launching application to control Safari and leave the dedicated crawl window
+open. This approach does not require Playwright, remote debugging, Safari's
+remote automation setting, or JavaScript from Apple Events.
+
+The cache stores full loaded HTML, timestamps, and parsed metadata. Safari does
+not expose HTTP response codes: `status_code` is `null`, and error pages are
+recognized from HTML. Browser caching still applies. Successful cached HTML is
+reused; transient failures retry automatically. Use `--retry-status http_error`
+for cached error pages, and `--refresh` only to intentionally replace existing
+entries. CSV changes require separate review. See the
+[shared crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for details.
+
+The earlier Chrome/CDP technique remains historical evidence for the April 2026
+crawl. Its ACM Playwright script has been removed from the shared crawler; use
+the Safari/AppleScript command above for current and future ACM profile crawls.

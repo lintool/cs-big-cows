@@ -1,20 +1,37 @@
 # README For Agents
 
 This repository owns the canonical data, application-specific joins, analysis,
-and visualization. All five crawlers now live in the sibling `bigcows-crawler`
-repository. See [its README](../bigcows-crawler/README.md) and
-[crawler reference](../bigcows-crawler/README_FOR_AGENTS.md) for fetch, retry,
+and visualization. All crawlers live in the sibling `bigcows-crawler`
+repository. See [its README](https://github.com/lintool/bigcows-crawler/blob/main/README.md) and
+[crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for fetch, retry,
 browser, cache, and report behavior.
 
 Use Python 3.10 or newer. Run the following commands from `cs-big-cows`:
 
 ```bash
-python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles.py --data data/acm_fellows.csv
+python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv
 python3 ../bigcows-crawler/scripts/cache_dblp_profiles.py --data data/acm_fellows.csv
 python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
 python3 ../bigcows-crawler/scripts/cache_csrankings.py
 python3 scripts/build_csrankings_profiles.py
 ```
+
+ACM profile fetching uses regular Safari through AppleScript on macOS. Allow the
+launching app to control Safari when prompted; leave the crawler's dedicated
+window open. Playwright, Safari WebDriver, remote automation, and JavaScript from
+Apple Events are not required. The obsolete ACM Playwright script was removed.
+Defaults are 5–7 seconds between profiles and
+60–90 seconds every 25 attempts, with a five-profile validation gate and bounded
+backoff. See the shared reference for fresh-cache runs, retries, and progress.
+For a fresh recrawl that preserves the existing cache:
+
+```bash
+python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv --cache ../bigcows-crawler/.cache/acm-refresh/cache.json --report ../bigcows-crawler/.cache/acm-refresh/report.json
+```
+
+Use a new directory for each fresh run. Repeat the same command to resume;
+`--refresh` would refetch successful entries again. Safari entries store HTML and
+parsed metadata but have `status_code: null` because HTTP status is unavailable.
 
 Add `--limit-new 0` to a crawler command to rebuild its report from cache without
 fetching. This still writes cache/report output, and the Scholar command above
