@@ -1,30 +1,65 @@
 # Data Notes
 
-## ACM Fellow profile crawl oddities
+## ACM Fellows reconciliation
+
+As reviewed on 2026-09-13, `data/acm_fellows.csv` is a best-effort enumeration of
+1,638 Fellows across classes 1994–2025, with 1,627 nonempty ACM profile URLs and
+11 blank profile cells.
+
+[PR #42](https://github.com/lintool/cs-big-cows/pull/42) reconciled the dataset with
+[Wikipedia revision 1374489782](https://en.wikipedia.org/w/index.php?title=List_of_fellows_of_the_Association_for_Computing_Machinery&oldid=1374489782).
+After reviewing name variants and discrepancies, no confirmed missing Fellows or
+incorrect fellowship years remained. Wikipedia errors and an unsupported entry
+are recorded in [issue #41](https://github.com/lintool/cs-big-cows/issues/41).
+
+## Latest reviewed ACM profile crawl
+
+The Safari/AppleScript recrawl completed at `2026-09-13T19:53:05Z`, as documented
+in [PR #43](https://github.com/lintool/cs-big-cows/pull/43). All 1,627 supplied URLs
+have cached HTML and status `ok`, with no remaining fetch failures or duplicate
+HTML captures. The crawler itself did not edit the CSV.
+
+Local artifacts are under `../bigcows-crawler/.cache/`, with the crawl start date
+as a suffix:
+
+- `acm-fellow-profile-cache-2026-09-13.json`: fresh profile HTML and parsed fields.
+- `acm-fellow-profile-input-2026-09-13.csv`: the CSV snapshot used for the crawl.
+- `acm-fellow-profile-report-2026-09-13.json` and `acm-fellow-profile-state-2026-09-13.json`: results at crawl completion, before the later name corrections.
+- `acm-fellow-profile-log-2026-09-13.txt`: the original console log.
+- `acm-fellow-profile-manifest-2026-09-13.json`: registration of the retained crawl, including the original input checksum and artifact paths.
+
+These files are Git-ignored and available only in the local checkout. The five
+original artifacts were renamed without changing their contents, and a manifest
+was added using the original input snapshot. Paths embedded in historical logs may
+refer to the former directory layout. The April profile cache, its report and
+directory scan, and obsolete browser experiments have been removed. Select
+`--crawl-date 2026-09-13` to use the retained crawl; there is no undated default.
+Use `compare_acm_fellow_profiles.py` for comparisons with the current CSV so the
+original completion records are retained. See [README_FOR_AGENTS.md](README_FOR_AGENTS.md)
+for invocation and comparison guidance.
+
+The subsequent consistency review reparsed all cached pages and corrected
+Sheila McIlraith, Giovanni De Micheli, and Satoshi Matsuoka in
+[PR #44](https://github.com/lintool/cs-big-cows/pull/44). All years and locations
+matched. After those corrections, 58 names still differed from the parser output
+because of valid variants or cleaner CSV names. These were reviewed and retained;
+the report's permissive name check does not enumerate all textual differences.
+
+Preserve these deliberate differences from ACM:
+
+- Nikolaj Bjørner: ACM displays the reversed name `Bjorner Nikolaj`.
+- Frank Wm Tompa: the captured page omits the citation; retain the CSV citation.
+- Richard R. Burton: ACM's citation ends with `analysi`; retain `analysis`.
+- Keep clean names instead of duplicated name parts, honorifics, or incorrect
+  capitalization and spacing from ACM, including Giovanni De Micheli and Satoshi Matsuoka.
+
+## Unavailable individual ACM profiles
 
 On 2026-09-13, the `acm_fellow_profile` cells for 11 HTTP 404 URLs were cleared
 in `data/acm_fellows.csv`, and those URLs were removed from the shared cache.
 All 11 Fellow rows and their other fields were preserved. The cleanup initially
 used cached responses from April 28–29, 2026; later browser checks also found
 those individual pages unavailable. No verified replacements were found.
-
-After reconciliation and duplicate consolidation, the dataset contains 1,638
-Fellows: 1,627 nonempty ACM profile URLs and 11 blank profile cells. The fresh
-recrawl completed at `2026-09-13T19:53:05Z`: all 1,627 URLs have complete cached
-HTML and status `ok`, with no remaining fetch failures or duplicate HTML captures.
-The CSV was not changed by the recrawl. The previous shared cache was preserved;
-the fresh cache/report live in `../bigcows-crawler/.cache/acm-recrawl-2026-09-13/`
-and are not committed.
-
-Three field differences remain for review; preserve the existing CSV values:
-
-- Nikolaj Bjørner: ACM displays `Bjorner Nikolaj`.
-- Frank Wm Tompa: the current profile has no parsed citation.
-- Richard R. Burton: ACM's citation ends with `analysi`, missing the final `s`.
-
-An initial stale-page capture for Antonio Gonzalez contained the preceding Andrew
-Tomkins page. It was preserved separately and refetched correctly after switching
-to the reusable crawler's stronger page-clearing check. It is not a CSV error.
 
 The affected people and their former profile URLs are recorded here for provenance:
 
@@ -44,42 +79,3 @@ The affected people and their former profile URLs are recorded here for provenan
 
 No replacement URLs have been confirmed for these entries. Keep their profile
 cells blank until a valid replacement is verified; retain the ACM Fellow rows.
-
-## ACM crawling notes
-
-The recommended approach as of 2026-09-13 is **regular Safari through AppleScript**
-on macOS. Direct HTTP, Playwright-controlled Chrome (including incognito), and
-Safari WebDriver encountered repeated blocking in the fresh recrawl. Native
-Safari AppleScript navigation/source access sustained the completed recrawl; the
-reusable crawler handled its final 1,022 fetches.
-
-From `cs-big-cows`, use the reusable shared crawler:
-
-```sh
-python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv
-```
-
-For a fresh, resumable crawl that preserves the previous cache, choose a new
-cache directory and repeat the same command to resume:
-
-```sh
-python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv --cache ../bigcows-crawler/.cache/acm-refresh/cache.json --report ../bigcows-crawler/.cache/acm-refresh/report.json
-```
-
-The defaults are 5–7 seconds between profiles and 60–90 seconds every 25 fetch
-attempts, plus bounded backoff on errors. Approve macOS permission for the
-launching application to control Safari and leave the dedicated crawl window
-open. This approach does not require Playwright, remote debugging, Safari's
-remote automation setting, or JavaScript from Apple Events.
-
-The cache stores full loaded HTML, timestamps, and parsed metadata. Safari does
-not expose HTTP response codes: `status_code` is `null`, and error pages are
-recognized from HTML. Browser caching still applies. Successful cached HTML is
-reused; transient failures retry automatically. Use `--retry-status http_error`
-for cached error pages, and `--refresh` only to intentionally replace existing
-entries. CSV changes require separate review. See the
-[shared crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for details.
-
-The earlier Chrome/CDP technique remains historical evidence for the April 2026
-crawl. Its ACM Playwright script has been removed from the shared crawler; use
-the Safari/AppleScript command above for current and future ACM profile crawls.
