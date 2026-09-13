@@ -78,7 +78,7 @@ recognized from HTML. Browser caching still applies. Successful cached HTML is
 reused; transient failures retry automatically. Use `--retry-status http_error`
 for cached error pages, and `--refresh` only to intentionally replace existing
 entries. CSV changes require separate review. See the
-[shared crawler reference](../bigcows-crawler/README_FOR_AGENTS.md) for details.
+[shared crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for details.
 
 The earlier Chrome/CDP technique remains historical evidence for the April 2026
 crawl. Its ACM Playwright script has been removed from the shared crawler; use

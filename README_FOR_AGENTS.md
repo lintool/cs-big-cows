@@ -2,8 +2,8 @@
 
 This repository owns the canonical data, application-specific joins, analysis,
 and visualization. All crawlers live in the sibling `bigcows-crawler`
-repository. See [its README](../bigcows-crawler/README.md) and
-[crawler reference](../bigcows-crawler/README_FOR_AGENTS.md) for fetch, retry,
+repository. See [its README](https://github.com/lintool/bigcows-crawler/blob/main/README.md) and
+[crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for fetch, retry,
 browser, cache, and report behavior.
 
 Use Python 3.10 or newer. Run the following commands from `cs-big-cows`:

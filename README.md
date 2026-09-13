@@ -18,7 +18,7 @@ CSV files are kept in `data/` and use Unix LF line endings.
 
 ## Crawlers
 
-Crawlers are shared from the sibling [bigcows-crawler](../bigcows-crawler/README.md)
+Crawlers are shared from the sibling [bigcows-crawler](https://github.com/lintool/bigcows-crawler/blob/main/README.md)
 repository. Its `.cache/` stores fetched pages, CSRankings shards, and crawl reports
 locally and is ignored by Git. Profile crawlers require `--data`; Scholar CSV
 exports require an explicit `--output`.
@@ -32,7 +32,7 @@ python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/
 
 ACM profiles use regular Safari through AppleScript on macOS, with 5–7 seconds
 between profiles and 60–90 seconds every 25 attempts. See the
-[shared crawler reference](../bigcows-crawler/README_FOR_AGENTS.md) for setup, fresh
+[shared crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for setup, fresh
 crawls, resuming, and troubleshooting. The ACM crawler never edits the CSV.
 
 ## Scripts
