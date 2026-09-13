@@ -26,8 +26,14 @@ exports require an explicit `--output`.
 From this directory, for example:
 
 ```bash
+python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --data data/acm_fellows.csv
 python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
 ```
+
+ACM profiles use regular Safari through AppleScript on macOS, with 5–7 seconds
+between profiles and 60–90 seconds every 25 attempts. See the
+[shared crawler reference](../bigcows-crawler/README_FOR_AGENTS.md) for setup, fresh
+crawls, resuming, and troubleshooting. The ACM crawler never edits the CSV.
 
 ## Scripts
 
