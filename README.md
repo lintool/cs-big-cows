@@ -16,14 +16,22 @@ CSV files are kept in `data/` and use Unix LF line endings.
 
 - [ACM Fellow citation timelines](https://lintool.github.io/cs-big-cows/scholar_citations.html): static visualization generated from ACM Fellow rows joined to Google Scholar citation-by-year data. The GitHub Pages source is `docs/`, where this is served from `scholar_citations.html`.
 
+## Crawlers
+
+Crawlers are shared from the sibling [bigcows-crawler](../bigcows-crawler/README.md)
+repository. Its `.cache/` stores fetched pages, CSRankings shards, and crawl reports
+locally and is ignored by Git. Profile crawlers require `--data`; Scholar CSV
+exports require an explicit `--output`.
+
+From this directory, for example:
+
+```bash
+python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
+```
+
 ## Scripts
 
-- `scripts/cache_google_scholar_profiles.py`: validates Google Scholar profile links, caches fetched Scholar pages for reuse, and writes `data/google_scholar_profiles.csv`.
-- `scripts/cache_acm_fellow_profiles.py`: caches ACM Fellow profile pages and reports parsed profile fields for comparison with `data/acm_fellows.csv`.
-- `scripts/cache_acm_fellow_profiles_playwright.py`: browser-backed ACM profile crawler for pages that require a real browser session.
-- `scripts/cache_dblp_profiles.py`: caches DBLP profile pages and reports parsed profile titles for comparison with `data/acm_fellows.csv`.
-- `scripts/cache_csrankings.py`: caches CSRankings faculty CSV shards from GitHub under `.cache/`.
-- `scripts/build_csrankings_profiles.py`: builds `data/csrankings_profiles.csv` from cached CSRankings shards and known DBLP profiles.
+- `scripts/build_csrankings_profiles.py`: builds `data/csrankings_profiles.csv` from the sibling crawler’s cached CSRankings shards and known DBLP profiles.
 - `scripts/analyze_acm_fellow_universities.py`: counts normalized ACM Fellow university affiliations from joined Scholar and CSRankings data.
 - `scripts/build_scholar_citation_visualization.py`: regenerates `docs/scholar_citations.html` from `data/acm_fellows.csv` and `data/google_scholar_profiles.csv`.
 

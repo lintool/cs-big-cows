@@ -3,7 +3,7 @@
 ## ACM Fellow profile crawl oddities
 
 As of the 2026-04-30 ACM Fellow profile crawl, `data/acm_fellows.csv` contains
-1,639 ACM Fellow profile URLs. The local cache/report live under `.cache/` and
+1,639 ACM Fellow profile URLs. The local cache/report live under `../bigcows-crawler/.cache/` and
 are intentionally not committed.
 
 Current cached profile status counts:
@@ -45,12 +45,12 @@ individual profile page.
 ## ACM crawling notes
 
 Direct `urllib` requests and fresh Playwright browser profiles can be blocked by
-ACM/Cloudflare. The working approach is to use the Playwright crawler against a
+ACM/Cloudflare. From the `cs-big-cows` directory, the working approach is to use the Playwright crawler against a
 user-launched Chrome instance with remote debugging enabled:
 
 ```sh
-open -na "Google Chrome" --args --remote-debugging-port=9222 --user-data-dir="$PWD/.cache/chrome-acm-cdp"
-python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked
+open -na "Google Chrome" --args --remote-debugging-port=9222 --user-data-dir="$PWD/../bigcows-crawler/.cache/chrome-acm-cdp"
+python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_playwright.py --data data/acm_fellows.csv --cdp-url http://127.0.0.1:9222 --retry-status blocked
 ```
 
 The crawler is idempotent and cache-backed. Use `--retry-status blocked` to
@@ -60,5 +60,5 @@ recrawling already-successful pages.
 The successful retry used randomized pacing, for example:
 
 ```sh
-python scripts/cache_acm_fellow_profiles_playwright.py --cdp-url http://127.0.0.1:9222 --retry-status blocked --delay 4 --delay-jitter 2 --batch-size 25 --batch-size-jitter 5 --batch-pause 90 --batch-pause-jitter 30
+python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_playwright.py --data data/acm_fellows.csv --cdp-url http://127.0.0.1:9222 --retry-status blocked --delay 4 --delay-jitter 2 --batch-size 25 --batch-size-jitter 5 --batch-pause 90 --batch-pause-jitter 30
 ```
