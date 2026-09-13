@@ -6,7 +6,13 @@ repository. See [its README](https://github.com/lintool/bigcows-crawler/blob/mai
 [crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for fetch, retry,
 browser, cache, and report behavior.
 
-Use Python 3.10 or newer. Run the following commands from `cs-big-cows`:
+## Crawlers
+
+Use Python 3.10 or newer. Run the following commands from `cs-big-cows`.
+The ACM comparison requires the retained September 13 cache and manifest in
+`../bigcows-crawler/.cache/`; these Git-ignored artifacts are not included in
+either clone. In a fresh checkout, start with the fresh-crawl command below,
+then compare using the date of that crawl.
 
 ```bash
 python3 ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv
@@ -71,8 +77,9 @@ reparses HTML and leaves original crawl records unchanged. The crawler's own
 uses stored parsed fields; it is not the audit command. Keep dataset-specific decisions and
 source reconciliation in [data_notes.md](data_notes.md).
 
-For example, save a comparison to a new local file. Existing files are never
-overwritten; omit `--output` to print JSON to stdout:
+With the retained September 13 artifacts available locally, save a comparison
+to a new local file as follows. For another crawl, change both dates to its start
+date. Existing files are never overwritten; omit `--output` to print JSON to stdout:
 
 ```bash
 python3 ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv --output ../bigcows-crawler/.cache/acm-fellow-profile-comparison-2026-09-13.json

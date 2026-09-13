@@ -23,10 +23,21 @@ repository. Its `.cache/` stores fetched pages, CSRankings shards, and crawl rep
 locally and is ignored by Git. Profile crawlers require `--data`; Scholar CSV
 exports require an explicit `--output`.
 
-From this directory, for example:
+For a fresh checkout, first follow the
+[fresh-crawl instructions](README_FOR_AGENTS.md#crawlers) to capture profiles,
+then compare using that crawl's date.
+
+Run this comparison from this directory only if the retained September 13
+cache and manifest are already present in `../bigcows-crawler/.cache/`.
+These local artifacts are Git-ignored and are not included in either clone:
 
 ```bash
 python3 ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv
+```
+
+To fetch Scholar profiles:
+
+```bash
 python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
 ```
 
