@@ -53,9 +53,11 @@ Add `--limit-new 0` to a fetch command to rebuild its report from cache without
 fetching. This still writes cache/report output, and the Scholar command above
 also writes its explicitly requested CSV. Omit `--output` to only update the
 Scholar cache/report. To crawl Google Scholar profiles for Turing Award winners,
-pass `--data data/turing_award_winners.csv` to the Scholar crawler. The ACM Fellow
-profile crawler only parses the ACM Fellows award section; it is not a Turing
-Award crawler.
+pass `--data data/turing_award_winners.csv` to the Scholar crawler. The shared ACM
+Safari runner accepts `--award turing` to parse Turing Award years and citations,
+including older `amturing.acm.org` recipient pages. It uses separate
+`acm-turing-profile-…-YYYY-MM-DD` artifacts in the shared `.cache/`. Use a stable
+Turing input snapshot and `--prepare-only` to register a crawl without fetching.
 
 Crawl caches and crawl reports default to `../bigcows-crawler/.cache/`, independent
 of the working directory. Explicit relative overrides resolve from the working
