@@ -44,11 +44,13 @@ Use this skill only inside the `cs-big-cows` repository.
    - `unmatched_dblp_profiles`: DBLP profiles with no high-confidence CSRankings match.
    - `ambiguous_dblp_profiles`: DBLP profiles with multiple high-confidence CSRankings candidates.
 
-5. Summarize suspicious or ambiguous cases for the user. Do not force weak matches into the CSV.
+5. Summarize suspicious or ambiguous cases for the user.
+   Do not force weak matches into the CSV.
 
 ## Output Contract
 
-`data/csrankings_profiles.csv` contains only known DBLP profile rows that align to exactly one CSRankings row. The build helper loops through `data/dblp_profiles.csv` and probes the cached CSRankings rows.
+`data/csrankings_profiles.csv` contains only known DBLP profile rows that align to exactly one CSRankings row.
+The build helper loops through `data/dblp_profiles.csv` and probes the cached CSRankings rows.
 
 Columns must be:
 
@@ -77,7 +79,7 @@ The helper uses high-confidence matching only:
 
 If a DBLP profile has zero or multiple CSRankings candidates, leave it out of `data/csrankings_profiles.csv` and report it instead.
 
-## Checking Or Validating Profiles
+## Checking or Validating Profiles
 
 When the user asks to check or validate CSRankings profiles, join `data/csrankings_profiles.csv` with `data/dblp_profiles.csv` on `dblp_profile` and flag suspicious rows.
 
