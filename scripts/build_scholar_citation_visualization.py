@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """Build the static ACM Fellow citation timeline visualization."""
 
 from __future__ import annotations

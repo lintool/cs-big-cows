@@ -27,29 +27,30 @@ For a fresh checkout, first follow the
 [fresh-crawl instructions](README_FOR_AGENTS.md#crawlers) to capture profiles,
 then compare using that crawl's date.
 
-Run this comparison from this directory only if the retained September 13
+Run these comparisons from this directory only if the corresponding September 13
 cache and manifest are already present in `../bigcows-crawler/.cache/`.
 These local artifacts are Git-ignored and are not included in either clone:
 
 ```bash
-python3 ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv
+python ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv
+python ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --award turing --crawl-date 2026-09-13 --data data/turing_award_winners.csv
 ```
 
 To fetch Scholar profiles:
 
 ```bash
-python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
+python ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
 ```
 
 ACM profiles use regular Safari through AppleScript on macOS, with 5–7 seconds
 between profiles and 60–90 seconds every 25 attempts. See the
 [shared crawler reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) for setup, fresh
 crawls, resuming, and troubleshooting. The ACM crawler never edits the CSV.
-The ACM example is a read-only comparison with the September 13 captures; it
-reparses HTML without changing the cache or completion records. Fetching requires
+The ACM examples are read-only comparisons with the September 13 captures; they
+reparse HTML without changing the cache or completion records. Fetching requires
 a new crawl date and a stable input snapshot; a manifest verifies the input on
-resume. Use the original date when resuming. The latest reviewed crawl
-is recorded in [data_notes.md](data_notes.md); no crawl is selected automatically.
+resume. Use the original date when resuming. The latest reviewed crawl for each
+award is recorded in [data_notes.md](data_notes.md); no crawl is selected automatically.
 
 ## Scripts
 

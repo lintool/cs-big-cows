@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """Build DBLP-aligned CSRankings profiles from cached CSRankings shards.
 
 The output contains only CSRankings rows that align to exactly one known DBLP

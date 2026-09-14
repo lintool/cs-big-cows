@@ -12,7 +12,7 @@ After reviewing name variants and discrepancies, no confirmed missing Fellows or
 incorrect fellowship years remained. Wikipedia errors and an unsupported entry
 are recorded in [issue #41](https://github.com/lintool/cs-big-cows/issues/41).
 
-## Latest reviewed ACM profile crawl
+## Latest reviewed ACM Fellows profile crawl
 
 The Safari/AppleScript recrawl completed at `2026-09-13T19:53:05Z`, as documented
 in [PR #43](https://github.com/lintool/cs-big-cows/pull/43). All 1,627 supplied URLs
@@ -79,3 +79,50 @@ The affected people and their former profile URLs are recorded here for provenan
 
 No replacement URLs have been confirmed for these entries. Keep their profile
 cells blank until a valid replacement is verified; retain the ACM Fellow rows.
+
+## Turing Award reconciliation and profile crawl
+
+The dataset enumerates 81 recipients across award years 1966–2025, all with
+verified ACM recipient URLs. [PR #47](https://github.com/lintool/cs-big-cows/pull/47)
+reconciled the recipients and award years with ACM and
+[Wikipedia revision 1373210156](https://en.wikipedia.org/w/index.php?title=Turing_Award&oldid=1373210156),
+corrected citation text, and completed profile-link coverage. Official-source
+and Wikipedia citation discrepancies are recorded in
+[issue #46](https://github.com/lintool/cs-big-cows/issues/46).
+
+The fresh Safari crawl completed at `2026-09-13T23:48:11Z`: all 81 profiles
+were fetched successfully in 81 attempts, with 81 distinct HTML captures. It
+used the shared crawler's Turing mode, including modern ACM award profiles and
+legacy `amturing.acm.org` recipient pages. All identities and award years were
+checked against the captured HTML.
+
+Retained local artifacts under `../bigcows-crawler/.cache/` are:
+
+- `acm-turing-profile-cache-2026-09-13.json`: captured HTML and parsed fields.
+- `acm-turing-profile-input-2026-09-13.csv`: original input snapshot.
+- `acm-turing-profile-report-2026-09-13.json` and `acm-turing-profile-state-2026-09-13.json`: original completion records.
+- `acm-turing-profile-manifest-2026-09-13.json`: input checksum, award, date, and artifact paths.
+- `acm-turing-profile-log-2026-09-13.txt`: console log.
+
+These artifacts are Git-ignored and are not shipped with either repository.
+They share the cache directory and date with the Fellows crawl but use a separate
+prefix. The crawl snapshot predates the Kahan punctuation correction in
+[PR #48](https://github.com/lintool/cs-big-cows/pull/48); use read-only comparison
+for the current CSV and the original snapshot when resuming the retained crawl.
+
+The original completion report flagged seven profiles. After the Kahan correction,
+comparison with the current CSV has six citation differences, ten exact name
+differences, and one location difference, with no name-compatibility or year
+mismatches. Preserve the reviewed differences:
+
+- Bennett and Brassard: retain the 2025 citation supported by ACM's
+  [announcement](https://www.acm.org/media-center/2026/march/turing-award-2025).
+  Their recipient pages use a different official version; see issue #46.
+- Barto, Sutton, and Wigderson: retain terminal periods missing from ACM's text.
+- Alan Kay: retain the citation without the surrounding quotation marks on ACM.
+- Charles H. Bennett: retain `USA` rather than the page's `United States`.
+- Keep existing name forms where differences are initials, middle names, or punctuation.
+
+These counts describe the September 13 captures and the post-#48 CSV, not a
+live inventory. A fresh capture is evidence for review, not an instruction to
+overwrite better canonical data.
