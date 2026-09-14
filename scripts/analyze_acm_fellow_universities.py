@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """Count ACM Fellow university affiliations from Scholar and CSRankings data."""
 
 from __future__ import annotations

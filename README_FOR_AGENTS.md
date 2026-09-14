@@ -8,18 +8,19 @@ browser, cache, and report behavior.
 
 ## Crawlers
 
-Use Python 3.10 or newer. Run the following commands from `cs-big-cows`.
-The ACM comparison requires the retained September 13 cache and manifest in
+Use Python 3.10 or newer, available as `python`. Run the following commands from `cs-big-cows`.
+Each ACM comparison requires the corresponding September 13 cache and manifest in
 `../bigcows-crawler/.cache/`; these Git-ignored artifacts are not included in
 either clone. In a fresh checkout, start with the fresh-crawl command below,
 then compare using the date of that crawl.
 
 ```bash
-python3 ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv
-python3 ../bigcows-crawler/scripts/cache_dblp_profiles.py --data data/acm_fellows.csv
-python3 ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
-python3 ../bigcows-crawler/scripts/cache_csrankings.py
-python3 scripts/build_csrankings_profiles.py
+python ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv
+python ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --award turing --crawl-date 2026-09-13 --data data/turing_award_winners.csv
+python ../bigcows-crawler/scripts/cache_dblp_profiles.py --data data/acm_fellows.csv
+python ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
+python ../bigcows-crawler/scripts/cache_csrankings.py
+python scripts/build_csrankings_profiles.py
 ```
 
 ACM profile fetching uses regular Safari through AppleScript on macOS. Allow the
@@ -28,10 +29,10 @@ window open. See the shared reference for setup, pacing, retries, and progress.
 For a fresh recrawl that preserves the existing cache:
 
 ```bash
-python3 ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --crawl-date 2026-09-14 --data data/acm_fellows.csv
+python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --crawl-date 2026-09-14 --data data/acm_fellows.csv
 ```
 
-The first ACM command above compares existing captures; it does not fetch or write
+The ACM comparison commands above read existing captures; they do not fetch or write
 crawl artifacts. Use a new crawl start date for each fresh run; the date selects
 matching cache, report, state, and manifest files under the shared `.cache/`.
 Repeat the same fetch command with unchanged input contents to resume,
@@ -39,15 +40,15 @@ retaining the start date even across midnight;
 `--refresh` would refetch successful entries again. Safari entries store HTML and
 parsed metadata but have `status_code: null` because HTTP status is unavailable.
 There is no undated default or automatic latest-crawl selection. Use the date in
-[data_notes.md](data_notes.md) for the latest reviewed crawl. Explicit `--cache`,
+[data_notes.md](data_notes.md) for each award's latest reviewed crawl. Explicit `--cache`,
 `--report`, and `--state` overrides remain available; override all three for
 independent runs on the same date. Each unspecified path still uses the date.
 The manifest binds a crawl to its input checksum. For longer crawls, save and use
 an input snapshot under the shared `.cache/`, named
 `acm-fellow-profile-input-YYYY-MM-DD.csv`. Input snapshots and logs are caller-managed.
-The retained September crawl is bound to its original snapshot, not the CSV after
-the later name corrections. Compare the current CSV with it using the command above;
-do not resume that crawl using the edited CSV.
+Both retained September crawls are bound to their original snapshots, preceding
+the Fellows name corrections and Kahan citation correction. Compare the current
+CSVs using the commands above; resume only with each crawl's original snapshot.
 
 Add `--limit-new 0` to a fetch command to rebuild its report from cache without
 fetching. This still writes cache/report output, and the Scholar command above
@@ -58,6 +59,26 @@ Safari runner accepts `--award turing` to parse Turing Award years and citations
 including older `amturing.acm.org` recipient pages. It uses separate
 `acm-turing-profile-…-YYYY-MM-DD` artifacts in the shared `.cache/`. Use a stable
 Turing input snapshot and `--prepare-only` to register a crawl without fetching.
+
+For a new Turing crawl, choose an unused start date and replace the example date
+below. The snapshot copy preserves an existing file when commands are repeated:
+
+```bash
+mkdir -p ../bigcows-crawler/.cache
+cp -n data/turing_award_winners.csv ../bigcows-crawler/.cache/acm-turing-profile-input-2026-09-14.csv
+python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --award turing --crawl-date 2026-09-14 --data ../bigcows-crawler/.cache/acm-turing-profile-input-2026-09-14.csv --prepare-only
+```
+
+To start or resume the prepared crawl:
+
+```bash
+python ../bigcows-crawler/scripts/cache_acm_fellow_profiles_safari.py --award turing --crawl-date 2026-09-14 --data ../bigcows-crawler/.cache/acm-turing-profile-input-2026-09-14.csv
+```
+
+Keep the state file so batch counts and cooldown deadlines survive resumes.
+Inspect `status_counts` for successes and failures; `fetched_this_run` counts
+distinct attempted profiles, including failures. A completed invocation can still
+contain errors or field differences. Use the comparison command for data review.
 
 Crawl caches and crawl reports default to `../bigcows-crawler/.cache/`, independent
 of the working directory. Explicit relative overrides resolve from the working
@@ -84,7 +105,7 @@ to a new local file as follows. For another crawl, change both dates to its star
 date. Existing files are never overwritten; omit `--output` to print JSON to stdout:
 
 ```bash
-python3 ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv --output ../bigcows-crawler/.cache/acm-fellow-profile-comparison-2026-09-13.json
+python ../bigcows-crawler/scripts/compare_acm_fellow_profiles.py --crawl-date 2026-09-13 --data data/acm_fellows.csv --output ../bigcows-crawler/.cache/acm-fellow-profile-comparison-2026-09-13.json
 ```
 
 ## Data Layout
@@ -108,6 +129,11 @@ name,year,location,citation,acm_fellow_profile,dblp_profile,google_scholar_profi
 The `name` field should be a clean person name. Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP`.
 
 There is no separate `data/acm_fellow_profiles.csv`. ACM profile URLs and propagated ACM profile metadata belong in `data/acm_fellows.csv`.
+
+`data/turing_award_winners.csv` uses the same columns. Its `year` is the Turing
+Award year, not the announcement year or Fellowship year. Its `acm_fellow_profile`
+column holds the ACM recipient URL for compatibility with the shared crawler;
+always select `--award turing` when crawling or comparing this dataset.
 
 `data/csrankings_profiles.csv` contains CSRankings faculty rows that align to exactly one known DBLP profile from `data/dblp_profiles.csv`. Its columns are:
 
