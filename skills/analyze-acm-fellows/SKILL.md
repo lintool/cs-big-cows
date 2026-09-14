@@ -30,11 +30,15 @@ The helper joins:
 - `data/acm_fellows.csv` to `data/google_scholar_profiles.csv` by `google_scholar_profile`;
 - `data/acm_fellows.csv` to `data/csrankings_profiles.csv` by `dblp_profile`.
 
-It extracts universities from Google Scholar and CSRankings affiliation strings, normalizes common institution variants, and counts every distinct normalized university found for a fellow. If both sources say the same university, that fellow counts once for that university. If the sources provide different universities, that fellow contributes once to each distinct university.
+It extracts universities from Google Scholar and CSRankings affiliation strings, normalizes common institution variants, and counts every distinct normalized university found for a fellow.
+If both sources say the same university, that fellow counts once for that university.
+If the sources provide different universities, that fellow contributes once to each distinct university.
 
-Important normalization note: preserve `University of British Columbia` / `UBC` as its own university. Do not collapse it into `Columbia University`.
+Important normalization note: preserve `University of British Columbia` / `UBC` as its own university.
+Do not collapse it into `Columbia University`.
 
-The helper can print normalization warnings to stderr with `--show-warnings` when it suppresses ambiguous captures, such as parent-system names or substring collisions. Review those warnings when counts look surprising.
+The helper can print normalization warnings to stderr with `--show-warnings` when it suppresses ambiguous captures, such as parent-system names or substring collisions.
+Review those warnings when counts look surprising.
 
 ## Commands
 
