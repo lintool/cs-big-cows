@@ -5,6 +5,105 @@ Timed headings use the work's completion time in `America/Toronto`, formatted as
 Historical entries retain date-only headings where a reliable completion time is unavailable.
 Filesystem paths are relative to the repository root unless stated otherwise.
 
+Each entry is a historical snapshot: counts, blank cells, and pending decisions describe the end of that batch unless stated otherwise.
+Later entries supersede earlier decisions without erasing the original evidence or rationale.
+Scholar entries concern `data/acm_fellows.csv` unless they explicitly name the Turing Award dataset.
+Blank Scholar cells refer to `google_scholar_profile`; blank ACM profile cells refer to `acm_fellow_profile`.
+A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
+Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
+
+Start with the latest [shared-recipient Scholar resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links), then the preceding [ACM Fellows resolutions](#2026-09-15-1637-edt---final-user-resolution-of-scholar-link-conflicts) or [Turing Award resolutions](#2026-09-15-1747-edt---user-resolution-of-turing-award-scholar-candidates).
+The [18:22 EDT sorting entry](#2026-09-15-1822-edt---consistent-award-csv-sort-order) resolves the ordering issues recorded during the consistency review.
+The [13:49 EDT review](#2026-09-15-1349-edt---google-scholar-links-review-of-all-remaining-missing-entries) records follow-up outcomes for every ACM Fellow whose Scholar cell was still blank after the eight enrichment batches.
+Earlier [cache-only review candidates](#2026-09-15---outstanding-review-candidates) are recorded separately from the later web-search reviews.
+
+## 2026-09-15 18:22 EDT - Consistent Award CSV Sort Order
+
+Clarified the shared [award CSV sort order](../README_FOR_AGENTS.md#award-csv-sort-order): numeric award year descending, then the full stored name ascending using Python's `str.lower()` for case-insensitive comparison.
+The comparison preserves punctuation and accents and does not extract surnames or use locale-specific collation.
+This matches the name comparison already used by the citation visualization generator.
+The earlier documentation specified ascending names without defining capitalization and explicitly covered only the Fellows CSV.
+
+Applied the shared rule to both award CSVs.
+Moved Gene Tsudik and Michael D Dahlin into name order within the 2014 and 2010 Fellows classes, respectively; intervening rows shifted accordingly.
+The Turing Award CSV already satisfied the rule and required no moves.
+The three capitalization-dependent inversions reported in the [18:12 EDT review](#2026-09-15-1812-edt---documentation-and-award-csv-consistency-review) do not require moves under the clarified case-insensitive rule.
+
+Validated both complete row sequences against the shared sort key and compared row contents before and after sorting.
+All cell values, row counts, CSV quoting, and Unix LF line endings were preserved, including the preceding user-approved Scholar changes.
+No visualization regeneration was performed.
+
+## 2026-09-15 18:21 EDT - User Resolution of Shared-Recipient Scholar Links
+
+Applied the user's manual checks to `data/acm_fellows.csv` and `data/turing_award_winners.csv`.
+The user rejected A J Milner's Scholar association; cleared the Turing URL with ID `1bezk50AAAAJ` and kept the already blank Fellows Scholar cell blank.
+The user reported that C. Antony R. Hoare's `v-YdOywAAAAJ` URL returns HTTP 404; cleared it from the Fellows CSV and kept the already blank Turing Scholar cell blank.
+These removals affect only Scholar links; both people's award-recipient rows and all other fields were retained.
+
+The user reported that both Michael O. Rabin URLs lead to [_UUtVF4AAAAJ](https://scholar.google.com/citations?user=_UUtVF4AAAAJ).
+Changed the Fellows URL from `EFZyUcEAAAAJ` to that selected URL; the Turing CSV already used it.
+This records the user's selected equivalent URL rather than a wrong-person correction.
+
+All three cross-dataset differences from the [18:12 EDT review](#2026-09-15-1812-edt---documentation-and-award-csv-consistency-review) are resolved, and all 63 matched recipients now have identical Scholar values across the two CSVs.
+At completion, the Fellows CSV contained 1,638 rows, 1,282 distinct nonempty Scholar links, and 356 blank Scholar cells.
+The Turing CSV contained 81 rows, 43 distinct nonempty Scholar links, and 38 blank Scholar cells.
+The earlier 355-name Fellows unresolved table remains the historical search result; Hoare is the additional blank entry following this availability check.
+The five Fellows ordering inversions recorded in the preceding review were unchanged in this batch; they were addressed by the [18:22 EDT sorting entry](#2026-09-15-1822-edt---consistent-award-csv-sort-order).
+Validated that exactly three Scholar cells changed, with all other cells, row order, and Unix LF line endings preserved.
+These decisions rely on the user's checks; no searches, crawls, cache updates, profile exports, or visualization regeneration were performed.
+
+## 2026-09-15 18:12 EDT - Documentation and Award CSV Consistency Review
+
+Compared the documented decisions with [ACM Fellows](../data/acm_fellows.csv) and [Turing Award winners](../data/turing_award_winners.csv) using only local files.
+This checks agreement between the notes and CSVs; it does not independently verify profile identities, availability, or redirects.
+The CSVs were not changed.
+
+| Dataset | Rows | Scholar Links | Blank Scholar Cells | ACM Profile Links | Blank ACM Profile Cells |
+| --- | --- | --- | --- | --- | --- |
+| ACM Fellows | 1,638 | 1,283 | 355 | 1,627 | 11 |
+| Turing Award Winners | 81 | 44 | 37 | 81 | 0 |
+
+These counts agreed with the preceding dataset-specific entries; the [18:21 EDT resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links) subsequently changed the Scholar totals.
+At this review, each dataset had unique names and unique nonempty Scholar URLs, with Unix LF line endings.
+The award-year ranges were 1994–2025 for Fellows and 1966–2025 for Turing winners.
+
+All 459 historical Fellows Scholar additions mapped to rows in the CSV at this review after applying the three documented name corrections.
+Of those links, 456 matched the CSV; the three differences were the documented replacements for Jian Ma, David Lo, and Ming Li.
+At this review, the 355-name unresolved table exactly matched the blank Fellows Scholar cells, and the 11-name unavailable ACM profile table exactly matched the blank Fellows ACM profile cells.
+None of the 29 rejected Scholar IDs had been restored to the Fellow from whom it was removed.
+The seven Turing additions, the later Hennessy and Goldwasser selections, and the blank Simon and Bachman cells all matched the CSV.
+The documented name corrections, H. T. Kung's position immediately before Haibo Chen, and the deliberate citation and location differences recorded for the ACM captures were preserved.
+
+Matched 63 Turing rows to Fellows by a unique identical DBLP URL or an exact CSV name.
+The other 18 rows were not paired by these criteria; in particular, Alan Newell and Allen Newell remain separate people.
+Three matched rows had different Scholar values at the end of this review.
+All three were subsequently resolved in the [18:21 EDT entry](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links); the table below preserves the values reviewed:
+
+| Person | ACM Fellows Scholar Profile | Turing Scholar Profile | Review Status |
+| --- | --- | --- | --- |
+| A J Milner | Blank | [1bezk50AAAAJ](https://scholar.google.com/citations?user=1bezk50AAAAJ) | The Turing link was retained without search corroboration; the Fellows search left its cell blank. |
+| C. Antony R. Hoare | [v-YdOywAAAAJ](https://scholar.google.com/citations?user=v-YdOywAAAAJ) | Blank | The Fellows enrichment established this link using its recorded evidence; the later Turing search-only review did not establish a matching ID. |
+| Michael O. Rabin | [EFZyUcEAAAAJ](https://scholar.google.com/citations?user=EFZyUcEAAAAJ) | [_UUtVF4AAAAJ](https://scholar.google.com/citations?user=_UUtVF4AAAAJ) | The Fellows enrichment selected one ID; the Turing review retained the other without search corroboration; redirect equivalence is unverified. |
+
+This comparison identified differences between separately reviewed datasets without establishing new wrong-person links.
+No cross-dataset link propagation or ID selection was performed.
+
+At this review, both CSVs were ordered by descending award year, and the Turing CSV was also ordered by name within each year.
+A literal, case-sensitive name comparison found five adjacent ordering inversions in the Fellows CSV:
+
+| Fellows Year | Preceded at Review | Followed at Review |
+| --- | --- | --- |
+| 2014 | Paul Syverson | Gene Tsudik |
+| 2010 | Michael I. Jordan | Michael D Dahlin |
+| 2009 | Ricardo A Baeza-Yates | RJ Miller |
+| 1996 | Takao Nishizeki | TRN Rao |
+| 1994 | Gerald L Engel | GERALD SUSSMAN |
+
+The last three depended on capitalization under this comparison; the first two were also out of order under a case-insensitive comparison.
+The earlier H. T. Kung ordering fix was local to that correction and did not establish that every class was sorted.
+This review recorded the ordering issues without changing names or row order.
+The [18:22 EDT entry](#2026-09-15-1822-edt---consistent-award-csv-sort-order) subsequently documents the clarified rule and completed re-sort.
+
 ## 2026-09-15 17:47 EDT - User Resolution of Turing Award Scholar Candidates
 
 Applied the user's selections in `data/turing_award_winners.csv`.
@@ -13,8 +112,9 @@ Added the approved [Shafi Goldwasser profile](https://scholar.google.com/citatio
 Kept Herbert A Simon's Scholar cell blank as requested; the historical candidate `9d7rMrkAAAAJ` was never added to the CSV and is no longer pending review.
 
 These decisions resolve all three specific candidate cases from the preceding review without establishing whether Hennessy's old and new URLs redirect to the same profile.
-The 14 existing links without corroborating search evidence remain unchanged.
-The dataset now contains 81 winners, 44 distinct nonempty Scholar links, and 37 blank Scholar cells.
+The 14 existing links without corroborating search evidence were unchanged in this batch.
+The user subsequently rejected Milner's link and confirmed Rabin's selected URL in the [18:21 EDT resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links).
+At completion, the Turing Award dataset contained 81 winners, 44 distinct nonempty Scholar links, and 37 blank Scholar cells.
 Only Hennessy's and Goldwasser's Scholar cells changed in this follow-up; all other cells and row order were preserved.
 No searches, crawls, profile exports, cache updates, or visualization regeneration were performed.
 
@@ -47,11 +147,13 @@ Cleared Charles W Bachman's stored `SqR9pOYAAAAJ` link.
 The URL is explicitly listed by [Charles Bachmann at RIT](https://www.linkedin.com/in/charles-bachmann-77020a125), whose [institutional directory entry](https://www.rit.edu/dirs/directory/cmbpci-charles-bachmann) identifies an imaging scientist rather than the Turing Award database pioneer.
 No supported replacement was found.
 
-Of the 37 original links, 21 have indexed evidence associating the exact ID with the winner, 14 remain uncorroborated, one has an unresolved alternative ID, and one was removed as a wrong-person match.
+Of the 37 original links, 21 had indexed evidence associating the exact ID with the winner, 14 remained uncorroborated, one had an unresolved alternative ID, and one was removed as a wrong-person match.
 Retained the 14 uncorroborated links: Robert Melancton Metcalfe, Judea Pearl, E. Allen Emerson, Frederick Brooks, Jim Gray, Butler W Lampson, A J Milner, John E Hopcroft, Richard Karp, Kenneth Lane Thompson, Kenneth E. Iverson, Michael O. Rabin, J. H. Wilkinson, Marvin Minsky.
 Lack of search evidence alone is not grounds to clear them.
 
-Three specific cases remain for user review:
+Three specific cases were held for user review at the end of this batch.
+All three were subsequently resolved in the [17:47 EDT entry](#2026-09-15-1747-edt---user-resolution-of-turing-award-scholar-candidates).
+The table preserves the candidates and reasons for holding them at that time:
 
 | Winner | Stored Profile | Candidate | Reason for Holding |
 | --- | --- | --- | --- |
@@ -60,13 +162,12 @@ Three specific cases remain for user review:
 | Herbert A Simon | Blank | [9d7rMrkAAAAJ](https://scholar.google.com/citations?user=9d7rMrkAAAAJ) | [Wikidata](https://www.wikidata.org/wiki/Q181529) supports the historical identity, but an [indexed biography mirror](https://everything.explained.today/Herbert_A._Simon/) labels the link dead; current availability remains unresolved. |
 
 The remaining 35 previously blank entries had no sufficiently supported candidate after follow-up searches.
-Together with the two held blank candidates and Bachman's cleared cell, 38 entries are now blank.
-The dataset now contains 81 winners and 43 distinct nonempty Scholar links, up from 37.
+Together with the two held blank candidates and Bachman's cleared cell, 38 entries were blank at completion.
+At completion, the Turing Award dataset contained 81 winners and 43 distinct nonempty Scholar links, up from 37.
 Only eight Scholar cells changed; all names, other cell values, and row order were preserved.
 Validated row count, schema, the exact cell-change set, URL format and uniqueness, and Unix LF line endings.
 No crawler code, profile exports, caches, or visualizations were changed.
 Local scratch files `tmp/turing-scholar-audit-2026-09-15.json`, `tmp/turing-scholar-search-complete-2026-09-15.json`, and `tmp/turing-scholar-search-final-batches-2026-09-15.json` retain per-winner outcomes and the search log; these are not committed artifacts.
-
 
 ## 2026-09-15 17:05 EDT - Restore Name Ordering after H. T. Kung Correction
 
@@ -82,25 +183,26 @@ For Dan Roth, Yossi Matias, Ming Li, and Giovanni De Micheli, the user reported 
 Retained the user-selected URLs for [Dan Roth](https://scholar.google.com/citations?user=E-bpPWgAAAAJ), [Yossi Matias](https://scholar.google.com/citations?user=IwSe1-MAAAAJ), [Mark D. Hill](https://scholar.google.com/citations?user=7lVfIWYAAAAJ), and [Giovanni De Micheli](https://scholar.google.com/citations?user=7SUnVDsAAAAJ).
 Updated Ming Li's URL from `oGgPXFEAAAAJ` to the user-selected [j1xcTB4AAAAJ](https://scholar.google.com/citations?user=j1xcTB4AAAAJ); this records the selected equivalent URL rather than a wrong-person correction.
 
-All specific identity, conflicting-ID, and availability cases raised for user review are now resolved.
-This does not independently verify the 626 links without corroborating search evidence or establish that profiles do not exist for the 355 blank entries.
-Only Ming Li's Scholar cell changed in this batch; the dataset retains 1,638 Fellows, 1,283 distinct nonempty Scholar links, and 355 blank Scholar cells.
+The identity, conflicting-ID, and availability cases presented for user review during the web-search audit were resolved by this point.
+The [earlier cache-only review](#2026-09-15---outstanding-review-candidates) separately records identity suspicions and publication-list concerns; this entry does not record a resolution for those cases.
+The web-search audit also left 626 links without corroborating search evidence; unsuccessful searches did not establish that profiles were absent for the 355 blank entries.
+Only Ming Li's Scholar cell changed in this batch; at completion, the dataset contained 1,638 Fellows, 1,283 distinct nonempty Scholar links, and 355 blank Scholar cells.
 No new crawls or automated profile fetches were performed, and no exports, caches, or visualizations were regenerated.
 
 ## 2026-09-15 16:34 EDT - User-Confirmed Scholar Profiles and Resolved Link Conflicts
 
 The user checked the candidate Scholar profiles and confirmed [Jian Ma](https://scholar.google.com/citations?user=nDw9v78AAAAJ) and [David Lo](https://scholar.google.com/citations?user=Ra4bt-oAAAAJ).
 Added these two URLs to the previously cleared cells in `data/acm_fellows.csv`, resolving the pending replacements described below.
-The dataset now contains 1,283 nonempty Scholar links and 355 blank Scholar cells across 1,638 Fellows.
+At completion, the ACM Fellows dataset contained 1,283 nonempty Scholar links and 355 blank Scholar cells across 1,638 Fellows.
 
-Retained the stored [C.-C. Jay Kuo profile](https://scholar.google.com/citations?user=81d60okAAAAJ), which the user confirmed resolves correctly.
+Retained the stored [C.-C. Jay Kuo profile](https://scholar.google.com/citations?user=81d60okAAAAJ), which the user confirmed resolves correctly; the corresponding CSV row is named `Chung C. J Kuo`.
 Retained [XiaoFeng Wang's stored URL](https://scholar.google.com/citations?user=pONu-5EAAAAJ); the user confirmed that the alternative ending in lowercase `j` redirects to the same profile.
 Retained the user-selected [David Z. Pan profile](https://scholar.google.com/citations?user=3aLlroEAAAAJ) and [Tandy Warnow profile](https://scholar.google.com/citations?user=BYZtDXEAAAAJ), which already matched the CSV.
 Also recorded the user's earlier confirmation that the stored [Madhav Marathe](https://scholar.google.com/citations?user=diIore8AAAAJ) and [Michael Littman](https://scholar.google.com/citations?user=iRMZ2hoAAAAJ) links are correct and should be retained.
 These resolutions rely on the user's checks; no new crawls or automated profile fetches were performed.
 
-Five conflicting-ID cases remain unresolved: Dan Roth, Yossi Matias, Ming Li, Mark D. Hill, and Giovanni De Micheli.
-Their stored links remain unchanged.
+Five conflicting-ID cases remained unresolved at the end of this batch: Dan Roth, Yossi Matias, Ming Li, Mark D. Hill, and Giovanni De Micheli.
+Their stored links were unchanged in this batch; the user's subsequent decisions are recorded in the [16:37 EDT entry](#2026-09-15-1637-edt---final-user-resolution-of-scholar-link-conflicts).
 Only the two approved Scholar cells changed in this batch; all other CSV cells and row order were preserved, and no exports, caches, or visualizations were regenerated.
 
 ## 2026-09-15 16:27 EDT - Name Corrections and Wrong-Person Scholar Link Removal
@@ -111,22 +213,24 @@ Supporting name evidence is available in the [H. T. Kung biography](https://hand
 
 Cleared Jian Ma's Scholar URL with ID `kDZcBhkAAAAJ`, which belongs to plant scientist Jian Feng Ma, as identified in the [JSPS grant document](https://www.jsps.go.jp/file/storage/kaken_12_g_4805/r_8_en_26k21758.pdf).
 The ACM Fellow is the [CMU computational biologist Jian Ma](https://www.cmu.edu/computational-cancer/faculty/ma_jian.html).
-Candidate replacement [nDw9v78AAAAJ](https://scholar.google.com/citations?user=nDw9v78AAAAJ) is supported by his [indexed biography](https://en.wikipedia.org/wiki/Jian_Ma_%28computational_biologist%29), but remains unassigned pending primary-source confirmation.
+Candidate replacement [nDw9v78AAAAJ](https://scholar.google.com/citations?user=nDw9v78AAAAJ) is supported by his [indexed biography](https://en.wikipedia.org/wiki/Jian_Ma_%28computational_biologist%29), but was left unassigned pending primary-source confirmation at that time.
 
 Cleared David Lo's Scholar URL with ID `IFg0H1wAAAAJ`, associated with the [UC Riverside medical researcher David D. Lo](https://www.linkedin.com/in/david-d-lo-b7443273).
 The ACM Fellow is the [SMU computer scientist David Lo](https://news.smu.edu.sg/sites/news.smu.edu.sg/files/smu/news_room/SMU%20Media%20Release_SMU%20Faculty%20David%20Lo%20achieves%20ACM%20Fellowship%2005Feb2024.pdf).
-Candidate replacement [Ra4bt-oAAAAJ](https://scholar.google.com/citations?user=Ra4bt-oAAAAJ) is supported by a [matching secondary listing](https://www.newx.sg/scholar/Ra4bt-oAAAAJ), but remains unassigned pending primary-source confirmation.
+Candidate replacement [Ra4bt-oAAAAJ](https://scholar.google.com/citations?user=Ra4bt-oAAAAJ) is supported by a [matching secondary listing](https://www.newx.sg/scholar/Ra4bt-oAAAAJ), but was left unassigned pending primary-source confirmation at that time.
 
-The dataset now contains 1,281 nonempty Scholar links and 357 blank Scholar cells across 1,638 Fellows.
+The user subsequently approved both replacements in the [16:34 EDT entry](#2026-09-15-1634-edt---user-confirmed-scholar-profiles-and-resolved-link-conflicts).
+
+At completion, the ACM Fellows dataset contained 1,281 nonempty Scholar links and 357 blank Scholar cells across 1,638 Fellows.
 All other CSV cells and row order were preserved, including the unresolved Madhav Marathe and Michael Littman links.
 No new crawls were performed, and no profile exports, caches, or visualizations were regenerated.
 
-## 2026-09-15 13:49 EDT - Google Scholar Links: Review Of All Remaining Missing Entries
+## 2026-09-15 13:49 EDT - Google Scholar Links: Review of All Remaining Missing Entries
 
 This review searched all 522 entries whose Scholar field was blank at the start, including unresolved entries from previous batches.
 Each name received a general web search, followed by focused searches or source-link checks where a promising match or identity conflict warranted them.
 General web search and existing local records established 167 matching profiles, which were added to the CSV.
-The dataset now contains 1,283 nonempty Scholar links and 355 blank Scholar cells across 1,638 Fellows.
+At completion, the ACM Fellows dataset contained 1,283 nonempty Scholar links and 355 blank Scholar cells across 1,638 Fellows.
 Only the 167 previously blank Scholar URL cells changed; names, row order, and all other CSV fields were preserved.
 No computer-use tools or project crawlers were used, and no caches, Scholar profile exports, or visualizations were regenerated.
 The source column below distinguishes explicit web links from existing local IDs corroborated by web identity evidence.
@@ -147,13 +251,13 @@ Namesakes were excluded where affiliations or research areas differed, including
 
 ### 2026-09-15 13:49 EDT - Added Profiles
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Natarajan Shankar | [Scholar](https://scholar.google.com/citations?user=qVzY4XYAAAAJ) | [Source](https://research.com/u/natarajan-shankar): Explicit Scholar link identifies the SRI formal-methods researcher. |
 | Yan Solihin | [Scholar](https://scholar.google.com/citations?user=tndlIesAAAAJ) | [Source](https://expertnet.org/index.cfm?fuseaction=experts.details&id=130969): Florida ExpertNet explicitly prints this ID for Yan Solihin; Research.com links the same ID, resolving the different CSRankings candidate. |
 | Guoliang Li | [Scholar](https://scholar.google.com/citations?user=Pi89P8kAAAAJ) | [Source](https://www.newx.sg/scholar/Pi89P8kAAAAJ): Exact ID identifies the Tsinghua database researcher. |
 | Trent Jaeger | [Scholar](https://scholar.google.com/citations?user=LpwdzeEAAAAJ) | [Source](https://www.cs.ucr.edu/~trentj/research.html): Personal UCR page directly links this ID, agreeing with cached coauthor evidence and resolving the conflicting CSRankings ID. |
-| C. Antony R. Hoare | [Scholar](https://scholar.google.com/citations?user=v-YdOywAAAAJ) | [Source](https://research.com/u/tony-hoare): Explicit Scholar link identifies C. A. R. Hoare and his program-verification work. |
+| C. Antony R. Hoare | [Scholar](https://scholar.google.com/citations?user=v-YdOywAAAAJ) | **Later removed:** The user reported HTTP 404 in the [18:21 EDT resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links). Initial evidence: [Source](https://research.com/u/tony-hoare): Explicit Scholar link identifies C. A. R. Hoare and his program-verification work. |
 | Joseph Bryan Lyles | [Scholar](https://scholar.google.com/citations?user=U12mxPQAAAAJ) | [Source](https://dblp.org/pid/03/4762.html): J. Bryan Lyles networking bibliography matches the exact name and profile ID in existing cached coauthor records. |
 | Dennis E. Shasha | [Scholar](https://scholar.google.com/citations?user=UH3qseUAAAAJ) | [Source](https://adscientificindex.com/scientist/dennis-shasha/834425/): The matching research biography explicitly links this Scholar profile. |
 | Douglas Lea | [Scholar](https://scholar.google.com/citations?user=7yk1kw4AAAAJ) | [Source](https://gee.cs.oswego.edu/dl/): Personal SUNY Oswego homepage identifies Doug Lea and Java concurrency work, matching the cached coauthor ID. |
@@ -226,15 +330,15 @@ Namesakes were excluded where affiliations or research areas differed, including
 | Tao Jiang | [Scholar](https://scholar.google.com/citations?user=XUhsCZwAAAAJ) | [Source](https://www.cs.ucr.edu/~jiang/): Existing local records identify Tao Jiang 0001 at Univ. of California - Riverside; the web result corroborates the matching computing research identity. |
 | Alon Yitzchak Halevy | [Scholar](https://scholar.google.com/citations?user=F_MI0pcAAAAJ) | [Source](https://www.gabormelli.com/RKB/Alon_Y._Halevy): Existing local records identify Alon Halevy at Google; the web result corroborates the matching computing research identity. |
 | Arvind | [Scholar](https://scholar.google.com/citations?user=_BqpjCgAAAAJ) | [Source](https://dblp.org/pid/a/Arvind.html): DBLP's matching computing bibliography explicitly links this Scholar profile. |
-| Dianne Prost OLeary | [Scholar](https://scholar.google.com/citations?user=5mXaSbgAAAAJ) | [Source](https://en.wikipedia.org/wiki/Dianne_P._O%27Leary): Existing local records identify Dianne P O'Leary at Professor of Computer Science, University of Maryland; the web result corroborates the matching computing research identity. |
+| Dianne Prost OLeary | [Scholar](https://scholar.google.com/citations?user=5mXaSbgAAAAJ) | [Source](https://en.wikipedia.org/wiki/Dianne_P._O%27Leary): Existing local records identify Dianne P O'Leary at Professor of Computer Science, University of Maryland; the web result corroborates the matching computing research identity. The CSV name was later corrected to `Dianne Prost O'Leary`; see the [name corrections](#2026-09-15-1627-edt---name-corrections-and-wrong-person-scholar-link-removal). |
 | Heung-Yeung Shum | [Scholar](https://scholar.google.com/citations?user=9akH-n8AAAAJ) | [Source](https://www.newx.sg/scholar/9akH-n8AAAAJ): Existing local records identify Heung-Yeung Shum at Microsoft; the web result corroborates the matching computing research identity. |
 | J Strother Moore | [Scholar](https://scholar.google.com/citations?user=91fyr68AAAAJ) | [Source](https://dblp.org/pid/m/JStrotherMoore.html): The matching researcher page explicitly links this Scholar profile. |
 | John E. Laird | [Scholar](https://scholar.google.com/citations?user=ea6cjVUAAAAJ) | [Source](https://dblp.org/pid/l/JohnELaird.html): Existing local records identify John Laird at Emeritus Professor of Computer Science and Engineering, University of Michigan; the web result corroborates the matching computing research identity. |
 | Laura M Haas | [Scholar](https://scholar.google.com/citations?user=e9qUUSgAAAAJ) | [Source](https://dblp.org/pid/h/LauraMHaas): Existing local records identify Laura M. Haas at Univ. of Massachusetts Amherst; the web result corroborates the matching computing research identity. |
 | Michael Scott | [Scholar](https://scholar.google.com/citations?user=PzaBy-UAAAAJ) | [Source](https://ftp.cs.rochester.edu/people/faculty/scott_michael/index.html): Existing local records identify Michael L. Scott at University of Rochester; the focused web result corroborates this identity. |
-| Ming Li | [Scholar](https://scholar.google.com/citations?user=oGgPXFEAAAAJ) | [Source](https://uwaterloo.ca/computer-science/contacts/ming-li): Waterloo's faculty page explicitly links this Scholar ID, agreeing with the existing CS record. |
+| Ming Li | [Scholar](https://scholar.google.com/citations?user=oGgPXFEAAAAJ) | [Source](https://uwaterloo.ca/computer-science/contacts/ming-li): Waterloo's faculty page explicitly links this Scholar ID, agreeing with the existing CSRankings record. Later superseded by the [user-selected equivalent URL](#2026-09-15-1637-edt---final-user-resolution-of-scholar-link-conflicts). |
 | Nick McKeown | [Scholar](https://scholar.google.com/citations?user=SqMUez0AAAAJ) | [Source](https://yuba.stanford.edu/~nickm/students.html): Existing local records identify Nick McKeown at Stanford University; the web result corroborates the matching computing research identity. |
-| Oyekunle Olukotun | [Scholar](https://scholar.google.com/citations?user=IzXDyR8AAAAJ) | [Source](https://www.cs.stanford.edu/people/oyekunle-olukotun): Stanford confirms the Oyekunle/Kunle name variant and multicore research; existing CS/CO records and the indexed biography agree on the Scholar ID. |
+| Oyekunle Olukotun | [Scholar](https://scholar.google.com/citations?user=IzXDyR8AAAAJ) | [Source](https://www.cs.stanford.edu/people/oyekunle-olukotun): Stanford confirms the Oyekunle/Kunle name variant and multicore research; the indexed biography agrees with existing CSRankings and cached coauthor records on the Scholar ID. |
 | Phillip B Gibbons | [Scholar](https://scholar.google.com/citations?user=F9kqUXkAAAAJ) | [Source](https://www.cs.cmu.edu/~gibbons/): Existing local records identify Phillip B. Gibbons at Carnegie Mellon University; the web result corroborates the matching computing research identity. |
 | Susan T Dumais | [Scholar](https://scholar.google.com/citations?user=x8dED5cAAAAJ) | [Source](https://research.com/u/susan-dumais): Existing local records identify Susan Dumais at Technical Fellow, Microsoft Research; the web result corroborates the matching computing research identity. |
 | Thomas A Henzinger | [Scholar](https://scholar.google.com/citations?user=jpgplxUAAAAJ) | [Source](https://pub.ista.ac.at/~tah/): Existing local records identify Thomas A. Henzinger at IST Austria; the web result corroborates the matching computing research identity. |
@@ -319,7 +423,8 @@ Namesakes were excluded where affiliations or research areas differed, including
 
 ### 2026-09-15 13:49 EDT - Unresolved Entries
 
-The following 355 entries remain blank after review.
+The following 355 entries were blank at the end of this review.
+Hoare's later removal raised the blank count to 356; see the [18:21 EDT resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links).
 Unless a more specific reason is recorded below, the searches did not establish a sufficiently supported exact Scholar profile ID for the Fellow.
 Bibliographies, article-search links, and similar-name profiles were insufficient on their own.
 This does not establish that no Scholar profile exists.
@@ -699,14 +804,14 @@ Jason Nieh's personal homepage resolved the conflicting local IDs, and explicit 
 Salvatore Stolfo's personal homepage explicitly prints the selected ID, while another search result supplies a different one.
 John Hughes's conference profile explicitly connects his selected ID with Chalmers, functional programming, and software testing.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Kenneth Lane Thompson | [Scholar](https://scholar.google.com/citations?user=FsHMg9AAAAAJ) | [Source](https://adscientificindex.com/scientist/ken-thompson/4378746/): Existing cached profile identifies Ken Thompson at Google and contains UNIX work with Dennis Ritchie, matching the web result and the Fellow's operating-systems citation. |
 | Kun Zhou | [Scholar](https://scholar.google.com/citations?user=N-iYby0AAAAJ) | [Source](https://www.newx.sg/scholar/N-iYby0AAAAJ): Exact ID identifies the Zhejiang computer-graphics researcher and agrees with existing CSRankings and coauthor records. |
 | Laurie Ann Williams | [Scholar](https://scholar.google.com/citations?user=Cln2viUAAAAJ) | [Source](https://dblp.org/pid/w/LaurieAWilliams.html): The NCSU software-engineering identity agrees with the Laurie Williams aliases and exact ID in existing CSRankings and coauthor records. |
 | Matthew A Turk | [Scholar](https://scholar.google.com/citations?user=KltleWgAAAAJ) | [Source](https://sites.cs.ucsb.edu/~mturk/): The UCSB computer-vision researcher and former TTIC president matches the Matthew A. Turk entry in existing CSRankings. |
 | Michael J Zyda | [Scholar](https://scholar.google.com/citations?user=qPWq9YwAAAAJ) | [Source](https://research.com/u/michael-zyda): Explicit Scholar link identifies the USC games and virtual-environments researcher. |
-| Michael O. Rabin | [Scholar](https://scholar.google.com/citations?user=EFZyUcEAAAAJ) | [Source](https://research.google/programs-and-events/visiting-researcher-program/michael-o-rabin/): The theoretical computer scientist matches the Harvard Michael O. Rabin aliases and profile ID in existing CSRankings. |
+| Michael O. Rabin | [Scholar](https://scholar.google.com/citations?user=EFZyUcEAAAAJ) | [Source](https://research.google/programs-and-events/visiting-researcher-program/michael-o-rabin/): The theoretical computer scientist matches the Harvard Michael O. Rabin aliases and profile ID in existing CSRankings. Later standardized to the user's selected equivalent URL in the [18:21 EDT resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links). |
 | Peter Stone | [Scholar](https://scholar.google.com/citations?user=qnwjcfAAAAAJ) | [Source](https://www.cs.utexas.edu/people/faculty-researchers/peter-stone): UT Austin AI and robotics identity matches existing CSRankings and coauthor records. |
 | Sanjit Arunkumar Seshia | [Scholar](https://scholar.google.com/citations?user=SlZavnIAAAAJ) | [Source](https://vcresearch.berkeley.edu/faculty/sanjit-seshia): Berkeley formal-methods identity matches existing CSRankings and coauthor records. |
 | Susanne E Hambrusch | [Scholar](https://scholar.google.com/citations?user=5k0KS3UAAAAJ) | [Source](https://dblp.org/pid/h/SusanneSHambrusch): Bibliography identifies the Purdue computing researcher, matching the cached coauthor name, affiliation and ID. |
@@ -742,7 +847,7 @@ John Hughes's conference profile explicitly connects his selected ID with Chalme
 | Tian He | [Scholar](https://scholar.google.com/citations?user=hc1m_BQAAAAJ) | [Source](https://www.newx.sg/scholar/hc1m_BQAAAAJ): Exact ID identifies the Minnesota computer-science ACM Fellow and agrees with existing local records. |
 | Vishal Misra | [Scholar](https://scholar.google.com/citations?user=9hPnkXsAAAAJ) | [Source](https://datascience.columbia.edu/people/vishal-misra/): Columbia computer-networking identity matches existing CSRankings. |
 | Wendi Beth Heinzelman | [Scholar](https://scholar.google.com/citations?user=myYVVuYAAAAJ) | [Source](https://hajim.rochester.edu/ece/people/faculty/heinzelman_wendi/index.html): Rochester wireless-networking identity matches existing CSRankings and coauthor records. |
-| Andrew K. Mccallum | [Scholar](https://scholar.google.com/citations?user=yILa1y0AAAAJ) | [Source](https://citationmap.com/profile/yILa1y0AAAAJ): Exact ID identifies the UMass computer-science professor and agrees with existing CSRankings and coauthor records. |
+| Andrew K. Mccallum | [Scholar](https://scholar.google.com/citations?user=yILa1y0AAAAJ) | [Source](https://citationmap.com/profile/yILa1y0AAAAJ): Exact ID identifies the UMass computer-science professor and agrees with existing CSRankings and coauthor records. The CSV name was later corrected to `Andrew K. McCallum`; see the [name corrections](#2026-09-15-1627-edt---name-corrections-and-wrong-person-scholar-link-removal). |
 | Angelos Dennis Keromytis | [Scholar](https://scholar.google.com/citations?user=mncyWbcAAAAJ) | [Source](https://dblp.org/pid/k/AngelosDKeromytis): Security research bibliography matches the Georgia Tech identity and exact ID in existing local records. |
 | Carla Gomes | [Scholar](https://scholar.google.com/citations?user=3hdbdBoAAAAJ) | [Source](https://dblp.org/pid/g/CarlaPGomes.html): Cornell AI researcher matches the Carla P. Gomes entry in existing CSRankings. |
 | Edward Alan Fox | [Scholar](https://scholar.google.com/citations?user=KcbSBrUAAAAJ) | [Source](https://fox.cs.vt.edu/): Personal Virginia Tech homepage directly links this ID for Edward Fox. |
@@ -775,9 +880,9 @@ John Hughes's conference profile explicitly connects his selected ID with Chalme
 | Carlos J P De Lucena | [Scholar](https://scholar.google.com/citations?user=BCW5XGIAAAAJ) | [Source](https://www.inf.puc-rio.br/en/teacher/carlos-jose-pereira-de-lucena/?isModal=1): PUC-Rio faculty page explicitly prints the Scholar URL and connects the Carlos Lucena name variants. |
 | Charu Chandra Aggarwal | [Scholar](https://scholar.google.com/citations?user=x_wsduUAAAAJ) | [Source](https://charuaggarwal.net/): IBM data-mining biography matches the cached Charu Aggarwal coauthor ID. |
 
-Twenty-seven entries remain blank after this batch:
+Twenty-seven entries were left blank in this batch:
 
-| ACM Fellow | Source And Reason |
+| ACM Fellow | Source and Reason |
 | --- | --- |
 | Manuel Blum | [Source](https://www.cs.cmu.edu/~mblum/): Searches distinguish the CMU complexity theorist from a Freiburg namesake, but did not independently establish the local CSRankings candidate's exact profile identity. |
 | Martin Hellman | [Source](https://profiles.stanford.edu/martin-hellman): Identified the Stanford cryptography researcher, but did not establish an exact Scholar profile URL. |
@@ -825,7 +930,7 @@ The earlier removal records remain below to prevent those incorrect IDs from bei
 Antonio Gonzalez's personal UPC homepage resolved the conflicting local candidate IDs; the same conflict could not be resolved for Trent Jaeger.
 Chandra Narayanaswami's IBM biography supplied a valid profile ID through its inline Scholar link, while its separate footer Scholar link incorrectly used his name as the user parameter.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Vaughn Timothy Betz | [Scholar](https://scholar.google.com/citations?user=bMdDigQAAAAJ) | [Source](https://www.researchgate.net/profile/Vaughn-Betz): Toronto FPGA researcher Vaughn Betz; exact ID from existing Toronto coauthor records. |
 | Vineet Bafna | [Scholar](https://scholar.google.com/citations?user=NzQu5SwAAAAJ) | [Source](https://dblp.org/pid/b/VineetBafna): UCSD computational biology researcher; DBLP ORCID agrees with existing CSRankings, which supplies this ID. |
@@ -874,7 +979,7 @@ Chandra Narayanaswami's IBM biography supplied a valid profile ID through its in
 | Graham R. Cormode | [Scholar](https://scholar.google.com/citations?user=gpLVKmEAAAAJ) | [Source](https://dblp.org/pid/c/GrahamCormode): Algorithms and data analysis researcher; DBLP ORCID matches existing Warwick CSRankings, and Meta/Warwick coauthor records agree on this ID. |
 | James Allan | [Scholar](https://scholar.google.com/citations?user=-bLGeg0AAAAJ) | [Source](https://www.cics.umass.edu/about/directory/james-allan): UMass Amherst information retrieval researcher; existing CSRankings and coauthor records agree on this ID. |
 
-Four entries remain blank after this batch:
+Four entries were left blank in this batch:
 
 | ACM Fellow | Reason |
 | --- | --- |
@@ -897,7 +1002,7 @@ These checks establish identity and link correspondence; they are not fresh audi
 Existing CSRankings records are from `../bigcows-crawler/.cache/csrankings/csrankings-*.csv`, and cached coauthor evidence is from `../bigcows-crawler/.cache/google-scholar-profile-cache.json`.
 Where Scholar access returned an error, an explicit profile link from the cited source established the URL; access failure was not treated as proof that the profile was missing.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Anja Feldmann | [Scholar](https://scholar.google.com/citations?user=mSK3340AAAAJ) | [Source](https://plamadiso.weizenbaum-institut.de/anja-feldmann/): MPI/Saarland researcher; source gives the exact Scholar URL, also present in existing coauthor records. |
 | Benjamin Raphael | [Scholar](https://scholar.google.com/citations?user=GhvZjJUAAAAJ) | [Source](https://www.cs.princeton.edu/people/profile/braphael): Princeton computational biology researcher, listed as Ben Raphael; existing CSRankings Benjamin J. Raphael and cached Ben Raphael coauthor records agree on this ID. |
@@ -906,7 +1011,7 @@ Where Scholar access returned an error, an explicit profile link from the cited 
 | Christopher Ian Kruegel | [Scholar](https://scholar.google.com/citations?user=f0NoTC0AAAAJ) | [Source](https://www.sba-research.org/team/christopher-kruegel/): UCSB security researcher Christopher Kruegel; existing coauthor records identify the same UCSB/Cisco researcher and exact ID. |
 | Corina S Pasareanu | [Scholar](https://scholar.google.com/citations?user=pwIuivQAAAAJ) | [Source](https://www.cylab.cmu.edu/directory/bios/pasareanu-corina.html): CMU/NASA Ames formal verification researcher; exact ID from existing Corina Pasareanu coauthor records. |
 | Dana Ron | [Scholar](https://scholar.google.com/citations?user=cbnnDB4AAAAJ) | [Source](https://dblp.org/pid/85/4800.html): DBLP links this profile; indexed Scholar page confirms Tel Aviv University and property-testing publications. |
-| David Lo | [Scholar](https://scholar.google.com/citations?user=IFg0H1wAAAAJ) | [Source](https://news.smu.edu.sg/sites/news.smu.edu.sg/files/smu/news_room/SMU%20Media%20Release_SMU%20Faculty%20David%20Lo%20achieves%20ACM%20Fellowship%2005Feb2024.pdf): SMU software engineering researcher and ACM Fellow; exact ID from the matching existing CSRankings entry, excluding the Stanford namesake. |
+| David Lo | [Scholar](https://scholar.google.com/citations?user=IFg0H1wAAAAJ) | **Superseded:** See the [later wrong-person correction](#2026-09-15-1627-edt---name-corrections-and-wrong-person-scholar-link-removal). Initial rationale: [Source](https://news.smu.edu.sg/sites/news.smu.edu.sg/files/smu/news_room/SMU%20Media%20Release_SMU%20Faculty%20David%20Lo%20achieves%20ACM%20Fellowship%2005Feb2024.pdf): SMU software engineering researcher and ACM Fellow; exact ID from the matching existing CSRankings entry, excluding the Stanford namesake. |
 | David Sankoff | [Scholar](https://scholar.google.com/citations?user=C-BvZ4oAAAAJ) | [Source](https://dblp.org/pid/66/977.html): DBLP links this exact profile and the University of Ottawa homepage for the mathematical genomics researcher. |
 | Deborah McGuinness | [Scholar](https://scholar.google.com/citations?user=PLJ0L4QAAAAJ) | [Source](https://faculty.rpi.edu/deborah-mcguinness): RPI knowledge representation researcher; exact ID from existing Deborah L. McGuinness coauthor records, corroborated by Wikidata Q5248328. |
 | Elaine Shi | [Scholar](https://scholar.google.com/citations?user=rejzeocAAAAJ) | [Source](https://elaineshi.com/): CMU cryptography researcher and ACM Fellow; existing CSRankings matches her name, homepage and exact ID. |
@@ -916,7 +1021,7 @@ Where Scholar access returned an error, an explicit profile link from the cited 
 | George Fitzmaurice | [Scholar](https://scholar.google.com/citations?user=u0JtLz0AAAAJ) | [Source](https://research.com/u/george-fitzmaurice): Directory links this exact Scholar URL; identity corroborated by the Autodesk Research page for its HCI researcher. |
 | Gerard Medioni | [Scholar](https://scholar.google.com/citations?user=b0k2tTgAAAAJ) | [Source](https://viterbi.usc.edu/directory/faculty/Medioni/Gerard): USC computer vision professor emeritus Gerard Guy Medioni; exact ID from existing USC coauthor records. |
 | Haibo Chen | [Scholar](https://scholar.google.com/citations?user=qd9xSkYAAAAJ) | [Source](https://www.newx.sg/scholar/qd9xSkYAAAAJ): Indexed profile identifies the SJTU operating systems researcher; exact ID agrees with existing CSRankings Haibo Chen 0001. |
-| Ht Kung | [Scholar](https://scholar.google.com/citations?user=iLQqwosAAAAJ) | [Source](https://research.com/u/ht-kung): Harvard researcher H. T. Kung; exact ID from matching existing CSRankings. |
+| Ht Kung | [Scholar](https://scholar.google.com/citations?user=iLQqwosAAAAJ) | [Source](https://research.com/u/ht-kung): Harvard researcher H. T. Kung; exact ID from matching existing CSRankings. The CSV name was later corrected to `H. T. Kung`; see the [name corrections](#2026-09-15-1627-edt---name-corrections-and-wrong-person-scholar-link-removal). |
 | Jeffrey S Foster | [Scholar](https://scholar.google.com/citations?user=QWPwfsgAAAAJ) | [Source](https://engineering.tufts.edu/cs/people/faculty/jeffrey-foster): Tufts programming languages and software security researcher; exact ID from existing CSRankings Jeffrey S. Foster, excluding the biologist namesake. |
 | Jianfeng Gao | [Scholar](https://scholar.google.com/citations?user=CQ1cqKkAAAAJ) | [Source](https://www.alphaxiv.org/@jianfeng-gao): Directory links this exact profile; indexed Scholar identifies Microsoft Research, Redmond, consistent with his Microsoft biography. |
 | Keith Noah Snavely | [Scholar](https://scholar.google.com/citations?user=Db4BCX8AAAAJ) | [Source](https://www.cs.cornell.edu/~snavely/): Cornell computer vision researcher Noah Snavely; existing CSRankings and Cornell/Google coauthor records agree on this ID. |
@@ -947,7 +1052,7 @@ Where Scholar access returned an error, an explicit profile link from the cited 
 | Sumit Gulwani | [Scholar](https://scholar.google.com/citations?user=fZinJ_AAAAAJ) | [Source](https://www.microsoft.com/en-us/research/people/sumitg/publications/): Microsoft program synthesis researcher; exact ID from existing Microsoft coauthor records. |
 | Tim Roughgarden | [Scholar](https://scholar.google.com/citations?user=0lcJYs8AAAAJ) | [Source](https://www.wikidata.org/wiki/Q7804199): Wikidata gives this exact ID; existing Columbia CSRankings record agrees. |
 
-Three entries remain blank after this batch:
+Three entries were left blank in this batch:
 
 | ACM Fellow | Reason |
 | --- | --- |
@@ -969,7 +1074,7 @@ The checks establish identity and link correspondence; they are not fresh audits
 Existing CSRankings records are from `../bigcows-crawler/.cache/csrankings/csrankings-*.csv`, and cached coauthor evidence is from `../bigcows-crawler/.cache/google-scholar-profile-cache.json`.
 Wei Chen was matched through his Microsoft Research page, which explicitly identifies his 2024 ACM Fellowship and Scholar URL; namesakes at Zhejiang and Peking in CSRankings were not used.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Clark Barrett | [Scholar](https://scholar.google.com/citations?user=BtwmZfQAAAAJ) | [Source](https://research.com/u/clark-barrett): SMT solving and formal verification researcher at Stanford. Exact ID from existing CSRankings: Clark Barrett, Stanford University. |
 | Cliff Lampe | [Scholar](https://scholar.google.com/citations?user=aT8oqcoAAAAJ) | [Source](https://research.com/u/cliff-lampe): University of Michigan researcher in online communities and social computing. Exact ID from an existing [cached coauthor record](https://scholar.google.com/citations?user=SftrEEMAAAAJ) labeled Cliff Lampe, Professor, School of Information University of Michigan. |
@@ -1019,7 +1124,7 @@ Wei Chen was matched through his Microsoft Research page, which explicitly ident
 | Anand Raghunathan | [Scholar](https://scholar.google.com/citations?user=OP7F8jEAAAAJ) | [Source](https://engineering.purdue.edu/~araghu/main.html): Purdue Integrated Systems Laboratory researcher in VLSI and computer engineering. Exact ID from an existing [cached coauthor record](https://scholar.google.com/citations?user=R-z1R84AAAAJ) labeled Anand Raghunathan, Silicon Valley Chair Professor of Electrical and Computer Engineering, Purdue University. |
 | Andreas Krause | [Scholar](https://scholar.google.com/citations?user=eDHv58AAAAAJ) | [Source](https://las.inf.ethz.ch/wp-content/uploads/2021/01/krause-cv-2p.pdf): ETH machine learning researcher Andreas Krause. Exact ID from existing CSRankings: Andreas Krause 0001, ETH Zurich. |
 
-Three entries remain blank after this batch:
+Three entries were left blank in this batch:
 
 | ACM Fellow | Reason |
 | --- | --- |
@@ -1041,7 +1146,7 @@ The checks establish identity and link correspondence; they are not fresh audits
 Existing CSRankings records are from `../bigcows-crawler/.cache/csrankings/csrankings-*.csv`, and cached coauthor evidence is from `../bigcows-crawler/.cache/google-scholar-profile-cache.json`.
 Some CSRankings entries marked `NOSCHOLARPAGE` had independently supported links; the cached CSRankings files were not modified.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Ke Yi | [Scholar](https://scholar.google.com/citations?user=dWcZPFEAAAAJ) | [Source](https://seng.hkust.edu.hk/about/people/faculty/ke-yi): HKUST faculty page supplies the exact Scholar ID. |
 | Ken-Ichi Kawarabayashi | [Scholar](https://scholar.google.com/citations?user=DWERCmsAAAAJ) | [Source](https://www.newx.sg/scholar/DWERCmsAAAAJ): NII/Tokyo graph theorist; exact ID agrees with an existing cached coauthor record. Existing coauthor evidence: [cached source profile](https://scholar.google.com/citations?user=UPBuOPIAAAAJ). |
@@ -1089,7 +1194,7 @@ Some CSRankings entries marked `NOSCHOLARPAGE` had independently supported links
 | Brian Curless | [Scholar](https://scholar.google.com/citations?user=tlh8i7gAAAAJ) | [Source](https://research.com/u/brian-curless): University of Washington 3D reconstruction researcher; exact ID agrees with the existing CSRankings record. |
 | Carla Fabiana Chiasserini | [Scholar](https://scholar.google.com/citations?user=np0OO24AAAAJ) | [Source](https://www.5gitaly.eu/2019/team-member/chiasserini-carla-2/): Conference speaker biography names Politecnico di Torino, networking research, and explicitly supplies this exact Scholar URL. |
 
-Five entries remain blank after this batch:
+Five entries were left blank in this batch:
 
 | ACM Fellow | Reason |
 | --- | --- |
@@ -1110,7 +1215,7 @@ The nineteen links below were added, bringing the dataset to 858 nonempty Schola
 No computer-use tools or crawlers were used; caches, the Scholar profile export, and the visualization were left unchanged.
 These are identity and link reconciliations, not fresh audits of the profiles' publication lists or metrics.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Cynthia Rudin | [Scholar](https://scholar.google.com/citations?user=mezKJyoAAAAJ) | [Source](https://www.newx.sg/scholar/mezKJyoAAAAJ): Exact ID and Duke machine learning identity in web result; existing CSRankings agrees. |
 | Dejan S Milojicic | [Scholar](https://scholar.google.com/citations?user=4VqLAT8AAAAJ) | [Source](https://research.com/u/dejan-milojicic): Web source identifies the HP distributed systems researcher; exact ID appears in existing Scholar coauthor links from profiles ohjQPx8AAAAJ and wR_tv-kAAAAJ, labeled Hewlett Packard Labs. |
@@ -1126,13 +1231,13 @@ These are identity and link reconciliations, not fresh audits of the profiles' p
 | Hanghang Tong | [Scholar](https://scholar.google.com/citations?user=RaINcuUAAAAJ) | [Source](https://grainger.illinois.edu/about/directory/faculty/htong): Illinois directory confirms graph mining research and lists Scholar; exact ID from existing CSRankings. |
 | Hui Xiong | [Scholar](https://scholar.google.com/citations?user=cVDF1tkAAAAJ) | [Source](https://ailab.hkust-gz.edu.cn/): Personal institutional page confirms AI, data mining, mobile computing, and Rutgers/HKUST history and lists Scholar; exact ID from existing CSRankings Hui Xiong 0001. |
 | Javier Esparza | [Scholar](https://scholar.google.com/citations?user=c9qgPSYAAAAJ) | [Source](https://en.wikipedia.org/wiki/Javier_Esparza_%28computer_scientist%29): Computing biography identifies the TU Munich researcher and lists Scholar; exact ID from existing CSRankings. |
-| Jian Ma | [Scholar](https://scholar.google.com/citations?user=kDZcBhkAAAAJ) | [Source](https://www.cmu.edu/computational-cancer/faculty/ma_jian.html): CMU directory confirms computational genomics identity and lists Scholar; exact ID from existing CSRankings Jian Ma 0004 at CMU. |
+| Jian Ma | [Scholar](https://scholar.google.com/citations?user=kDZcBhkAAAAJ) | **Superseded:** See the [later wrong-person correction](#2026-09-15-1627-edt---name-corrections-and-wrong-person-scholar-link-removal). Initial rationale: [Source](https://www.cmu.edu/computational-cancer/faculty/ma_jian.html): CMU directory confirms computational genomics identity and lists Scholar; exact ID from existing CSRankings Jian Ma 0004 at CMU. |
 | Jiaya Jia | [Scholar](https://scholar.google.com/citations?user=XPAkzTEAAAAJ) | [Source](https://facultyprofiles.hkust.edu.hk/profiles.php?profile=jiaya-jia-jia): HKUST faculty directory explicitly lists this Scholar ID, matching existing CSRankings and computer vision research. |
 | Jun Zhu | [Scholar](https://scholar.google.com/citations?user=axsP38wAAAAJ) | [Source](https://ml.cs.tsinghua.edu.cn/~jun/index.shtml): Search-indexed personal page identifies Tsinghua probabilistic machine learning researcher; exact ID from existing CSRankings Jun Zhu 0001 with the same homepage. |
 | Junfeng Yang | [Scholar](https://scholar.google.com/citations?user=JJ9AvbAAAAAJ) | [Source](https://www.cs.columbia.edu/~junfeng/): Columbia personal page confirms software systems identity and lists Scholar; exact ID from existing CSRankings with the same homepage. |
 | Kate Starbird | [Scholar](https://scholar.google.com/citations?user=C6KSF5gAAAAJ) | [Source](https://www.wikidata.org/wiki/Q3813333): Exact Scholar ID in Wikidata; UW HCDE directory independently confirms crisis informatics identity and lists a Scholar profile. |
 
-Eric Allman remains blank because general web searches and his personal homepage did not establish a confident Scholar profile URL in this batch.
+Eric Allman's cell was left blank because general web searches and his personal homepage did not establish a confident Scholar profile URL in this batch.
 This does not establish that no profile exists.
 
 ## 2026-09-15 - Google Scholar Links: Second Web Search Batch
@@ -1141,10 +1246,10 @@ On 2026-09-15, the next bounded batch checked the first ten missing Scholar entr
 General web search and existing local records established nine clear matches, which were added below.
 For Adam Wierman, Aggelos Kiayias, and Cristina Conati, browser inspection also exposed the destination URLs of links on their personal pages.
 The remaining work used general tool calls and web search.
-The resulting dataset has 839 nonempty Scholar links and 799 blank Scholar cells across 1,638 Fellows.
+At completion, the ACM Fellows dataset contained 839 nonempty Scholar links and 799 blank Scholar cells across 1,638 Fellows.
 No crawlers were run, caches refreshed, or Scholar metrics retrieved; the visualization was left unchanged for later regeneration.
 
-| ACM Fellow | Added Scholar Profile | Source And Identity Evidence |
+| ACM Fellow | Added Scholar Profile | Source and Identity Evidence |
 | --- | --- | --- |
 | Adam Wierman | [Scholar](https://scholar.google.com/citations?user=4OvOdSgAAAAJ) | [Source](https://adamwierman.com/research/): Personal research page links directly to Scholar; Caltech sustainable computing researcher. |
 | Aggelos Kiayias | [Scholar](https://scholar.google.com/citations?user=P_L_vZAAAAAJ) | [Source](https://kiayias.com/Aggelos_Kiayias/Home_of_Aggelos_Kiayias.html): Personal page links directly to Scholar; Edinburgh cryptography researcher. |
@@ -1156,14 +1261,14 @@ No crawlers were run, caches refreshed, or Scholar metrics retrieved; the visual
 | Baoquan Chen | [Scholar](https://scholar.google.com/citations?user=iHWtrEAAAAAJ) | [Source](https://baoquanchen.info/): Personal page identifies the Peking University graphics researcher and ACM Fellow; exact ID comes from existing CSRankings records with matching affiliation and ORCID. |
 | Cristina Conati | [Scholar](https://scholar.google.com/citations?user=Ytp9oFQAAAAJ) | [Source](https://www.cs.ubc.ca/~conati/publications.php): UBC personal publications page links directly to this Scholar profile. |
 
-Athina Markopoulou remains blank because this batch did not confidently resolve the exact Scholar URL; this does not imply that she has no profile.
+Athina Markopoulou's cell was left blank because this batch did not confidently resolve the exact Scholar URL; this does not imply that she has no profile.
 
 ## 2026-09-15 - Google Scholar Links: First Web Search Batch
 
 On 2026-09-15, general web search identified six strong profile matches in a random sample of ten Fellows with blank Scholar cells (sample seed `13599039689330591045`).
 The six links below were added, bringing the dataset to 830 nonempty Scholar links and 808 blank Scholar cells across 1,638 Fellows.
 Matching used the linked web sources and corroborating existing local records; no crawlers were run or caches refreshed.
-The new profile contents were not retrieved or audited, and citation metrics remain unavailable for these six profiles in the existing export.
+The new profile contents were not retrieved or audited, and citation metrics were unavailable for these six profiles in the export used for this batch.
 The citation visualization was regenerated using the existing data.
 
 | ACM Fellow | Added Scholar Profile | Supporting Source |
@@ -1176,7 +1281,7 @@ The citation visualization was regenerated using the existing data.
 | Claudio T. Silva | [Scholar](https://scholar.google.com/citations?user=YIwiAAsAAAAJ) | [Personal CV](https://ctsilva.github.io/cv/) |
 
 No confident profile match was found for the other four sampled Fellows: Jack Dennis, Maurice V. Wilkes, Ambuj Goyal, and John B Goodenough.
-Their Scholar cells remain blank; unsuccessful searches do not establish that profiles do not exist.
+Their Scholar cells were left blank in this batch; unsuccessful searches do not establish that profiles do not exist.
 
 ## 2026-09-15 - Google Scholar Profile Reconciliation
 
@@ -1195,7 +1300,9 @@ In particular, Alan Newell remains Alan Newell; his former Scholar link pointed 
 
 ### 2026-09-15 - Removed Scholar Links
 
-The former URLs and identity conflicts are retained below so subsequent exports or enrichment do not reintroduce them.
+The former URLs and identity conflicts are retained below so subsequent exports or enrichment do not reassign the rejected IDs to the same Fellows.
+Each exclusion applies to the named ACM Fellow; a URL may still be valid for a different person.
+Later enrichment batches supplied reviewed replacements for some of these Fellows, while preserving this record of the rejected links.
 
 | ACM Fellow | Former Scholar Profile | Cached Identity Conflict |
 | --- | --- | --- |
@@ -1231,14 +1338,18 @@ The former URLs and identity conflicts are retained below so subsequent exports 
 
 ### 2026-09-15 - Outstanding Review Candidates
 
-Roy Levin, Prithviraj Banerjee, and Robin Williams remain suspected wrong-person links; the cached evidence was insufficient for a confident correction, so their links were retained.
-Manish Gupta, John C. Mitchell, Guang Gao, Ahmed Sameh, and David S Johnson have likely mixed or misattributed publication lists; their citation metrics were retained pending further review.
-Gautam Das, Mikhail Atallah, and Kai Li have lower-confidence publication outliers that may instead reflect valid collaborations.
-The local CSRankings joins for Hui Zhang and C.L. Liu identify other people and must not be used to fill replacement Scholar URLs automatically.
-The existing name matcher accepts 28 of the 29 removed links; matching names or successful fetch status alone does not establish identity.
-## 2026-09-13 - Turing Award Reconciliation And Profile Crawl
+This subsection records unresolved identity suspicions and publication-list concerns from the cache-only review.
+The later web-search resolution entries do not document decisions for these cases.
 
-The dataset enumerates 81 recipients across award years 1966–2025, all with verified ACM recipient URLs.
+Roy Levin, Prithviraj Banerjee, and Robin Williams were flagged as suspected wrong-person links; the cached evidence was insufficient for a confident correction, so their links were retained.
+Manish Gupta, John C. Mitchell, Guang Gao, Ahmed Sameh, and David S Johnson were flagged for likely mixed or misattributed publication lists; their citation metrics were retained pending further review.
+Gautam Das, Mikhail Atallah, and Kai Li had lower-confidence publication outliers that might instead reflect valid collaborations.
+The local CSRankings joins for Hui Zhang and C.L. Liu identify other people and must not be used to fill replacement Scholar URLs automatically.
+The name matcher used in this review accepted 28 of the 29 removed links; matching names or successful fetch status alone does not establish identity.
+
+## 2026-09-13 - Turing Award Reconciliation and Profile Crawl
+
+At the time of reconciliation, `data/turing_award_winners.csv` enumerated 81 recipients across award years 1966–2025, all with verified ACM recipient URLs.
 [PR #47](https://github.com/lintool/cs-big-cows/pull/47) reconciled the recipients and award years with ACM and [Wikipedia revision 1373210156](https://en.wikipedia.org/w/index.php?title=Turing_Award&oldid=1373210156), corrected citation text, and completed profile-link coverage.
 Official-source and Wikipedia citation discrepancies are recorded in [issue #46](https://github.com/lintool/cs-big-cows/issues/46).
 
@@ -1259,7 +1370,7 @@ They share the cache directory and date with the Fellows crawl but use a separat
 The crawl snapshot predates the Kahan punctuation correction in [PR #48](https://github.com/lintool/cs-big-cows/pull/48); use read-only comparison for the current CSV and the original snapshot when resuming the retained crawl.
 
 The original completion report flagged seven profiles.
-After the Kahan correction, comparison with the current CSV has six citation differences, ten exact name differences, and one location difference, with no name-compatibility or year mismatches.
+After the Kahan correction, comparison with the post-PR #48 CSV found six citation differences, ten exact name differences, and one location difference, with no name-compatibility or year mismatches.
 Preserve the reviewed differences:
 
 - Bennett and Brassard: retain the 2025 citation supported by ACM's [announcement](https://www.acm.org/media-center/2026/march/turing-award-2025).
@@ -1275,7 +1386,7 @@ A fresh capture is evidence for review, not an instruction to overwrite better c
 ## 2026-09-13 - ACM Fellows Profile Crawl Review
 
 The Safari/AppleScript recrawl completed at `2026-09-13T19:53:05Z`, as documented in [PR #43](https://github.com/lintool/cs-big-cows/pull/43).
-All 1,627 supplied URLs have cached HTML and status `ok`, with no remaining fetch failures or duplicate HTML captures.
+At crawl completion, all 1,627 supplied ACM profile URLs had cached HTML and status `ok`, with no remaining fetch failures or duplicate HTML captures.
 The crawler itself did not edit the CSV.
 
 Local artifacts are under `../bigcows-crawler/.cache/`, with the crawl start date as a suffix:
@@ -1289,7 +1400,8 @@ Local artifacts are under `../bigcows-crawler/.cache/`, with the crawl start dat
 These files are Git-ignored and available only in the local checkout.
 The five original artifacts were renamed without changing their contents, and a manifest was added using the original input snapshot.
 Paths embedded in historical logs may refer to the former directory layout.
-The April profile cache, its report and directory scan, and obsolete browser experiments have been removed.
+The April ACM profile cache, its report and directory scan, and obsolete browser experiments were removed.
+The April Scholar captures used in the [cache-only Scholar review](#2026-09-15---google-scholar-profile-reconciliation) were retained separately.
 Select `--crawl-date 2026-09-13` to use the retained crawl; there is no undated default.
 Use `compare_acm_fellow_profiles.py` for comparisons with the current CSV so the original completion records are retained.
 See [README_FOR_AGENTS.md](../README_FOR_AGENTS.md) for invocation and comparison guidance.
@@ -1308,7 +1420,7 @@ Preserve these deliberate differences from ACM:
 
 ## 2026-09-13 - ACM Fellows Reconciliation
 
-As reviewed on 2026-09-13, `data/acm_fellows.csv` is a best-effort enumeration of 1,638 Fellows across classes 1994–2025, with 1,627 nonempty ACM profile URLs and 11 blank profile cells.
+As reviewed on 2026-09-13, `data/acm_fellows.csv` was a best-effort enumeration of 1,638 Fellows across classes 1994–2025, with 1,627 nonempty ACM profile URLs and 11 blank ACM profile cells.
 
 [PR #42](https://github.com/lintool/cs-big-cows/pull/42) reconciled the dataset with [Wikipedia revision 1374489782](https://en.wikipedia.org/w/index.php?title=List_of_fellows_of_the_Association_for_Computing_Machinery&oldid=1374489782).
 After reviewing name variants and discrepancies, no confirmed missing Fellows or incorrect fellowship years remained.
@@ -1323,19 +1435,19 @@ No verified replacements were found.
 
 The affected people and their former profile URLs are recorded here for provenance:
 
-| Name | ACM Fellow profile URL | Status |
+| Name | Former ACM Profile URL | Recorded HTTP Status |
 | --- | --- | --- |
-| John D Gannon | https://awards.acm.org/award-recipients/gannon_1259480 | 404 |
-| J D Couger | https://awards.acm.org/award-recipients/couger_1081272 | 404 |
-| Raymond Reiter | https://awards.acm.org/award-recipients/reiter_1131614 | 404 |
-| Larry Stockmeyer | https://awards.acm.org/award-recipients/stockmeyer_1438050 | 404 |
-| Chris S Wallace | https://awards.acm.org/award-recipients/wallace_1058015 | 404 |
-| Harold J Highland | https://awards.acm.org/award-recipients/highland_1042530 | 404 |
-| Bob O Evans | https://awards.acm.org/award-recipients/evans_1002203 | 404 |
-| David John Wheeler | https://awards.acm.org/award-recipients/wheeler_1002054 | 404 |
-| J Presper Eckert | https://awards.acm.org/award-recipients/eckert_4037602 | 404 |
-| Peter Elias | https://awards.acm.org/award-recipients/elias_1192715 | 404 |
-| Roger M Needham | https://awards.acm.org/award-recipients/needham_1674183 | 404 |
+| John D Gannon | [Former ACM Profile](https://awards.acm.org/award-recipients/gannon_1259480) | 404 |
+| J D Couger | [Former ACM Profile](https://awards.acm.org/award-recipients/couger_1081272) | 404 |
+| Raymond Reiter | [Former ACM Profile](https://awards.acm.org/award-recipients/reiter_1131614) | 404 |
+| Larry Stockmeyer | [Former ACM Profile](https://awards.acm.org/award-recipients/stockmeyer_1438050) | 404 |
+| Chris S Wallace | [Former ACM Profile](https://awards.acm.org/award-recipients/wallace_1058015) | 404 |
+| Harold J Highland | [Former ACM Profile](https://awards.acm.org/award-recipients/highland_1042530) | 404 |
+| Bob O Evans | [Former ACM Profile](https://awards.acm.org/award-recipients/evans_1002203) | 404 |
+| David John Wheeler | [Former ACM Profile](https://awards.acm.org/award-recipients/wheeler_1002054) | 404 |
+| J Presper Eckert | [Former ACM Profile](https://awards.acm.org/award-recipients/eckert_4037602) | 404 |
+| Peter Elias | [Former ACM Profile](https://awards.acm.org/award-recipients/elias_1192715) | 404 |
+| Roger M Needham | [Former ACM Profile](https://awards.acm.org/award-recipients/needham_1674183) | 404 |
 
-No replacement URLs have been confirmed for these entries.
-Keep their profile cells blank until a valid replacement is verified; retain the ACM Fellow rows.
+No replacement ACM profile URLs had been confirmed at the end of this review.
+Keep their `acm_fellow_profile` cells blank until a valid replacement is verified; retain the ACM Fellow rows.
