@@ -2,7 +2,7 @@
 
 Follow [AGENTS.md](AGENTS.md) for documentation audiences.
 [README.md](README.md) is the human entry point; this file owns application maintenance workflows and constraints.
-Keep dataset provenance, reconciliation history, and deliberate source differences in [data_notes.md](data_notes.md).
+Keep dataset provenance, reconciliation history, and deliberate source differences in [Data Notes](docs/data_notes.md).
 
 This repository owns canonical data, application-specific joins, analysis, and visualization.
 All crawlers live in [bigcows-crawler](https://github.com/lintool/bigcows-crawler).
@@ -22,7 +22,7 @@ The CSRankings builder accepts `--cache-dir` if the shared shard cache is elsewh
 ### Review Existing ACM Captures
 
 Select the date of an available local crawl.
-The example date below is illustrative; [data_notes.md](data_notes.md) records each award's latest reviewed crawl and retained artifacts.
+The example date below is illustrative; [Data Notes](docs/data_notes.md) records each award's latest reviewed crawl and retained artifacts.
 These commands reparse HTML without fetching or changing crawl records:
 
 ```bash
@@ -92,7 +92,7 @@ The ACM crawlers never update canonical CSVs.
 Verify the person and award using the captured HTML, and inspect exact differences as well as name compatibility.
 Use successful captures as evidence; preserve existing values when source fields are blank, truncated, malformed, or otherwise less accurate.
 A recent fetch is not automatically more authoritative than the reviewed CSV.
-Follow the data conventions below and record dataset-specific decisions in [data_notes.md](data_notes.md).
+Follow the data conventions below and record dataset-specific decisions in [Data Notes](docs/data_notes.md).
 
 ## Data Layout
 
