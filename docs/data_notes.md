@@ -5,6 +5,69 @@ Timed headings use the work's completion time in `America/Toronto`, formatted as
 Historical entries retain date-only headings where a reliable completion time is unavailable.
 Filesystem paths are relative to the repository root unless stated otherwise.
 
+## 2026-09-15 17:47 EDT - User Resolution of Turing Award Scholar Candidates
+
+Applied the user's selections in `data/turing_award_winners.csv`.
+Updated John L Hennessy's Scholar URL from `WqUMGMsAAAAJ` to [tp07xT0AAAAJ](https://scholar.google.com/citations?user=tp07xT0AAAAJ).
+Added the approved [Shafi Goldwasser profile](https://scholar.google.com/citations?user=KA8dgpMAAAAJ) to her previously blank cell.
+Kept Herbert A Simon's Scholar cell blank as requested; the historical candidate `9d7rMrkAAAAJ` was never added to the CSV and is no longer pending review.
+
+These decisions resolve all three specific candidate cases from the preceding review without establishing whether Hennessy's old and new URLs redirect to the same profile.
+The 14 existing links without corroborating search evidence remain unchanged.
+The dataset now contains 81 winners, 44 distinct nonempty Scholar links, and 37 blank Scholar cells.
+Only Hennessy's and Goldwasser's Scholar cells changed in this follow-up; all other cells and row order were preserved.
+No searches, crawls, profile exports, cache updates, or visualization regeneration were performed.
+
+## 2026-09-15 17:23 EDT - Turing Award Scholar Search Review
+
+Reviewed all 81 rows of `data/turing_award_winners.csv`, checking the 37 existing Scholar links and searching for profiles for all 44 previously blank entries.
+Used 202 general web-search queries in 51 serial calls, with at most four queries per call and at least ten seconds between search calls.
+Follow-up searches used name variants, affiliations, exact Scholar IDs, and institutional sources where available.
+No direct profile requests, crawls, browser automation, or cached profile evidence were used.
+Search evidence associates a person with an ID; it does not verify current profile availability, redirect equivalence, account ownership, or the accuracy of every listed publication.
+
+Added seven previously missing links:
+
+| Winner | Added Scholar Profile | Indexed Evidence |
+| --- | --- | --- |
+| Charles H. Bennett | [mkjGmJEAAAAJ](https://scholar.google.com/citations?user=mkjGmJEAAAAJ) | [Source](https://www.wikidata.org/wiki/Q92931) |
+| Gilles Brassard | [Rh7_srgAAAAJ](https://scholar.google.com/citations?user=Rh7_srgAAAAJ) | [Source](https://www-labs.iro.umontreal.ca/~brassard/CV/Brassard-CV-May2024.pdf) |
+| Andrew Barto | [CMIgrCgAAAAJ](https://scholar.google.com/citations?user=CMIgrCgAAAAJ) | [Source](https://www.wikidata.org/wiki/Q4756294) |
+| Richard Sutton | [6m4wv6gAAAAJ](https://scholar.google.com/citations?user=6m4wv6gAAAAJ) | [Source](https://www.wikidata.org/wiki/Q7328833) |
+| Raj Reddy | [mYu2uuIAAAAJ](https://scholar.google.com/citations?user=mYu2uuIAAAAJ) | [Source](https://www.wikidata.org/wiki/Q92820) |
+| Stephen A Cook | [VGxPtzIAAAAJ](https://scholar.google.com/citations?user=VGxPtzIAAAAJ) | [Source](https://www.wikidata.org/wiki/Q62870) |
+| Dana S Scott | [oaja5KYAAAAJ](https://scholar.google.com/citations?user=oaja5KYAAAAJ) | [Source](https://www.wikidata.org/wiki/Q49823) |
+
+Brassard's institutional CV explicitly supplies his Scholar ID.
+The other additions rely on indexed secondary identity records, including explicit Scholar IDs on the matching Wikidata entities.
+Sutton's Wikidata record marks `hNTyptAAAAAJ` incorrect and identifies `6m4wv6gAAAAJ` as its replacement; the selected ID also appears in [Gabor Melli's Sutton entry](https://www.gabormelli.com/RKB/Richard_S._Sutton).
+These additions are supported identity matches, not live availability checks.
+
+Cleared Charles W Bachman's stored `SqR9pOYAAAAJ` link.
+The URL is explicitly listed by [Charles Bachmann at RIT](https://www.linkedin.com/in/charles-bachmann-77020a125), whose [institutional directory entry](https://www.rit.edu/dirs/directory/cmbpci-charles-bachmann) identifies an imaging scientist rather than the Turing Award database pioneer.
+No supported replacement was found.
+
+Of the 37 original links, 21 have indexed evidence associating the exact ID with the winner, 14 remain uncorroborated, one has an unresolved alternative ID, and one was removed as a wrong-person match.
+Retained the 14 uncorroborated links: Robert Melancton Metcalfe, Judea Pearl, E. Allen Emerson, Frederick Brooks, Jim Gray, Butler W Lampson, A J Milner, John E Hopcroft, Richard Karp, Kenneth Lane Thompson, Kenneth E. Iverson, Michael O. Rabin, J. H. Wilkinson, Marvin Minsky.
+Lack of search evidence alone is not grounds to clear them.
+
+Three specific cases remain for user review:
+
+| Winner | Stored Profile | Candidate | Reason for Holding |
+| --- | --- | --- | --- |
+| John L Hennessy | [WqUMGMsAAAAJ](https://scholar.google.com/citations?user=WqUMGMsAAAAJ) | [tp07xT0AAAAJ](https://scholar.google.com/citations?user=tp07xT0AAAAJ) | [CitationMap](https://citationmap.com/profile/tp07xT0AAAAJ) and an [indexed architecture overview](https://www.zhihu.com/en/article/674906758) associate the alternative with Stanford's John Hennessy; search did not corroborate the stored ID or establish whether the URLs redirect to the same profile. |
+| Shafi Goldwasser | Blank | [KA8dgpMAAAAJ](https://scholar.google.com/citations?user=KA8dgpMAAAAJ) | [CitationMap](https://citationmap.com/profile/KA8dgpMAAAAJ) associates this ID with Berkeley's Shafi Goldwasser, but no independent explicit-ID confirmation was found. |
+| Herbert A Simon | Blank | [9d7rMrkAAAAJ](https://scholar.google.com/citations?user=9d7rMrkAAAAJ) | [Wikidata](https://www.wikidata.org/wiki/Q181529) supports the historical identity, but an [indexed biography mirror](https://everything.explained.today/Herbert_A._Simon/) labels the link dead; current availability remains unresolved. |
+
+The remaining 35 previously blank entries had no sufficiently supported candidate after follow-up searches.
+Together with the two held blank candidates and Bachman's cleared cell, 38 entries are now blank.
+The dataset now contains 81 winners and 43 distinct nonempty Scholar links, up from 37.
+Only eight Scholar cells changed; all names, other cell values, and row order were preserved.
+Validated row count, schema, the exact cell-change set, URL format and uniqueness, and Unix LF line endings.
+No crawler code, profile exports, caches, or visualizations were changed.
+Local scratch files `tmp/turing-scholar-audit-2026-09-15.json`, `tmp/turing-scholar-search-complete-2026-09-15.json`, and `tmp/turing-scholar-search-final-batches-2026-09-15.json` retain per-winner outcomes and the search log; these are not committed artifacts.
+
+
 ## 2026-09-15 17:05 EDT - Restore Name Ordering after H. T. Kung Correction
 
 Moved H. T. Kung immediately ahead of Haibo Chen in the 2023 class to restore the name ordering affected by the earlier formatting correction.
