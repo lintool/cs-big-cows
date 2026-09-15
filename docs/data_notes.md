@@ -5,7 +5,7 @@ Timed headings use the work's completion time in `America/Toronto`, formatted as
 Historical entries retain date-only headings where a reliable completion time is unavailable.
 Filesystem paths are relative to the repository root unless stated otherwise.
 
-## 2026-09-15 16:37 EDT - Final User Resolution Of Scholar Link Conflicts
+## 2026-09-15 16:37 EDT - Final User Resolution of Scholar Link Conflicts
 
 The user resolved the five remaining conflicting-ID cases through browser checks.
 For Dan Roth, Yossi Matias, Ming Li, and Giovanni De Micheli, the user reported that both candidate URLs reach the same profile.
@@ -17,7 +17,7 @@ This does not independently verify the 626 links without corroborating search ev
 Only Ming Li's Scholar cell changed in this batch; the dataset retains 1,638 Fellows, 1,283 distinct nonempty Scholar links, and 355 blank Scholar cells.
 No new crawls or automated profile fetches were performed, and no exports, caches, or visualizations were regenerated.
 
-## 2026-09-15 16:34 EDT - User-Confirmed Scholar Profiles And Resolved Link Conflicts
+## 2026-09-15 16:34 EDT - User-Confirmed Scholar Profiles and Resolved Link Conflicts
 
 The user checked the candidate Scholar profiles and confirmed [Jian Ma](https://scholar.google.com/citations?user=nDw9v78AAAAJ) and [David Lo](https://scholar.google.com/citations?user=Ra4bt-oAAAAJ).
 Added these two URLs to the previously cleared cells in `data/acm_fellows.csv`, resolving the pending replacements described below.
@@ -33,7 +33,7 @@ Five conflicting-ID cases remain unresolved: Dan Roth, Yossi Matias, Ming Li, Ma
 Their stored links remain unchanged.
 Only the two approved Scholar cells changed in this batch; all other CSV cells and row order were preserved, and no exports, caches, or visualizations were regenerated.
 
-## 2026-09-15 16:27 EDT - Name Corrections And Wrong-Person Scholar Link Removal
+## 2026-09-15 16:27 EDT - Name Corrections and Wrong-Person Scholar Link Removal
 
 Applied five approved cell corrections in `data/acm_fellows.csv` from the web-search-only review.
 Corrected `Ht Kung` to `H. T. Kung`, `Andrew K. Mccallum` to `Andrew K. McCallum`, and `Dianne Prost OLeary` to `Dianne Prost O'Leary`.
