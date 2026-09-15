@@ -133,6 +133,17 @@ name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
 Keep committed CSV files on Unix LF line endings.
 Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
 
+### Award CSV Sort Order
+
+Keep both `data/acm_fellows.csv` and `data/turing_award_winners.csv` sorted by numeric `year` descending, then by the full `name` field ascending using Python's `str.lower()` for case-insensitive comparison.
+Compare the full name as stored, starting with the given name; do not extract or sort by surname.
+Preserve spelling, capitalization, punctuation, and accents in the CSV cells; lowercasing is only part of the comparison key, with no other normalization or locale-specific collation.
+Use a stable sort so rows with equal keys keep their relative order:
+
+```python
+rows.sort(key=lambda row: (-int(row["year"]), row["name"].lower()))
+```
+
 ## ACM Fellows Directory
 
 The ACM Fellows directory is the source list for all ACM Fellows:
@@ -158,8 +169,7 @@ When adding directory-only rows to `data/acm_fellows.csv`, fill what is availabl
 - `acm_fellow_profile`: directory profile URL;
 - leave `citation`, `dblp_profile`, and `google_scholar_profile` blank if unavailable.
 
-Keep `data/acm_fellows.csv` sorted by `year` descending, then `name` ascending.
-Most recent Fellows should appear first.
+Apply the [award CSV sort order](#award-csv-sort-order) after adding or renaming Fellows.
 
 The profile crawler consumes existing URLs; it does not discover Fellows from this directory.
 Inspect the directory separately in regular Safari if direct HTTP requests are blocked, and keep any directory scan reports under `../bigcows-crawler/.cache/`, for example:
@@ -284,7 +294,7 @@ The generator:
 - reads `data/acm_fellows.csv`;
 - joins Scholar rows from `data/google_scholar_profiles.csv` by `google_scholar_profile`;
 - embeds the joined data directly in the output HTML;
-- sorts rows by ACM Fellows `year` descending, then `name` ascending;
+- sorts rows by ACM Fellows `year` descending, then by the full `name` using the same case-insensitive comparison as the [award CSV sort order](#award-csv-sort-order);
 - renders one row per ACM Fellow;
 - hides rows without Scholar citation-by-year data by default;
 - provides a `Show missing Scholar data` checkbox and author search box;
