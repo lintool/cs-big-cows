@@ -5,6 +5,52 @@ Timed headings use the work's completion time in `America/Toronto`, formatted as
 Historical entries retain date-only headings where a reliable completion time is unavailable.
 Filesystem paths are relative to the repository root unless stated otherwise.
 
+## 2026-09-15 16:37 EDT - Final User Resolution Of Scholar Link Conflicts
+
+The user resolved the five remaining conflicting-ID cases through browser checks.
+For Dan Roth, Yossi Matias, Ming Li, and Giovanni De Micheli, the user reported that both candidate URLs reach the same profile.
+Retained the user-selected URLs for [Dan Roth](https://scholar.google.com/citations?user=E-bpPWgAAAAJ), [Yossi Matias](https://scholar.google.com/citations?user=IwSe1-MAAAAJ), [Mark D. Hill](https://scholar.google.com/citations?user=7lVfIWYAAAAJ), and [Giovanni De Micheli](https://scholar.google.com/citations?user=7SUnVDsAAAAJ).
+Updated Ming Li's URL from `oGgPXFEAAAAJ` to the user-selected [j1xcTB4AAAAJ](https://scholar.google.com/citations?user=j1xcTB4AAAAJ); this records the selected equivalent URL rather than a wrong-person correction.
+
+All specific identity, conflicting-ID, and availability cases raised for user review are now resolved.
+This does not independently verify the 626 links without corroborating search evidence or establish that profiles do not exist for the 355 blank entries.
+Only Ming Li's Scholar cell changed in this batch; the dataset retains 1,638 Fellows, 1,283 distinct nonempty Scholar links, and 355 blank Scholar cells.
+No new crawls or automated profile fetches were performed, and no exports, caches, or visualizations were regenerated.
+
+## 2026-09-15 16:34 EDT - User-Confirmed Scholar Profiles And Resolved Link Conflicts
+
+The user checked the candidate Scholar profiles and confirmed [Jian Ma](https://scholar.google.com/citations?user=nDw9v78AAAAJ) and [David Lo](https://scholar.google.com/citations?user=Ra4bt-oAAAAJ).
+Added these two URLs to the previously cleared cells in `data/acm_fellows.csv`, resolving the pending replacements described below.
+The dataset now contains 1,283 nonempty Scholar links and 355 blank Scholar cells across 1,638 Fellows.
+
+Retained the stored [C.-C. Jay Kuo profile](https://scholar.google.com/citations?user=81d60okAAAAJ), which the user confirmed resolves correctly.
+Retained [XiaoFeng Wang's stored URL](https://scholar.google.com/citations?user=pONu-5EAAAAJ); the user confirmed that the alternative ending in lowercase `j` redirects to the same profile.
+Retained the user-selected [David Z. Pan profile](https://scholar.google.com/citations?user=3aLlroEAAAAJ) and [Tandy Warnow profile](https://scholar.google.com/citations?user=BYZtDXEAAAAJ), which already matched the CSV.
+Also recorded the user's earlier confirmation that the stored [Madhav Marathe](https://scholar.google.com/citations?user=diIore8AAAAJ) and [Michael Littman](https://scholar.google.com/citations?user=iRMZ2hoAAAAJ) links are correct and should be retained.
+These resolutions rely on the user's checks; no new crawls or automated profile fetches were performed.
+
+Five conflicting-ID cases remain unresolved: Dan Roth, Yossi Matias, Ming Li, Mark D. Hill, and Giovanni De Micheli.
+Their stored links remain unchanged.
+Only the two approved Scholar cells changed in this batch; all other CSV cells and row order were preserved, and no exports, caches, or visualizations were regenerated.
+
+## 2026-09-15 16:27 EDT - Name Corrections And Wrong-Person Scholar Link Removal
+
+Applied five approved cell corrections in `data/acm_fellows.csv` from the web-search-only review.
+Corrected `Ht Kung` to `H. T. Kung`, `Andrew K. Mccallum` to `Andrew K. McCallum`, and `Dianne Prost OLeary` to `Dianne Prost O'Leary`.
+Supporting name evidence is available in the [H. T. Kung biography](https://handwiki.org/wiki/Biography%3AH._T._Kung), [UMass McCallum page](https://cssi.cs.umass.edu/people/andrew-mccallum), and [O'Leary's Maryland homepage](https://www.cs.umd.edu/~oleary/).
+
+Cleared Jian Ma's Scholar URL with ID `kDZcBhkAAAAJ`, which belongs to plant scientist Jian Feng Ma, as identified in the [JSPS grant document](https://www.jsps.go.jp/file/storage/kaken_12_g_4805/r_8_en_26k21758.pdf).
+The ACM Fellow is the [CMU computational biologist Jian Ma](https://www.cmu.edu/computational-cancer/faculty/ma_jian.html).
+Candidate replacement [nDw9v78AAAAJ](https://scholar.google.com/citations?user=nDw9v78AAAAJ) is supported by his [indexed biography](https://en.wikipedia.org/wiki/Jian_Ma_%28computational_biologist%29), but remains unassigned pending primary-source confirmation.
+
+Cleared David Lo's Scholar URL with ID `IFg0H1wAAAAJ`, associated with the [UC Riverside medical researcher David D. Lo](https://www.linkedin.com/in/david-d-lo-b7443273).
+The ACM Fellow is the [SMU computer scientist David Lo](https://news.smu.edu.sg/sites/news.smu.edu.sg/files/smu/news_room/SMU%20Media%20Release_SMU%20Faculty%20David%20Lo%20achieves%20ACM%20Fellowship%2005Feb2024.pdf).
+Candidate replacement [Ra4bt-oAAAAJ](https://scholar.google.com/citations?user=Ra4bt-oAAAAJ) is supported by a [matching secondary listing](https://www.newx.sg/scholar/Ra4bt-oAAAAJ), but remains unassigned pending primary-source confirmation.
+
+The dataset now contains 1,281 nonempty Scholar links and 357 blank Scholar cells across 1,638 Fellows.
+All other CSV cells and row order were preserved, including the unresolved Madhav Marathe and Michael Littman links.
+No new crawls were performed, and no profile exports, caches, or visualizations were regenerated.
+
 ## 2026-09-15 13:49 EDT - Google Scholar Links: Review Of All Remaining Missing Entries
 
 This review searched all 522 entries whose Scholar field was blank at the start, including unresolved entries from previous batches.
