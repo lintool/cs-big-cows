@@ -5,6 +5,13 @@ Timed headings use the work's completion time in `America/Toronto`, formatted as
 Historical entries retain date-only headings where a reliable completion time is unavailable.
 Filesystem paths are relative to the repository root unless stated otherwise.
 
+## 2026-09-15 17:05 EDT - Restore Name Ordering after H. T. Kung Correction
+
+Moved H. T. Kung immediately ahead of Haibo Chen in the 2023 class to restore the name ordering affected by the earlier formatting correction.
+This follow-up to [PR #53 review](https://github.com/lintool/cs-big-cows/pull/53#discussion_r4020136622) changes only the two rows' relative positions; all CSV cell values are preserved.
+Earlier entries' row-order preservation statements describe those batches before this follow-up.
+No crawls, cache updates, profile exports, or visualization regeneration were performed.
+
 ## 2026-09-15 16:37 EDT - Final User Resolution of Scholar Link Conflicts
 
 The user resolved the five remaining conflicting-ID cases through browser checks.
