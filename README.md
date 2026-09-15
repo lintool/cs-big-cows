@@ -11,7 +11,7 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 - [CSRankings profiles](data/csrankings_profiles.csv): faculty rows that align to known DBLP profiles.
 
 The CSVs are ready to download or use from a clone.
-See [data_notes.md](data_notes.md) for provenance, reconciliation history, and known source differences.
+See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and known source differences.
 
 ## Visualization
 
