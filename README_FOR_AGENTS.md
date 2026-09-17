@@ -283,45 +283,65 @@ Use the repo-local skill `skills/analyze-acm-fellows` when asked about ACM Fello
 
 ## Google Scholar Citation Visualization
 
-`scripts/build_scholar_citation_visualization.py` regenerates the static ACM Fellow citation timeline:
+The static timeline separates presentation, rendering and generated data:
 
-```text
-docs/scholar_citations.html
-```
+- `docs/scholar_citations.html` owns the page structure and styles.
+- `docs/scholar_visualization.js` owns filtering and rendering.
+- `docs/scholar_data.js` assigns the joined dataset to `window.SCHOLAR_DATA`.
 
-The generator:
+The HTML loads both local files as classic scripts, with the data script first.
+It works on static hosting and when opened directly from disk; no fetch, module loader or backend is required.
+D3 v7 still loads from a CDN, so network access to the CDN is needed.
+Keep all three local files together when copying or publishing the visualization.
 
-- reads `data/acm_fellows.csv`;
-- joins Scholar rows from `data/google_scholar_profiles.csv` by `google_scholar_profile`;
-- embeds the joined data directly in the output HTML;
-- sorts rows by ACM Fellows `year` descending, then by the full `name` using the same case-insensitive comparison as the [award CSV sort order](#award-csv-sort-order);
-- renders one row per ACM Fellow;
-- hides rows without Scholar citation-by-year data by default;
-- provides a `Show missing Scholar data` checkbox and author search box;
-- shows citations and h-index as separate right-aligned columns;
-- renders per-author citation-by-year bars with the most recent year at the right edge.
-
-Regenerate the visualization after changing ACM Fellow rows or Scholar citation fields:
+Despite its retained command name, `scripts/build_scholar_citation_visualization.py` now generates only the data script:
 
 ```bash
 python scripts/build_scholar_citation_visualization.py
 ```
 
-Use custom paths only for testing:
+The generator reads `data/acm_fellows.csv`, joins `data/google_scholar_profiles.csv` by Scholar URL, and writes `docs/scholar_data.js` without touching HTML, rendering code or canonical CSVs.
+It preserves the [award CSV sort order](#award-csv-sort-order).
+The data object contains `schemaVersion`, `generatedAt` (UTC), `metadata` and `rows`.
+Each row includes Fellow identity, profile URLs, citations, h-index, yearly citation counts, missing-data status and `crawlDate` from the source Scholar record.
+Generation time does not represent crawl freshness.
+Unavailable metrics and crawl dates stay `null`, and missing citation histories stay empty objects.
+`hasScholar` indicates a joined row with citation-by-year data, not merely the presence of a profile URL.
+Do not hand-edit the generated data file.
+
+Use a scratch output to inspect current CSV joins without updating the displayed snapshot:
 
 ```bash
-python scripts/build_scholar_citation_visualization.py --acm path/to/acm_fellows.csv --scholar path/to/google_scholar_profiles.csv --output path/to/scholar_citations.html
+python scripts/build_scholar_citation_visualization.py --output tmp/scholar_data.js
 ```
 
-Compile-check the script:
+Custom input and output paths are supported:
+
+```bash
+python scripts/build_scholar_citation_visualization.py --acm path/to/acm_fellows.csv --scholar path/to/google_scholar_profiles.csv --output tmp/scholar_data.js
+```
+
+`--output` now names a JavaScript data file, not an HTML page.
+Generate data only when the underlying dataset refresh is ready to be reflected in the visualization.
+Presentation changes do not require rebuilding data.
+The September 16 extraction preserved the previously displayed snapshot, and the subsequent full import refreshed all 1,250 accepted ACM profiles.
+See [Data Notes](docs/data_notes.md) for capture dates, missing profiles, retained Turing-only records and known attribution concerns.
+
+The renderer keeps one row per ACM Fellow, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
+Citations and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
+A missing or unsupported data script produces a visible error instead of an empty page.
+
+Compile-check Python and syntax-check both scripts:
 
 ```bash
 python -m py_compile scripts/build_scholar_citation_visualization.py
+node --check docs/scholar_data.js
+node --check docs/scholar_visualization.js
 ```
 
-The generated HTML is pure static HTML with embedded data, but it loads D3 v7 from a CDN.
-Opening the file directly in a browser is enough for local inspection when network access to the CDN is available.
-Commit the regenerated HTML when the source data or generator changes.
+After changing data, verify the generated row counts, missing-data semantics and actual crawl dates, then inspect the page directly from disk.
+After changing rendering, check author search, the missing-data toggle and the empty-result state.
+Commit the generated data file when refreshing its source data; include HTML and rendering code only when those change.
 
 ## Git Hygiene
 

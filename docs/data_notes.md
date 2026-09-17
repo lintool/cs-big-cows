@@ -17,6 +17,216 @@ The [18:22 EDT sorting entry](#2026-09-15-1822-edt---consistent-award-csv-sort-o
 The [13:49 EDT review](#2026-09-15-1349-edt---google-scholar-links-review-of-all-remaining-missing-entries) records follow-up outcomes for every ACM Fellow whose Scholar cell was still blank after the eight enrichment batches.
 Earlier [cache-only review candidates](#2026-09-15---outstanding-review-candidates) are recorded separately from the later web-search reviews.
 
+
+
+
+
+
+
+
+
+## 2026-09-16 21:21 EDT - Import All Reviewed Fresh ACM Scholar Statistics
+
+Imported the complete 1,250-profile fresh, identity-reviewed export into `data/google_scholar_profiles.csv` and regenerated `docs/scholar_data.js`.
+Verified every field of all 1,250 imported records against its successful full-HTML capture, including the capture hash from the per-Fellow audit.
+Replaced 831 existing ACM-linked records with the reviewed export and added 419 previously absent records.
+Removed 31 obsolete metrics records referenced by neither the current ACM Fellows nor Turing Award datasets.
+Retained eight Turing-only records unchanged at their original April 30 crawl date because they were outside the ACM crawl; they are not used as fallback data for any ACM Fellow.
+The canonical metrics CSV now has 1,258 unique rows: 1,250 fresh ACM profiles and eight historical Turing-only profiles.
+
+The imported captures are dated September 16, 2026 for 1,222 profiles and September 17 UTC for 28 profiles captured during the September 16 Toronto evening.
+Preserved actual crawl dates instead of replacing them with the import or generation timestamp.
+The visualization now displays all 1,250 accepted profiles with fresh statistics, up from 820 in the preceding snapshot.
+All 1,638 Fellows remain available, with the 388 blank Scholar fields represented as missing data and null metrics.
+The reviewed wrong-person removals and accepted replacement links now feed the displayed data.
+The 11 previously recorded publication-attribution concerns remain; imported values reflect Scholar’s reported totals without attempted paper-level corrections.
+
+Verified all citation totals, h-index values, yearly counts and crawl dates in the generated JavaScript against the reviewed export.
+Verified the ACM roster, Turing roster, other canonical CSVs, HTML and rendering script byte-for-byte unchanged.
+Chrome loaded the page directly from disk and passed checks for fresh-profile counts, author search, accepted replacement links, cleared links and missing-data display, with no browser errors.
+The full fresh ACM metrics import and visualization data refresh are complete; earlier pending-import statements in the audit and extraction entries are historical.
+The [September 16 audit](acm_scholar_audit_2026-09-16.md) and its row CSV retain the audit-time metrics status as provenance.
+Import details, the removed and retained record lists, backups and validation results are in `tmp/scholar-full-import-2026-09-16/`.
+
+## 2026-09-16 21:09 EDT - Separate Scholar Visualization Data And Rendering
+
+Extracted the visualization’s complete existing dataset into `docs/scholar_data.js`, exposed as `window.SCHOLAR_DATA`, and moved rendering code into `docs/scholar_visualization.js`.
+The HTML loads these files as classic scripts so the page continues to work when opened directly from disk, without a backend or local server.
+D3 still loads from its existing CDN URL.
+The generator `scripts/build_scholar_citation_visualization.py` now writes only the JavaScript data file; it no longer regenerates presentation code.
+
+Preserved all 1,638 previously embedded rows, their values, their order and the existing metadata counts: 820 rows with displayed Scholar data and 818 without it.
+Added schema version 1, a generation timestamp, and per-record crawl dates recovered only when the snapshot’s citation total, h-index and yearly counts exactly matched a source CSV record.
+All 820 displayed metric records match the April 30, 2026 capture date; the new generation timestamp does not imply fresh citation statistics.
+This structural extraction does not import the newly reviewed crawl or update the displayed snapshot to the latest canonical CSVs.
+The pending full metrics refresh remains a separate step.
+
+Verified every canonical CSV byte-for-byte unchanged.
+Checked generator output against the current CSVs in a scratch file, preserving missing values, zero counts, sorting and source crawl dates.
+Verified JavaScript syntax and serialization, including Unicode, quotes and markup in source strings.
+A Chrome check using local file URLs confirmed identical rendered output before and after extraction for default, missing-data, author-search and empty-result states, with no browser errors.
+Also verified a visible error when the data file is missing.
+Updated the [visualization maintenance reference](../README_FOR_AGENTS.md#google-scholar-citation-visualization) to document the separate files and data-only rebuild command.
+
+## 2026-09-16 20:58 EDT - Full ACM Fellow Scholar Freshness And Identity Sweep
+
+Audited all 1,638 Fellows, including all 1,255 starting Scholar links and the 383 blank fields.
+All starting links had fresh successful September 16 captures, but the broader identity review found seven additional bad or mixed-person associations.
+Replaced Satish Rao and Manish Gupta with newly fetched, identity-verified profiles; cleared Carla Gomes, Roy Levin, Prithviraj Banerjee, Robin Williams and Ahmed Sameh because no verified replacement was found.
+Removed the five rejected associations present in the historical metrics CSV and added both fresh replacement records, leaving 870 canonical metrics rows.
+The Fellows CSV now has 1,250 distinct linked profiles with fresh captures and supported identities, and 388 blank Scholar fields.
+Recorded 11 publication-attribution concerns, including four checked against publication records, plus 24 DBLP identity-review candidates.
+The complete 1,250-row fresh-only metrics export is in `tmp/scholar-full-sweep-2026-09-16/fresh-accepted-google_scholar_profiles.csv`; the full canonical metrics import remains pending.
+See the [sweep report](acm_scholar_audit_2026-09-16.md) and [all-Fellows row audit](acm_scholar_audit_2026-09-16.csv) for findings, methods, coverage gaps and limitations.
+No historical fallback was retained for any newly rejected association.
+Preserved earlier manual decisions and verified all other canonical CSVs and the visualization unchanged.
+Visualization regeneration remains deferred at the user’s instruction.
+
+## 2026-09-16 20:49 EDT - Remove Unverified Historical Scholar Records
+
+The user clarified that this ACM Fellows refresh must not retain historical Scholar records as a fallback when no fresh profile can be verified.
+This supersedes the historical-record preservation policy in the preceding review entries.
+Removed the historical Guang R. Gao and John McCarthy records from `data/google_scholar_profiles.csv` because their profiles returned HTTP 404 and no fresh replacement was verified.
+Replaced the obsolete Andrew B. Kahng and Dinesh Manocha records with complete data from their verified replacement-profile captures, without copying historical metrics into the replacements.
+
+| Fellow | Action | Profile |
+| --- | --- | --- |
+| Guang Gao | Removed; no verified fresh replacement | `https://scholar.google.com/citations?user=KYj0CvEAAAAJ` |
+| John McCarthy | Removed; no verified fresh replacement | `https://scholar.google.com/citations?user=SuVID2wAAAAJ` |
+| Andrew B. Kahng | Replaced with fresh capture dated 2026-09-17 UTC | [Scholar](https://scholar.google.com/citations?user=zQ9GU2EAAAAJ) |
+| Dinesh Manocha | Replaced with fresh capture dated 2026-09-17 UTC | [Scholar](https://scholar.google.com/citations?user=Nqawxa0AAAAJ) |
+
+The Scholar CSV now contains 873 rows.
+All 871 unaffected records and their order are unchanged; profiles outside this fresh crawl were not classified as failed solely because they were not crawled.
+No failed HTTP 404 profile from this fresh crawl remains in the active Scholar CSV.
+The remaining full fresh-metrics import is still pending.
+At the user’s explicit instruction, did not update `docs/scholar_citations.html`; its bytes and all other CSVs were verified unchanged.
+Visualization regeneration is deferred until the end of the data work.
+
+## 2026-09-16 20:44 EDT - Resolve 45 Broken ACM Fellow Scholar Links
+
+Following the fresh-crawl review and the user’s decision to leave Laurie Hendren blank, searched the web for replacements for all 45 remaining HTTP 404 Scholar associations.
+Replaced 23 links after live HTTP 200 checks and identity review, and cleared 22 cells where no usable replacement could be verified.
+A cleared cell records an unresolved search outcome, not proof that the researcher has no Scholar profile.
+
+| Fellow | Outcome | Evidence |
+| --- | --- | --- |
+| Yan Solihin | [Replacement profile](https://scholar.google.com/citations?user=sUQFclgAAAAJ) | [Source](https://adscientificindex.com/scientist/mnassar-alyami/6156736/): Coauthor link; live profile matches UCF, computer architecture/security, cache partitioning and Bonsai Merkle Tree papers. |
+| Michal Feldman | [Replacement profile](https://scholar.google.com/citations?user=VpLQu7oAAAAJ) | [Source](https://www.mfeldman.sites.tau.ac.il/): Official homepage links this ID; live Tel Aviv profile and algorithmic game theory publications match. |
+| Dana Ron | [Replacement profile](https://scholar.google.com/citations?user=f5vfsVkAAAAJ) | [Source](https://adscientificindex.com/scientist/moti-medina/437488/): Coauthor link; live Tel Aviv profile matches property testing and learning publications. |
+| David Sankoff | [Replacement profile](https://scholar.google.com/citations?user=-4VIi-UAAAAJ) | [Source](https://adscientificindex.com/scientist/david-sankoff/641574/): Live Ottawa profile matches sequence comparison, genomics and applied probability. |
+| Kilian Weinberger | [Replacement profile](https://scholar.google.com/citations?user=8RVWMycAAAAJ) | [Source](https://www.cs.cornell.edu/~kilian/): Official homepage links this ID; live Cornell profile matches machine learning, DenseNet and metric learning. |
+| Vineet Bafna | [Replacement profile](https://scholar.google.com/citations?user=zr2I_WMAAAAJ) | [Source](https://scholar.google.com/citations?user=rfS5yTMAAAAJ): Linked from the newly verified Pavel Pevzner profile; live UCSD profile matches bioinformatics and cancer genomics. |
+| Alfons Kemper | [Replacement profile](https://scholar.google.com/citations?user=B8TzQFQAAAAJ) | [Source](https://adscientificindex.com/scientist/viktor-leis/1757880/): Coauthor link; live TUM profile matches HyPer and database systems publications. |
+| David M Mount | Blank | [Source](https://www.cs.umd.edu/~mount/): Official UMD pages still link the old 404 ID; no verified replacement found. |
+| Hong Mei | Blank | [Source](https://faculty.pku.edu.cn/meih/en/index.htm): Peking University page and general web search yielded no verified replacement; Research.com still links the old 404 ID. |
+| Yuguang Fang | [Replacement profile](https://scholar.google.com/citations?user=cs45mqMAAAAJ) | [Source](https://www.cs.cityu.edu.hk/~yugufang/): Official homepage links this ID; live CityU profile matches wireless networks and IoT. |
+| Glenn Ricart | Blank | [Source](https://en.wikipedia.org/wiki/Glenn_Ricart): General web and bibliography searches found no verified replacement; a Scholar publication-search link is not an author profile. |
+| Paola Inverardi | Blank | [Source](https://sisma2016.gov.it/wp-content/uploads/2021/05/CV-Inverardi.pdf): The alternate CV spelling x8XIRFgAAAAJ also returned HTTP 404; other leads did not establish a usable replacement. |
+| Ranjit Jhala | [Replacement profile](https://scholar.google.com/citations?user=lh6orZ0AAAAJ) | [Source](https://adscientificindex.com/scientist/ravi-chugh/1850740/): Coauthor link; live UC San Diego profile matches lazy abstraction, BLAST and software verification publications. |
+| Rosalind Wright Picard | [Replacement profile](https://scholar.google.com/citations?user=hH3DA2YAAAAJ) | [Source](https://adscientificindex.com/scientist/rosalind-picard/5275111/): Live MIT Media Lab profile matches affective computing and physiological sensing publications. |
+| Tajana Rosing | [Replacement profile](https://scholar.google.com/citations?user=DY_XcO4AAAAJ) | [Source](https://adscientificindex.com/scientist/raid-ayoub/1875230/): Coauthor link; live UCSD profile matches computer architecture, embedded systems and energy efficiency. |
+| Wei Wang | [Replacement profile](https://scholar.google.com/citations?user=08CVzE8AAAAJ) | [Source](https://scholar.google.com/citations?user=Q1mcglAAAAAJ): Haixun Wang coauthor link; live profile explicitly identifies UCLA's Leonard Kleinrock Professor and matches data mining. Rejected the ByteDance namesake 46Dd4v4AAAAJ. |
+| Salvatore J Stolfo | [Replacement profile](https://scholar.google.com/citations?user=iLXSMP8AAAAJ) | [Source](https://www.newx.sg/scholar/iLXSMP8AAAAJ): Web source and Angelos Keromytis coauthor link; live Columbia profile matches intrusion detection and security publications. |
+| Mario Gerla | Blank | [Source](https://dblp.org/pid/g/MarioGerla): General web and DBLP searches returned the old 404 Mario Gerla ID or unrelated namesakes; no verified replacement found. |
+| Vishal Misra | [Replacement profile](https://scholar.google.com/citations?user=IlCfRosAAAAJ) | [Source](https://scholar.google.com/citations?user=mncyWbcAAAAJ): Angelos Keromytis coauthor link; live networking profile matches TCP/AQM, RED and SOS publications. |
+| Daniel Jackson | Blank | [Source](https://www.csail.mit.edu/person/daniel-jackson): MIT identity confirmed; sources still link old PXY96lkAAAAJ. The earlier XYMFjxcAAAAJ candidate belongs to a Newcastle/Northumbria namesake. Another directory lead could not be retrieved; no live replacement verified. |
+| Cynthia Dwork | Blank | [Source](https://research.com/u/cynthia-dwork): Alternative pxeyQ_QAAAAJ also returned HTTP 404; other directory source still links old y2H5xmkAAAAJ. |
+| Nir N Shavit | Blank | [Source](https://shavitlab.csail.mit.edu/publications.html): Official lab publications page still links old f1NaDVgAAAAJ; no verified replacement found. |
+| Yuanyuan Zhou | [Replacement profile](https://scholar.google.com/citations?user=jJ_9TvEAAAAJ) | [Source](https://scholar.google.com/citations?user=JHwivywAAAAJ): Pei Cao coauthor link; live UCSD computer science profile matches systems reliability. Rejected the HKUST materials-science namesake found by web search. |
+| Andrew B. Kahng | [Replacement profile](https://scholar.google.com/citations?user=zQ9GU2EAAAAJ) | [Source](https://jacobsschool.ucsd.edu/people/profile/andrew-b-kahng): Official UCSD faculty page links this ID; live profile matches VLSI, EDA and physical design. |
+| Dean Tullsen | [Replacement profile](https://scholar.google.com/citations?user=h8wSTmMAAAAJ) | [Source](https://adscientificindex.com/scientist/parthasarathy-ranganathan/4378560/): Coauthor link; live UCSD profile matches simultaneous multithreading, McPAT and computer architecture. |
+| Pavel Pevzner | [Replacement profile](https://scholar.google.com/citations?user=rfS5yTMAAAAJ) | [Source](https://scholar.google.com/citations?user=ri4rEPMAAAAJ): Ron Shamir coauthor link; live UCSD profile matches SPAdes, genome assembly and bioinformatics. |
+| Chandramohan A Thekkath | Blank | [Source](https://research.com/u/chandramohan-a-thekkath): General web search and research directory still point to old B_uwswQAAAAJ; no verified replacement found. |
+| Dinesh Manocha | [Replacement profile](https://scholar.google.com/citations?user=Nqawxa0AAAAJ) | [Source](https://www.cs.umd.edu/people/dmanocha): Official UMD CS page links this ID; live profile matches robotics, collision detection and graphics. |
+| Gaetano Borriello | Blank | [Source](https://research.com/u/gaetano-borriello): General web, Wikipedia and research directory still point to old wUS-iRsAAAAJ; no verified replacement found. |
+| Jeffrey A Dean | Blank | [Source](https://www.adscientificindex.com/scientist/jeff-dean/4375582): General web, Wikidata and research directory still point to old NMS69lQAAAAJ; no verified replacement found. |
+| Shang-Hua Teng | [Replacement profile](https://scholar.google.com/citations?user=JknkZcQAAAAJ) | [Source](https://scholar.google.com/citations?user=APiItS4AAAAJ): Rob Schreiber coauthor link; live USC profile matches smoothed analysis, spectral sparsification and algorithms. |
+| Jitendra Malik | [Replacement profile](https://scholar.google.com/citations?user=aOklxsQAAAAJ) | [Source](https://www.adscientificindex.com/scientist/jitendra-malik/1734828): Live Berkeley EECS profile matches computer vision, normalized cuts and visual recognition publications. |
+| Lawrence C Paulson | Blank | [Source](https://research.com/u/lawrence-paulson): General web, Wikipedia and research directory still point to old Sv1hcjEAAAAJ; no verified replacement found. |
+| Perry Cook | Blank | [Source](https://www.cs.princeton.edu/~prc/): Princeton homepage has no replacement profile link; research directory still points to old ajVR5gEAAAAJ. |
+| Guang Gao | Blank | [Source](https://research.com/u/guang-r-gao): Research directory identifies the Delaware computer scientist but still points to old KYj0CvEAAAAJ; unrelated Guang/Guangwei Gao results rejected. |
+| Victor Vianu | Blank | [Source](https://research.com/u/victor-vianu): General web, Wikipedia and research directory still point to old CK_GLC8AAAAJ; no verified replacement found. |
+| Michael D Schroeder | Blank | [Source](https://adscientificindex.com/scientist/michael-d-schroeder/4387442/): Correct-person directory still links old mPzCK6EAAAAJ; German bioinformatics and other namesakes rejected. |
+| Ralf Steinmetz | Blank | [Source](https://research.com/u/ralf-steinmetz): Research directory and author bibliography still link old S8m0ZkkAAAAJ; additional coauthor directory leads could not be retrieved, so no replacement verified. |
+| Takeo Kanade | [Replacement profile](https://scholar.google.com/citations?user=askFPfcAAAAJ) | [Source](https://adscientificindex.com/scientist/laszlo-a-jeni/895439/): Coauthor link; live CMU profile matches Lucas-Kanade image registration, face detection and computer vision. |
+| Lori Clarke | Blank | [Source](https://adscientificindex.com/scientist/lori-clarke/1289549/): Both research directories still link old oFiuaXEAAAAJ; no verified replacement found. |
+| Vaughan Ronald Pratt | Blank | [Source](https://en.wikipedia.org/wiki/Vaughan_Pratt): General web and biography sources still point to old Zc7l_LcAAAAJ; no verified replacement found. |
+| Anthony I Wasserman | Blank | [Source](https://www.csauthors.net/anthony-i-wasserman/): Correct-person bibliography still links old 08Dlm8cAAAAJ; general web search yielded no verified replacement. |
+| Grady Booch | Blank | [Source](https://www.csauthors.net/grady-booch/): Correct-person bibliography still links old Y0iLlFoAAAAJ; general web search yielded no verified replacement. |
+| John McCarthy | Blank | [Source](https://www-formal.stanford.edu/jmc/biography.html): Stanford identity confirmed; general web and bibliography searches did not establish a live replacement for old SuVID2wAAAAJ. |
+| Peter J Denning | [Replacement profile](https://scholar.google.com/citations?user=-W3wvGkAAAAJ) | [Source](https://scholar.google.com/citations?user=23RPQBQAAAAJ): Walter Tichy coauthor link; live Naval Postgraduate School profile matches the working-set model and operating systems. |
+
+Rejected the ByteDance Wei Wang namesake, the HKUST materials-science Yuanyuan Zhou namesake, and unavailable alternative IDs for Paola Inverardi and Cynthia Dwork.
+The earlier wrong-person Daniel Jackson candidate remains rejected.
+Preserved all earlier manual decisions, including Laurie Hendren’s blank field and the accepted Peter Müller and James H. Morris profiles.
+No citation metrics were imported or re-dated; the existing Scholar metrics CSV and original crawl caches remain unchanged.
+Historical metrics for Andrew B. Kahng, Dinesh Manocha, Guang Gao, and John McCarthy remain stored under their original profile IDs and historical crawl dates.
+Updated only the 45 affected embedded visualization records and derived counts, preserving unrelated local changes.
+Validated exactly 45 Scholar-cell changes, stable row order, LF line endings, unique nonblank URLs, and unchanged other CSVs.
+The Fellows CSV retains 1,638 rows, with 1,255 nonblank Scholar URLs and 383 blanks.
+Detailed decisions, source captures, candidate HTML, backups and validation results are retained under `tmp/scholar-45-resolution/`.
+
+## 2026-09-16 20:28 EDT - User Resolution of Hendren and Morris Scholar Profiles
+
+The user directed that Laurie Hendren’s Scholar field remain blank and confirmed James H. Morris’s corrected profile.
+Cleared Laurie J Hendren’s existing broken `uouHKIkAAAAJ` link in `data/acm_fellows.csv`; did not adopt the sparse `e557wtEAAAAJ` candidate.
+Retained James H Morris’s [confirmed Scholar profile](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ).
+The user also confirmed Peter Müller’s [ETH Zurich profile](https://scholar.google.com/citations?user=ttxZRHEAAAAJ) earlier in this review; retained that correction.
+These decisions supersede the preceding pending profile-choice recommendations.
+No citation metrics were imported or changed.
+Updated Laurie Hendren’s embedded visualization record, preserving all other local changes.
+Validated exactly one CSV cell change, with all 1,638 Fellow rows retained; 1,277 Scholar links remain and 361 fields are blank.
+
+## 2026-09-16 20:14 EDT - Correct Seven Wrong-Person Scholar Links
+
+At the user’s request, performed general web searches for the seven wrong-person associations identified in the fresh-crawl review.
+Replaced three URLs after confirming the researcher’s identity and cleared the other four Scholar cells because no correct profile could be verified.
+Clearing means unresolved in this search, not proof that no profile exists.
+
+| Fellow | Outcome | Evidence |
+| --- | --- | --- |
+| Peter Müller | Replaced with [Scholar](https://scholar.google.com/citations?user=ttxZRHEAAAAJ) | [Source](https://research.com/u/peter-muller): Profile fetched successfully: ETH Zurich; program verification, formal methods; Viper and JML publications. Also linked as a coauthor in David Basin’s fresh capture. |
+| Zi Helen Huang | Replaced with [Scholar](https://scholar.google.com/citations?user=iAWMsgEAAAAJ) | [Source](https://about.uq.edu.au/experts/1230): Official UQ page links this exact ID; fetched profile identifies Zi (Helen) Huang, University of Queensland, with multimedia/search/database publications. |
+| Nisheeth Vishnoi | Cleared | [Source](https://cs.yale.edu/homes/vishnoi/Home.html): General web searches, Yale faculty/personal pages, DBLP, and an ApplyKite lead did not establish a correct Scholar profile. |
+| John Chi-Shing Lui | Cleared | [Source](https://www.cse.cuhk.edu.hk/~cslui/): General web searches and CUHK pages did not establish a correct Scholar profile; a Scholar publication-search link is not an author profile. |
+| Jack Davidson | Cleared | [Source](https://www.cs.virginia.edu/~jwd/): General web searches for Jack/Jack W. Davidson and Virginia faculty evidence did not establish a correct Scholar profile. |
+| Vicki Hanson | Cleared | [Source](https://vickihanson.org/research/): General web searches, personal research pages, and RIT evidence did not establish a correct Scholar profile. |
+| James H Morris | Replaced with [Scholar](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ) | [Source](https://www.wikidata.org/wiki/Q6135248): Web search identifies this ID; the captured profile matches CMU computer science and foundational string-matching/Andrew publications. Identity confirmed against https://www.cs.cmu.edu/~jhm/. Mixed-publication/aggregate-metrics caveat from the previous review remains. |
+
+The James Morris correction establishes the profile association only; its previously observed unrelated medical publication remains a caveat for a future metrics import.
+No Scholar citation rows or historical crawl artifacts were changed.
+Updated only the seven affected embedded records in `docs/scholar_citations.html` using the visualization generator’s data builder, preserving unrelated pre-existing visualization changes.
+Validated exactly seven `google_scholar_profile` cell changes, stable row order, LF line endings, and unchanged other CSVs.
+The Fellows CSV retains 1,638 rows, with 1,278 distinct nonblank Scholar links and 360 blanks.
+Search-source captures, verified Scholar HTML, backups, and the per-row change record are retained under `tmp/scholar-seven-corrections/`.
+
+## 2026-09-16 20:08 EDT - Fresh Scholar Crawl Exception Review
+
+Reviewed the September 16 Scholar crawl of all 1,282 nonblank URLs from the 1,638-row ACM Fellows dataset.
+The crawl ran from 14:20 to 18:45 EDT with 5–7 seconds between profiles and 120–150 seconds between 25-profile batches, retaining five successful pilot captures.
+It produced 1,236 successful pages and 46 HTTP 404 responses, with 24 automated name mismatches and no blocking.
+
+Reviewed all 70 exception rows against captured profile names, affiliations, sample publications, ACM citations, historical data, and selected primary identity sources.
+Accepted 17 mismatches as accents, transliterations, familiar names, or punctuation/name-part differences.
+Rejected seven associations: Peter Müller → Peter Mueller (Texas statistics), Zi Helen Huang → TZE-TA HUANG (oral surgery), Nisheeth Vishnoi → Gerry Che, John Chi-Shing Lui → John C. Neill, Jack Davidson → Jack Davison (NIH), Vicki Hanson → Vicki L. Hansen (planetary science), and James H Morris → Michael H Morris (entrepreneurship).
+These findings supersede earlier positive link evidence for those exact URLs; no canonical edits were applied in this review.
+
+All 46 error bodies explicitly report the requested URL as not found.
+Preserve the older exported metrics for Andrew B. Kahng, Dinesh Manocha, Guang Gao, and John McCarthy instead of replacing them with blanks or assigning a fresh crawl date.
+The other 1,212 successful name matches were not independently identity-audited.
+Excluding the seven wrong-person links leaves 1,229 successful captures eligible for a subsequent metrics review/update.
+
+Checked four alternative URLs from local DBLP captures.
+The alternative for Tajana Rosing also returned 404; the Daniel Jackson alternative belongs to a different researcher at Northumbria.
+The [Laurie Hendren candidate](https://scholar.google.com/citations?user=e557wtEAAAAJ) has publications matching [McGill records](https://www.sable.mcgill.ca/mclab/publications/) but unknown affiliation and sparse coverage.
+The [James Morris candidate](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ) matches the [CMU computer scientist](https://www.cs.cmu.edu/~jhm/) but includes an unrelated prostate-cancer publication, so its aggregate metrics require further review.
+Neither candidate was applied.
+
+The original cache, input snapshot, report, log, and raw export remain under `../bigcows-crawler/.cache/acm-fellows-scholar-2026-09-16/`.
+The local [row-by-row review](../tmp/scholar-crawl-review-2026-09-16/review.md), structured `review.json`, and four candidate captures are under `tmp/scholar-crawl-review-2026-09-16/`.
+All canonical CSVs and original crawl artifacts remain unchanged.
+
 ## 2026-09-15 18:22 EDT - Consistent Award CSV Sort Order
 
 Clarified the shared [award CSV sort order](../README_FOR_AGENTS.md#award-csv-sort-order): numeric award year descending, then the full stored name ascending using Python's `str.lower()` for case-insensitive comparison.
