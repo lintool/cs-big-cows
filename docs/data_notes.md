@@ -48,7 +48,7 @@ The full fresh ACM metrics import and visualization data refresh are complete; e
 The [September 16 audit](acm_scholar_audit_2026-09-16.md) and its row CSV retain the audit-time metrics status as provenance.
 Import details, the removed and retained record lists, backups and validation results are in `tmp/scholar-full-import-2026-09-16/`.
 
-## 2026-09-16 21:09 EDT - Separate Scholar Visualization Data And Rendering
+## 2026-09-16 21:09 EDT - Separate Scholar Visualization Data and Rendering
 
 Extracted the visualization’s complete existing dataset into `docs/scholar_data.js`, exposed as `window.SCHOLAR_DATA`, and moved rendering code into `docs/scholar_visualization.js`.
 The HTML loads these files as classic scripts so the page continues to work when opened directly from disk, without a backend or local server.
@@ -68,7 +68,7 @@ A Chrome check using local file URLs confirmed identical rendered output before 
 Also verified a visible error when the data file is missing.
 Updated the [visualization maintenance reference](../README_FOR_AGENTS.md#google-scholar-citation-visualization) to document the separate files and data-only rebuild command.
 
-## 2026-09-16 20:58 EDT - Full ACM Fellow Scholar Freshness And Identity Sweep
+## 2026-09-16 20:58 EDT - Full ACM Fellow Scholar Freshness and Identity Sweep
 
 Audited all 1,638 Fellows, including all 1,255 starting Scholar links and the 383 blank fields.
 All starting links had fresh successful September 16 captures, but the broader identity review found seven additional bad or mixed-person associations.
