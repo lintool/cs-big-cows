@@ -1,5 +1,13 @@
 # Repository Instructions
 
+## Crawl Artifact Storage
+
+Store all crawl captures and their input snapshots, manifests, state, reports, and logs under the sibling `bigcows-crawler/.cache/`, including custom runs and dry runs that write crawl artifacts.
+Use a distinct run directory there when isolation is needed.
+Crawl artifacts are retained evidence; the general rule to put disposable scratch files in `tmp/` does not apply to them.
+Keep canonical datasets and published review documentation in this repository.
+Before starting a crawl, read the [crawler workflow](README_FOR_AGENTS.md#crawlers) and the shared crawler's [authoritative instructions](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md).
+
 ## Documentation Audiences
 
 - README.md is for humans: project overview, setup, basic usage, and a few useful examples.

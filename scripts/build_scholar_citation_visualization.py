@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Generate the JavaScript dataset consumed by the ACM Fellow citation timeline."""
+"""Generate a JavaScript citation dataset for ACM Fellows or Turing Award winners."""
 
 from __future__ import annotations
 
@@ -13,16 +13,22 @@ from typing import Any
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ACM = APP_ROOT / "data" / "acm_fellows.csv"
+DEFAULT_TURING = APP_ROOT / "data" / "turing_award_winners.csv"
 DEFAULT_SCHOLAR = APP_ROOT / "data" / "google_scholar_profiles.csv"
 DEFAULT_OUTPUT = APP_ROOT / "docs" / "scholar_data.js"
+DEFAULT_TURING_OUTPUT = APP_ROOT / "docs" / "turing_scholar_data.js"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--acm", type=Path, default=DEFAULT_ACM, help="Path to data/acm_fellows.csv.")
+    parser.add_argument("--award", choices=("fellows", "turing"), default="fellows", help="Award roster to visualize (default: fellows).")
+    parser.add_argument("--roster", "--acm", dest="roster", type=Path, help="Override the selected award's input CSV (--acm is a legacy alias).")
     parser.add_argument("--scholar", type=Path, default=DEFAULT_SCHOLAR, help="Path to data/google_scholar_profiles.csv.")
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="JavaScript data output path (does not regenerate HTML).")
-    return parser.parse_args()
+    parser.add_argument("--output", type=Path, help="Override the award-specific JavaScript output path (does not regenerate HTML).")
+    args = parser.parse_args()
+    args.roster = args.roster or (DEFAULT_TURING if args.award == "turing" else DEFAULT_ACM)
+    args.output = args.output or (DEFAULT_TURING_OUTPUT if args.award == "turing" else DEFAULT_OUTPUT)
+    return args
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -35,7 +41,7 @@ def int_or_none(value: str) -> int | None:
     return int(value) if value else None
 
 
-def build_data(acm_rows: list[dict[str, str]], scholar_rows: list[dict[str, str]]) -> dict[str, Any]:
+def build_data(acm_rows: list[dict[str, str]], scholar_rows: list[dict[str, str]], award: str = "fellows") -> dict[str, Any]:
     scholar_by_profile = {row["profile"]: row for row in scholar_rows if row.get("profile")}
     rows: list[dict[str, Any]] = []
     years: set[int] = set()
@@ -72,6 +78,7 @@ def build_data(acm_rows: list[dict[str, str]], scholar_rows: list[dict[str, str]
         "schemaVersion": 1,
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "metadata": {
+            "award": award,
             "totalRows": len(rows),
             "joinedRows": sum(1 for row in rows if row["hasScholar"]),
             "missingRows": sum(1 for row in rows if not row["hasScholar"]),
@@ -95,7 +102,7 @@ def render_data_script(data: dict[str, Any]) -> str:
 
 def main() -> int:
     args = parse_args()
-    data = build_data(read_csv(args.acm), read_csv(args.scholar))
+    data = build_data(read_csv(args.roster), read_csv(args.scholar), args.award)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(render_data_script(data), encoding="utf-8")
     print(

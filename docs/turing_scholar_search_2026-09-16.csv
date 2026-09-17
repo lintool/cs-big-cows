@@ -1,0 +1,42 @@
+name,query,outcome,candidate_id,note,source
+Avi Wigderson,Avi Wigderson Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Tim Berners-Lee,Tim Berners Lee Google Scholar citations profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Martin Hellman,Martin Hellman Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Whitfield Diffie,Whitfield Diffie Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Michael Stonebraker,"Michael Stonebraker ""Google Scholar""",rejected_wrong_person,a1ngrCIAAAAJ,Research.com links to Samuel Madden; identity confirmed by the fresh ACM Fellows audit. Scholar web check returned 429.,https://research.com/u/michael-stonebraker
+Silvio Micali,"Silvio Micali ""Google Scholar""",rejected_conflicting_identity,gUEkPQEAAAAJ,"Lipmaa directory links to an ID assigned to Phillip Rogaway in CSRankings, so it is not supported for Micali. Top Italian Scientists links only to a generic Scholar search.",https://kodu.ut.ee/~lipmaa/cites/cites.php?data=crypto&place=USA.MIT
+Charles P. Thacker,"Charles Thacker ""Google Scholar""",no_verified_candidate,,No matching author profile verified in the general web search results.,
+Barbara Liskov,"Barbara Liskov ""Google Scholar""",no_verified_candidate,,No matching author profile verified in the general web search results.,
+E. Allen Emerson,"Allen Emerson ""Google Scholar""",no_verified_candidate,,No matching author profile verified in the general web search results.,
+Frances Allen,"Frances Allen ""Google Scholar""",rejected_namesake,,"Scholar-directory result concerns materials researcher Frances Allen, not the IBM compiler researcher.",https://adscientificindex.com/scientist/frances-allen/1733154/
+Peter Naur,"Peter Naur ""Google Scholar""",no_verified_candidate,,No matching author profile verified in the general web search results.,
+Robert E Kahn,"Robert Kahn ""Google Scholar""",no_verified_candidate,,No matching author profile verified in the general web search results.,
+Vinton Cerf,Vint Cerf scholar citations profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Alan Kay,Alan Kay Google Scholar profile,rejected_namesake,,Search returns Alan R. Kay in neuroscience and other namesakes; no matching computer-scientist Scholar profile verified.,https://samueli.ucla.edu/people/alan-kay/
+Leonard M. Adleman,Leonard Adleman Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Kristen Nygaard,Kristen Nygaard Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Ole-Johan Dahl,Ole Johan Dahl Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Andrew C Yao,Andrew Chi Chih Yao Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Amir Pnueli,Amir Pnueli Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Manuel Blum,Manuel Blum Google Scholar profile,rejected_namesake,,The prominently returned DBLP profile is Manuel Blum 0002; the matching CMU pages do not establish a verified Scholar URL.,https://www.csd.cmu.edu/people/faculty/manuel-blum
+Edward A Feigenbaum,Edward Feigenbaum Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Juris Hartmanis,Juris Hartmanis Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Richard E Stearns,Richard Stearns Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+A J Milner,Robin Milner Google Scholar profile,rejected_namesake,,Search returns historian Robin Milner-Gulland and coauthors; no matching new Robin Milner Scholar profile verified.,https://www.cl.cam.ac.uk/archive/rm135/
+Fernando Corbato,Fernando Corbato Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+William Kahan,William Kahan Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Ivan Sutherland,Ivan Sutherland Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+John Cocke,John Cocke Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Niklaus E. Wirth,Niklaus Wirth Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Edgar F. Codd,Edgar Codd Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+C. Antony R. Hoare,Tony Hoare Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Kenneth E. Iverson,Kenneth Iverson Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Robert W. Floyd,Robert W Floyd Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+John Backus,John Backus Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Herbert A. Simon,Herbert Simon Google Scholar profile,historical_only,9d7rMrkAAAAJ,Web search rediscovers the historical Wikidata candidate. Both this ID and tk2qT34AAAAJ returned 404 in the completed fresh crawl.,https://www.wikidata.org/wiki/Q181529
+Charles W Bachman,Charles Bachman Google Scholar profile,rejected_namesake,,"Search returns imaging researcher Charles Bachmann at RIT, not database pioneer Charles W. Bachman.",https://www.rit.edu/directory/cmbpci-charles-bachmann
+Edsger W. Dijkstra,Edsger Dijkstra Google Scholar profile,unverified_rate_limited,g875mLgAAAAJ,Research.com supplies a historical ID. Current web check returned 429; local April 30 capture returned 404. No fresh working profile verified.,https://research.com/u/edsger-w-dijkstra
+John McCarthy,John McCarthy Stanford Google Scholar profile,historical_only,SuVID2wAAAAJ,DBLP links to the previously rejected ID. Web tool returned a 1.6-year-old indexed page; September 16 live crawl returned 404. Historical content was not restored.,https://dblp.uni-trier.de/pid/m/JohnMcCarthy.html
+Richard W. Hamming,Richard Hamming Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+Maurice V. Wilkes,Maurice Wilkes Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,
+A. J. Perlis,Alan Perlis Google Scholar profile,no_verified_candidate,,No matching author profile verified in the general web search results.,

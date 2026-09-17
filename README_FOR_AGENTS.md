@@ -283,27 +283,32 @@ Use the repo-local skill `skills/analyze-acm-fellows` when asked about ACM Fello
 
 ## Google Scholar Citation Visualization
 
-The static timeline separates presentation, rendering and generated data:
+The two static timelines separate presentation, rendering and generated data:
 
-- `docs/scholar_citations.html` owns the page structure and styles.
-- `docs/scholar_visualization.js` owns filtering and rendering.
-- `docs/scholar_data.js` assigns the joined dataset to `window.SCHOLAR_DATA`.
+- `docs/acm_fellows.html` displays ACM Fellows and loads `docs/scholar_data.js`.
+- `docs/turing_award_winners.html` displays Turing Award winners and loads `docs/turing_scholar_data.js`.
+- `docs/scholar_visualization.js` and `docs/scholar_visualization.css` provide shared filtering, rendering, and styles.
+- Each data script assigns its award's joined dataset to `window.SCHOLAR_DATA`.
 
-The HTML loads both local files as classic scripts, with the data script first.
+Each HTML page loads its data script before the renderer as classic scripts and links to the other award page.
 It works on static hosting and when opened directly from disk; no fetch, module loader or backend is required.
 D3 v7 still loads from a CDN, so network access to the CDN is needed.
-Keep all three local files together when copying or publishing the visualization.
+Keep both HTML pages, both data scripts, the renderer, and the stylesheet together when copying or publishing the visualizations.
 
 Despite its retained command name, `scripts/build_scholar_citation_visualization.py` now generates only the data script:
 
 ```bash
 python scripts/build_scholar_citation_visualization.py
+python scripts/build_scholar_citation_visualization.py --award turing
 ```
 
-The generator reads `data/acm_fellows.csv`, joins `data/google_scholar_profiles.csv` by Scholar URL, and writes `docs/scholar_data.js` without touching HTML, rendering code or canonical CSVs.
+The default `--award fellows` reads `data/acm_fellows.csv` and writes `docs/scholar_data.js`.
+With `--award turing`, it reads `data/turing_award_winners.csv` and writes `docs/turing_scholar_data.js`.
+Both join `data/google_scholar_profiles.csv` by Scholar URL without touching HTML, rendering code, or canonical CSVs.
 It preserves the [award CSV sort order](#award-csv-sort-order).
 The data object contains `schemaVersion`, `generatedAt` (UTC), `metadata` and `rows`.
-Each row includes Fellow identity, profile URLs, citations, h-index, yearly citation counts, missing-data status and `crawlDate` from the source Scholar record.
+Metadata includes `award` (`fellows` or `turing`), which the renderer checks against the page's `data-award` attribute to prevent displaying the wrong roster.
+Each row includes recipient identity, award year, profile URLs, citations, h-index, yearly citation counts, missing-data status and `crawlDate` from the source Scholar record.
 Generation time does not represent crawl freshness.
 Unavailable metrics and crawl dates stay `null`, and missing citation histories stay empty objects.
 `hasScholar` indicates a joined row with citation-by-year data, not merely the presence of a profile URL.
@@ -313,29 +318,34 @@ Use a scratch output to inspect current CSV joins without updating the displayed
 
 ```bash
 python scripts/build_scholar_citation_visualization.py --output tmp/scholar_data.js
+python scripts/build_scholar_citation_visualization.py --award turing --output tmp/turing_scholar_data.js
 ```
 
 Custom input and output paths are supported:
 
 ```bash
-python scripts/build_scholar_citation_visualization.py --acm path/to/acm_fellows.csv --scholar path/to/google_scholar_profiles.csv --output tmp/scholar_data.js
+python scripts/build_scholar_citation_visualization.py --award turing --roster path/to/turing_award_winners.csv --scholar path/to/google_scholar_profiles.csv --output tmp/turing_scholar_data.js
 ```
 
 `--output` now names a JavaScript data file, not an HTML page.
+`--acm` remains a legacy alias for `--roster`.
 Generate data only when the underlying dataset refresh is ready to be reflected in the visualization.
 Presentation changes do not require rebuilding data.
 The September 16 extraction preserved the previously displayed snapshot, and the subsequent full import refreshed all 1,250 accepted ACM profiles.
 See [Data Notes](docs/data_notes.md) for capture dates, missing profiles, retained Turing-only records and known attribution concerns.
 
-The renderer keeps one row per ACM Fellow, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
+The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
 Citations and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
+Chart widths and year labels follow each dataset's year range.
 A missing or unsupported data script produces a visible error instead of an empty page.
 
-Compile-check Python and syntax-check both scripts:
+Check award selection, canonical joins, missing-data semantics, renderer controls, and JavaScript syntax:
 
 ```bash
-python -m py_compile scripts/build_scholar_citation_visualization.py
+python -B -m unittest discover -s tests -p 'test_scholar_citation_data.py'
+node tests/test_scholar_visualization.cjs
 node --check docs/scholar_data.js
+node --check docs/turing_scholar_data.js
 node --check docs/scholar_visualization.js
 ```
 
