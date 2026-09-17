@@ -1,4 +1,4 @@
-# README for Agents
+# README For Agents
 
 Follow [AGENTS.md](AGENTS.md) for documentation audiences.
 [README.md](README.md) is the human entry point; this file owns application maintenance workflows and constraints.
@@ -13,7 +13,7 @@ Its [agent reference](https://github.com/lintool/bigcows-crawler/blob/main/READM
 ### Repository Layout
 
 Use Python 3.10 or newer, available as `python`.
-Run the commands below from `cs-big-cows`, with `bigcows-crawler` checked out beside it.
+Run the commands below from `acm-bigcows`, with `bigcows-crawler` checked out beside it.
 Crawl artifacts default to the shared crawler's `.cache/`, independent of the working directory; they are Git-ignored and absent from a fresh clone.
 Explicit relative paths resolve from the working directory.
 This application's `.cache/` holds derived analysis and alignment artifacts.
@@ -72,19 +72,61 @@ See the shared reference for pacing and progress; a completed invocation alone d
 
 ### Other Sources
 
-These commands fetch pages or shards; the Scholar command also writes its explicitly selected export, and the builder writes the application's alignment:
+These commands fetch DBLP pages or CSRankings shards; the builder writes the application's alignment:
 
 ```bash
 python ../bigcows-crawler/scripts/cache_dblp_profiles.py --data data/acm_fellows.csv
-python ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data data/acm_fellows.csv --output data/google_scholar_profiles.csv
 python ../bigcows-crawler/scripts/cache_csrankings.py
 python scripts/build_csrankings_profiles.py
 ```
 
-For Turing Award Scholar profiles, use `--data data/turing_award_winners.csv` with the same export path.
-Omit `--output` to update only the Scholar cache/report.
-Add `--limit-new 0` for a cache-only rebuild; this still writes reports and any explicitly requested Scholar export.
 Follow the shared reference for source pacing and retries.
+For Scholar, use the reviewed workflow below rather than exporting directly into the canonical CSV.
+
+### Review and Import Google Scholar Data
+
+The shared crawler handles transport and parsing; this repository owns identity decisions and canonical imports.
+Read its [Scholar workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#google-scholar-profile-crawler) for pacing, retries, cache fields, and blocking behavior.
+The crawler's generic CSV exporter retains existing output rows and can reuse historical values; it does not enforce fresh-only acceptance or establish a person's identity.
+Do not use `--output data/google_scholar_profiles.csv` as the review or import step.
+
+1. **Define the refresh scope and retain inputs:** Create a new run directory under `../bigcows-crawler/.cache/` and snapshot both award rosters and the current shared statistics CSV there.
+   Record which roster or rosters will be refreshed, the start time, and the selected commands in the run manifest.
+   Keep original inputs stable for resuming; record newly discovered candidates in a separate input file.
+2. **Crawl into a fresh cache without canonical output:** An unused cache makes this a fresh capture rather than reuse of the default historical cache.
+   For both awards, share the new cache so a profile common to both is fetched once, and retain separate reports and logs.
+   The following example starts a new combined run; replace the placeholder with a unique run label and create the directory only once:
+
+   ```bash
+   scholar_run=../bigcows-crawler/.cache/scholar-refresh-YYYY-MM-DD-HHMM
+   mkdir "$scholar_run"
+   cp data/acm_fellows.csv "$scholar_run/fellows-input.csv"
+   cp data/turing_award_winners.csv "$scholar_run/turing-input.csv"
+   cp data/google_scholar_profiles.csv "$scholar_run/statistics-before.csv"
+   python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/fellows-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/fellows-report.json" > "$scholar_run/fellows.log" 2>&1
+   python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/turing-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/turing-report.json" > "$scholar_run/turing.log" 2>&1
+   ```
+
+   Run only the selected award command for a single-roster refresh.
+   Monitor the active run and stop on blocking; do not start the next award while a block is unresolved.
+   Resume using the same snapshots and cache without `--refresh`, retaining previous logs and using a new log filename for each attempt.
+   `--limit-new 0` rebuilds a report without fetching, but still writes cache/report artifacts and does not establish freshness.
+3. **Review freshness and identity:** Require a successful capture from the selected run with complete HTML, parsed statistics, and a supported identity before accepting a profile.
+   Check capture timestamps and recorded fetch errors; a retained older success is not evidence of a successful current refresh.
+   Compare names, affiliations, research areas, and representative publications against ACM and primary institutional sources.
+   A compatible name or HTTP 200 response alone is insufficient.
+4. **Resolve missing and rejected links:** Search for replacement profiles when discovery is in scope, then freshly crawl and verify candidates before accepting them.
+   Leave the Scholar field blank if no fresh, verified replacement can be found; do not fill the gap with historical statistics.
+   Treat a blocked or interrupted run as incomplete, rather than clearing links solely because of a temporary access failure.
+   Record accepted, rejected, unresolved, and deferred decisions with evidence and capture references.
+5. **Reconcile and import across both rosters:** Build the accepted statistics set by unique Scholar URL, with one record for a person shared by the awards.
+   Apply reviewed link changes without altering unrelated award fields, then replace or add statistics only from accepted captures.
+   Remove rejected or obsolete statistics records only after confirming that neither roster still references them.
+   Preserve reviewed records outside a single-award refresh's scope, with their original crawl dates; never describe those as newly refreshed.
+   The generic exporter is not a reviewed importer: use a reviewed run-specific import script or prepare an explicit import for review, retaining it and the before/after evidence in the run directory.
+6. **Validate and publish the data snapshot:** Check unique profile URLs, roster joins, accepted capture coverage, actual crawl dates, missing-value semantics, unchanged unrelated fields, canonical sort order, and LF line endings.
+   Record results and unresolved issues in [Data Notes](docs/data_notes.md).
+   Once the data refresh is ready for display, regenerate both award datasets and run the checks in the [visualization workflow](#google-scholar-citation-visualization), since shared statistics can affect both pages.
 
 ### Apply Reviewed ACM Results
 
@@ -132,6 +174,37 @@ name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
 
 Keep committed CSV files on Unix LF line endings.
 Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
+
+### Google Scholar Statistics
+
+`data/google_scholar_profiles.csv` stores one row per unique Scholar `profile` URL across both award rosters.
+Join each roster's `google_scholar_profile` to this `profile` field; names are descriptive fields, not join keys.
+
+| Field | Meaning |
+| --- | --- |
+| `name` | Parsed Scholar display name; it may differ from the canonical award name. |
+| `profile` | Canonical Scholar author URL, containing the `user` ID. |
+| `crawl_date` | UTC capture date (`YYYY-MM-DD`), derived from the accepted capture's `fetched_at`; not the import date. |
+| `affiliation` | Profile-reported affiliation text; not verified employment history. |
+| `interests` | JSON array of research-interest strings stored inside a CSV cell. |
+| `citations` | Scholar's reported all-time citation count. |
+| `h_index` | Scholar's reported all-time h-index. |
+| `i10_index` | Scholar's reported all-time count of publications with at least ten citations. |
+| `citations_since_5y_ago`, `h_index_since_5y_ago`, `i10_index_since_5y_ago` | Values from Scholar's recent-period column at capture time; these are not recalculated from yearly bars. |
+| `first_citation_year` | Earliest year in the captured citation histogram, not necessarily the first year of the person's career or citation history. |
+| `citation_by_year` | JSON object mapping year strings to integer citation counts, such as `{"2024":125,"2025":140}`. |
+
+The recent-period field names are legacy names; the parser does not store the exact “Since YYYY” column heading in the CSV.
+Consult the retained HTML when the precise period matters, rather than deriving it from the current year.
+Read the CSV with a CSV parser before decoding JSON-valued cells.
+Blank scalar cells mean unavailable values, not zero; `[]` and `{}` mean no captured interests or yearly entries respectively.
+An absent year key does not establish zero citations, and the histogram need not sum to the all-time total.
+A blank Scholar link in an award roster means no accepted profile link is recorded, not proof that none exists.
+
+The generated visualization data uses `null` for missing scalar metrics and dates and `{}` for missing histories.
+Its `hasScholar` flag requires a joined, nonempty citation history; a URL alone does not satisfy it.
+Its `generatedAt` timestamp records data-file generation, while each row's `crawlDate` retains the source capture date.
+In contrast, `data/csrankings_profiles.csv` uses `crawl_date` for the alignment build's UTC date by default (or the explicit `--crawl-date` value), not necessarily the shard-fetch date.
 
 ### Award CSV Sort Order
 
@@ -198,6 +271,17 @@ python scripts/build_csrankings_profiles.py
 python scripts/build_csrankings_profiles.py --crawl-date 2026-05-01
 python scripts/build_csrankings_profiles.py --cache-dir path/to/csrankings-cache --output data/csrankings_profiles.csv
 ```
+
+For a full source refresh, run the shared crawler with `--refresh` before rebuilding:
+
+```bash
+python ../bigcows-crawler/scripts/cache_csrankings.py --refresh
+python scripts/build_csrankings_profiles.py
+```
+
+Use the shared [CSRankings workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#csrankings-crawler) for partial runs, pacing, and cache/report details.
+Inspect cache completeness before a full rebuild and investigate surprising drops in the included-row count.
+Preserve original CSRankings fields and do not edit `data/dblp_profiles.csv` unless the user requests it.
 
 Compile-check the script:
 
@@ -271,6 +355,7 @@ python -m py_compile scripts/analyze_acm_fellow_universities.py
 
 Counting semantics:
 
+- Profile affiliations are source evidence, not canonical employment history.
 - A fellow can count toward multiple universities if Scholar and CSRankings provide distinct universities.
 - The same normalized university from multiple sources counts once per fellow.
 - Companies and generic job titles should not be counted as universities.
@@ -280,6 +365,7 @@ Counting semantics:
   Use `--warnings-limit N` to control how many warnings are shown.
 
 Use the repo-local skill `skills/analyze-acm-fellows` when asked about ACM Fellow university distribution or affiliation counts.
+Analysis is read-only unless the user requests data changes; when stale sources matter, state the limitation and use the relevant refresh workflow only within the requested scope.
 
 ## Google Scholar Citation Visualization
 
@@ -348,6 +434,8 @@ Unavailable metrics remain last in either direction, and sorting persists while 
 Citations and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
 Both pages use the shared renderer's 45-calendar-year window, ending in the current UTC year (1982–2026 in 2026), regardless of each dataset's coverage.
 The renderer sets the CSS year count, keeping chart widths and year labels identical across awards.
+Every year has a tick, with horizontal labels at five-year intervals.
+Bar heights are normalized independently to each person's maximum within the displayed window; compare absolute counts using hover values and the metrics columns, not bar heights across people.
 Years absent from a recipient's history appear as empty bars; the underlying data and its coverage metadata remain unchanged.
 A missing or unsupported data script produces a visible error instead of an empty page.
 
