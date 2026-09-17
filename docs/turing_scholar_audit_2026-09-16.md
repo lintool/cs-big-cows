@@ -1,5 +1,8 @@
 # Turing Award Google Scholar Review — September 16, 2026
 
+**Visualization update (2026-09-16 22:38 EDT):** Both award visualizations were subsequently regenerated from the reviewed canonical data, including all 40 accepted Turing profiles.
+The pending-regeneration statements below describe the audit-time snapshot; see the [completed visualization update](data_notes.md#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
+
 Completed the import at 22:13 EDT on September 16, 2026, after web searches and a fresh crawl of all existing Turing Scholar links.
 The [row-level audit](turing_scholar_audit_2026-09-16.csv) records all 81 recipients, decisions, identity evidence, sources, and available capture timestamps and hashes.
 
@@ -67,7 +70,7 @@ ACM Fellows, DBLP, CSRankings, and all Scholar visualization files, including `d
 The visualization's data snapshot has not been regenerated from the updated canonical CSVs.
 
 Crawl and review artifacts are retained under `../bigcows-crawler/.cache/turing-scholar-refresh-2026-09-16/`: input snapshots, manifest, HTML cache, crawl report and state, search results, decisions, import script, and validation results.
-These scratch files are not required by the application and are not intended for the PR.
+These retained evidence files are not required by the application and are not intended for the PR.
 
 ## General Web Search Follow-Up
 

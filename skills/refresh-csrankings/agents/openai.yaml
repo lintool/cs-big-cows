@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refresh CSRankings"
+  short_description: "Refresh CSRankings cache and align entries to DBLP profiles."
+  default_prompt: "Use $refresh-csrankings to refresh CSRankings data and rebuild DBLP-aligned CSRankings profiles."

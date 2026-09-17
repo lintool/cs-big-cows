@@ -12,18 +12,20 @@ Blank Scholar cells refer to `google_scholar_profile`; blank ACM profile cells r
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
-Start with the latest [shared-recipient Scholar resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links), then the preceding [ACM Fellows resolutions](#2026-09-15-1637-edt---final-user-resolution-of-scholar-link-conflicts) or [Turing Award resolutions](#2026-09-15-1747-edt---user-resolution-of-turing-award-scholar-candidates).
-The [18:22 EDT sorting entry](#2026-09-15-1822-edt---consistent-award-csv-sort-order) resolves the ordering issues recorded during the consistency review.
-The [13:49 EDT review](#2026-09-15-1349-edt---google-scholar-links-review-of-all-remaining-missing-entries) records follow-up outcomes for every ACM Fellow whose Scholar cell was still blank after the eight enrichment batches.
-Earlier [cache-only review candidates](#2026-09-15---outstanding-review-candidates) are recorded separately from the later web-search reviews.
+Start with the completed [Fellows statistics import](#2026-09-16-2121-edt---import-all-reviewed-fresh-acm-scholar-statistics) and [Turing refresh](#2026-09-16-2213-edt---refresh-turing-award-google-scholar-profiles), followed by the [combined visualization update](#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
+These entries supersede earlier pending-import and historical-fallback statements.
+For current file locations, display behavior, and maintenance commands, use the [visualization reference](../README_FOR_AGENTS.md#google-scholar-citation-visualization).
+Paths in older entries describe the layout at that time and are retained as provenance.
 
+Selected entries and reports:
 
-
-
-
-
-
-
+- **Latest completed data updates:** [Fellows import](#2026-09-16-2121-edt---import-all-reviewed-fresh-acm-scholar-statistics), [Turing refresh](#2026-09-16-2213-edt---refresh-turing-award-google-scholar-profiles), and [both visualization datasets](#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
+- **Fresh identity audits:** [Fellows report](acm_scholar_audit_2026-09-16.md) and [Turing report](turing_scholar_audit_2026-09-16.md), including publication-attribution concerns and links to row-level evidence.
+- **Missing-profile searches:** [Turing follow-up](#2026-09-16-2219-edt---follow-up-missing-turing-scholar-profiles-with-general-web-search) and [remaining Fellows search outcomes](#2026-09-15-1349-edt---google-scholar-links-review-of-all-remaining-missing-entries).
+- **Shared recipients:** [Fellows-to-Turing synchronization](#2026-09-16-2200-edt---synchronize-shared-turing-recipients-from-acm-fellows) and [earlier user resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links).
+- **Rejected links and historical statistics:** [Broken-link resolution](#2026-09-16-2044-edt---resolve-45-broken-acm-fellow-scholar-links) and [historical-record removal](#2026-09-16-2049-edt---remove-unverified-historical-scholar-records).
+- **Canonical ordering:** [Award CSV sorting decision](#2026-09-15-1822-edt---consistent-award-csv-sort-order).
+- **ACM source reconciliation:** [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 
 ## 2026-09-16 22:38 EDT - Separate Fellows and Turing Citation Visualizations
 
@@ -457,7 +459,7 @@ Local scratch files `tmp/turing-scholar-audit-2026-09-15.json`, `tmp/turing-scho
 ## 2026-09-15 17:05 EDT - Restore Name Ordering after H. T. Kung Correction
 
 Moved H. T. Kung immediately ahead of Haibo Chen in the 2023 class to restore the name ordering affected by the earlier formatting correction.
-This follow-up to [PR #53 review](https://github.com/lintool/cs-big-cows/pull/53#discussion_r4020136622) changes only the two rows' relative positions; all CSV cell values are preserved.
+This follow-up to [PR #53 review](https://github.com/lintool/acm-bigcows/pull/53#discussion_r4020136622) changes only the two rows' relative positions; all CSV cell values are preserved.
 Earlier entries' row-order preservation statements describe those batches before this follow-up.
 No crawls, cache updates, profile exports, or visualization regeneration were performed.
 
@@ -1635,8 +1637,8 @@ The name matcher used in this review accepted 28 of the 29 removed links; matchi
 ## 2026-09-13 - Turing Award Reconciliation and Profile Crawl
 
 At the time of reconciliation, `data/turing_award_winners.csv` enumerated 81 recipients across award years 1966–2025, all with verified ACM recipient URLs.
-[PR #47](https://github.com/lintool/cs-big-cows/pull/47) reconciled the recipients and award years with ACM and [Wikipedia revision 1373210156](https://en.wikipedia.org/w/index.php?title=Turing_Award&oldid=1373210156), corrected citation text, and completed profile-link coverage.
-Official-source and Wikipedia citation discrepancies are recorded in [issue #46](https://github.com/lintool/cs-big-cows/issues/46).
+[PR #47](https://github.com/lintool/acm-bigcows/pull/47) reconciled the recipients and award years with ACM and [Wikipedia revision 1373210156](https://en.wikipedia.org/w/index.php?title=Turing_Award&oldid=1373210156), corrected citation text, and completed profile-link coverage.
+Official-source and Wikipedia citation discrepancies are recorded in [issue #46](https://github.com/lintool/acm-bigcows/issues/46).
 
 The fresh Safari crawl completed at `2026-09-13T23:48:11Z`: all 81 profiles were fetched successfully in 81 attempts, with 81 distinct HTML captures.
 It used the shared crawler's Turing mode, including modern ACM award profiles and legacy `amturing.acm.org` recipient pages.
@@ -1652,7 +1654,7 @@ Retained local artifacts under `../bigcows-crawler/.cache/` are:
 
 These artifacts are Git-ignored and are not shipped with either repository.
 They share the cache directory and date with the Fellows crawl but use a separate prefix.
-The crawl snapshot predates the Kahan punctuation correction in [PR #48](https://github.com/lintool/cs-big-cows/pull/48); use read-only comparison for the current CSV and the original snapshot when resuming the retained crawl.
+The crawl snapshot predates the Kahan punctuation correction in [PR #48](https://github.com/lintool/acm-bigcows/pull/48); use read-only comparison for the current CSV and the original snapshot when resuming the retained crawl.
 
 The original completion report flagged seven profiles.
 After the Kahan correction, comparison with the post-PR #48 CSV found six citation differences, ten exact name differences, and one location difference, with no name-compatibility or year mismatches.
@@ -1670,7 +1672,7 @@ A fresh capture is evidence for review, not an instruction to overwrite better c
 
 ## 2026-09-13 - ACM Fellows Profile Crawl Review
 
-The Safari/AppleScript recrawl completed at `2026-09-13T19:53:05Z`, as documented in [PR #43](https://github.com/lintool/cs-big-cows/pull/43).
+The Safari/AppleScript recrawl completed at `2026-09-13T19:53:05Z`, as documented in [PR #43](https://github.com/lintool/acm-bigcows/pull/43).
 At crawl completion, all 1,627 supplied ACM profile URLs had cached HTML and status `ok`, with no remaining fetch failures or duplicate HTML captures.
 The crawler itself did not edit the CSV.
 
@@ -1691,7 +1693,7 @@ Select `--crawl-date 2026-09-13` to use the retained crawl; there is no undated 
 Use `compare_acm_fellow_profiles.py` for comparisons with the current CSV so the original completion records are retained.
 See [README_FOR_AGENTS.md](../README_FOR_AGENTS.md) for invocation and comparison guidance.
 
-The subsequent consistency review reparsed all cached pages and corrected Sheila McIlraith, Giovanni De Micheli, and Satoshi Matsuoka in [PR #44](https://github.com/lintool/cs-big-cows/pull/44).
+The subsequent consistency review reparsed all cached pages and corrected Sheila McIlraith, Giovanni De Micheli, and Satoshi Matsuoka in [PR #44](https://github.com/lintool/acm-bigcows/pull/44).
 All years and locations matched.
 After those corrections, 58 names still differed from the parser output because of valid variants or cleaner CSV names.
 These were reviewed and retained; the report's permissive name check does not enumerate all textual differences.
@@ -1707,9 +1709,9 @@ Preserve these deliberate differences from ACM:
 
 As reviewed on 2026-09-13, `data/acm_fellows.csv` was a best-effort enumeration of 1,638 Fellows across classes 1994–2025, with 1,627 nonempty ACM profile URLs and 11 blank ACM profile cells.
 
-[PR #42](https://github.com/lintool/cs-big-cows/pull/42) reconciled the dataset with [Wikipedia revision 1374489782](https://en.wikipedia.org/w/index.php?title=List_of_fellows_of_the_Association_for_Computing_Machinery&oldid=1374489782).
+[PR #42](https://github.com/lintool/acm-bigcows/pull/42) reconciled the dataset with [Wikipedia revision 1374489782](https://en.wikipedia.org/w/index.php?title=List_of_fellows_of_the_Association_for_Computing_Machinery&oldid=1374489782).
 After reviewing name variants and discrepancies, no confirmed missing Fellows or incorrect fellowship years remained.
-Wikipedia errors and an unsupported entry are recorded in [issue #41](https://github.com/lintool/cs-big-cows/issues/41).
+Wikipedia errors and an unsupported entry are recorded in [issue #41](https://github.com/lintool/acm-bigcows/issues/41).
 
 ## 2026-09-13 - Unavailable Individual ACM Profiles
 
