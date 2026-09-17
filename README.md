@@ -16,6 +16,8 @@ See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and
 ## Visualization
 
 Explore the [ACM Fellow citation timelines](https://lintool.github.io/cs-big-cows/scholar_citations.html), which join Fellow records with Google Scholar citation-by-year data.
+The page loads a separate generated `docs/scholar_data.js` file.
+Open `docs/scholar_citations.html` directly in a browser with the accompanying JavaScript files in place; no server is required, although D3 loads from a CDN.
 
 ## Local Analysis
 
