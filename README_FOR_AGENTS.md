@@ -285,15 +285,18 @@ Use the repo-local skill `skills/analyze-acm-fellows` when asked about ACM Fello
 
 The two static timelines separate presentation, rendering and generated data:
 
-- `docs/acm_fellows.html` displays ACM Fellows and loads `docs/scholar_data.js`.
-- `docs/turing_award_winners.html` displays Turing Award winners and loads `docs/turing_scholar_data.js`.
-- `docs/scholar_visualization.js` and `docs/scholar_visualization.css` provide shared filtering, rendering, and styles.
+- `index.html` is the landing page linking to both visualizations.
+- `acm_fellows.html` displays ACM Fellows and loads `scholar_data.js`.
+- `turing_award_winners.html` displays Turing Award winners and loads `turing_scholar_data.js`.
+- `scholar_visualization.js` and `scholar_visualization.css` provide shared filtering, rendering, and styles.
 - Each data script assigns its award's joined dataset to `window.SCHOLAR_DATA`.
 
 Each HTML page loads its data script before the renderer as classic scripts and links to the other award page.
 It works on static hosting and when opened directly from disk; no fetch, module loader or backend is required.
 D3 v7 still loads from a CDN, so network access to the CDN is needed.
-Keep both HTML pages, both data scripts, the renderer, and the stylesheet together when copying or publishing the visualizations.
+Keep the landing page, both visualization pages, both data scripts, the renderer, and the stylesheet together at the repository root when copying or publishing the visualizations.
+GitHub Pages publishes from the repository root (`/`); the root `.nojekyll` disables Jekyll processing.
+The `docs/` directory retains review reports and data provenance.
 
 Despite its retained command name, `scripts/build_scholar_citation_visualization.py` now generates only the data script:
 
@@ -302,8 +305,8 @@ python scripts/build_scholar_citation_visualization.py
 python scripts/build_scholar_citation_visualization.py --award turing
 ```
 
-The default `--award fellows` reads `data/acm_fellows.csv` and writes `docs/scholar_data.js`.
-With `--award turing`, it reads `data/turing_award_winners.csv` and writes `docs/turing_scholar_data.js`.
+The default `--award fellows` reads `data/acm_fellows.csv` and writes `scholar_data.js`.
+With `--award turing`, it reads `data/turing_award_winners.csv` and writes `turing_scholar_data.js`.
 Both join `data/google_scholar_profiles.csv` by Scholar URL without touching HTML, rendering code, or canonical CSVs.
 It preserves the [award CSV sort order](#award-csv-sort-order).
 The data object contains `schemaVersion`, `generatedAt` (UTC), `metadata` and `rows`.
@@ -335,8 +338,17 @@ The September 16 extraction preserved the previously displayed snapshot, and the
 See [Data Notes](docs/data_notes.md) for capture dates, missing profiles, retained Turing-only records and known attribution concerns.
 
 The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
+Recipient names link directly to their Google Scholar profiles when available; names without a profile stay plain text.
+Under each title, the source note is followed by an initially collapsed, keyboard-accessible About the Data panel containing total coverage counts, the filtered row count, the displayed year range, and links to the award CSV, shared Scholar statistics CSV, and data notes.
+Search and the missing-data toggle remain visible outside the panel.
+Display order defaults to award year descending, then last name ascending, without changing canonical CSV or generated data order.
+Last-name sorting uses the final name token, excluding suffixes Jr., Sr., II, III, and IV, with the full name breaking ties.
+Year, Name, Citations, and h-index headers toggle sorting; Name starts ascending, and numeric columns start descending.
+Unavailable metrics remain last in either direction, and sorting persists while filtering.
 Citations and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
-Chart widths and year labels follow each dataset's year range.
+Both pages use the shared renderer's 45-calendar-year window, ending in the current UTC year (1982–2026 in 2026), regardless of each dataset's coverage.
+The renderer sets the CSS year count, keeping chart widths and year labels identical across awards.
+Years absent from a recipient's history appear as empty bars; the underlying data and its coverage metadata remain unchanged.
 A missing or unsupported data script produces a visible error instead of an empty page.
 
 Check award selection, canonical joins, missing-data semantics, renderer controls, and JavaScript syntax:
@@ -344,9 +356,9 @@ Check award selection, canonical joins, missing-data semantics, renderer control
 ```bash
 python -B -m unittest discover -s tests -p 'test_scholar_citation_data.py'
 node tests/test_scholar_visualization.cjs
-node --check docs/scholar_data.js
-node --check docs/turing_scholar_data.js
-node --check docs/scholar_visualization.js
+node --check scholar_data.js
+node --check turing_scholar_data.js
+node --check scholar_visualization.js
 ```
 
 After changing data, verify the generated row counts, missing-data semantics and actual crawl dates, then inspect the page directly from disk.

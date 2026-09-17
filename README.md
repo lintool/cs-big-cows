@@ -15,10 +15,12 @@ See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and
 
 ## Visualizations
 
+Start at the [visualization landing page](https://lintool.github.io/cs-big-cows/).
 Explore separate citation timelines for [ACM Fellows](https://lintool.github.io/cs-big-cows/acm_fellows.html) and [Turing Award winners](https://lintool.github.io/cs-big-cows/turing_award_winners.html).
 Each page joins its award roster with Google Scholar citation-by-year data and links to the other visualization.
 The pages load separate generated data files and share a renderer and stylesheet.
-Open `docs/acm_fellows.html` or `docs/turing_award_winners.html` directly in a browser with the accompanying JavaScript and CSS files in place; no server is required, although D3 loads from a CDN.
+Both timelines show the same 45-year window ending in the current year.
+Open `index.html` directly in a browser with the accompanying HTML, JavaScript, and CSS files in place; no server is required, although the timelines load D3 from a CDN.
 
 ## Local Analysis
 
