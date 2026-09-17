@@ -98,15 +98,20 @@ Do not use `--output data/google_scholar_profiles.csv` as the review or import s
    The following example starts a new combined run; replace the placeholder with a unique run label and create the directory only once:
 
    ```bash
-   scholar_run=../bigcows-crawler/.cache/scholar-refresh-YYYY-MM-DD-HHMM
-   mkdir "$scholar_run"
-   cp data/acm_fellows.csv "$scholar_run/fellows-input.csv"
-   cp data/turing_award_winners.csv "$scholar_run/turing-input.csv"
-   cp data/google_scholar_profiles.csv "$scholar_run/statistics-before.csv"
-   python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/fellows-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/fellows-report.json" > "$scholar_run/fellows.log" 2>&1
-   python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/turing-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/turing-report.json" > "$scholar_run/turing.log" 2>&1
+   (
+     set -e
+     scholar_run=../bigcows-crawler/.cache/scholar-refresh-YYYY-MM-DD-HHMM
+     mkdir -p ../bigcows-crawler/.cache
+     mkdir "$scholar_run"
+     cp data/acm_fellows.csv "$scholar_run/fellows-input.csv"
+     cp data/turing_award_winners.csv "$scholar_run/turing-input.csv"
+     cp data/google_scholar_profiles.csv "$scholar_run/statistics-before.csv"
+     python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/fellows-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/fellows-report.json" > "$scholar_run/fellows.log" 2>&1
+     python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/turing-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/turing-report.json" > "$scholar_run/turing.log" 2>&1
+   )
    ```
 
+   The subshell stops on command failure, including an existing run directory, before later commands can overwrite retained inputs or logs.
    Run only the selected award command for a single-roster refresh.
    Monitor the active run and stop on blocking; do not start the next award while a block is unresolved.
    Resume using the same snapshots and cache without `--refresh`, retaining previous logs and using a new log filename for each attempt.

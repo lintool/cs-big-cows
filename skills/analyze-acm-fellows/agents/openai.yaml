@@ -1,4 +1,4 @@
 interface:
   display_name: "Analyze ACM Fellows"
   short_description: "Analyze ACM Fellow affiliations and university distributions."
-  default_prompt: "Analyze ACM Fellow university distribution from Scholar and CSRankings affiliations."
+  default_prompt: "Use $analyze-acm-fellows to analyze ACM Fellow university distribution from Scholar and CSRankings affiliations."
