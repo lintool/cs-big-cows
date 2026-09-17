@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turing Award Winner Citation Timelines</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <link rel="stylesheet" href="./scholar_visualization.css">
+</head>
+<body data-award="turing">
+  <header>
+    <div class="topbar">
+      <nav class="award-nav" aria-label="Award visualizations">
+        <a href="./index.html">Home</a>
+        <a href="./acm_fellows.html">ACM Fellows</a>
+        <a href="./turing_award_winners.html" aria-current="page">Turing Award Winners</a>
+      </nav>
+      <h1>Turing Award Winner Citation Timelines</h1>
+      <p class="source-note">All citation statistics from Google Scholar</p>
+      <details class="data-details">
+        <summary>About the Data <span class="details-hint">Coverage &amp; downloads</span></summary>
+        <div class="metadata">
+          <dl id="coverage" class="coverage-stats" aria-label="Dataset coverage"></dl>
+          <p id="summary" class="view-summary" aria-live="polite"></p>
+          <div class="data-resources">
+            <h2>Data and Sources</h2>
+            <div class="data-links">
+              <a href="https://github.com/lintool/cs-big-cows/blob/master/data/turing_award_winners.csv">Turing Award Winners <span class="file-type">CSV</span></a>
+              <a href="https://github.com/lintool/cs-big-cows/blob/master/data/google_scholar_profiles.csv">Scholar Statistics <span class="file-type">CSV</span></a>
+              <a href="https://github.com/lintool/cs-big-cows/blob/master/docs/data_notes.md">Data Notes <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </details>
+      <div class="controls">
+        <input id="search" type="search" aria-label="Search author" placeholder="Search author" autocomplete="off">
+        <label class="toggle"><input id="showMissing" type="checkbox"> Show missing Scholar data</label>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div id="table" class="table" role="table" aria-label="Citation timelines" aria-live="polite"></div>
+    <div id="empty" class="empty">No rows match the current filters.</div>
+  </main>
+  <script src="./turing_scholar_data.js"></script>
+  <script src="./scholar_visualization.js"></script>
+</body>
+</html>

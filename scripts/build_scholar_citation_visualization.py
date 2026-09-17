@@ -15,8 +15,8 @@ APP_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ACM = APP_ROOT / "data" / "acm_fellows.csv"
 DEFAULT_TURING = APP_ROOT / "data" / "turing_award_winners.csv"
 DEFAULT_SCHOLAR = APP_ROOT / "data" / "google_scholar_profiles.csv"
-DEFAULT_OUTPUT = APP_ROOT / "docs" / "scholar_data.js"
-DEFAULT_TURING_OUTPUT = APP_ROOT / "docs" / "turing_scholar_data.js"
+DEFAULT_OUTPUT = APP_ROOT / "scholar_data.js"
+DEFAULT_TURING_OUTPUT = APP_ROOT / "turing_scholar_data.js"
 
 
 def parse_args() -> argparse.Namespace:
