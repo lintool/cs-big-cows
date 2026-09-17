@@ -13,11 +13,12 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 The CSVs are ready to download or use from a clone.
 See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and known source differences.
 
-## Visualization
+## Visualizations
 
-Explore the [ACM Fellow citation timelines](https://lintool.github.io/cs-big-cows/scholar_citations.html), which join Fellow records with Google Scholar citation-by-year data.
-The page loads a separate generated `docs/scholar_data.js` file.
-Open `docs/scholar_citations.html` directly in a browser with the accompanying JavaScript files in place; no server is required, although D3 loads from a CDN.
+Explore separate citation timelines for [ACM Fellows](https://lintool.github.io/cs-big-cows/acm_fellows.html) and [Turing Award winners](https://lintool.github.io/cs-big-cows/turing_award_winners.html).
+Each page joins its award roster with Google Scholar citation-by-year data and links to the other visualization.
+The pages load separate generated data files and share a renderer and stylesheet.
+Open `docs/acm_fellows.html` or `docs/turing_award_winners.html` directly in a browser with the accompanying JavaScript and CSS files in place; no server is required, although D3 loads from a CDN.
 
 ## Local Analysis
 

@@ -25,6 +25,81 @@ Earlier [cache-only review candidates](#2026-09-15---outstanding-review-candidat
 
 
 
+## 2026-09-16 22:38 EDT - Separate Fellows and Turing Citation Visualizations
+
+Added a dedicated Turing Award citation timeline alongside the existing Fellows page, with navigation between the two and shared rendering and styles.
+Regenerated both JavaScript data snapshots from the current canonical CSVs: Fellows contains 1,638 recipients, 1,250 with Scholar histories and 388 missing; Turing contains 81 recipients, 40 with histories and 41 missing.
+The shared statistics store contains 1,260 unique profiles, including the 30 shared by these award rosters.
+Both pages now reflect the reviewed fresh crawls and the Turing profile corrections recorded below.
+Canonical CSVs were not changed by this visualization work.
+
+Validated award-specific generator defaults, every generated row against the current CSVs, missing-data handling, search and toggle behavior, empty results, dataset mismatch errors, dynamic year ranges, and local asset references.
+Local-file browser preview was blocked by the browser tool's URL policy; visual inspection remains unverified.
+
+## 2026-09-16 22:19 EDT - Follow Up Missing Turing Scholar Profiles with General Web Search
+
+Ran individual general web searches for all 41 blank Turing Scholar entries, followed by 21 additional name-variant and candidate-ID searches and targeted source-page checks.
+The [41-row search review](turing_scholar_search_2026-09-16.csv) records the queries and outcomes.
+No additional profile was verified, so canonical datasets and visualization files remain unchanged.
+
+Resolved Michael Stonebraker's Research.com link to Samuel Madden's existing profile (`a1ngrCIAAAAJ`), and rejected a Silvio Micali directory link assigned to Phillip Rogaway in CSRankings (`gUEkPQEAAAAJ`).
+Dijkstra's Research.com link (`g875mLgAAAAJ`) remains unverified: this web check was rate-limited with HTTP 429, and the historical local capture returned 404.
+John McCarthy's DBLP link (`SuVID2wAAAAJ`) yielded old indexed content through web search, but the fresh September 16 capture returned 404, so it was not restored.
+Herbert Simon's rediscovered historical IDs remain unavailable according to the completed fresh crawl.
+Scholar rate limiting and source-page access failures limit verification; a blank field does not establish that no profile exists.
+Search results, fetched source pages, and review metadata are retained under `../bigcows-crawler/.cache/turing-scholar-web-followup-2026-09-16/`.
+
+## 2026-09-16 22:13 EDT - Refresh Turing Award Google Scholar Profiles
+
+Searched the web for all 39 Turing recipients with blank Scholar fields, then freshly fetched all 42 existing profile URLs and two historical Herbert A. Simon candidates at the agreed 5–7 second pace with a 120–150 second pause after 25 requests.
+All existing URLs returned HTTP 200; both Simon candidates returned HTTP 404.
+Identity review retained 40 profiles and cleared two wrong-person links: E. Allen Emerson pointed to Eric Emerson, and Kenneth E. Iverson pointed to Kenneth R. Iversen.
+No missing or replacement profile was sufficiently verified, leaving 41 blank Scholar fields across the 81 recipients.
+
+Imported fresh statistics for every retained profile into `data/google_scholar_profiles.csv`, replacing 36 records and adding four for Charles H. Bennett, Gilles Brassard, Andrew Barto, and Richard Sutton.
+Removed both wrong-person statistics records, which were unreferenced by either award roster, leaving 1,260 unique shared metrics records.
+All imported Turing captures are dated September 17 UTC, corresponding to September 16 EDT; no historical statistics fallback was retained for rejected links.
+The [review report](turing_scholar_audit_2026-09-16.md) and [81-row audit](turing_scholar_audit_2026-09-16.csv) record decisions, evidence, failed candidates, metadata limits, and publication-attribution concerns for David Patterson and Frederick Brooks.
+
+Validated the import against the fresh cache, preserved non-Scholar Turing fields and the preceding Fellows synchronization, and retained canonical row ordering and LF line endings.
+ACM Fellows and the other datasets remain unchanged, except for the shared Scholar statistics import.
+The visualization and its `docs/scholar_data.js` snapshot remain unchanged pending a later requested update.
+Local crawl, search, and review artifacts are retained in `../bigcows-crawler/.cache/turing-scholar-refresh-2026-09-16/`.
+
+## 2026-09-16 22:00 EDT - Synchronize Shared Turing Recipients from ACM Fellows
+
+At the user's direction, copied person-level information from the newer [ACM Fellows dataset](../data/acm_fellows.csv) into matching [Turing Award records](../data/turing_award_winners.csv).
+Matched 63 of 81 recipients using unique identical ACM recipient URLs, DBLP URLs or exact names, consistent with the previously documented shared-recipient review.
+The copied fields are `name`, `location`, `dblp_profile` and `google_scholar_profile`, including reviewed blank values.
+Locations follow the Fellows dataset as requested; this synchronization does not independently re-verify residence or nationality.
+Preserved Turing Award years, award citations and recipient URLs, and left the 18 unmatched recipients unchanged.
+Allen Newell was not matched to the distinct Fellow Alan Newell.
+
+Updated 15 cells across 14 recipients:
+
+| Recipient | Fields Copied from ACM Fellows |
+| --- | --- |
+| Avi Wigderson | Added DBLP profile `https://dblp.org/pid/w/AviWigderson`. |
+| Shafi Goldwasser | Location: USA to Israel. |
+| Charles P. Thacker | Name: Charles P Thacker to Charles P. Thacker. |
+| Alan Kay | Location: USA to United Kingdom. |
+| A J Milner | Added DBLP profile `https://dblp.org/pid/m/RobinMilner`. |
+| Fernando Corbato | Name: Fernando J Corbato to Fernando Corbato. |
+| Niklaus E. Wirth | Name: Niklaus E Wirth to Niklaus E. Wirth. |
+| Kenneth Lane Thompson | Added DBLP profile `https://dblp.org/pid/t/KenThompson`. |
+| Stephen A Cook | Location: USA to Canada. |
+| Edgar F. Codd | Name: Edgar F Codd to Edgar F. Codd. |
+| Herbert A. Simon | Name: Herbert A Simon to Herbert A. Simon. |
+| Edsger W. Dijkstra | Name: Edsger W Dijkstra to Edsger W. Dijkstra; location: Netherlands to USA. |
+| John McCarthy | Cleared the rejected Scholar link `SuVID2wAAAAJ`, matching the Fellows review. |
+| Richard W. Hamming | Name: Richard W Hamming to Richard W. Hamming. |
+
+The Turing dataset now has 42 Scholar links and 39 blank Scholar fields.
+Citation statistics are already stored in the shared `google_scholar_profiles.csv`; no duplicate statistics import was needed.
+Verified all 63 matched recipients agree on the copied fields, all 81 award records remain present, award-specific values and unmatched rows are unchanged, names remain unique, and the CSV retains the required sort order and LF line endings.
+The Fellows dataset, shared profile tables and visualization files are unchanged.
+The local before/after comparison is in `tmp/turing-fellows-sync/`.
+
 ## 2026-09-16 21:21 EDT - Import All Reviewed Fresh ACM Scholar Statistics
 
 Imported the complete 1,250-profile fresh, identity-reviewed export into `data/google_scholar_profiles.csv` and regenerated `docs/scholar_data.js`.

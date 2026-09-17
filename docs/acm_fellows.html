@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACM Fellow Citation Timelines</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <link rel="stylesheet" href="./scholar_visualization.css">
+</head>
+<body data-award="fellows">
+  <header>
+    <div class="topbar">
+      <nav class="award-nav" aria-label="Award visualizations">
+        <a href="./acm_fellows.html" aria-current="page">ACM Fellows</a>
+        <a href="./turing_award_winners.html">Turing Award Winners</a>
+      </nav>
+      <h1>ACM Fellow Citation Timelines</h1>
+      <div class="controls">
+        <input id="search" type="search" aria-label="Search author" placeholder="Search author" autocomplete="off">
+        <label class="toggle"><input id="showMissing" type="checkbox"> Show missing Scholar data</label>
+        <div id="summary" class="summary"></div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div id="table" class="table" aria-live="polite"></div>
+    <div id="empty" class="empty">No rows match the current filters.</div>
+  </main>
+  <script src="./scholar_data.js"></script>
+  <script src="./scholar_visualization.js"></script>
+</body>
+</html>

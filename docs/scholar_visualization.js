@@ -1,15 +1,17 @@
 (() => {
   const DATA = window.SCHOLAR_DATA;
-  if (!DATA || DATA.schemaVersion !== 1 || !Array.isArray(DATA.rows) || !DATA.metadata) {
+  if (!DATA || DATA.schemaVersion !== 1 || !Array.isArray(DATA.rows) || !DATA.metadata ||
+      DATA.metadata.award !== document.body.dataset.award) {
     document.getElementById('table').hidden = true;
     const message = document.getElementById('empty');
-    message.textContent = 'Citation data could not be loaded. Keep scholar_data.js alongside this page and reload.';
+    message.textContent = 'Citation data could not be loaded for this award. Keep the matching data script alongside this page and reload.';
     message.classList.add('visible');
     return;
   }
     const YEAR_MIN = DATA.metadata.yearMin;
     const YEAR_MAX = DATA.metadata.yearMax;
     const YEARS = d3.range(YEAR_MIN, YEAR_MAX + 1).map(String);
+    document.documentElement.style.setProperty('--year-count', YEARS.length);
     const state = { query: '', showMissing: false };
 
     const table = d3.select('#table');
@@ -63,7 +65,8 @@
     }
 
     function axisHtml() {
-      return `<div></div><div>Author</div><div>Citations</div><div>h-index</div><div></div>`;
+      const ticks = YEARS.map(year => `<span class="${+year % 5 === 0 || +year === YEAR_MAX || +year === YEAR_MIN ? 'tick' : ''}">${year}</span>`).join('');
+      return `<div>Year</div><div>Author</div><div>Citations</div><div>h-index</div><div class="axis" aria-label="Citation year">${ticks}</div>`;
     }
 
     function render() {
