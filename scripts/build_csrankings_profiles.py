@@ -1,10 +1,11 @@
 #!/usr/bin/env python
-"""Match DBLP-linked award-roster names against cached CSRankings shards.
+"""Build a legacy name-inferred CSRankings report in the shared cache.
 
 Each distinct roster DBLP URL is included when its roster name matches exactly
 one CSRankings row. This does not verify the DBLP page's identity or enforce a
 one-to-one mapping across all URLs. Unmatched and ambiguous names are omitted
-from the CSV and summarized in the report.
+from the CSV and summarized in the report. The canonical explicit-key profile
+table is protected and cannot be used as an output or report destination.
 """
 
 from __future__ import annotations
@@ -26,7 +27,8 @@ APP_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CACHE_DIR = APP_ROOT.parent / "bigcows-crawler" / ".cache" / "csrankings"
 DEFAULT_FELLOWS = APP_ROOT / "data" / "acm_fellows.csv"
 DEFAULT_TURING = APP_ROOT / "data" / "turing_award_winners.csv"
-DEFAULT_OUTPUT = APP_ROOT / "data" / "csrankings_profiles.csv"
+CANONICAL_OUTPUT = APP_ROOT / "data" / "csrankings_profiles.csv"
+DEFAULT_OUTPUT = DEFAULT_CACHE_DIR.parent / "csrankings-legacy-profiles.csv"
 DEFAULT_REPORT = DEFAULT_CACHE_DIR.parent / "csrankings-profiles-report.json"
 CSRANKINGS_COLUMNS = ["name", "affiliation", "homepage", "scholarid", "orcid"]
 OUTPUT_COLUMNS = CSRANKINGS_COLUMNS + ["crawl_date", "dblp_profile"]
@@ -58,10 +60,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR, help="Directory containing cached csrankings-*.csv files.")
     parser.add_argument("--fellows", type=Path, default=DEFAULT_FELLOWS, help="ACM Fellows roster containing name and dblp_profile.")
     parser.add_argument("--turing", type=Path, default=DEFAULT_TURING, help="Turing Award roster containing name and dblp_profile.")
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Output CSV path.")
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Legacy output CSV path; canonical profile table is protected.")
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT, help="JSON report path.")
     parser.add_argument("--crawl-date", default=time.strftime("%Y-%m-%d", time.gmtime()), help="crawl_date value to write.")
-    return parser.parse_args()
+    args = parser.parse_args()
+    for field in ("output", "report"):
+        if getattr(args, field).resolve() == CANONICAL_OUTPUT.resolve():
+            parser.error(f"--{field} cannot overwrite the canonical CSRankings table; "
+                         "synchronize accepted csrankings_name keys instead (see README_FOR_AGENTS.md).")
+    return args
 
 
 def atomic_write_text(path: Path, value: str) -> None:

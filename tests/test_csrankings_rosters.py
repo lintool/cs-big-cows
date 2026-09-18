@@ -1,5 +1,7 @@
 """Check award-roster inputs, shared DBLP identities and crawl-date semantics."""
 import csv
+import contextlib
+import io
 from datetime import date
 import importlib.util
 import json
@@ -43,6 +45,39 @@ class RosterAlignmentTests(unittest.TestCase):
         self.assertEqual(args.fellows, ROOT / "data/acm_fellows.csv")
         self.assertEqual(args.turing, ROOT / "data/turing_award_winners.csv")
         self.assertEqual(args.report.parent, ROOT.parent / "bigcows-crawler/.cache")
+        self.assertEqual(args.output, ROOT.parent / "bigcows-crawler/.cache/csrankings-legacy-profiles.csv")
+
+    def test_cli_rejects_canonical_output_before_reading_or_writing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            canonical = Path(directory) / "canonical.csv"
+            canonical.write_text("preserved table\n")
+            alias = Path(directory) / "alias.csv"
+            alias.symlink_to(canonical)
+            for option in ("--output", "--report"):
+                for target in (canonical, alias):
+                    with self.subTest(option=option, target=target):
+                        with patch.object(builder, "CANONICAL_OUTPUT", canonical), patch.object(
+                            sys, "argv", ["builder", option, str(target)]
+                        ), patch.object(builder, "read_csrankings_rows") as read, contextlib.redirect_stderr(io.StringIO()):
+                            with self.assertRaises(SystemExit) as error:
+                                builder.main()
+                            self.assertEqual(error.exception.code, 2)
+                            read.assert_not_called()
+                        self.assertEqual(canonical.read_text(), "preserved table\n")
+
+    def test_canonical_profile_keys_and_reviewed_identity_exclusions(self):
+        rosters = builder.read_csv(ROOT / "data/acm_fellows.csv") + builder.read_csv(ROOT / "data/turing_award_winners.csv")
+        profiles = builder.read_csv(builder.CANONICAL_OUTPUT)
+        expected = {r["csrankings_name"] for r in rosters if r["csrankings_name"]}
+        actual = [r["name"] for r in profiles]
+        self.assertEqual(set(actual), expected)
+        self.assertEqual(len(actual), len(set(actual)))
+        rejected_names = {"Hui Zhang 0005", "B. Chandrasekaran 0002"}
+        self.assertFalse(expected & rejected_names)
+        review = builder.read_csv(ROOT / "docs/dblp_profile_quality_2026-09-17.csv")
+        rejected_urls = {r["dblp_profile"] for r in review if r["category"] == "identity_mismatch" and r["dblp_profile"]}
+        for row in profiles:
+            self.assertNotIn(row["dblp_profile"], rejected_urls, row["name"])
 
     def test_url_deduplication_preserves_distinct_people_with_same_name(self):
         rows = builder.unique_dblp_rows([

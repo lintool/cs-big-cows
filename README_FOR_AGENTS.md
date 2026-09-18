@@ -457,16 +457,20 @@ To synchronize it, resolve each accepted key exactly against all 26 refreshed al
 Preserve documented historical records absent from those sources using the retained profile table; investigate any other missing or duplicate key instead of inferring a replacement.
 Remove unreferenced keys, sort by case-insensitive name with the exact name as a tie-breaker, and set `crawl_date` to the UTC synchronization date, independently of source download and name-alignment dates.
 Copy the linked recipient's normalized DBLP URL only after checking agreement across shared recipients and known identity conflicts; a quality flag alone does not determine whether to retain a URL.
+Exclude exact URLs classified as `identity_mismatch` in the [DBLP review](docs/dblp_profile_quality_2026-09-17.csv), unless later documented identity evidence supersedes that finding.
+Match reviewed URLs, not historical award-name spellings, and do not copy known wrong-person URLs into the lookup table even when the award roster retains them.
+Other `N` categories do not automatically imply a different person or removal.
 The accepted UCLA key `Wei Wang 0010` has a blank table DBLP field because the roster URL identifies the HKUST namesake, as documented in the [broader review](docs/csrankings_broader_alignment_2026-09-18.md).
 Validate exact key coverage, uniqueness and source fields, retain input snapshots and a validation report in the shared cache, and preserve both award rosters and generated visualizations.
 
-The September 18 synchronization contains 831 unique keys, including five retained historical profiles; see [Data Notes](docs/data_notes.md#2026-09-18-0718-edt---synchronize-the-csrankings-profile-lookup-table).
+The corrected September 18 table contains 829 unique keys, including five retained historical profiles; see the [PR review corrections](docs/data_notes.md#2026-09-18-0742-edt---correct-csrankings-identity-links-from-pr-review).
 The existing DBLP-based builder and university analysis below still use their prior matching and join behavior; they do not yet consume `csrankings_name`.
 
 ## CSRankings DBLP Alignment
 
 `scripts/build_csrankings_profiles.py` is the legacy builder from known DBLP profiles and cached CSRankings shards.
-Do not use it to overwrite the canonical profile table: it does not preserve explicit accepted name links or historical exceptions.
+It defaults to `../bigcows-crawler/.cache/csrankings-legacy-profiles.csv` and rejects the canonical profile table as either `--output` or `--report`, including symlink aliases.
+It does not preserve explicit accepted name links or historical exceptions.
 Use the synchronization procedure above for canonical updates; the following documents the legacy implementation for investigation and future migration.
 It matches each DBLP-linked award recipient's roster name against CSRankings names; it does not fetch DBLP pages or read their parsed author names.
 

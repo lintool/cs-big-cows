@@ -35,6 +35,32 @@ Selected entries and reports:
   Earlier profile-crawl evidence remains in the [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 - **Missing individual ACM pages:** [Eleven Fellows and their former URLs](#2026-09-13---unavailable-individual-acm-profiles), with the evidence for clearing those links while retaining the award rows.
 
+## 2026-09-18 07:42 EDT - Correct CSRankings Identity Links From PR Review
+
+Addressed the four findings in [PR #64's review](https://github.com/lintool/acm-bigcows/pull/64#issuecomment-5729433999).
+The [correction audit](csrankings_pr_review_2026-09-18.csv) records two rejected name links and 34 wrong-person DBLP URLs excluded from the profile table, with the original values and individual reasons.
+These corrections supersede the affected associations in the earlier alignment and synchronization snapshots; the dated audits retain their original review-time values.
+
+Cleared `csrankings_name` and its alignment date for ACM Fellows Hui Zhang and B. Chandrasekaran, and removed their unreferenced profile-table rows.
+The [reviewed DBLP evidence](dblp_profile_quality_2026-09-17.csv) identifies Hui Zhang as `Hui Zhang 0001` at Carnegie Mellon/Conviva, while the rejected `Hui Zhang 0005` source row is at University College London with a different Scholar ID.
+The same evidence identifies the AI Fellow as `B. Chandrasekaran 0001` at Ohio State, while the rejected `B. Chandrasekaran 0002` source row is at VU Amsterdam with homepage `https://balakrishnanc.github.io`.
+No replacement name key was inferred.
+
+Cleared 34 profile-table DBLP fields whose exact URLs were classified as `identity_mismatch` by the completed DBLP review, including C.-C. Jay Kuo's mistaken association with coastal-altimetry researcher Chung-yen Kuo.
+Preserved the accepted CSRankings name links for those 34 recipients; an incorrect roster DBLP URL does not invalidate a separately supported name association.
+This exclusion is based on reviewed identity evidence, not a blanket filter on `N` ratings.
+The earlier Wei Wang exception remains blank, giving 35 blank DBLP cells and 794 nonempty DBLP URLs across 829 profile rows.
+
+The exact union now contains 827 Fellows links and 17 Turing links with 15 shared keys: 829 unique profiles, including the five historical records.
+The remaining 811 Fellows and 64 Turing rows have no accepted CSRankings name link.
+Only the two rejected Fellows name links and their alignment dates changed in the award rosters; all preexisting award fields, publication URLs, ratings, row ordering, Turing data, Scholar data and visualization datasets were preserved.
+The profile-table build date remains `2026-09-18`; this correction reused retained evidence and did not fetch new source profiles.
+
+Changed the legacy builder's default output to `../bigcows-crawler/.cache/csrankings-legacy-profiles.csv` and made it reject the canonical table as an output or report destination, including symlink aliases.
+Added regression coverage for this protection, exact profile-key coverage and the rejected identities.
+All 12 targeted roster and citation-data tests passed.
+Retained input snapshots, proposed outputs and independent field-by-field validation in `../bigcows-crawler/.cache/csrankings-pr64-review-2026-09-18/`.
+
 ## 2026-09-18 07:18 EDT - Synchronize the CSRankings Profile Lookup Table
 
 Synchronized `data/csrankings_profiles.csv` to the exact union of accepted `csrankings_name` keys in both award rosters.
