@@ -6,6 +6,7 @@ Historical entries retain date-only headings where a reliable completion time is
 Filesystem paths are relative to the repository root unless stated otherwise.
 
 Each entry is a historical snapshot: counts, blank cells, and pending decisions describe the end of that batch unless stated otherwise.
+Names and source URLs in dated reports and row audits likewise retain their review-time forms; they are not instructions to revert the reconciled award CSVs.
 Later entries supersede earlier decisions without erasing the original evidence or rationale.
 Scholar entries concern `data/acm_fellows.csv` unless they explicitly name the Turing Award dataset.
 Blank profile cells always refer to a specific service: `acm_fellow_profile`, `dblp_profile`, or `google_scholar_profile`.
@@ -24,13 +25,122 @@ Selected entries and reports:
 - **Scholar profile quality:** [Fellows review](acm_scholar_quality_2026-09-17.md) and [Turing review](turing_scholar_quality_2026-09-17.md), applying the user's tolerant standard while preserving explicit decisions about substantial contamination, publication-level concerns and links to row audits.
 - **Profile fields and DBLP decisions:** [DBLP table removal](#2026-09-17-2056-edt---move-dblp-crawl-dates-into-award-rosters), [explicit DBLP date name](#2026-09-17-2136-edt---clarify-dblp-profile-crawl-date-field), [ACM and Scholar dates](#2026-09-17-2138-edt---add-acm-and-scholar-profile-crawl-dates), and [latest DBLP removals and sparse-profile reassessment](#2026-09-17-2215-edt---reject-three-dblp-links-and-reassess-sparse-profiles).
 - **Scholar statistics and visualization imports:** [Fellows import](#2026-09-16-2121-edt---import-all-reviewed-fresh-acm-scholar-statistics), [Turing refresh](#2026-09-16-2213-edt---refresh-turing-award-google-scholar-profiles), and [both visualization datasets](#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
+  Regeneration after the directory reconciliation is [deferred at the user's request](#2026-09-17-2320-edt---apply-seven-supported-names-and-defer-visualization-regeneration).
 - **September 16 identity audits:** [Fellows report](acm_scholar_audit_2026-09-16.md) and [Turing report](turing_scholar_audit_2026-09-16.md), including publication-attribution concerns and links to row-level evidence; later quality reviews refine these assessments.
 - **Missing-profile searches:** [Turing follow-up](#2026-09-16-2219-edt---follow-up-missing-turing-scholar-profiles-with-general-web-search) and [remaining Fellows search outcomes](#2026-09-15-1349-edt---google-scholar-links-review-of-all-remaining-missing-entries).
 - **Shared recipients:** [Fellows-to-Turing synchronization](#2026-09-16-2200-edt---synchronize-shared-turing-recipients-from-acm-fellows) and [earlier user resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links).
 - **Rejected links and historical statistics:** [Broken-link resolution](#2026-09-16-2044-edt---resolve-45-broken-acm-fellow-scholar-links) and [historical-record removal](#2026-09-16-2049-edt---remove-unverified-historical-scholar-records).
-- **Canonical ordering:** [Award CSV sorting decision](#2026-09-15-1822-edt---consistent-award-csv-sort-order).
-- **ACM source reconciliation:** [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
+- **Canonical ordering:** [Current award CSV sort rule](../README_FOR_AGENTS.md#award-csv-sort-order) and the [original sorting decision](#2026-09-15-1822-edt---consistent-award-csv-sort-order).
+- **ACM source reconciliation:** [Fellows directory reconciliation and supported exceptions](acm_directory_reconciliation_2026-09-17.md), [Turing Award directory reconciliation](turing_directory_reconciliation_2026-09-17.md), and [tracking issue #62](https://github.com/lintool/acm-bigcows/issues/62).
+  Earlier profile-crawl evidence remains in the [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 - **Missing individual ACM pages:** [Eleven Fellows and their former URLs](#2026-09-13---unavailable-individual-acm-profiles), with the evidence for clearing those links while retaining the award rows.
+
+## 2026-09-17 23:48 EDT - Clarify Finalized Rosters and Historical Documentation
+
+Recorded the user's instruction that both reconciled award CSVs are finalized and must not change during general repository cleanup without an explicit new data-change request.
+Linked that instruction from the maintenance guide so the general import workflows do not override it.
+Clarified that dated reports and row audits preserve review-time names, URLs, counts and former file layouts; they must not be used to revert the reconciled rows.
+Added that context to the earlier Scholar and DBLP reports while preserving their evidence, tables and decisions.
+
+Made the Fellows reconciliation introduction distinguish its initial literal-name import and successful regeneration from the later seven supported name corrections and deferred regeneration.
+Updated the provenance index to point directly to the current sort rule and the regeneration deferral.
+Distinguished profile capture dates from CSRankings alignment build dates in the README and made the visualization's UTC year convention explicit.
+Clarified which validation commands apply during the deferral and after authorized regeneration.
+
+Verified 192 local/crawler documentation links and anchors, 26 documented Python commands and `git diff --check`.
+All 27 tracked non-Markdown files are byte-for-byte unchanged by this documentation pass, including both award CSVs, the other data files, scripts, tests and generated visualization datasets.
+
+## 2026-09-17 23:44 EDT - Preserve Name Initials and Correct Award Rebuild Hints
+
+A second repository consistency pass found that the CSRankings name matcher treated standalone `D` as a degree suffix and discarded it.
+This could incorrectly match `John D. Smith` to `John Smith` or fail to match `D. Smith` to `David Smith`, contrary to the documented conservative matching policy.
+Changed credential handling to remove complete trailing `Ph.D.` or `DPhil` forms before tokenization while retaining legitimate initials.
+Across the current award rosters, only the tokenization of 22 award rows containing a `D` initial changed; no other name tokens changed.
+The stored CSRankings alignment was not rebuilt, and no publication-profile identity or quality decision was changed.
+
+Corrected the visualization generator’s rebuild hint to include the dataset’s award selection, so a future Turing output advertises `--award turing` instead of a command that defaults to Fellows.
+The hint explicitly refers to default inputs; custom paths must still be supplied separately.
+Added regression tests that failed before the fixes and passed afterward, including surname-first names with trailing degree credentials.
+
+All ten canonical-data and builder tests passed, as did documentation-reference checks and `git diff --check`.
+The full eleven-test Python suite still has only the two expected failing award subcases in the deferred snapshot-synchronization test.
+All four canonical CSVs and both generated visualization datasets remain byte-for-byte unchanged by this pass.
+
+## 2026-09-17 23:41 EDT - Repository Consistency Sweep After Directory Reconciliation
+
+Reviewed current documentation, application scripts, tests, canonical data, profile joins and local documentation references after both directory reconciliations.
+Corrected guidance that described the Fellows directory as complete, added the Turing directory workflow and report links, and linked [issue #62](https://github.com/lintool/acm-bigcows/issues/62) from the provenance index.
+Clarified that ACM profile headings do not override directory-based names and that generated visualizations may lag the CSVs during deferred regeneration.
+Preserved dated reports as historical records rather than rewriting their earlier names and counts.
+
+Fixed author search so a stored surname-first name such as `Orso, Alessandro` also matches `Alessandro Orso`, with comma and whitespace normalization.
+Added regression coverage for both awards, surname particles, suffixes, single names and unmatched queries.
+Separated in-memory canonical Scholar-join tests from the unchanged requirement that published snapshots match canonical inputs, and documented the focused validation command for deferred regeneration.
+
+Eight canonical-data and builder tests, JavaScript behavior checks, JavaScript syntax checks and documentation reference checks passed.
+The full nine-test Python suite has only the two expected failing award subcases in the snapshot-synchronization test; regeneration remains deferred at the user’s request.
+Verified canonical ordering, CSV structure, profile-date consistency, shared ACM names, complete Scholar joins and absence of orphaned CSRankings DBLP links.
+All four canonical CSVs and both generated visualization datasets are byte-for-byte unchanged by this sweep.
+
+## 2026-09-17 23:34 EDT - Reconcile All Turing Award Directory Years
+
+Reconciled all 60 ACM directory pages, from 2025 back through 1966, against `data/turing_award_winners.csv`.
+All 81 recipients match by ACM recipient ID and award year; no recipients were added or removed and no award years changed.
+Changed all 81 names to the directory’s literal surname-first display, including 9 differences beyond name order, and re-sorted the CSV.
+No evidence-backed exception to directory name spelling was needed.
+Reviewed the three differences between directory profile URLs and the stored legacy Turing URLs; the [full report](turing_directory_reconciliation_2026-09-17.md) records the decisions and capture evidence.
+Changed 3 ACM URLs and their accepted crawl dates.
+Preserved all other fields, the Fellows roster and both generated visualization datasets.
+Validated recipient membership, years, names, field preservation, sorting, protected-file hashes and Scholar joins in memory; snapshot synchronization remains deferred at the user’s request.
+All source captures, input snapshots, comparison records and scripts are retained under `../bigcows-crawler/.cache/turing-directory-reconciliation-2026-09-17/`.
+
+## 2026-09-17 23:20 EDT - Apply Seven Supported Names and Defer Visualization Regeneration
+
+The user approved all seven supported alternatives from the [name-error review](acm_directory_reconciliation_2026-09-17.md#subsequent-review-of-obvious-name-errors).
+Updated the Fellow names to `Bjørner, Nikolaj`, `Brewer, Eric A.`, `Arvind`, `Bhuyan, Laxmi Narayan`, `Baer, Jean-Loup`, `O'Leary, Dianne Prost` and `De Micheli, Giovanni`.
+These are accepted, evidence-backed exceptions to ACM’s directory text and must be preserved on future imports.
+Re-sorted the CSV by year descending and full stored name using `str.lower()`.
+
+Verified exactly seven changed name cells, preservation of every other cell, 1,638 recipients and unchanged unrelated datasets.
+The before-data, edit script, approved mapping and validation are retained under `../bigcows-crawler/.cache/acm-supported-name-corrections-2026-09-17/`.
+All eight Python tests and the JavaScript checks passed with a regenerated snapshot, but the user then explicitly requested deferring regeneration until the end.
+Restored `scholar_data.js` byte-for-byte to its checked-in HEAD version, including undoing its earlier directory-reconciliation regeneration.
+The displayed snapshot therefore intentionally differs from the current CSV, and the full snapshot-synchronization test is deferred until regeneration.
+The earlier renderer support for surname-first names remains in place; no further visualization generation should accompany this data cleanup without a user request.
+
+## 2026-09-17 23:18 EDT - Clarify ACM Authority and Review Obvious Name Errors
+
+Made the user’s rule prominent in AGENTS.md and README.md: the ACM awards directory is the source of truth unless evidence establishes that it is obviously wrong.
+Updated the name-maintenance instructions to allow cited, documented exceptions rather than unconditional literal copying.
+
+Reviewed the prior 81 name differences and checked conspicuous discrepancies against primary institutional sources.
+Identified five strong structural cases involving reversed or duplicated name components, plus two separately recorded surname-spelling findings.
+The [name-error review](acm_directory_reconciliation_2026-09-17.md#subsequent-review-of-obvious-name-errors) records the directory strings, supported alternatives, source links and reasoning for Nikolaj Bjørner, Eric Brewer, Arvind, Laxmi Narayan Bhuyan, Jean-Loup Baer, Dianne O'Leary and Giovanni De Micheli.
+Case-only differences and abbreviated or omitted middle names do not automatically meet the exception threshold.
+
+This pass records findings without applying further CSV or visualization changes.
+The eleven previously confirmed historical omissions remain supported exceptions, and no additional fellowship-year discrepancy was established.
+Checked the new local links and anchors and ran `git diff --check`.
+
+## 2026-09-17 23:16 EDT - Reconcile All ACM Fellows Class Directories
+
+Reconciled the 2025–1994 class pages against all 1,638 input rows; all 1,627 currently listed recipients were already present and had the correct fellowship year.
+Changed all 1,627 listed names to ACM’s literal surname-first display text at the user’s explicit instruction, including 81 differences beyond reversing name order.
+This supersedes earlier choices to clean or preserve differing Fellows names, including the former Nikolaj Bjørner, Giovanni De Micheli and Satoshi Matsuoka exceptions.
+Retained the 11 historical exceptions with their previously reviewed names and blank ACM links.
+General web searches and visual inspection of ACM’s 2008 awards booklet confirmed Fellow status for all eleven, with additional ACM and institutional corroboration recorded in the reconciliation report.
+Their absence from the current directory is not evidence that they were spurious entries.
+The resulting CSV contains 1,638 recipients.
+
+Updated Michael Rung-Tsong Lyu’s and Jean-Loup E Baer’s ACM URLs to the directory targets after fresh successful profile captures, with accepted UTC crawl dates of 2026-09-18.
+Preserved all other matched fields and retained the existing year-descending, full-name case-insensitive sort rule.
+Regenerated the Fellows visualization data and updated surname sorting and CSRankings name matching for comma-separated directory names.
+The Turing roster, shared Scholar statistics, CSRankings dataset and historical audit records were preserved.
+
+See the [class-by-class reconciliation report](acm_directory_reconciliation_2026-09-17.md) for counts, all 81 name differences beyond order, the two URL changes and the evidence for retaining eleven absent historical rows.
+Source captures, checksums, before-data, the row-level comparison, import script and validation are retained under `../bigcows-crawler/.cache/acm-directory-reconciliation-2026-09-17/`.
+All eight Python tests, JavaScript behavior and syntax checks, and `git diff --check` passed; a logical comparison confirmed that all citation metrics and unrelated canonical datasets were preserved.
+The browser’s local-file URL policy blocked the visual preview; automated sorting, filtering, search and data checks passed.
 
 ## 2026-09-17 23:00 EDT - Correct Audit Paths and Documentation Formatting
 

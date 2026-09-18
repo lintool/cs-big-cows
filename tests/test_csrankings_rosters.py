@@ -16,6 +16,27 @@ spec.loader.exec_module(builder)
 
 
 class RosterAlignmentTests(unittest.TestCase):
+    def test_initials_are_not_degree_suffixes(self):
+        self.assertFalse(builder.compatible_name("Smith, John D.", "John Smith"))
+        self.assertTrue(builder.compatible_name("Smith, D.", "David Smith"))
+        self.assertFalse(builder.compatible_name("Smith, D.", "Alice Smith"))
+        for name in ["John D. Smith, Ph.D.", "Smith, John D., Ph.D.", "Dr. John D. Smith PhD"]:
+            with self.subTest(name=name):
+                exact, by_last = builder.build_csrankings_index([{"name": "John D Smith"}, {"name": "John Smith"}])
+                self.assertEqual(builder.csrankings_candidates_for_name(name, exact, by_last), [{"name": "John D Smith"}])
+
+    def test_directory_name_order_preserves_identity_matching(self):
+        for directory, given_first in [
+            ("Orso, Alessandro", "Alessandro Orso"),
+            ("De Micheli, Giovanni", "Giovanni De Micheli"),
+            ("Smith, John A.", "John A Smith"),
+            ("John Smith, Jr.", "John Smith"),
+        ]:
+            with self.subTest(directory=directory):
+                exact, by_last = builder.build_csrankings_index([{"name": given_first}])
+                self.assertEqual(builder.csrankings_candidates_for_name(directory, exact, by_last), [{"name": given_first}])
+        self.assertFalse(builder.compatible_name("Smith, Alice", "Bob Smith"))
+
     def test_defaults_use_both_rosters_and_shared_cache(self):
         with patch.object(sys, "argv", ["builder"]):
             args = builder.parse_args()

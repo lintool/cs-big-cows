@@ -76,6 +76,39 @@ for (const [award, filename] of [['fellows', 'scholar_data.js'], ['turing', 'tur
 assert.equal(load('turing').node('#empty').classes.visible, true);
 
 for (const award of ['fellows', 'turing']) {
+  const rows = ['Orso, Alessandro', 'De Micheli, Giovanni', 'Bob Beta, Jr.', 'Arvind', 'Ada Lovelace']
+    .map(name => ({name, year: 2025, hasScholar: true, citationByYear: {'2026': 1}}));
+  const script = `window.SCHOLAR_DATA = ${JSON.stringify({schemaVersion: 1, metadata: {award}, rows})};`;
+  const {node} = load(award, script);
+  const names = () => [...node('#table').markup.matchAll(/class="author" role="cell" title="([^"]+)"/g)].map(match => match[1]);
+  for (const [query, expected] of [
+    ['Alessandro Orso', ['Orso, Alessandro']],
+    ['ORSO,   ALESSANDRO', ['Orso, Alessandro']],
+    ['Orso Alessandro', ['Orso, Alessandro']],
+    ['Giovanni De Micheli', ['De Micheli, Giovanni']],
+    ['Bob Beta Jr.', ['Bob Beta, Jr.']],
+    ['Arvind', ['Arvind']],
+    ['Ada Lovelace', ['Ada Lovelace']],
+    ['Alessandro Lovelace', []],
+  ]) {
+    node('#search').events.input({target: {value: query}});
+    assert.deepEqual(names(), expected, `${award}: search ${query}`);
+  }
+  console.log(`${award}: directory and given-name-first search, spaces, commas, suffixes, and single names passed`);
+}
+
+{
+  const rows = ['Zulu, Amy', 'Alpha, Zoe', 'De Micheli, Giovanni', 'Bob Beta, Jr.']
+    .map(name => ({name, year: 2025, hasScholar: true, citationByYear: {'2026': 1}}));
+  const script = `window.SCHOLAR_DATA = ${JSON.stringify({schemaVersion: 1, metadata: {award: 'fellows'}, rows})};`;
+  const {node} = load('fellows', script);
+  const names = () => [...node('#table').markup.matchAll(/class="author" role="cell" title="([^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(names(), ['Alpha, Zoe', 'Bob Beta, Jr.', 'De Micheli, Giovanni', 'Zulu, Amy']);
+  node('#table').events.click({target: {closest: () => ({dataset: {sort: 'name'}})}});
+  assert.deepEqual(names(), ['Alpha, Zoe', 'Bob Beta, Jr.', 'De Micheli, Giovanni', 'Zulu, Amy']);
+}
+
+for (const award of ['fellows', 'turing']) {
   const rows = [
     {name: 'Amy Zulu', year: 2024, citations: 0, hIndex: 0},
     {name: 'Zoe Alpha', year: 2024, citations: 10, hIndex: 5},

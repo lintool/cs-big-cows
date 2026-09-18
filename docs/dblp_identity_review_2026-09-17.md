@@ -1,6 +1,7 @@
 # DBLP Identity Review
 
 This report records the initial identity-review batch, not the current roster or quality-review queue.
+Recipient names and source links retain their review-time forms from before the directory reconciliation.
 Some removed associations were subsequently replaced in the [missing-profile search](dblp_missing_profile_search_2026-09-17.md).
 The later [DBLP quality review](dblp_profile_quality_2026-09-17.md) adds quality assessments and further removals; keeping a link here does not establish a `Y` rating.
 Use the canonical award CSVs for current links and [Data Notes](data_notes.md) for subsequent decisions.

@@ -2,6 +2,7 @@
 
 Initial assessment completed 2026-09-17T21:50:15.757532-04:00; decisions and totals updated through 2026-09-17T22:15:20.324186-04:00.
 These are review times; profile crawl dates retain the dates of the underlying captures.
+Recipient names and reference links retain their review-time forms from before the directory reconciliation; consult the canonical rosters for current values.
 The [maintenance policy](../README_FOR_AGENTS.md#publication-profile-quality) defines the shared criteria; this report records the assessment and subsequent user decisions.
 
 Applied the same tolerant ACM-grounded identity and publication-relevance standard as Scholar, with the user's additional instruction that obviously incomplete DBLP profiles receive N.
