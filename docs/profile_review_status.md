@@ -19,12 +19,14 @@ Do not restore their old DBLP cells or blank exceptions, and do not treat their 
 | Explicit user dispositions | The earlier 18 cases, three DBLP quality decisions and five further profile decisions are resolved and applied | Preserve the [earlier decisions](check_profiles_full_2026-09-18.md#explicit-user-decisions) and all [subsequent Turing decisions](check_profiles_turing_2026-09-18.md#subsequent-user-decisions), including the rejected Manuel Blum Scholar ID. |
 | Rob Cook DBLP candidate | Candidate inspection saved, but its proposed replacement is not applied | Reconcile the saved proposal when resuming profile review; this documentation cleanup does not change the roster. |
 | Final service audit | The full 5,157-assessment audit is not assembled | Distinguish recorded trial outcomes, initial inspection, unresolved evidence and unreviewed rows. |
-| Visualization | Regeneration remains deferred | Regenerate only when requested. |
+| Visualization | Both datasets regenerated from current CSVs; timelines start in 1986 and Scholar quality `N` histograms are gray | Regenerate after future data changes when requested. |
 
 The saved notes extend through Fellow 1,300, although the last bulk CSV checkpoint was through Fellow 1,285 before the subsequent user dispositions.
 These are different milestones; the earlier checkpoint totals are historical.
 Rob Cook's saved proposal is [c/RobertLCook](https://dblp.org/pid/c/RobertLCook), with 14 inspected records and a documented contextual coverage rationale.
 It remains a proposal, not an accepted CSV value or imported capture.
+The user subsequently rejected Shyamasundar, Rudrapatna K's Scholar association `gNhIpRwAAAAJ`; its URL, capture date and imported statistics were removed, with quality retained as `N`.
+Do not restore that association from earlier review artifacts.
 
 ## Capture and Import Backlog
 
@@ -90,4 +92,4 @@ It contains the input snapshots, `queue.json`, `inspection-notes-1286-1300.json`
 The public status index consolidates that progress without claiming the unfinished notes constitute a final audit.
 The separate completed Turing audit and discovery follow-ups are retained in `../bigcows-crawler/.cache/check-profiles-turing-2026-09-18/` and summarized in the [Turing report](check_profiles_turing_2026-09-18.md).
 On resumption, reconcile the saved Cook proposal, continue at Fellow 1,301, finish earlier Fellow follow-ups, and combine the completed Turing outcomes with the eventual full audit.
-Preserve the explicit user dispositions, original CSRankings source fields, finalized ACM award data and deferred visualization snapshots.
+Preserve the explicit user dispositions, original CSRankings source fields and finalized ACM award data; regenerate visualization snapshots only when requested.

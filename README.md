@@ -32,12 +32,15 @@ Explore separate citation timelines for [ACM Fellows](https://lintool.github.io/
 The timelines use generated snapshots and can lag the canonical CSVs; see [Data Notes](docs/data_notes.md) for imports and deferred regeneration.
 Bars show citations received in each calendar year, not publications produced that year.
 Each person's bars are scaled to their own highest year in the displayed window, so equal-height bars across people can represent different citation counts.
-Citations and h-index show Scholar's reported all-time metrics, which may include known publication-attribution errors documented in the reviews.
-Both timelines show the same 45-year window ending in the current UTC year.
+Cites and h-index show Scholar's reported all-time metrics, which may include known publication-attribution errors documented in the reviews.
+Both timelines start in 1986 and end in the current UTC year.
+Gray histograms indicate Scholar profiles rated `N` for quality; their citation counts remain visible.
+Darker bars show years before the award; lighter bars show the award year and later years.
 An empty bar can mean a reported zero or an absent year in the captured history; it does not establish zero citations.
 Recipients without citation histories are hidden by default; use **Show missing Scholar data** to include them.
-Click **Year**, **Name**, **Citations**, or **h-index** to sort, and expand **About the Data** for coverage counts and source links.
-Open `index.html` directly in a browser with the accompanying HTML, JavaScript, and CSS files in place; no server is required, although the timelines load D3 from a CDN.
+Click **Year**, **Name**, **Cites**, **cites at award**, or **h-index** to sort, and expand **About the Data** for coverage counts, the estimate's calculation and source links.
+Use the small icons beside each name to open available ACM, Google Scholar and DBLP profiles; hover over an icon to identify its service.
+Open `index.html` directly in a browser with the accompanying HTML, JavaScript, CSS and `assets/` directory in place; no server or network connection is required to view the timelines.
 
 ## Local Analysis
 

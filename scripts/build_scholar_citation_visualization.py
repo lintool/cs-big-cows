@@ -41,29 +41,44 @@ def int_or_none(value: str) -> int | None:
     return int(value) if value else None
 
 
-def build_data(acm_rows: list[dict[str, str]], scholar_rows: list[dict[str, str]], award: str = "fellows") -> dict[str, Any]:
+def estimate_citations_at_induction(
+    citations: int | None, award_year: int | None, citation_by_year: dict[str, int]
+) -> int | None:
+    """Subtract all captured citations from the award year onward, including that year."""
+    if citations is None or award_year is None or not citation_by_year:
+        return None
+    return citations - sum(count for year, count in citation_by_year.items() if int(year) >= award_year)
+
+
+def build_data(roster_rows: list[dict[str, str]], scholar_rows: list[dict[str, str]], award: str = "fellows") -> dict[str, Any]:
     scholar_by_profile = {row["profile"]: row for row in scholar_rows if row.get("profile")}
     rows: list[dict[str, Any]] = []
     years: set[int] = set()
 
-    for acm in acm_rows:
-        profile = acm.get("google_scholar_profile", "").strip()
+    for recipient in roster_rows:
+        profile = recipient.get("google_scholar_profile", "").strip()
         scholar = scholar_by_profile.get(profile) if profile else None
         citation_by_year: dict[str, int] = {}
         if scholar and scholar.get("citation_by_year"):
             citation_by_year = {str(year): int(count) for year, count in json.loads(scholar["citation_by_year"]).items()}
             years.update(int(year) for year in citation_by_year)
 
+        award_year = int_or_none(recipient.get("year", ""))
+        citations = int_or_none(scholar.get("citations", "") if scholar else "")
+
         rows.append(
             {
-                "name": acm.get("name", ""),
-                "year": int_or_none(acm.get("year", "")),
-                "location": acm.get("location", ""),
-                "acmProfile": acm.get("acm_fellow_profile", ""),
+                "name": recipient.get("name", ""),
+                "year": award_year,
+                "location": recipient.get("location", ""),
+                "acmProfile": recipient.get("acm_fellow_profile", ""),
+                "dblpProfile": recipient.get("dblp_profile", ""),
                 "scholarProfile": profile,
+                "scholarQuality": recipient.get("google_scholar_profile_quality", ""),
                 "hasScholar": bool(scholar and citation_by_year),
                 "crawlDate": (scholar.get("crawl_date") or None) if scholar else None,
-                "citations": int_or_none(scholar.get("citations", "") if scholar else ""),
+                "citations": citations,
+                "approximate_citations_at_induction": estimate_citations_at_induction(citations, award_year, citation_by_year),
                 "hIndex": int_or_none(scholar.get("h_index", "") if scholar else ""),
                 "firstCitationYear": int_or_none(scholar.get("first_citation_year", "") if scholar else ""),
                 "citationByYear": citation_by_year,
