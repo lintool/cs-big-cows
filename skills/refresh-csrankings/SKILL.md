@@ -15,6 +15,7 @@ The shared [crawler reference](https://github.com/lintool/bigcows-crawler/blob/m
 2. Follow the name-link reference to refresh the requested source scope and synchronize accepted exact keys, retaining documented historical records.
    Do not overwrite the canonical table with the legacy `scripts/build_csrankings_profiles.py`, which does not consume explicit name links.
 3. Validate exact key coverage, uniqueness, source fields and documented DBLP exceptions, retaining input snapshots and the validation report.
+   Follow the name-link reference to verify and update the source-field manifest after authorized source changes; preserve original fields even when upstream identifiers are wrong.
 4. Report changes, cache coverage, and unresolved matches with representative evidence.
 
 ## Validate Existing Profiles

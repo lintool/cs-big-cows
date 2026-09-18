@@ -44,6 +44,10 @@ class CitationDataTests(unittest.TestCase):
         ):
             with self.subTest(award=award):
                 source = builder.read_csv(roster)
+                for recipient in source:
+                    metric = by_profile.get(recipient["google_scholar_profile"])
+                    if metric:
+                        self.assertEqual(recipient["google_scholar_profile_crawl_date"], metric["crawl_date"], recipient["name"])
                 expected = builder.build_data(source, metrics, award)
                 self.assertEqual(len(expected["rows"]), len(source))
                 self.assertEqual({r["name"] for r in expected["rows"]}, {r["name"] for r in source})
@@ -53,7 +57,9 @@ class CitationDataTests(unittest.TestCase):
                 self.assertEqual(expected["metadata"]["joinedRows"], histories)
                 self.assertEqual(expected["metadata"]["missingRows"], len(source) - histories)
                 for row in expected["rows"]:
-                    if not row["scholarProfile"]:
+                    if row["scholarProfile"] not in by_profile:
+                        recipient = next(r for r in source if r["name"] == row["name"])
+                        self.assertFalse(recipient["google_scholar_profile_crawl_date"])
                         self.assertFalse(row["hasScholar"])
                         self.assertIsNone(row["citations"])
                         self.assertIsNone(row["crawlDate"])

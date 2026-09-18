@@ -1,0 +1,1457 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-18T18:50:38.023058+00:00",
+  "scope": "Accepted stored links only; excludes missing links and unadopted discovery candidates",
+  "tasks": [
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/00/5815-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Fu, Yun Raymond",
+          "award_year": "2025",
+          "acm_profile": "https://awards.acm.org/award-recipients/fu_2327618",
+          "stored_url": "https://dblp.org/pid/00/5815-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/04/5072",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Smith, Adam",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/smith_9268378",
+          "stored_url": "https://dblp.org/pid/04/5072"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/07/1181",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Das, Gautam",
+          "award_year": "2021",
+          "acm_profile": "https://awards.acm.org/award-recipients/das_4900977",
+          "stored_url": "https://dblp.org/pid/07/1181"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/16/3809",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Hart, Peter E",
+          "award_year": "2003",
+          "acm_profile": "https://awards.acm.org/award-recipients/hart_1078831",
+          "stored_url": "https://dblp.org/pid/16/3809"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/18/1402",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Kim, Nam Sung",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/kim_7277515",
+          "stored_url": "https://dblp.org/pid/18/1402"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/24/4827",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Balakrishnan, Meenakshi",
+          "award_year": "2021",
+          "acm_profile": "https://awards.acm.org/award-recipients/balakrishnan_4440475",
+          "stored_url": "https://dblp.org/pid/24/4827"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/27/2931",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Gupta, Anupam",
+          "award_year": "2021",
+          "acm_profile": "https://awards.acm.org/award-recipients/gupta_9367426",
+          "stored_url": "https://dblp.org/pid/27/2931"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/30/3377",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Moran, Thomas",
+          "award_year": "2003",
+          "acm_profile": "https://awards.acm.org/award-recipients/moran_1239979",
+          "stored_url": "https://dblp.org/pid/30/3377"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/30/5330-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Li, Hai",
+          "award_year": "2021",
+          "acm_profile": "https://awards.acm.org/award-recipients/li_8793251",
+          "stored_url": "https://dblp.org/pid/30/5330-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/345/5455-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Banerjee, Suman",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/banerjee_2544948",
+          "stored_url": "https://dblp.org/pid/345/5455-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/35/370",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Heath, Michael",
+          "award_year": "2000",
+          "acm_profile": "https://awards.acm.org/award-recipients/heath_2177665",
+          "stored_url": "https://dblp.org/pid/35/370"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/37/4356-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Zhang, Xiaodong",
+          "award_year": "2012",
+          "acm_profile": "https://awards.acm.org/award-recipients/zhang_3302635",
+          "stored_url": "https://dblp.org/pid/37/4356-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/39/5192",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Kirkpatrick, Scott",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/kirkpatrick_CR61160",
+          "stored_url": "https://dblp.org/pid/39/5192"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/41/1559",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Magnusson, Peter",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/magnusson_4793956",
+          "stored_url": "https://dblp.org/pid/41/1559"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/41/4753",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Huang, Xuedong",
+          "award_year": "2016",
+          "acm_profile": "https://awards.acm.org/award-recipients/huang_NC99002",
+          "stored_url": "https://dblp.org/pid/41/4753"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/43/2339",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Boehm, Hans",
+          "award_year": "2012",
+          "acm_profile": "https://awards.acm.org/award-recipients/boehm_1686237",
+          "stored_url": "https://dblp.org/pid/43/2339"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/57/2381-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Kang , Sung Mo",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/kang_4584710",
+          "stored_url": "https://dblp.org/pid/57/2381-1.html"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/60/3556",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Chan, Timothy",
+          "award_year": "2019",
+          "acm_profile": "https://awards.acm.org/award-recipients/chan_4172730",
+          "stored_url": "https://dblp.org/pid/60/3556"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/65/1049",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Mukherjee, Shubu",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/mukherjee_4035622",
+          "stored_url": "https://dblp.org/pid/65/1049"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/67/2932",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Cattell, Rick",
+          "award_year": "2012",
+          "acm_profile": "https://awards.acm.org/award-recipients/cattell_1468248",
+          "stored_url": "https://dblp.org/pid/67/2932"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/69/3480-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Gao, Lixin",
+          "award_year": "2012",
+          "acm_profile": "https://awards.acm.org/award-recipients/gao_4424933",
+          "stored_url": "https://dblp.org/pid/69/3480-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/73/5043",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Zhang, Zhengyou",
+          "award_year": "2013",
+          "acm_profile": "https://awards.acm.org/award-recipients/zhang_5032776",
+          "stored_url": "https://dblp.org/pid/73/5043"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/78/1872",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Aiken, Robert",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/aiken_1056878",
+          "stored_url": "https://dblp.org/pid/78/1872"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/78/5322",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Park, Haesun",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/park_9980091",
+          "stored_url": "https://dblp.org/pid/78/5322"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/80/1836-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Dubois, Michel",
+          "award_year": "2005",
+          "acm_profile": "https://awards.acm.org/award-recipients/dubois_2626471",
+          "stored_url": "https://dblp.org/pid/80/1836-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/80/1906-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Jackson, Daniel",
+          "award_year": "2016",
+          "acm_profile": "https://awards.acm.org/award-recipients/jackson_N984229",
+          "stored_url": "https://dblp.org/pid/80/1906-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/82/11191",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Morris, Robert",
+          "award_year": "2014",
+          "acm_profile": "https://awards.acm.org/award-recipients/morris_4169967",
+          "stored_url": "https://dblp.org/pid/82/11191"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/88/683",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Lu, Chenyang",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/lu_4942207",
+          "stored_url": "https://dblp.org/pid/88/683"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/92/309-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Liu, Huan",
+          "award_year": "2018",
+          "acm_profile": "https://awards.acm.org/award-recipients/liu_3081791",
+          "stored_url": "https://dblp.org/pid/92/309-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/94/5975",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Newell, Alan",
+          "award_year": "2006",
+          "acm_profile": "https://awards.acm.org/award-recipients/newell_CL65900",
+          "stored_url": "https://dblp.org/pid/94/5975"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/99/2747-1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Zhou, Yuanyuan",
+          "award_year": "2013",
+          "acm_profile": "https://awards.acm.org/award-recipients/zhou_7451867",
+          "stored_url": "https://dblp.org/pid/99/2747-1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/a/Arvind",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Arvind",
+          "award_year": "2006",
+          "acm_profile": "https://awards.acm.org/award-recipients/arvind_3667433",
+          "stored_url": "https://dblp.org/pid/a/Arvind"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/a/JacobAAbraham",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Abraham, Jacob",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/abraham_1411065",
+          "stored_url": "https://dblp.org/pid/a/JacobAAbraham"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/c/AAChien",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Chien, Andrew A",
+          "award_year": "2004",
+          "acm_profile": "https://awards.acm.org/award-recipients/chien_2765501",
+          "stored_url": "https://dblp.org/pid/c/AAChien"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/c/AlokNChoudhary",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Choudhary, Alok",
+          "award_year": "2009",
+          "acm_profile": "https://awards.acm.org/award-recipients/choudhary_3360559",
+          "stored_url": "https://dblp.org/pid/c/AlokNChoudhary"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/c/HsinchunChen",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Chen, Hsinchun",
+          "award_year": "2015",
+          "acm_profile": "https://awards.acm.org/award-recipients/chen_3182110",
+          "stored_url": "https://dblp.org/pid/c/HsinchunChen"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/c/JohnMCarroll",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Carroll, John Millar",
+          "award_year": "2003",
+          "acm_profile": "https://awards.acm.org/award-recipients/carroll_3680246",
+          "stored_url": "https://dblp.org/pid/c/JohnMCarroll"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/d/DavidLDill",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Dill, David",
+          "award_year": "2005",
+          "acm_profile": "https://awards.acm.org/award-recipients/dill_3232592",
+          "stored_url": "https://dblp.org/pid/d/DavidLDill"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/d/JohandeKleer",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "de Kleer, Johan",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/dekleer_5195433",
+          "stored_url": "https://dblp.org/pid/d/JohandeKleer"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/g/GuangRGao",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Gao, Guang",
+          "award_year": "2007",
+          "acm_profile": "https://awards.acm.org/award-recipients/gao_1954601",
+          "stored_url": "https://dblp.org/pid/g/GuangRGao"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/g/RajivGupta",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Gupta, Rajiv",
+          "award_year": "2009",
+          "acm_profile": "https://awards.acm.org/award-recipients/gupta_3221918",
+          "stored_url": "https://dblp.org/pid/g/RajivGupta"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/g/WenGao",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Gao, Wen",
+          "award_year": "2013",
+          "acm_profile": "https://awards.acm.org/award-recipients/gao_0100021",
+          "stored_url": "https://dblp.org/pid/g/WenGao"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/h/JasonIHong",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Hong, Jason",
+          "award_year": "2022",
+          "acm_profile": "https://awards.acm.org/award-recipients/hong_4784823",
+          "stored_url": "https://dblp.org/pid/h/JasonIHong"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/h/PeterJHaas",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Haas, Peter",
+          "award_year": "2013",
+          "acm_profile": "https://awards.acm.org/award-recipients/haas_4166369",
+          "stored_url": "https://dblp.org/pid/h/PeterJHaas"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/j/ChristianSJensen",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Jensen, Christian S.",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/jensen_3676889",
+          "stored_url": "https://dblp.org/pid/j/ChristianSJensen"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/k/CCJayKuo",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Kuo, Chung C",
+          "award_year": "2022",
+          "acm_profile": "https://awards.acm.org/award-recipients/kuo_3398864",
+          "stored_url": "https://dblp.org/pid/k/CCJayKuo"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/k/RaviKumar",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Kumar, Ravi",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/kumar_2505048",
+          "stored_url": "https://dblp.org/pid/k/RaviKumar"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/l/BingLiu1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Liu, Bing",
+          "award_year": "2015",
+          "acm_profile": "https://awards.acm.org/award-recipients/liu_N032151",
+          "stored_url": "https://dblp.org/pid/l/BingLiu1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/l/BrianNeilLevine",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Levine, Brian",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/levine_UJ71277",
+          "stored_url": "https://dblp.org/pid/l/BrianNeilLevine"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/l/GuoliangLi",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "li, guoliang",
+          "award_year": "2024",
+          "acm_profile": "https://awards.acm.org/award-recipients/li_1339839",
+          "stored_url": "https://dblp.org/pid/l/GuoliangLi"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/l/MLLittman",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Littman, Michael",
+          "award_year": "2018",
+          "acm_profile": "https://awards.acm.org/award-recipients/littman_5691718",
+          "stored_url": "https://dblp.org/pid/l/MLLittman"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/l/MingCLin",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Lin, Ming C",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/lin_5364120",
+          "stored_url": "https://dblp.org/pid/l/MingCLin"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/l/PeterLee1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Lee, Peter",
+          "award_year": "2004",
+          "acm_profile": "https://awards.acm.org/award-recipients/lee_2941862",
+          "stored_url": "https://dblp.org/pid/l/PeterLee1"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/m/CMohan",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Mohan, C.",
+          "award_year": "2002",
+          "acm_profile": "https://awards.acm.org/award-recipients/mohan_4674321",
+          "stored_url": "https://dblp.org/pid/m/CMohan"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/m/JohnCMitchell",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Mitchell, John C.",
+          "award_year": "2008",
+          "acm_profile": "https://awards.acm.org/award-recipients/mitchell_2036986",
+          "stored_url": "https://dblp.org/pid/m/JohnCMitchell"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/m/JosephSBMitchell",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Mitchell, Joseph",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/mitchell_3261294",
+          "stored_url": "https://dblp.org/pid/m/JosephSBMitchell"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/p/DavidCParkes",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Parkes, David",
+          "award_year": "2018",
+          "acm_profile": "https://awards.acm.org/award-recipients/parkes_9764989",
+          "stored_url": "https://dblp.org/pid/p/DavidCParkes"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/p/FernandoCNPereira",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Pereira, Fernando",
+          "award_year": "2010",
+          "acm_profile": "https://awards.acm.org/award-recipients/pereira_5799408",
+          "stored_url": "https://dblp.org/pid/p/FernandoCNPereira"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/p/LLPeterson",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Peterson, Larry L",
+          "award_year": "2000",
+          "acm_profile": "https://awards.acm.org/award-recipients/peterson_2244903",
+          "stored_url": "https://dblp.org/pid/p/LLPeterson"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/p/MihaiPop",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Pop, Mihai",
+          "award_year": "2019",
+          "acm_profile": "https://awards.acm.org/award-recipients/pop_4359402",
+          "stored_url": "https://dblp.org/pid/p/MihaiPop"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/DanRoth",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Roth, Dan",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/roth_3933512",
+          "stored_url": "https://dblp.org/pid/r/DanRoth"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/GGRobertson",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Robertson, George",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/robertson_1080837",
+          "stored_url": "https://dblp.org/pid/r/GGRobertson"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/JohnCReynolds",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Reynolds, John C",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/reynolds_1030899",
+          "stored_url": "https://dblp.org/pid/r/JohnCReynolds"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/KWRoss",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Ross, Keith",
+          "award_year": "2012",
+          "acm_profile": "https://awards.acm.org/award-recipients/ross_5425728",
+          "stored_url": "https://dblp.org/pid/r/KWRoss"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/KrithiRamamritham",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "ramamritham, krithivasan",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/ramamritham_1787308",
+          "stored_url": "https://dblp.org/pid/r/KrithiRamamritham"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/MichaelKReiter",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Reiter, Michael",
+          "award_year": "2008",
+          "acm_profile": "https://awards.acm.org/award-recipients/reiter_NC55657",
+          "stored_url": "https://dblp.org/pid/r/MichaelKReiter"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/r/SriramKRajamani",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Rajamani, Sriram",
+          "award_year": "2015",
+          "acm_profile": "https://awards.acm.org/award-recipients/rajamani_4149217",
+          "stored_url": "https://dblp.org/pid/r/SriramKRajamani"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/s/AmitPSheth",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Sheth, Amit",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/sheth_2299642",
+          "stored_url": "https://dblp.org/pid/s/AmitPSheth"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/s/DanSuciu",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Suciu, Dan",
+          "award_year": "2011",
+          "acm_profile": "https://awards.acm.org/award-recipients/suciu_4800801",
+          "stored_url": "https://dblp.org/pid/s/DanSuciu"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/s/KyuseokShim",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Shim, Kyuseok",
+          "award_year": "2013",
+          "acm_profile": "https://awards.acm.org/award-recipients/shim_7832926",
+          "stored_url": "https://dblp.org/pid/s/KyuseokShim"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/s/MichaelLScott",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Scott, Michael",
+          "award_year": "2006",
+          "acm_profile": "https://awards.acm.org/award-recipients/scott_2109486",
+          "stored_url": "https://dblp.org/pid/s/MichaelLScott"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/s/StevenMSeitz",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Seitz, Steve",
+          "award_year": "2017",
+          "acm_profile": "https://awards.acm.org/award-recipients/seitz_3858198",
+          "stored_url": "https://dblp.org/pid/s/StevenMSeitz"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/s/WilliamHSanders",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Sanders, William",
+          "award_year": "2003",
+          "acm_profile": "https://awards.acm.org/award-recipients/sanders_2837482",
+          "stored_url": "https://dblp.org/pid/s/WilliamHSanders"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/t/JonathanSTurner",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Turner, Jonathan",
+          "award_year": "2001",
+          "acm_profile": "https://awards.acm.org/award-recipients/turner_2493385",
+          "stored_url": "https://dblp.org/pid/t/JonathanSTurner"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/w/DavidPWilliamson",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Williamson, David",
+          "award_year": "2013",
+          "acm_profile": "https://awards.acm.org/award-recipients/williamson_4646584",
+          "stored_url": "https://dblp.org/pid/w/DavidPWilliamson"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/w/MartinDFWong",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Wong, Martin",
+          "award_year": "2017",
+          "acm_profile": "https://awards.acm.org/award-recipients/wong_2111201",
+          "stored_url": "https://dblp.org/pid/w/MartinDFWong"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/w/MichaelWooldridge",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Wooldridge, Michael",
+          "award_year": "2015",
+          "acm_profile": "https://awards.acm.org/award-recipients/wooldridge_UK33119",
+          "stored_url": "https://dblp.org/pid/w/MichaelWooldridge"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/w/WeiWang",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Wang, Wei",
+          "award_year": "2020",
+          "acm_profile": "https://awards.acm.org/award-recipients/wang_7192664",
+          "stored_url": "https://dblp.org/pid/w/WeiWang"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/z/FengZhao",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Zhao, Feng",
+          "award_year": "2024",
+          "acm_profile": "https://awards.acm.org/award-recipients/zhao_3018413",
+          "stored_url": "https://dblp.org/pid/z/FengZhao"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/z/LixiaZhang1",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Zhang, Lixia",
+          "award_year": "2006",
+          "acm_profile": "https://awards.acm.org/award-recipients/zhang_2613263",
+          "stored_url": "https://dblp.org/pid/z/LixiaZhang1"
+        }
+      ]
+    },
+    {
+      "service": "scholar",
+      "url": "https://scholar.google.com/citations?user=C_m6dhIAAAAJ",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "missing_metrics_import",
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Agrawal, Vishwani D",
+          "award_year": "2002",
+          "acm_profile": "https://awards.acm.org/award-recipients/agrawal_3049186",
+          "stored_url": "https://scholar.google.com/citations?user=C_m6dhIAAAAJ"
+        }
+      ]
+    },
+    {
+      "service": "scholar",
+      "url": "https://scholar.google.com/citations?user=FxKiXx0AAAAJ",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "missing_metrics_import",
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Inverardi, Paola",
+          "award_year": "2021",
+          "acm_profile": "https://awards.acm.org/award-recipients/inverardi_4724209",
+          "stored_url": "https://scholar.google.com/citations?user=FxKiXx0AAAAJ"
+        }
+      ]
+    },
+    {
+      "service": "scholar",
+      "url": "https://scholar.google.com/citations?user=Sv1hcjEAAAAJ",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "missing_metrics_import",
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Paulson, Lawrence Charles",
+          "award_year": "2008",
+          "acm_profile": "https://awards.acm.org/award-recipients/paulson_4585196",
+          "stored_url": "https://scholar.google.com/citations?user=Sv1hcjEAAAAJ"
+        }
+      ]
+    },
+    {
+      "service": "scholar",
+      "url": "https://scholar.google.com/citations?user=kK3b1SAAAAAJ",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "missing_metrics_import",
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "DeMillo, Richard",
+          "award_year": "2003",
+          "acm_profile": "https://awards.acm.org/award-recipients/demillo_1345156",
+          "stored_url": "https://scholar.google.com/citations?user=kK3b1SAAAAAJ"
+        }
+      ]
+    },
+    {
+      "service": "scholar",
+      "url": "https://scholar.google.com/citations?user=o5NbsPEAAAAJ",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "missing_metrics_import",
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Abramson, David A",
+          "award_year": "2010",
+          "acm_profile": "https://awards.acm.org/award-recipients/abramson_2140366",
+          "stored_url": "https://scholar.google.com/citations?user=o5NbsPEAAAAJ"
+        }
+      ]
+    }
+  ]
+}

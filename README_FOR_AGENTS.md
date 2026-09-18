@@ -253,7 +253,7 @@ The [unavailable ACM profile record](docs/data_notes.md#2026-09-13---unavailable
 | --- | --- |
 | Blank URL | Missing stored link for that service; its crawl date is blank and its publication quality, where present, is `N`. |
 | URL present, crawl date blank | A link is stored, but no successful capture has been accepted for that URL. |
-| URL present, quality `N` | A linked profile judged poor, wrong, substantially mixed, or, for DBLP, clearly incomplete; consult the review rationale. |
+| URL present, quality `N` | A linked profile judged poor, wrong, substantially mixed or inadequately covered; consult the review rationale. |
 | URL present, quality `Y` | A reasonable profile under the reviewed scope; isolated attribution concerns may remain. |
 | Failed latest fetch | An access or freshness problem; preserve the previous link, accepted date and rating until evidence justifies a change. |
 | Review flag | A request to inspect evidence; independent of whether the link is present or its quality is `Y` or `N`. |
@@ -281,6 +281,7 @@ Keep full timestamps, HTML, capture hashes and validation evidence in the shared
 
 ### Publication Profile Quality
 
+Use the repo-local [Check Profiles skill](skills/check-profiles/SKILL.md) for a holistic review of Google Scholar, DBLP and CSRankings links across either or both award rosters.
 `dblp_profile_quality` and `google_scholar_profile_quality` are required for every award row and must be `Y` or `N`.
 Use the appropriate ACM Fellow or Turing recipient profile as the identity and research ground truth.
 If the individual ACM URL is missing, use retained ACM roster/directory evidence and corroborating primary sources, state the limitation, and flag uncertain identity or coverage for review.
@@ -288,16 +289,17 @@ Do not claim an individual ACM page was inspected when no such capture exists.
 
 | Finding | Rating And Action |
 | --- | --- |
-| Most reviewed publications reasonably match or are adjacent to the recipient's research | `Y`, allowing a couple of questionable or misattributed papers. |
+| Supported identity, substantial publication coverage and mostly matching or adjacent work without substantial unrelated contamination | `Y`, allowing a couple of questionable or misattributed papers. |
 | Wrong person or substantial unrelated contamination | `N`; record the identity or contamination evidence. |
 | Missing link | `N`, with URL and crawl date blank. |
-| Obviously incomplete DBLP bibliography | `N`, including incidental or split fragments omitting the established body of work. |
-| Very sparse DBLP bibliography without positive identity and completeness evidence | `N` pending verification; record the actual count and coverage concern. |
+| Obviously incomplete Scholar or DBLP bibliography | `N`, including incidental or split fragments omitting the established body of work. |
+| Genuinely sparse Scholar or DBLP bibliography without positive identity and coverage evidence supporting an exception | `N` pending verification; record the actual count and coverage concern. |
 
 Assess DBLP and Scholar independently.
-The explicit incompleteness rule applies to DBLP; a short captured Scholar first page alone does not establish that the Scholar profile is incomplete or poor.
-For DBLP, assess coverage against the ACM-recognized contributions and corroborating publication evidence.
-The user expects substantial publication coverage for ACM Fellows: do not retain `Y` merely because a handful of titles fit the topic or the recipient has a historical or service-oriented career.
+The user expects substantial numbers of publications in both Scholar and DBLP for Fellows and Turing winners.
+A short captured first page, filtered view or incomplete crawl alone does not establish that the underlying profile is sparse or poor; check pagination and capture completeness, and preserve the previous rating when access prevents a supported decision.
+For both services, assess coverage against the ACM-recognized contributions and corroborating publication evidence.
+Do not retain `Y` merely because a handful of titles fit the topic or the recipient has a historical or service-oriented career; any justified exception requires positive identity and coverage evidence.
 There is no universal numerical cutoff; the nine one-to-four-record profiles in the September 17 reassessment describe that batch, not a general threshold.
 
 Substantial contamination can warrant `N` despite a relevant majority; this is a profile-level judgment, not a percentage formula.
@@ -312,7 +314,11 @@ When a URL changes, reassess its quality instead of carrying the old URL's ratin
 Keep quality ratings consistent for the same publication-service URL shared across both rosters, preserving explicit user decisions.
 
 The user explicitly rated the Scholar profiles of Arindam Banerjee, Ramesh C Jain, James H Morris and David S Johnson `N`; do not upgrade them solely because a majority of sampled papers are adjacent.
+The user explicitly accepted Stephen David Crocker’s DBLP profile `https://dblp.org/pid/49/6744` as `Y` after reviewing its 15-record coverage and missing early RFC work; preserve this [documented coverage exception](docs/check_profiles_trial_100_2026-09-18.md) rather than reopening the same concern without new evidence.
 The user rejected the stored DBLP profiles for David Patterson, Jim Gray, Richard Karp, J. H. Wilkinson, Seymour J. Wolfson, Roger R Bate and Karen Duncan; rejected URLs remain evidence only and must not be restored from older captures or snapshots.
+The [September 18 user dispositions](docs/check_profiles_full_2026-09-18.md#explicit-user-decisions) additionally retain the reviewed Meenakshi Balakrishnan and Mihai Pop DBLP candidates as `N`, rate Sudipta Sengupta's Scholar profile `N`, and accept Aravind Srinivasan and Vishwani Agrawal's Scholar profiles as `Y`.
+They accept George Varghese and Prithviraj Banerjee's DBLP profiles as `Y`, select Sung Mo Kang's `57/2381-1.html` bibliography as `Y`, and reject both reviewed Steven Scott DBLP candidates.
+The same user disposition removes the sparse DBLP associations for Victor Miller, James Gosling, Charles H. House, Bryant York, Stephen Bourne, Sidney Karin, Joel Birnbaum and Charles Geschke; do not restore these rejected profiles from older evidence or reopen their coverage decisions without new evidence.
 Consult the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) and later Data Notes entries for individual decisions and inspection limits.
 The quality fields do not currently filter the citation visualization, CSRankings alignment or university-affiliation analysis, or alter shared Scholar metrics.
 
@@ -325,7 +331,9 @@ The CSRankings output schema and matching behavior are documented in [CSRankings
 
 ### Google Scholar Statistics
 
-`data/google_scholar_profiles.csv` stores one row per unique Scholar `profile` URL across both award rosters.
+`data/google_scholar_profiles.csv` stores one row per unique Scholar `profile` URL with accepted imported statistics across both award rosters.
+The [Check Profiles skill](skills/check-profiles/SKILL.md) can establish a new roster link through direct candidate inspection before a crawl is imported; such a link has a blank capture date and no statistics row until an approved crawl supplies accepted evidence.
+The fresh-capture requirements in the reviewed refresh workflow apply to importing statistics; an identity review does not invent or restamp metrics.
 Join each roster's `google_scholar_profile` to this `profile` field; names are descriptive fields, not join keys.
 Use the canonical URL form `https://scholar.google.com/citations?user=...` in both tables; the visualization and affiliation helper use exact-string joins rather than normalizing URL variants at read time.
 The row's `crawl_date` and each referring roster's `google_scholar_profile_crawl_date` should identify the same accepted capture.
@@ -355,7 +363,7 @@ The generated visualization data uses `null` for missing scalar metrics and date
 Its `hasScholar` flag requires a joined, nonempty citation history; a URL alone does not satisfy it.
 The visualization's `joinedRows` and `missingRows` metadata count rows with and without that history, not rows with and without stored profile links.
 Its `generatedAt` timestamp records data-file generation, while each row's `crawlDate` retains the source capture date.
-In contrast, `data/csrankings_profiles.csv` uses `crawl_date` for the alignment build's UTC date by default (or the explicit `--crawl-date` value), not necessarily the shard-fetch date.
+`data/csrankings_profiles.csv` has no date column; record table synchronization in Data Notes and retain source-fetch timestamps in the crawler evidence.
 
 ### Award CSV Sort Order
 
@@ -455,16 +463,37 @@ Preserve manual assignments on future matching passes rather than overwriting th
 `data/csrankings_profiles.csv` contains exactly one row per distinct nonempty `csrankings_name` across both rosters.
 To synchronize it, resolve each accepted key exactly against all 26 refreshed alphabetical faculty files and copy their original `name`, `affiliation`, `homepage`, `scholarid` and `orcid` values.
 Preserve documented historical records absent from those sources using the retained profile table; investigate any other missing or duplicate key instead of inferring a replacement.
-Remove unreferenced keys, sort by case-insensitive name with the exact name as a tie-breaker, and set `crawl_date` to the UTC synchronization date, independently of source download and name-alignment dates.
+Remove unreferenced keys and sort by case-insensitive name with the exact name as a tie-breaker.
+Record synchronization time in Data Notes; do not add a `crawl_date` column to this lookup table.
+Profile capture dates and CSRankings name-alignment dates remain in the award rosters, while source-download timestamps remain in the crawler evidence.
 Copy the linked recipient's normalized DBLP URL only after checking agreement across shared recipients and known identity conflicts; a quality flag alone does not determine whether to retain a URL.
 Exclude exact URLs classified as `identity_mismatch` in the [DBLP review](docs/dblp_profile_quality_2026-09-17.csv), unless later documented identity evidence supersedes that finding.
 Match reviewed URLs, not historical award-name spellings, and do not copy known wrong-person URLs into the lookup table even when the award roster retains them.
 Other `N` categories do not automatically imply a different person or removal.
-The accepted UCLA key `Wei Wang 0010` has a blank table DBLP field because the roster URL identifies the HKUST namesake, as documented in the [broader review](docs/csrankings_broader_alignment_2026-09-18.md).
+The accepted UCLA key `Wei Wang 0010` initially had a blank table DBLP field because the roster URL identified the HKUST namesake, as documented in the [broader review](docs/csrankings_broader_alignment_2026-09-18.md).
+The [full profile review](docs/check_profiles_full_2026-09-18.md) subsequently accepted the UCLA bibliography `https://dblp.org/pid/w/WeiWang` for both the roster and lookup table.
 Validate exact key coverage, uniqueness and source fields, retain input snapshots and a validation report in the shared cache, and preserve both award rosters and generated visualizations.
 
 The corrected September 18 table contains 829 unique keys, including five retained historical profiles; see the [PR review corrections](docs/data_notes.md#2026-09-18-0742-edt---correct-csrankings-identity-links-from-pr-review).
-The existing DBLP-based builder and university analysis below still use their prior matching and join behavior; they do not yet consume `csrankings_name`.
+University analysis joins through the exact `csrankings_name` key.
+The separate legacy DBLP-based builder below still uses inferred names and must not replace the canonical table.
+
+The [source-field manifest](docs/csrankings_source_fields.json) protects the five original CSRankings fields independently of the derived DBLP field.
+Its per-name hashes were verified against all 26 retained September 18 source shards and an independent retained table for the five documented historical keys.
+Tests compare the canonical table against those hashes without requiring a local crawler cache.
+After an authorized source update, regenerate the manifest from independently retained inputs and inspect its changes; do not update hashes merely to make a failing test pass.
+For the current retained evidence:
+
+```bash
+python scripts/build_csrankings_source_manifest.py \
+  --historical-source ../bigcows-crawler/.cache/check-profiles-full-2026-09-18/csrankings_profiles.csv.before \
+  --output docs/csrankings_source_fields.json
+```
+
+This command checks existing files only; it performs no crawl and rejects fields that differ from the supplied source evidence.
+For each selected name, conflicting upstream rows are rejected even when one matches the local table; identical duplicate rows are harmless.
+Conflicting duplicate names in historical input are also rejected instead of silently choosing the last row.
+Record the selected source snapshots and any legitimate changes in Data Notes.
 
 ## CSRankings DBLP Alignment
 
@@ -481,7 +510,7 @@ The script:
 - normalizes DBLP links to HTTPS without `.html`, query strings or fragments, then deduplicates nonempty URLs, using the Fellows roster's name first for shared URLs;
 - loops through those roster names and includes a DBLP URL only when its name matches exactly one CSRankings row;
 - preserves the original CSRankings columns;
-- appends `crawl_date` and `dblp_profile`;
+- appends `dblp_profile`;
 - writes `../bigcows-crawler/.cache/csrankings-profiles-report.json` with input roster paths, included, unmatched DBLP, and ambiguous DBLP counts.
 
 Run the legacy builder only with a separate output and report under a retained cache run directory:
@@ -503,7 +532,7 @@ Use the shared [CSRankings workflow](https://github.com/lintool/bigcows-crawler/
 Inspect cache completeness before a full rebuild and investigate surprising drops in the included-row count.
 The builder silently skips missing shard files and replaces its output; a successful exit does not establish that all 26 shards were available.
 Preserve original CSRankings fields and do not edit the award rosters unless the user requests it.
-The alignment's `crawl_date` defaults to its UTC build date, or takes the explicit `--crawl-date` value; it does not reuse the rosters' `dblp_profile_crawl_date`.
+The report's `generated_at` records the build time; the output CSV has no date column or `--crawl-date` option.
 Changing `--cache-dir` or `--output` does not relocate the default report; set `--report` explicitly to retain a separate report under the shared cache.
 
 Compile-check the script:
@@ -515,7 +544,7 @@ python -m py_compile scripts/build_csrankings_profiles.py
 The output CSV columns are:
 
 ```text
-name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
+name,affiliation,homepage,scholarid,orcid,dblp_profile
 ```
 
 The matching policy is conservative.
@@ -536,7 +565,6 @@ It contains:
 - `fellows`
 - `turing`
 - `output`
-- `crawl_date`
 - `csrankings_rows`
 - `dblp_profiles_rows`
 - `included_rows`
@@ -566,7 +594,7 @@ The script:
 
 - reads `data/acm_fellows.csv`;
 - joins Google Scholar affiliations through `google_scholar_profile`;
-- joins CSRankings affiliations through `dblp_profile`;
+- joins CSRankings affiliations through the exact `csrankings_name` key;
 - extracts university-like organizations from both affiliation fields;
 - normalizes common university variants;
 - counts every distinct normalized university found per fellow;
@@ -592,7 +620,9 @@ Counting semantics:
 
 - Profile affiliations are source evidence, not canonical employment history.
 - Counts use all linked source affiliations, including those whose publication profile quality is `N`; the helper does not apply quality filters.
-- Both joins use exact stored URLs; unlike the CSRankings builder, this helper does not normalize DBLP URL variants, so a `.html` suffix or other variant can leave an otherwise available affiliation unmatched.
+- The Scholar join uses the exact stored profile URL; the CSRankings join uses the exact reviewed name key, including disambiguation numbers.
+- Missing or unresolved CSRankings keys do not fall back to inferred names or DBLP URLs; duplicate source name keys are rejected instead of silently choosing a row.
+- DBLP URL spelling, quality and missing derived DBLP fields do not affect an accepted CSRankings affiliation link.
 - A fellow can count toward multiple universities if Scholar and CSRankings provide distinct universities.
 - The same normalized university from multiple sources counts once per fellow.
 - Companies and generic job titles should not be counted as universities.
@@ -708,15 +738,37 @@ The snapshot check deliberately fails when generated datasets lag the CSVs; do n
 For canonical-data and builder validation during that deferral, run:
 
 ```bash
-PYTHONPATH=tests python -B -m unittest test_csrankings_rosters test_scholar_citation_data.CitationDataTests -v
+PYTHONPATH=tests python -B -m unittest test_csrankings_rosters test_scholar_citation_data.CitationDataTests test_university_analysis test_profile_provenance test_profile_validation -v
 ```
 
 These checks build Scholar joins in memory without writing visualization files.
 Run the full suite after authorized regeneration and report snapshot synchronization separately until then.
-The current-data check requires a capture date for every stored profile URL; the schema permits blank dates while new links await capture, but such work is incomplete for the fully captured snapshot checked by this suite.
+Accepted links without an imported capture may have blank capture dates and missing metrics; the tests verify those missing-data semantics rather than requiring every URL to have a date.
+When a Scholar statistics row exists, its capture date must equal the referring roster's Scholar capture date.
+The canonical checks also enforce roster and CSRankings ordering, original CSRankings source-field hashes, the current capture/import queue and exact-name affiliation joins.
+Shared recipients are identified by normalized ACM recipient IDs before comparing publication URLs, quality flags, capture dates and CSRankings links/dates across awards; missing ACM identities are not inferred from names alone.
+Derived CSRankings DBLP fields must agree with the normalized roster URLs, except that documented wrong-person URLs from the identity review require blank lookup fields, as with Kai Li.
+CSRankings alignment dates must be valid `YYYY-MM-DD` values when a name link is present and blank when it is absent; a key cannot be assigned to two recipients within one roster.
 For visualization changes, also run the JavaScript checks in the [visualization workflow](#google-scholar-citation-visualization).
 Before completing an edit, check `git diff --check`, canonical ordering, preservation of unrelated data, and any applicable report totals.
 For documentation-only changes, verify field names, local links, section anchors and commands against the existing files without refreshing datasets or starting crawls.
+
+### Capture and Import Backlog
+
+The [capture/import queue](docs/profile_capture_queue.json) lists accepted stored URLs without an accepted capture and Scholar URLs without an imported statistics record.
+It excludes blank links and unadopted or unavailable discovery candidates; those remain in the [current review status](docs/profile_review_status.md).
+Queue schema version 2 retains roster, name, award year, ACM profile reference and each recipient's exact `stored_url`.
+DBLP task URLs are normalized to HTTPS without `.html`, query strings or fragments, so equivalent URL forms share one task without changing the roster URLs.
+Other services retain their exact URL as the grouping key.
+Regenerate the queue after changing accepted links, capture dates or imported statistics:
+
+```bash
+python scripts/build_profile_capture_queue.py --output docs/profile_capture_queue.json
+```
+
+The command only reads canonical CSVs and writes the queue; it does not fetch pages, accept captures or update metrics.
+Entries await the user's refresh approval, and queue-generation timestamps never substitute for profile capture dates.
+Keep this backlog distinct from the unfinished holistic review and the deferred visualization rebuild.
 
 ## Git Hygiene
 

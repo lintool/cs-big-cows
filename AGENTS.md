@@ -32,7 +32,9 @@ Before starting a crawl, read the [crawler workflow](README_FOR_AGENTS.md#crawle
 ## Publication Profile Quality
 
 Before matching or rating DBLP or Google Scholar profiles for either award roster, follow the authoritative [publication profile quality criteria](README_FOR_AGENTS.md#publication-profile-quality), including the linked review reports and explicit user decisions.
+Use [Check Profiles](skills/check-profiles/SKILL.md) for a holistic review of Scholar, DBLP and CSRankings identities, publication coverage and contamination.
 Use the [missing-profile definitions](README_FOR_AGENTS.md#missing-profiles-and-review-status) when reporting coverage or review queues.
+Consult the [current review status](docs/profile_review_status.md) before resuming verification; historical checkpoint prose is not the current open-case queue.
 
 ## Documentation Audiences
 

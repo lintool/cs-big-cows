@@ -14,6 +14,184 @@ A low quality rating or failed latest fetch does not mean that a URL cell is bla
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
+## 2026-09-18 14:51 EDT - Additional Cross-Table and Provenance Checks
+
+Added persistent validation of derived CSRankings DBLP associations against the award rosters, preserving documented wrong-identity exclusions such as Kai Li's blank derived association.
+Shared-recipient validation now joins by ACM recipient identity before comparing profile URLs, quality indicators, dates and CSRankings keys; all 63 shared recipients agree.
+CSRankings alignment dates must be valid ISO dates and present exactly when an explicit name link is present.
+These checks also reject repeated CSRankings keys within a roster.
+
+Capture queue schema version 2 groups equivalent DBLP URLs into one task while retaining each recipient's exact original URL in `stored_url`.
+The regenerated queue still contains 85 tasks and awaits refresh approval.
+The source-field manifest builder now rejects conflicting duplicate source records, including historical records, while allowing identical duplicates.
+Rebuilding against retained evidence produces the same manifest for all 829 keys.
+
+All 27 targeted tests pass, including regression cases for each newly identified validation gap.
+CSV structure and dates, local Markdown links and anchors, and `git diff --check` pass.
+All four canonical CSVs and both visualization snapshots are unchanged by this work.
+No new captures or profile decisions were made; the full review remains incomplete as recorded in the [current review status](profile_review_status.md).
+
+## 2026-09-18 14:40 EDT - Consistency Fixes and Persistent Profile Validation
+
+Corrected README descriptions of the CSRankings lookup schema, its removed date column and the canonical exact-name synchronization workflow.
+Updated validation guidance to allow accepted links awaiting capture while requiring Scholar roster dates to agree with imported statistics dates.
+University analysis now joins CSRankings through `csrankings_name`, independently of DBLP URLs, and rejects duplicate source keys.
+The regression checks cover absent and misleading DBLP IDs, missing name links, duplicate keys, cross-source university deduplication and Kai Li's accepted Princeton association.
+Current aggregate university counts are unchanged because his university was already supplied by Scholar; the CSRankings source now joins correctly.
+
+Created the [current review status](profile_review_status.md) to distinguish saved initial inspections through Fellow 1,300, the earlier bulk CSV checkpoint through Fellow 1,285, 18 resolved user cases and unfinished work.
+Synchronized the retained queue to the already saved inspection notes for Fellows 1,286–1,300, preserving explicit user dispositions.
+The full review still lacks initial inspections for 338 Fellows and all 81 Turing rows, and its final service audit remains incomplete.
+The saved Rob Cook candidate remains unapplied; no profile decisions were changed by this cleanup.
+Updated the detailed report's resolved-case wording while preserving the evidence and historical checkpoint totals.
+
+Created an [85-URL capture/import queue](profile_capture_queue.json), comprising 80 DBLP and five Scholar URLs, plus a local-only regeneration command.
+The queue awaits refresh approval; no network requests, new captures or metric imports were made.
+Created a [source-field manifest](csrankings_source_fields.json) for all 829 CSRankings keys, verified against the 26 retained source shards and the independent pre-review profile-table snapshot for the five documented historical keys.
+The manifest excludes the derived DBLP association and protects original fields even when an upstream identifier is known to be wrong.
+Its builder records input hashes, requires exact agreement with the supplied evidence and never edits the canonical table.
+
+All 20 canonical-data, builder, provenance and analysis tests pass, including new ordering, Scholar date-agreement and capture-queue freshness checks.
+Local Markdown links and anchors, CSV structure and dates, and `git diff --check` pass.
+SHA-256 comparisons confirm that all four canonical CSVs and both visualization snapshots are unchanged by this work.
+Historical reports continue to describe their original batches; the status index and later user dispositions govern current follow-up work.
+
+## 2026-09-18 14:27 EDT - Remove Legacy CSRankings Crawl Date
+
+Removed the legacy `crawl_date` column from `data/csrankings_profiles.csv` at the user's request.
+It represented table synchronization rather than a source crawl, and is no longer part of the lookup schema.
+All 829 rows, their order and every remaining field are preserved.
+Profile capture dates and `csrankings_name_alignment_date` remain unchanged in both award rosters; synchronization history belongs in Data Notes and source-fetch timestamps remain in the retained crawler evidence.
+Removed the corresponding legacy builder output/report field and `--crawl-date` option; its report still records `generated_at`.
+Updated the current schema documentation, Check Profiles skill and existing schema/CLI checks to prevent reintroducing the column.
+All 12 targeted tests pass, and both award rosters, Scholar metrics and visualization snapshots are unchanged.
+Earlier entries describing synchronization dates are historical provenance for the previous schema.
+
+## 2026-09-18 14:24 EDT - Approved Paola Inverardi Scholar Successor
+
+The user explicitly approved [Paola Inverardi's author-linked Scholar successor](https://scholar.google.com/citations?user=FxKiXx0AAAAJ) after the previous profile returned 404.
+Added this URL with quality Y, supported by her [own website](https://paolainverardi.github.io/) and the earlier inspection of 100 most-cited and 20 recent entries.
+The capture date remains blank because no successful crawler capture was imported; Scholar metrics and original CSRankings source fields are unchanged.
+Verified that exactly her Scholar URL and quality cells changed, marked the review case resolved, and passed all 12 targeted tests.
+Turing data, other profile fields and visualization snapshots remain unchanged.
+This closes the last of the 18 individual judgment cases presented in the interim review; the full roster sweep, availability findings and historical CSRankings source gaps remain incomplete.
+
+## 2026-09-18 14:23 EDT - User Dispositions for 17 Profile Review Cases
+
+Applied the user's [17 explicit dispositions](check_profiles_full_2026-09-18.md#explicit-user-decisions), superseding the pending findings for those cases.
+Accepted the reviewed Meenakshi Balakrishnan and Mihai Pop DBLP candidates with quality N, retained Sudipta Sengupta's Scholar URL with quality N, and accepted Vishwani Agrawal's Scholar candidate with quality Y.
+Retained the explicitly accepted Y ratings for Aravind Srinivasan's Scholar profile and George Varghese and Prithviraj Banerjee's DBLP profiles.
+Set Sung Mo Kang's DBLP URL to the user's exact `https://dblp.org/pid/57/2381-1.html` selection, with quality Y, and retained Steven Scott's blank DBLP association after the user rejected both candidates.
+Removed the eight sparse DBLP associations for Victor Miller, James Gosling, Charles H. House, Bryant York, Stephen Bourne, Sidney Karin, Joel Birnbaum and Charles Geschke; their URLs and capture dates are blank and their DBLP quality is N.
+New or replaced links have blank capture dates because no crawler capture was imported; quality-only changes preserve existing dates.
+The edit changes 31 Fellows cells and Mihai Pop's derived CSRankings DBLP cell, while preserving all original CSRankings fields.
+All 17 decisions and the exact change scope were verified, and all 12 targeted roster, date and Scholar-join tests pass.
+Award fields, row order, Turing data, Scholar metrics and visualization snapshots remain unchanged.
+The full sweep remains incomplete; Paola Inverardi's Scholar successor and the remaining availability and historical-source cases still await disposition or evidence.
+
+## 2026-09-18 14:09 EDT - Full Profile Review Checkpoint Through Fellow 1,285
+
+Initial individual inspection now covers 1,285 Fellows, including the trial; 353 Fellows, 81 Turing rows and final audit assembly remain in progress.
+This checkpoint applies six supported DBLP replacements, bringing the full-review changes to 97 publication-profile decisions and 300 CSV cells: 252 Fellows cells and 48 derived CSRankings DBLP cells.
+Candidate-only links have blank capture dates, and retained evidence dates are not advanced for re-review.
+The 12 targeted tests pass; protected ACM award fields, Turing data, original CSRankings fields, Scholar metrics and visualization snapshots remain unchanged.
+Additional contamination, unavailable-candidate and historical-source questions are recorded in the [ongoing review](check_profiles_full_2026-09-18.md).
+
+## 2026-09-18 10:24 EDT - Full Profile Review Checkpoint Through Fellow 1,220
+
+Initial individual inspection now covers 1,220 Fellows, including the completed trial; the remaining 418 Fellows, 81 Turing rows and final service audit are still in progress.
+This checkpoint applies six supported DBLP replacements and changes Tetsuo Asano’s Scholar quality to N for material contamination in the retained publication sample.
+The full-review changes now total 91 publication-profile decisions and 280 CSV cells: 234 Fellows cells and 46 derived CSRankings DBLP cells.
+The 12 targeted tests pass; ACM award data, Turing data, original CSRankings fields, Scholar metrics and visualization snapshots remain unchanged.
+Candidate-only links have blank capture dates, and re-review does not advance retained evidence dates.
+Five additional borderline cases are recorded in the [ongoing review](check_profiles_full_2026-09-18.md).
+
+## 2026-09-18 10:14 EDT - Full Profile Review Checkpoint Through Fellow 1,160
+
+Initial individual inspection now covers 1,160 Fellows, including the completed trial; the remaining Fellows, Turing rows and final service audit are still in progress.
+This checkpoint applies 11 supported DBLP replacements and a verified Richard DeMillo Scholar link.
+The full-review changes now total 84 publication-profile decisions and 260 CSV cells: 215 Fellows cells and 45 derived CSRankings DBLP cells.
+Candidate-only replacements have blank capture dates; accepted historical dates are not advanced for re-review.
+The 12 targeted tests pass, and protected award fields, Turing data, CSRankings source fields, Scholar metrics and visualization snapshots remain unchanged.
+Additional unavailable candidates, contextual coverage questions and a historical CSRankings provenance question are documented in the [ongoing review](check_profiles_full_2026-09-18.md).
+
+## 2026-09-18 10:00 EDT - Full Profile Review Checkpoint Through Fellow 1,010
+
+Initial individual inspection now covers 1,010 Fellows, including the completed trial; the full sweep and final service audit remain in progress.
+This checkpoint applies four supported DBLP replacements, four quality downgrades for inadequate coverage or recurring namesake contamination, and a verified Lawrence Paulson Scholar link supported by his Cambridge homepage.
+The full-review changes now total 72 publication-profile decisions and 221 CSV cells: 180 Fellows cells and 41 derived CSRankings DBLP cells.
+New candidate-only links have blank capture dates, and quality-only changes retain their previous accepted dates.
+The 12 targeted roster, date, lookup and Scholar-join checks pass; protected award fields, Turing data, CSRankings source fields, Scholar metrics and visualization snapshots are unchanged.
+Unavailable discovery candidates and borderline coverage cases remain flagged in the [ongoing review](check_profiles_full_2026-09-18.md).
+
+## 2026-09-18 09:44 EDT - Full Profile Review Checkpoint Through Fellow 920
+
+The full review remains in progress: 920 Fellows have received individual inspection, including the earlier 100-row trial; the remaining Fellows and Turing sweep are not complete.
+This checkpoint applies seven supported DBLP replacements, two DBLP quality downgrades for persistent namesake contamination (Amit Singhal and Lorenzo Alvisi), and the newly verified David Abramson Scholar link.
+There are now 63 publication-profile decisions and 199 changed CSV cells relative to the full-review input: 162 Fellows cells and 37 derived CSRankings DBLP cells.
+Candidate-only links have blank capture dates, and existing dates remain for quality-only decisions.
+Abramson has no imported metrics yet; the canonical join test now verifies the existing missing-metrics behavior and requires a blank roster capture date for an unimported link.
+Award identities, rows, CSRankings source fields, Turing data, Scholar statistics and visualization snapshots are preserved.
+The 12 targeted roster/date/lookup/Scholar-join tests pass.
+See the [ongoing review](check_profiles_full_2026-09-18.md) and retained run `../bigcows-crawler/.cache/check-profiles-full-2026-09-18/` for evidence and resumable progress.
+
+## 2026-09-18 09:35 EDT - Full Profile Review Checkpoint Through Fellow 850
+
+Initial individual inspection covers 850 Fellows, including the completed 100-person trial; the full review and final service audits remain in progress.
+Twelve further supported decisions bring the total to 53, with 137 Fellows cells and 33 derived CSRankings DBLP cells changed against the full-sweep input snapshot.
+Eleven replacement bibliographies are accepted and Steven Scott’s proven wrong-person DBLP link is cleared; his mixed alternatives are flagged.
+The [ongoing review](check_profiles_full_2026-09-18.md) records evidence and remaining coverage limits.
+Award data, original CSRankings source fields, Turing data, Scholar metrics and visualization snapshots remain unchanged.
+The 12 targeted roster, date and Scholar-join tests pass.
+
+## 2026-09-18 09:24 EDT - Full Profile Review Checkpoint Through Fellow 750
+
+Initial individual inspection covers 750 Fellows, including the completed 100-person trial.
+The full review and final service audits remain in progress.
+Eleven further supported publication-profile decisions bring the total to 41, with 103 Fellows cells and 26 derived CSRankings DBLP cells changed against the full-sweep input snapshot.
+New replacements cover Bing Liu, Sriram Rajamani, Michael Wooldridge, Robert Morris, Wen Gao and Peter J. Haas; recurring contamination receives N for Chih-Jen Lin, Alan Bundy, Aravind Srinivasan and James H. Anderson on DBLP, and Carlos Lucena on Scholar.
+The [ongoing review](check_profiles_full_2026-09-18.md) records evidence, limits and borderline cases.
+Award identities, row order, Turing data, Scholar metrics and visualization snapshots remain unchanged.
+
+## 2026-09-18 09:12 EDT - Full Profile Review Checkpoint Through Fellow 650
+
+Initial individual inspection now covers the first 650 Fellows, including the completed 100-person trial.
+The full review remains in progress; final service audits and the remaining Fellows and Turing rows are pending.
+Seven additional supported decisions update five DBLP links and mark the Michael Kass and Michael Franz bibliographies N for recurring namesake contamination.
+The full-run total is 30 profile decisions, changing 80 Fellows cells and 21 derived CSRankings DBLP cells.
+Award fields, source CSRankings identifiers, Scholar metrics and visualization snapshots are preserved.
+See the [full-review progress report](check_profiles_full_2026-09-18.md) for scope, accepted corrections and unresolved cases.
+
+## 2026-09-18 08:58 EDT - Full Profile Review Checkpoint Through Fellow550
+
+Initial individual inspections now cover the first550 Fellows, including the completed100-person trial; the remaining Fellows, Turing rows and final per-service audit remain in progress.
+This checkpoint adds five verified DBLP replacements for Wei Wang, Timothy Chan, Michael Littman, Huan Liu and David Parkes, and clears Mihai Pop's proven wrong-person DBLP link.
+The full sweep has applied23 profile decisions affecting63 Fellows cells and18 derived CSRankings DBLP cells; accepted replacement URLs have blank capture dates because no retained successful capture was imported.
+See the [review in progress](check_profiles_full_2026-09-18.md) for evidence, Mihai Pop's mixed replacement candidate, unavailable Scholar discovery candidates and the historical Peter Bartlett CSRankings lead.
+Original CSRankings source fields, award identities, Turing data, Scholar metrics and visualization snapshots remain unchanged.
+All12 targeted roster/date/lookup/Scholar-join tests pass, and exact field changes match the recorded decisions.
+
+## 2026-09-18 08:46 EDT - Full Profile Review: Second Correction Checkpoint
+
+Initial individual inspection now covers 400 Fellows, including the previously completed 100-Fellow trial; the full 1,638-Fellow and 81-Turing review remains in progress.
+Applied 11 additional clear DBLP replacements and changed Feifei Li's Scholar quality to N for a recurring cluster of papers by a different researcher.
+Together with the first checkpoint, these are 17 profile decisions affecting 47 Fellows cells and 13 derived CSRankings DBLP associations.
+Replacement URLs have blank capture dates when no accepted retained capture exists; quality-only changes preserve dates.
+Original CSRankings source fields, award identities and row order, Turing data, Scholar metrics and visualization snapshots are preserved.
+The [full-review checkpoint](check_profiles_full_2026-09-18.md) records the evidence, unresolved candidates and limits of the existing 20-paper Scholar captures.
+Exact field-level comparisons and all 12 targeted roster/date/join tests pass.
+
+## 2026-09-18 08:31 EDT - Full Profile Review: First Correction Checkpoint
+
+The [full profile review](check_profiles_full_2026-09-18.md) is in progress using existing evidence, as explicitly selected by the user.
+This checkpoint applies five clear DBLP decisions: accepted fuller, correctly identified profiles for Guoliang Li, Feng Zhao, Jason Hong and C.-C. Jay Kuo, and rated Pradeep Dubey's mixed computing/economics bibliography `N`.
+The linked report records the previous URLs, replacements, primary corroboration and publication inspection scopes.
+The four replaced URLs have blank capture dates because no retained successful HTML capture was accepted for those candidates; the quality-only change preserves its date.
+Three derived CSRankings DBLP associations were synchronized, preserving original source fields and the 829-key union.
+No award identity, row order, Turing row, Scholar metric or visualization snapshot changed in this checkpoint.
+All 12 targeted roster, date, lookup and Scholar-join tests pass.
+The full sweep and complete row audit remain unfinished.
+
 For current values, start with the [Fellows roster](../data/acm_fellows.csv) and [Turing roster](../data/turing_award_winners.csv); use the [data dictionary](../README_FOR_AGENTS.md#data-layout) for field meanings and current policy.
 Read the newest relevant entries below for decisions that supersede earlier reports.
 For display behavior and regeneration commands, use the [visualization reference](../README_FOR_AGENTS.md#google-scholar-citation-visualization).
@@ -34,6 +212,41 @@ Selected entries and reports:
 - **ACM source reconciliation:** [Fellows directory reconciliation and supported exceptions](acm_directory_reconciliation_2026-09-17.md), [Turing Award directory reconciliation](turing_directory_reconciliation_2026-09-17.md), and [tracking issue #62](https://github.com/lintool/acm-bigcows/issues/62).
   Earlier profile-crawl evidence remains in the [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 - **Missing individual ACM pages:** [Eleven Fellows and their former URLs](#2026-09-13---unavailable-individual-acm-profiles), with the evidence for clearing those links while retaining the award rows.
+
+## 2026-09-18 08:12 EDT - Accept Crocker’s DBLP Coverage Exception
+
+The user explicitly accepted Stephen David Crocker’s [DBLP profile](https://dblp.org/pid/49/6744) as `Y` after reviewing its 15 captured records and missing early RFC work.
+Closed the pending coverage decision in the [trial report](check_profiles_trial_100_2026-09-18.md) and [service audit](check_profiles_trial_100_2026-09-18.csv), recording a user-accepted coverage exception.
+Preserved the existing URL, `Y` rating and September 17 capture date; no canonical data or source files changed.
+The trial now has 97 supported DBLP quality assessments, one explicitly accepted coverage exception and two contaminated profiles rated `N`.
+Recorded the exception in the agent-facing quality guidance so later reviews respect the decision.
+
+## 2026-09-18 08:10 EDT - Trial Check Profiles on the First 100 Fellows
+
+Applied the [Check Profiles skill](../skills/check-profiles/SKILL.md) to the first 100 Fellows in CSV order, Adar, Eytan through Kankanhalli, Mohan, using existing evidence as requested.
+The [trial report](check_profiles_trial_100_2026-09-18.md) and [300-row service audit](check_profiles_trial_100_2026-09-18.csv) distinguish supported identities, sampled quality, missing links and unresolved coverage.
+Retained ACM captures are from September 13, Scholar from September 16–17, DBLP from September 17 and CSRankings sources from September 18.
+General web searches and candidate-page inspection supplemented the captures; no bulk refresh or visualization regeneration was performed.
+
+Changed Pei Cao’s and Junfeng Yang’s DBLP quality flags from `Y` to `N` for substantial mixed-author contamination, retaining their URLs and capture dates.
+Replaced Yun Raymond Fu’s three-record DBLP fragment with the supported `Yun Fu 0001` bibliography, which displayed 659 records, and changed its quality from `N` to `Y`.
+Updated the locally derived DBLP association for `Yun Fu 0001` in the CSRankings profile table.
+Cleared Fu’s previous crawl date because no successful crawler capture of the replacement was accepted; direct candidate-page inspection is documented separately.
+
+All 95 linked Scholar captures contain only 20 most-cited entries.
+Retained 94 `Y` ratings with sampled-quality support and broader coverage unresolved, preserved Arindam Banerjee’s explicit `N`, and left five missing Scholar links blank after searches.
+Revalidated 75 CSRankings name links and searched the 25 missing associations without finding an additional supported source key.
+Their alignment dates already equal the September 18 decision date.
+Flagged Steve Crocker’s 15-record DBLP coverage for an individual decision, preserving `Y` pending review.
+
+The user adopted two process refinements, now in the skill: future approved Scholar refreshes collect a larger most-cited page and a recent-publications page; original CSRankings source information remains unchanged even when erroneous, with conflicts flagged in the audit.
+This includes Jian Ma’s wrong upstream Scholar identifier and three source-ID conflicts for Zi Helen Huang, Peter Müller and Michal Feldman.
+No upstream source was modified.
+
+Validation confirmed six canonical cell changes, preserved award identities and order, exact coverage of all 829 CSRankings union keys, unchanged Turing and Scholar metrics CSVs, and byte-for-byte unchanged visualization datasets.
+All 12 targeted roster/citation tests pass; corrected one test’s overly strict assumption that every linked URL must have a crawl date to match the existing documented rule for links without accepted captures.
+The skill validator passes.
+Retained snapshots, hashes, review evidence, field changes and validation in `../bigcows-crawler/.cache/check-profiles-trial-100-2026-09-18/`.
 
 ## 2026-09-18 07:42 EDT - Correct CSRankings Identity Links From PR Review
 

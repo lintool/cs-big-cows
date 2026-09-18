@@ -201,14 +201,21 @@ def extract_universities(affiliation: str, warnings: list[dict[str, str]] | None
 
 def build_indexes(google_rows: list[dict[str, str]], csrankings_rows: list[dict[str, str]]) -> tuple[dict[str, dict[str, str]], dict[str, dict[str, str]]]:
     google_by_profile = {row.get("profile", ""): row for row in google_rows if row.get("profile")}
-    csrankings_by_dblp = {row.get("dblp_profile", ""): row for row in csrankings_rows if row.get("dblp_profile")}
-    return google_by_profile, csrankings_by_dblp
+    csrankings_by_name = {}
+    for row in csrankings_rows:
+        name = row.get("name", "")
+        if not name:
+            continue
+        if name in csrankings_by_name:
+            raise ValueError(f"Duplicate CSRankings name key: {name}")
+        csrankings_by_name[name] = row
+    return google_by_profile, csrankings_by_name
 
 
 def main() -> int:
     args = parse_args()
     fellows = read_csv(args.acm_fellows)
-    google_by_profile, csrankings_by_dblp = build_indexes(read_csv(args.google_scholar), read_csv(args.csrankings))
+    google_by_profile, csrankings_by_name = build_indexes(read_csv(args.google_scholar), read_csv(args.csrankings))
 
     counts: Counter[str] = Counter()
     examples: dict[str, list[str]] = defaultdict(list)
@@ -227,7 +234,7 @@ def main() -> int:
                 )
             )
 
-        csrankings = csrankings_by_dblp.get(fellow.get("dblp_profile", ""))
+        csrankings = csrankings_by_name.get(fellow.get("csrankings_name", ""))
         if csrankings:
             universities.update(
                 extract_universities(

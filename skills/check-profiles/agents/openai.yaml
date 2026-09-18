@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Profiles"
+  short_description: "Verify award recipients’ linked profiles and quality"
+  default_prompt: "Use $check-profiles to verify Scholar and DBLP profiles and verify or establish CSRankings name links for every ACM Fellow and Turing Award winner, using existing crawls first; correct obvious errors, flag borderline cases and ask before refreshing evidence."
