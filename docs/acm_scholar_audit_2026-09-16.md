@@ -55,7 +55,7 @@ No citation totals were manually adjusted, and no papers were removed from Schol
 | Ramesh C Jain | Needs publication review: Diabetes burden and membrane-transporter papers appear alongside multimedia work; attribution needs checking. | [Captured profile](https://scholar.google.com/citations?user=wOYUPpwAAAAJ) |
 | James H Morris | Needs publication review: Known prostate-cancer xenograft paper among authentic KMP/Andrew publications; user-approved identity remains unchanged. | [Captured profile](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ) |
 
-## Coverage And Export Issues
+## Coverage and Export Issues
 
 - **388 Fellows have blank Scholar fields:** 383 were already blank and five were cleared in this sweep.
 - **Canonical metrics import remains pending:** 827 currently linked profiles still have historical metrics, 419 have no canonical metrics row, and 4 have fresh canonical rows.
@@ -67,7 +67,7 @@ No citation totals were manually adjusted, and no papers were removed from Schol
 - Rudrapatna K. Shyamasundar’s profile shows only three publications, so it is a poor basis for career citation coverage even though its TIFR email, IIT Bombay affiliation and research interests support the identity.
 - Missing email verification and sparse affiliation metadata are recorded per row, not treated as automatic evidence of a wrong person.
 
-## Method And Limits
+## Method and Limits
 
 Checked the entire roster for capture availability, HTTP status, timestamps, nonempty HTML, parsed metrics, duplicate URLs and duplicate capture bodies.
 The initial identity screen found 842 name-compatible profiles with at least two exact normalized publication-title matches to cached DBLP records, 26 recently resolved profiles, and 387 profiles requiring detailed review.
@@ -81,7 +81,7 @@ The 383 initially blank fields were inventoried with the existing September 15/1
 Cached DBLP records are older corroborating evidence, not fresh DBLP crawls.
 Original raw captures remain as audit evidence; they are not active historical fallbacks.
 
-## Files And Validation
+## Files and Validation
 
 The [full row audit](acm_scholar_audit_2026-09-16.csv) contains one record per Fellow, including status, freshness, identity basis, source capture hash, export status and issues.
 Detailed initial evidence, final rows, new full-HTML captures, correction decisions and the fresh-only export are under `tmp/scholar-full-sweep-2026-09-16/`.

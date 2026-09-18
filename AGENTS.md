@@ -25,6 +25,7 @@ Use the [missing-profile definitions](README_FOR_AGENTS.md#missing-profiles-and-
 ## Documentation Formatting
 
 - Use Title Caps for headings, capitalizing major words while preserving acronyms and proper names.
+  Leave articles, conjunctions and short prepositions lowercase unless they begin or end the heading, as in `Updating the Data` and `Linked N Profiles to Review`.
 - Put each prose sentence on its own source line; do not hard-wrap sentences across lines or put multiple sentences on one line.
 - Preserve paragraph breaks and Markdown structure, including list indentation, tables, code blocks, and YAML front matter.
 

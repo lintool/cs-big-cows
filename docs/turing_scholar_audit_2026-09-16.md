@@ -50,7 +50,7 @@ A page mentioning Juris Hartmanis linked to John Hopcroft's Scholar ID, which wa
 A Michael Stonebraker directory lead did not yield a usable profile ID.
 Other unresolved entries remain blank, with individual outcomes recorded in the CSV audit.
 
-## Identity And Publication Limits
+## Identity and Publication Limits
 
 Retained profiles were reviewed using their names, affiliations where available, and representative publications from the fetched profile page.
 All 30 profiles shared with ACM Fellows retained the same Scholar name and affiliation as the earlier reviewed captures.
@@ -61,7 +61,7 @@ Frederick Brooks's profile also has a possible attribution issue: *Computer arch
 These are retained as the correct people's profiles, with raw Scholar totals and explicit audit notes.
 Sparse affiliation or missing verified-email metadata remains noted where applicable.
 
-## Import And Validation
+## Import and Validation
 
 Replaced 36 existing statistics records with fresh captures and added four previously absent records for Charles H. Bennett, Gilles Brassard, Andrew Barto, and Richard Sutton.
 Removed the two wrong-person records, leaving 1,260 unique profiles in `data/google_scholar_profiles.csv`.

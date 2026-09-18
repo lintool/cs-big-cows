@@ -43,7 +43,7 @@ Without it, JSON goes to stdout.
 See [report interpretation](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#reports-and-data-review) for exact differences, name compatibility, missing captures, and duplicate URLs.
 The crawler's `--limit-new 0` mode writes crawl artifacts and is not this audit.
 
-### Prepare, Start, And Resume An ACM Crawl
+### Prepare, Start, and Resume an ACM Crawl
 
 Read the shared [ACM workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#acm-fellow-and-turing-award-profile-crawler) and [Safari setup](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#safari-setup-and-lifecycle) before fetching.
 Both awards use the same runner; `--award turing` is required for Turing years and citations.
@@ -75,7 +75,7 @@ Do not add `--refresh` when resuming.
 If the start is postponed to a later date, prepare a new crawl for that date.
 See the shared reference for pacing and progress; a completed invocation alone does not mean every profile succeeded or matched.
 
-### Review And Import DBLP Data
+### Review and Import DBLP Data
 
 Use the shared [DBLP workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#dblp-profile-crawler) for transport and pacing.
 For a fresh crawl, save both roster snapshots and the selected commands in a new run directory under `../bigcows-crawler/.cache/`, and use a new cache or Safari run directory instead of reusing historical successes.
@@ -109,7 +109,7 @@ Use the reviewed DBLP workflow above when updating canonical data.
 Follow the shared reference for source pacing and retries.
 For Scholar, use the reviewed workflow below rather than exporting directly into the canonical CSV.
 
-### Review And Import Google Scholar Data
+### Review and Import Google Scholar Data
 
 The shared crawler handles transport and parsing; this repository owns identity decisions and canonical imports.
 Read its [Scholar workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#google-scholar-profile-crawler) for pacing, retries, cache fields, and blocking behavior.
@@ -219,7 +219,7 @@ There is no ACM profile quality field.
 There is no separate canonical `data/acm_fellow_profiles.csv` or `data/dblp_profiles.csv`; profile links belong in the award rosters.
 The distinct nonempty DBLP URLs across both rosters define the known DBLP profiles used by the CSRankings builder.
 
-### Missing Profiles And Review Status
+### Missing Profiles and Review Status
 
 Specify the service whenever reporting a “missing profile”: ACM means a blank `acm_fellow_profile`, DBLP means a blank `dblp_profile`, and Scholar means a blank `google_scholar_profile`.
 A blank URL means no accepted link is currently recorded; it does not prove that no public profile exists or that the recipient should be removed from the award roster.

@@ -11,7 +11,7 @@ The N ratings comprise 388 missing stored Scholar links and four substantially m
 The other 117 profiles reconsidered under the tolerant policy remain Y; a couple of questionable papers are acceptable.
 The four user-reviewed cases below are resolved rather than pending review.
 
-## Rating Policy And Scope
+## Rating Policy and Scope
 
 `Y` means most reviewed publications are reasonably relevant or adjacent to the ACM-grounded identity, even if individual records are misattributed or questionable.
 `N` is reserved for really poor linked profiles, such as a wrong person or a publication list dominated by unrelated work; missing links also receive N by user instruction.
@@ -37,10 +37,10 @@ Their relevant/adjacent majorities do not override those decisions.
 
 | Fellow | Rating | References | Assessment |
 | --- | --- | --- | --- |
-| Arindam Banerjee | N | [ACM](https://awards.acm.org/award-recipients/banerjee_7429962) · [Scholar](https://scholar.google.com/citations?user=RY7cuPAAAAAJ) | At least 11/20 sampled entries are relevant, but numerous clinical, public-health and particle-physics outliers substantially contaminate the profile. User reviewed this case and explicitly selected N despite the relevant majority. |
-| Ramesh C Jain | N | [ACM](https://awards.acm.org/award-recipients/jain_1702455) · [Scholar](https://scholar.google.com/citations?user=wOYUPpwAAAAJ) | At least 13/20 sampled entries are relevant, but multiple drug, tumor, population-health and building-energy entries substantially contaminate the profile. User reviewed this case and explicitly selected N despite the relevant majority. |
-| James H Morris | N | [ACM](https://awards.acm.org/award-recipients/morris_4263737) · [Scholar](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ) | At least 14/20 sampled entries are relevant, but cancer, archaeology, music therapy, urban studies and occupational-health entries substantially contaminate the profile. User reviewed this case and explicitly selected N despite the relevant majority. |
-| David S Johnson | N | [ACM](https://awards.acm.org/award-recipients/johnson_1325893) · [Scholar](https://scholar.google.com/citations?user=LyEq7qEAAAAJ) | At least 11/20 sampled entries are relevant, but genome, psychology, chemotherapy, education and namesake networking entries substantially contaminate the profile. User reviewed this case and explicitly selected N despite the relevant majority. |
+| Arindam Banerjee | N | [ACM](https://awards.acm.org/award-recipients/banerjee_7429962) · [Scholar](https://scholar.google.com/citations?user=RY7cuPAAAAAJ) | At least 11/20 sampled entries are relevant, but numerous clinical, public-health and particle-physics outliers substantially contaminate the profile, leading the user to explicitly select N despite the relevant majority. |
+| Ramesh C Jain | N | [ACM](https://awards.acm.org/award-recipients/jain_1702455) · [Scholar](https://scholar.google.com/citations?user=wOYUPpwAAAAJ) | At least 13/20 sampled entries are relevant, but multiple drug, tumor, population-health and building-energy entries substantially contaminate the profile, leading the user to explicitly select N despite the relevant majority. |
+| James H Morris | N | [ACM](https://awards.acm.org/award-recipients/morris_4263737) · [Scholar](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ) | At least 14/20 sampled entries are relevant, but cancer, archaeology, music therapy, urban studies and occupational-health entries substantially contaminate the profile, leading the user to explicitly select N despite the relevant majority. |
+| David S Johnson | N | [ACM](https://awards.acm.org/award-recipients/johnson_1325893) · [Scholar](https://scholar.google.com/citations?user=LyEq7qEAAAAJ) | At least 11/20 sampled entries are relevant, but genome, psychology, chemotherapy, education and namesake networking entries substantially contaminate the profile, leading the user to explicitly select N despite the relevant majority. |
 
 ## Other Existing Review Caveats — Y
 

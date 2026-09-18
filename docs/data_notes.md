@@ -32,7 +32,19 @@ Selected entries and reports:
 - **ACM source reconciliation:** [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 - **Missing individual ACM pages:** [Eleven Fellows and their former URLs](#2026-09-13---unavailable-individual-acm-profiles), with the evidence for clearing those links while retaining the award rows.
 
-## 2026-09-17 22:28 EDT - Reconcile Documentation With Implementation
+## 2026-09-17 23:00 EDT - Correct Audit Paths and Documentation Formatting
+
+Addressed the three findings in the review of PR #61.
+Prefixed all 1,716 populated `dblp_capture_path` cells with `../` so they resolve from the `acm-bigcows` repository root to the sibling crawler cache, preserving the three blank cells and every other CSV byte.
+Verified that all referenced files exist locally and that all 1,653 distinct capture files match their recorded SHA-256 hashes.
+Before-edit evidence, the edit script and validation results are retained under `../bigcows-crawler/.cache/pr61-review-fixes-2026-09-17-225819/`.
+
+Lowercased minor words in headings introduced or edited by this PR and clarified the Title Caps instruction in AGENTS.md.
+Rewrote 35 report table cells as single sentences while preserving the assessments, evidence links and user decisions.
+All seven Python tests passed, 153 local documentation links and anchors resolved, and `git diff --check` passed.
+Canonical award data, quality ratings, capture timestamps and application behavior remain unchanged.
+
+## 2026-09-17 22:28 EDT - Reconcile Documentation with Implementation
 
 Repeated the consistency review across application guides, published review reports, repo-local skill references and the shared crawler documentation.
 Corrected the CSRankings matching description and module docstring to identify the award-roster name as the matching input, distinguish per-URL candidate uniqueness from a global one-to-one mapping, and explain report sampling and missing-shard behavior.
@@ -49,7 +61,7 @@ All seven Python tests and the JavaScript visualization checks passed; both repo
 The final review found no further actionable documentation inconsistencies within this scope.
 Canonical data, row audits and generated visualization assets were preserved, and an AST comparison confirmed that the matching-script change affects only its module docstring.
 
-## 2026-09-17 22:22 EDT - Clarify Profile Documentation And Review History
+## 2026-09-17 22:22 EDT - Clarify Profile Documentation and Review History
 
 Reorganized the maintenance reference into an ordered award-field dictionary, service-specific missing-profile definitions, crawl-date semantics, and publication-quality criteria.
 Clarified that blank URLs, failed fetches, low quality ratings and review flags are different states, and that combined counts must distinguish award rows from distinct people.
@@ -62,7 +74,7 @@ Updated the navigation here to distinguish profile-schema changes, quality decis
 Validated local Markdown links and anchors and checked that the field dictionary matches both award CSV headers.
 All CSVs, row audits, code and generated visualization data remain unchanged by this documentation cleanup.
 
-## 2026-09-17 22:15 EDT - Reject Three DBLP Links And Reassess Sparse Profiles
+## 2026-09-17 22:15 EDT - Reject Three DBLP Links and Reassess Sparse Profiles
 
 The user identified the stored DBLP profiles for Seymour J. Wolfson, Roger R Bate and Karen Duncan as wrong and requested removal.
 Cleared their Fellow roster DBLP URLs and crawl dates, changed their quality ratings from Y to N, and marked their review cases resolved.
@@ -94,7 +106,7 @@ The user's wrong-profile decision supersedes the earlier incomplete-profile asse
 Before snapshots, the removal script and exact changes are retained under `../bigcows-crawler/.cache/dblp-user-removals-2026-09-17-221023/`.
 Validation confirmed preservation of all unrelated cells and row order, canonical/audit agreement, unchanged Scholar statistics and CSRankings CSVs, and seven passing repository tests.
 
-## 2026-09-17 21:50 EDT - Assess DBLP Profile Quality For Both Award Rosters
+## 2026-09-17 21:50 EDT - Assess DBLP Profile Quality for Both Award Rosters
 
 Added `dblp_profile_quality` immediately after `dblp_profile_crawl_date` in both award rosters, using Y/N with the same tolerant ACM-grounded identity and relevance criteria as Scholar.
 The user additionally instructed that obviously incomplete DBLP profiles receive N; clear fragments are therefore distinguished from wrong-person links and substantially mixed bibliographies.
@@ -116,7 +128,7 @@ Snapshots, extracted evidence, curated decisions, scripts and validation are ret
 All seven data-repository tests passed, including schema order, Y/N values, missing-link ratings and consistency across shared profile URLs; canonical Scholar statistics and CSRankings data remain byte-for-byte unchanged.
 No new crawl or replacement-profile search was performed.
 
-## 2026-09-17 21:38 EDT - Add ACM And Scholar Profile Crawl Dates
+## 2026-09-17 21:38 EDT - Add ACM and Scholar Profile Crawl Dates
 
 Added `acm_fellow_profile_crawl_date` and `google_scholar_profile_crawl_date` immediately after their corresponding URLs in both award rosters.
 Populated the UTC dates from successful retained captures matched by URL and verified against the exact timestamps and HTML hashes used in the completed quality assessments; no new crawl was performed.

@@ -11,7 +11,7 @@ Every N is a missing stored Scholar link, following the user's explicit policy.
 No linked profile showed substantial contamination comparable to the four user-rejected Fellows profiles in the reviewed sample.
 All 30 Scholar URLs shared with ACM Fellows retain the same Y rating; none of the four user-rejected Fellows is in this Turing roster.
 
-## Policy And Evidence
+## Policy and Evidence
 
 The ACM Turing recipient profile is the identity and research reference.
 Y permits isolated questionable or misattributed papers when the overall sample is reasonable and adjacent to the recipient's work.
@@ -49,7 +49,7 @@ These findings are recorded for transparency and do not require a lower profile-
 | Stephen A Cook | [ACM](https://awards.acm.org/award-recipients/cook_N991950) · [Scholar](https://scholar.google.com/citations?user=VGxPtzIAAAAJ) | The phage-lysozyme paper lists S. P. Cook, not complexity theorist Stephen A. Cook; the other 19 entries are coherent. | [Publication](https://pdbj.org/mine/summary/1L03) |
 | Dana S Scott | [ACM](https://awards.acm.org/award-recipients/scott_1193622) · [Scholar](https://scholar.google.com/citations?user=oaja5KYAAAAJ) | The rheumatoid-arthritis study credits a D. Scott in a UK clinical research context; this appears to be a namesake entry among 19 logic and semantics papers. | [Publication](https://pubmed.ncbi.nlm.nih.gov/12096230/) |
 
-## Contributor And Coverage Context
+## Contributor and Coverage Context
 
 Robert Metcalfe's sample is dominated by Ethernet, packet networking and related computing work.
 Some short-credit flags concern essays in a volume associated with him: [Springer lists Metcalfe for Beyond Calculation and lists its component chapters](https://link.springer.com/book/10.1007/978-1-4612-0685-9), and [Denning identifies Metcalfe as a co-editor of the volume containing How We Will Learn](https://denninginstitute.com/pjd/PUBS/internet30.pdf).

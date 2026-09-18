@@ -43,7 +43,7 @@ python scripts/analyze_acm_fellow_universities.py --min-count 5
 The [analysis reference](README_FOR_AGENTS.md#acm-fellow-university-analysis) explains the joins, normalization, and available options.
 Maintainers can also [rebuild CSRankings alignments](README_FOR_AGENTS.md#csrankings-dblp-alignment) or [regenerate the visualization](README_FOR_AGENTS.md#google-scholar-citation-visualization).
 
-## Updating The Data
+## Updating the Data
 
 Fetching is handled by the shared [bigcows-crawler repository](https://github.com/lintool/bigcows-crawler).
 It stores pages and reports in its local, Git-ignored `.cache/`; this repository owns the reviewed datasets and analysis.
