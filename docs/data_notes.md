@@ -27,6 +27,130 @@ Selected entries and reports:
 - **Canonical ordering:** [Award CSV sorting decision](#2026-09-15-1822-edt---consistent-award-csv-sort-order).
 - **ACM source reconciliation:** [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 
+## 2026-09-17 20:56 EDT - Move DBLP Crawl Dates Into Award Rosters
+
+Added `dblp_crawl_date` immediately after `dblp_profile` in both award rosters and removed the redundant `data/dblp_profiles.csv`.
+Migrated the accepted UTC capture dates for all 1,653 distinct DBLP profiles, covering 1,635 Fellow rows and all 81 Turing rows.
+The three Fellows without DBLP links retain blank crawl dates.
+All dates agree with the accepted capture manifest, and shared profile URLs have identical dates across rosters.
+Preserved every prior roster field and the descending-year, then alphabetical-name row order.
+Full HTML captures, timestamps and validation evidence remain in the crawler cache.
+
+Updated the CSRankings builder to read both award rosters with `--fellows` and `--turing`, normalize DBLP URL variants, and deduplicate by URL using the Fellow name first.
+The report now records both roster paths, and its default location is in the shared crawler cache.
+The alignment's own `crawl_date` remains the build date, separate from DBLP capture dates.
+Updated the active data dictionary, README and CSRankings workflow reference; earlier provenance entries remain historical snapshots.
+
+Compared full cached-shard builds before and after the migration: both produced the same 659 output rows ignoring row order, with 976 unmatched and 18 ambiguous profiles among 1,653 inputs.
+These comparison builds were written only to the evidence directory; the canonical Scholar and CSRankings CSVs remain byte-for-byte unchanged.
+All seven Python tests passed, including the existing visualization snapshot checks and new coverage for shared URL variants, Turing-only inputs, ambiguous matches and crawl-date semantics.
+Before snapshots, the migration script, exact validation results and alignment comparisons are retained under `../bigcows-crawler/.cache/dblp-roster-migration-2026-09-17-205451/`.
+
+## 2026-09-17 20:47 EDT - Refresh All DBLP Records From Today's Captures
+
+Reconciled `data/dblp_profiles.csv` with all 1,653 distinct DBLP links currently present in the Fellows and Turing rosters.
+Every record now uses its accepted capture's UTC date: 1,620 records have `2026-09-17` and 33 have `2026-09-18`, all from September 17 in Toronto.
+Updated 1,600 existing crawl dates; the other 38 records already had the accepted capture date.
+Replaced Peter Chen's unreferenced legacy PID `116/6782` with the roster's reviewed Peter M. Chen PID `c/PeterMChen`.
+Added the other 15 roster profiles absent from the DBLP table, increasing it from 1,638 to 1,653 records.
+Aligned 13 inconsistent table names with the ACM roster names, including distinguishing Stanford's Fei-Fei Li from database researcher Feifei Li.
+Preserved existing row order, with newly added records appended in Fellow-then-Turing roster order.
+
+The refreshed table retains the `name,profile,crawl_date` schema; full bibliographies remain in the retained HTML captures.
+All award-roster and CSRankings DBLP links now join to exactly one DBLP record.
+The award rosters, Scholar table and CSRankings table remain byte-for-byte unchanged in this batch, including the three unresolved blank Fellow links and all four previously retained user-reviewed associations.
+Verified the full HTML file size, SHA-256, canonical URL, completed-page markup and local capture date for each of the 1,653 records.
+Source captures come from `../bigcows-crawler/.cache/dblp-refresh-2026-09-17-132635/safari/` and `../bigcows-crawler/.cache/dblp-missing-web-2026-09-17-203211/safari/`.
+Before snapshots, the per-profile capture manifest, exact changes and validation results are retained under `../bigcows-crawler/.cache/dblp-full-import-2026-09-17-204618/`.
+
+## 2026-09-17 20:43 EDT - Locate Missing DBLP Profiles With General Web Search
+
+Searched all 36 distinct recipients represented by the 31 blank Fellow and 6 blank Turing DBLP cells.
+Verified 33 author profiles using fresh paced Safari captures, ACM award citations and institutional or publication evidence.
+Filled 28 Fellow cells and all 6 Turing cells, including John McCarthy in both rosters, and added 33 DBLP records with their actual UTC capture date of September 18.
+The datasets now contain 1,635 of 1,638 Fellows and all 81 Turing recipients with DBLP links, and 1,638 DBLP table records.
+Joseph S DeBlasi remains blank because the general-web searches did not establish a defensible candidate.
+Robin Williams remains blank because the candidate is explicitly a disambiguation page; Paul Young remains blank pending review of a bibliography mixing theoretical-CS work with unrelated electronics and virology papers.
+The [individual search outcomes](dblp_missing_profile_search_2026-09-17.md) include all recipients, ACM/DBLP/Scholar reference links, identity rationales and source-metadata caveats.
+
+Preserved all existing nonblank links, all other award fields, all existing DBLP rows and their order, and the unchanged Scholar and CSRankings CSVs.
+Validated exact cell additions, unique profile URLs, joins for all newly added roster links, capture hashes and LF line endings.
+All search responses, snapshots, full captures, per-person decisions and validation results are retained under `../bigcows-crawler/.cache/dblp-missing-web-2026-09-17-203211/`.
+
+## 2026-09-17 20:31 EDT - Resolve Remaining DBLP Identity Review Cases
+
+Applied the user's decision to remove Robin Williams and keep Roy Levin, Prithviraj Banerjee, Ahmed Sameh and Johan de Kleer.
+Removed Robin Williams's record from `data/dblp_profiles.csv` and cleared his `dblp_profile` field in `data/acm_fellows.csv`, retaining his ACM award row.
+His Scholar link was already blank and no CSRankings record used the rejected URL.
+The four retained DBLP associations and all Scholar data remain unchanged.
+The DBLP table now contains 1,605 records; all 1,638 Fellows and 81 Turing recipients remain.
+Updated the [identity review](dblp_identity_review_2026-09-17.md) to record all fifteen cases as resolved, retaining the earlier concerns as provenance.
+
+Validated the exact one-row removal and one-cell clearing, unchanged other canonical data, all four retained records, unique DBLP URLs, retained CSRankings joins and LF line endings.
+Before snapshots, decisions and validation results are retained under `../bigcows-crawler/.cache/dblp-refresh-2026-09-17-132635/safari/manual-resolution-2026-09-17-203107/`.
+
+## 2026-09-17 20:29 EDT - Remove Obvious DBLP Identity Mismatches and Cross-Check Scholar
+
+Following the user's authorization, removed ten DBLP identity mismatches established by comparison with ACM: Haitao Zheng, Zhendong Su, N Asokan, Tian He, Carla Gomes, Peter Schroeder, Satish Rao, Luiz Andre Barroso, Jiawei Han and Kristen Nygaard.
+Removed nine records from `data/dblp_profiles.csv`, cleared nine Fellow links and one Turing link, and removed six dependent CSRankings alignment rows.
+Nygaard's rejected URL existed only in the Turing roster and had no DBLP table record.
+The DBLP table now contains 1,606 records and the CSRankings alignment contains 641; all 1,638 Fellows and 81 Turing recipients remain.
+Preserved the earlier five redirect fixes and nineteen unavailable-profile removals.
+The five ambiguous DBLP cases remain pending in the updated [identity review](dblp_identity_review_2026-09-17.md).
+
+Checked Scholar separately against ACM and the retained Scholar evidence for all fifteen review cases.
+The eight remaining Scholar links match the intended recipients; the seven other Scholar fields are already blank.
+Previously rejected Scholar associations for Carla Gomes, Roy Levin, Prithviraj Banerjee, Robin Williams and Ahmed Sameh were already removed, and Satish Rao's wrong link was already replaced.
+No additional Scholar records were removed; Scholar data and visualization files remain unchanged.
+
+Validated exact row removals and roster-cell changes, unchanged unrelated CSV cells and ordering, LF line endings, unique DBLP URLs, retained CSRankings joins and complete Scholar statistics joins.
+Before snapshots, removed records, cleared links, capture hashes and validation results are retained in `../bigcows-crawler/.cache/dblp-refresh-2026-09-17-132635/safari/identity-removal-2026-09-17-202920/`.
+
+## 2026-09-17 20:13 EDT - Remove Unavailable DBLP Profiles and Prepare Identity Review
+
+At the user's instruction, removed 19 unavailable profile records from `data/dblp_profiles.csv`: 18 captured pages explicitly say “Error 404: Not Found” and John McCarthy's page says “Error 410: Gone”.
+Verified each capture's full-HTML checksum and error heading; Safari HTTP status codes are unavailable, so this classification comes from page contents.
+Cleared the 19 corresponding `dblp_profile` fields in `data/acm_fellows.csv` and John McCarthy's matching field in `data/turing_award_winners.csv`.
+All 1,638 Fellows and 81 Turing recipients remain in their award rosters.
+Removed six dependent DBLP-aligned CSRankings rows for Wenwu Zhu, Wenping Wang, Maja Mataric, Yunhao Liu, Bruce R. Donald and Hui Zhang.
+The DBLP table now has 1,615 rows and the CSRankings alignment has 647; these removals do not mean replacement profiles cannot exist.
+
+Prepared [15 identity-review cases and the complete removal list](dblp_identity_review_2026-09-17.md): 11 likely wrong-person links, three possibly mixed profiles and one potentially incomplete bibliography.
+These cases remain unchanged pending user review.
+Preserved the preceding five verified redirect corrections, every other retained CSV cell, canonical award ordering and LF line endings.
+Scholar data and visualization files are unchanged; no full DBLP refresh or replacement-profile search was performed in this batch.
+
+Validated exact removal/clearing counts, unique remaining DBLP URLs, every retained CSRankings-to-DBLP join and stable award-recipient counts.
+Original CSVs, removed rows, capture evidence and validation results are retained in `../bigcows-crawler/.cache/dblp-refresh-2026-09-17-132635/safari/unavailable-removal-2026-09-17-201339/`.
+
+## 2026-09-17 20:04 EDT - Apply Five Verified DBLP Profile Redirects
+
+Applied five unambiguous PID migrations from the September 17 Safari crawl to `data/acm_fellows.csv` and the matching rows of `data/dblp_profiles.csv`.
+Each destination is the canonical URL in the captured DBLP page; identities were reviewed using institutional affiliations/homepages and publication history, with an exact Scholar-ID match for Marilyn Wolf.
+Larry Snyder's destination identifies Lawrence Snyder at the University of Washington and includes his ZPL and parallel-computing publications.
+
+| Recipient | Previous DBLP PID | Current DBLP PID |
+| --- | --- | --- |
+| Elena Ferrari | `f/ElenaFerrari` | [389/7043-1](https://dblp.org/pid/389/7043-1) |
+| Thomas Ball | `b/ThomasBall` | [296/1574-1](https://dblp.org/pid/296/1574-1) |
+| Eric S Roberts | `75/4255` | [13/336](https://dblp.org/pid/13/336) |
+| Marilyn Claire Wolf | `w/WayneWolf` | [376/6566](https://dblp.org/pid/376/6566) |
+| Larry Snyder | `s/LawrenceSnyder` | [369/8358-1](https://dblp.org/pid/369/8358-1) |
+
+Updated `crawl_date` to `2026-09-17` only for these five DBLP table rows, using their actual UTC capture timestamps.
+Preserved all recipient names, other award fields, row ordering and unrelated DBLP rows; this is a partial correction batch, not the full DBLP refresh.
+None of these old URLs occurs in the Turing or CSRankings tables, so those tables required no changes.
+Scholar data and visualization files are unchanged.
+
+The complete crawl attempted all 1,650 unique input URLs and retained HTML for each.
+Its raw report has 70 review candidates, including 18 “Not Found” pages, one “Gone” page and Larry Snyder's now-reviewed redirect.
+The crawler's `ok` classification includes the 404/410 HTML pages; that status alone must not be treated as identity approval or a valid-profile result.
+Unavailable pages, possible wrong-person links and remaining name variants are deferred for review; none was automatically removed or renamed in this batch.
+
+Validated exactly five Fellow URL changes and five DBLP URL/date updates, stable row counts (1,638 Fellows and 1,634 DBLP rows), unique DBLP URLs, matching joins for all five corrections, canonical award sorting and LF line endings.
+Verified every other canonical CSV byte-for-byte unchanged.
+Capture hashes, timestamps, identity evidence, original CSVs, the applied changes and validation results are retained in `../bigcows-crawler/.cache/dblp-refresh-2026-09-17-132635/safari/obvious-fixes-2026-09-17-200402/`.
+
 ## 2026-09-16 22:38 EDT - Separate Fellows and Turing Citation Visualizations
 
 Added a dedicated Turing Award citation timeline alongside the existing Fellows page, with navigation between the two and shared rendering and styles.

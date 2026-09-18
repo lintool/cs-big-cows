@@ -23,9 +23,10 @@ from typing import Any
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CACHE_DIR = APP_ROOT.parent / "bigcows-crawler" / ".cache" / "csrankings"
-DEFAULT_DBLP_PROFILES = APP_ROOT / "data" / "dblp_profiles.csv"
+DEFAULT_FELLOWS = APP_ROOT / "data" / "acm_fellows.csv"
+DEFAULT_TURING = APP_ROOT / "data" / "turing_award_winners.csv"
 DEFAULT_OUTPUT = APP_ROOT / "data" / "csrankings_profiles.csv"
-DEFAULT_REPORT = APP_ROOT / ".cache" / "csrankings-profiles-report.json"
+DEFAULT_REPORT = DEFAULT_CACHE_DIR.parent / "csrankings-profiles-report.json"
 CSRANKINGS_COLUMNS = ["name", "affiliation", "homepage", "scholarid", "orcid"]
 OUTPUT_COLUMNS = CSRANKINGS_COLUMNS + ["crawl_date", "dblp_profile"]
 HONORIFICS = {
@@ -56,7 +57,8 @@ PARTICLES = {"al", "bin", "da", "de", "del", "den", "der", "di", "du", "la", "le
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR, help="Directory containing cached csrankings-*.csv files.")
-    parser.add_argument("--dblp-profiles", type=Path, default=DEFAULT_DBLP_PROFILES, help="Path to data/dblp_profiles.csv.")
+    parser.add_argument("--fellows", type=Path, default=DEFAULT_FELLOWS, help="ACM Fellows roster containing name and dblp_profile.")
+    parser.add_argument("--turing", type=Path, default=DEFAULT_TURING, help="Turing Award roster containing name and dblp_profile.")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Output CSV path.")
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT, help="JSON report path.")
     parser.add_argument("--crawl-date", default=time.strftime("%Y-%m-%d", time.gmtime()), help="crawl_date value to write.")
@@ -181,15 +183,17 @@ def build_csrankings_index(rows: list[dict[str, str]]) -> tuple[dict[str, list[d
 
 
 def unique_dblp_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    """Deduplicate roster links by canonical URL, keeping the first roster's name."""
     valid_rows = []
     seen_profiles: set[str] = set()
     for row in rows:
         name = (row.get("name") or "").strip()
-        profile = (row.get("profile") or "").strip()
+        profile = (row.get("dblp_profile") or "").strip()
+        profile = profile.replace("http://", "https://", 1).split("?", 1)[0].split("#", 1)[0].rstrip("/").removesuffix(".html")
         if not name or not profile or profile in seen_profiles:
             continue
         seen_profiles.add(profile)
-        item = {"name": name, "profile": profile, "crawl_date": (row.get("crawl_date") or "").strip()}
+        item = {"name": name, "profile": profile}
         valid_rows.append(item)
     return valid_rows
 
@@ -221,7 +225,7 @@ def main() -> int:
     args = parse_args()
     cs_rows = read_csrankings_rows(args.cache_dir)
     cs_exact, cs_by_last = build_csrankings_index(cs_rows)
-    dblp_rows = unique_dblp_rows(read_csv(args.dblp_profiles))
+    dblp_rows = unique_dblp_rows(read_csv(args.fellows) + read_csv(args.turing))
 
     output_rows: list[dict[str, str]] = []
     unmatched: list[dict[str, Any]] = []
@@ -266,7 +270,8 @@ def main() -> int:
     report = {
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "cache_dir": str(args.cache_dir),
-        "dblp_profiles": str(args.dblp_profiles),
+        "fellows": str(args.fellows),
+        "turing": str(args.turing),
         "output": str(args.output),
         "crawl_date": args.crawl_date,
         "csrankings_rows": len(cs_rows),
