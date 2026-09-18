@@ -15,13 +15,25 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_FIELDS = ["name", "affiliation", "homepage", "scholarid", "orcid"]
 
 
-def read_csv(path):
+def read_csv(path, fields=None, exact=False):
     with path.open(newline="", encoding="utf-8") as stream:
-        return list(csv.DictReader(stream))
+        reader = csv.DictReader(stream)
+        header = reader.fieldnames
+        if not header or len(header) != len(set(header)):
+            raise ValueError(f"Invalid CSV header: {path}")
+        if fields and (header != fields if exact else not set(fields).issubset(header)):
+            raise ValueError(f"Invalid source schema in {path}: expected {'exactly ' if exact else 'at least '}{fields}, got {header}")
+        rows = list(reader)
+        for number, row in enumerate(rows, 2):
+            if None in row or any(value is None for value in row.values()):
+                raise ValueError(f"Malformed CSV row in {path}:{number}")
+        return rows
 
 
 def source_digest(row):
-    values = [row.get(field, "") for field in SOURCE_FIELDS]
+    if any(field not in row or not isinstance(row[field], str) for field in SOURCE_FIELDS):
+        raise ValueError("Source row must contain all five original fields as strings")
+    values = [row[field] for field in SOURCE_FIELDS]
     return hashlib.sha256(json.dumps(values, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 
 
@@ -32,11 +44,11 @@ def build_manifest(profiles, cache_dir, historical_source=None):
     for letter in string.ascii_lowercase:
         path = cache_dir / f"csrankings-{letter}.csv"
         sources[path.name] = {"sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
-        for row in read_csv(path):
+        for row in read_csv(path, SOURCE_FIELDS, exact=True):
             candidates.setdefault(row["name"], []).append((path.name, row))
     historical = {}
     if historical_source:
-        for row in read_csv(historical_source):
+        for row in read_csv(historical_source, SOURCE_FIELDS):
             name = row["name"]
             if name in historical and source_digest(historical[name]) != source_digest(row):
                 raise ValueError(f"Conflicting historical source rows: {name}")
@@ -44,7 +56,7 @@ def build_manifest(profiles, cache_dir, historical_source=None):
         sources["historical"] = {"snapshot": historical_source.name,
                                  "sha256": hashlib.sha256(historical_source.read_bytes()).hexdigest()}
     result = {}
-    for row in read_csv(profiles):
+    for row in read_csv(profiles, SOURCE_FIELDS):
         name = row["name"]
         if name in result:
             raise ValueError(f"Duplicate profile key: {name}")

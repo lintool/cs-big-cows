@@ -461,7 +461,8 @@ For manual corrections, copy the exact `name` from the appropriate source row in
 Set `csrankings_name_alignment_date` to the UTC date of that correction or explicit revalidation; clear it when removing the link, and preserve it during unrelated source refreshes.
 Check that the source key exists exactly once and is not already assigned to another recipient within the same roster, and record evidence for ambiguous identity decisions in the data notes.
 For a documented historical link, validate the key against the retained profile-table record and preserve that source evidence through future rebuilds.
-The same person may share a key across both award rosters; keep those shared recipients' links consistent.
+The same person may share a key across both award rosters when their nonempty normalized ACM recipient IDs agree; keep those shared recipients' links consistent.
+Reject conflicting or unknown cross-roster ownership instead of treating a shared DBLP URL, name or blank identifier as proof of identity.
 Preserve manual assignments on future matching passes rather than overwriting them with inferred matches.
 
 `data/csrankings_profiles.csv` contains exactly one row per distinct nonempty `csrankings_name` across both rosters.
@@ -493,6 +494,8 @@ python scripts/build_csrankings_source_manifest.py \
 ```
 
 This command checks existing files only; it performs no crawl and rejects fields that differ from the supplied source evidence.
+Every source shard must have exactly the five source columns in order, even when it contains no data rows.
+Canonical and historical inputs must contain all five original columns; missing fields, duplicate headers and malformed row widths are rejected rather than converted to blank values.
 For each selected name, conflicting upstream rows are rejected even when one matches the local table; identical duplicate rows are harmless.
 Conflicting duplicate names in historical input are also rejected instead of silently choosing the last row.
 Record the selected source snapshots and any legitimate changes in Data Notes.
@@ -783,6 +786,7 @@ Shared recipients are identified by normalized ACM recipient IDs before comparin
 Derived CSRankings DBLP fields must exactly match the upstream-compatible name generator, even when roster URLs differ, are blank, or have quality N.
 Tests preserve this independence and cover accents, campus notes, suffixes, disambiguators and generated-link checks without fetching profiles.
 CSRankings alignment dates must be valid `YYYY-MM-DD` values when a name link is present and blank when it is absent; a key cannot be assigned to two recipients within one roster.
+Across rosters, a repeated key must belong to the same nonempty normalized ACM recipient ID; missing identity evidence requires review rather than automatic acceptance.
 For visualization changes, also run the JavaScript checks in the [visualization workflow](#google-scholar-citation-visualization).
 Before completing an edit, check `git diff --check`, canonical ordering, preservation of unrelated data, and any applicable report totals.
 For documentation-only changes, verify field names, local links, section anchors and commands against the existing files without refreshing datasets or starting crawls.

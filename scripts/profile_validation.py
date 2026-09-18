@@ -78,6 +78,7 @@ def validate_derived_dblp_links(rosters, profiles):
         if profile["dblp_profile"] != expected:
             raise ValueError(f"CSRankings-generated DBLP mismatch for {profile['name']}: expected {expected!r}")
     referenced = set()
+    owners = {}
     for roster, rows in rosters.items():
         roster_keys = set()
         for row in rows:
@@ -87,6 +88,13 @@ def validate_derived_dblp_links(rosters, profiles):
             if key in roster_keys:
                 raise ValueError(f"Repeated CSRankings key in {roster}: {key}")
             roster_keys.add(key)
+            identity = acm_recipient_id(row.get("acm_fellow_profile", ""))
+            if key in owners:
+                previous_roster, previous_identity = owners[key]
+                if not identity or not previous_identity or identity != previous_identity:
+                    raise ValueError(f"Conflicting or unverified CSRankings key ownership for {key}: {previous_roster} / {roster}")
+            else:
+                owners[key] = (roster, identity)
             referenced.add(key)
             if key not in by_name:
                 raise ValueError(f"Missing CSRankings key: {key}")

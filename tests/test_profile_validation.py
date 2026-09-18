@@ -70,6 +70,19 @@ class ProfileValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Repeated CSRankings key"):
             validate_derived_dblp_links({"fellows": [recipient(), recipient(name="Someone Else")]}, table)
 
+    def test_shared_csrankings_key_requires_same_known_acm_identity(self):
+        table = [{"name": "Alice Person", "dblp_profile": "https://dblp.org/pers/hd/p/Person:Alice"}]
+        fellow = recipient()
+        same = recipient(name="Alice P. Person", acm_fellow_profile="http://awards.acm.org/award-recipients/PERSON_A123.cfm")
+        validate_derived_dblp_links({"fellows": [fellow], "turing": [same]}, table)
+        for left_id, right_id in [(fellow["acm_fellow_profile"], "https://awards.acm.org/award-recipients/person_b456"),
+                                  (fellow["acm_fellow_profile"], ""), ("", ""), ("", fellow["acm_fellow_profile"])]:
+            for dblp in ["https://dblp.org/pid/1/2", ""]:
+                with self.subTest(left=left_id, right=right_id, dblp=dblp), self.assertRaisesRegex(ValueError, "key ownership"):
+                    validate_derived_dblp_links({
+                        "fellows": [recipient(acm_fellow_profile=left_id, dblp_profile=dblp)],
+                        "turing": [recipient(acm_fellow_profile=right_id, dblp_profile=dblp)]}, table)
+
 
 if __name__ == "__main__":
     unittest.main()

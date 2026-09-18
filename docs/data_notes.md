@@ -14,6 +14,22 @@ A low quality rating or failed latest fetch does not mean that a URL cell is bla
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
+## 2026-09-18 15:15 EDT - PR Review Validation Fixes
+
+Addressed the [PR 65 review](https://github.com/lintool/acm-bigcows/pull/65#pullrequestreview-5251564838) without changing canonical data.
+The source-manifest builder now validates all shard headers, including empty shards, before accepting their rows; canonical and historical evidence must also contain all five original fields.
+Missing or renamed fields, duplicate headers and malformed row widths fail rather than silently hashing absent values as blanks.
+The stricter builder reproduces the existing 829-key manifest exactly from retained evidence.
+
+Cross-roster CSRankings key reuse now requires matching nonempty normalized ACM recipient IDs, rejecting different or unverified owners even when their DBLP URLs agree or are blank.
+Clarified the user's standing authorization for explicit Check Profiles invocations in both AGENTS.md and the skill, preserving automatic obvious-error corrections within the requested publication-profile scope.
+Automatic skill discovery, generic consistency work, read-only reviews and dry runs do not authorize finalized-roster changes; ACM identity and award edits require a separate explicit request and strong evidence.
+The review's historical-rejection override concern was already superseded by independent CSRankings link generation, which no longer consults old rejection lists or copies award URLs.
+
+All 34 targeted tests pass, including malformed evidence and cross-roster ownership regressions.
+Skill validation, local documentation links and anchors, and `git diff --check` pass.
+All canonical CSVs, the provenance manifest, capture queue and visualization snapshots are unchanged by these review fixes.
+
 ## 2026-09-18 15:11 EDT - Preserve CSRankings-Generated DBLP Links
 
 At the user's request, changed the meaning of `dblp_profile` in `data/csrankings_profiles.csv` to CSRankings' own name-generated DBLP link, independently of our reviewed award-roster URLs.

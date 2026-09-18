@@ -76,6 +76,60 @@ class ProfileProvenanceTests(unittest.TestCase):
         distinct = queue_builder.build_queue({"fellows": [recipient(variants[0]), recipient("https://dblp.org/pid/57/2381-2")]}, [])
         self.assertEqual(len(distinct), 2)
 
+    def test_manifest_rejects_malformed_shards_even_when_values_would_be_blank(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            header = ",".join(provenance.SOURCE_FIELDS) + "\n"
+            for letter in string.ascii_lowercase:
+                (root / f"csrankings-{letter}.csv").write_text(header)
+            canonical = root / "profiles.csv"
+            canonical.write_text(header + "Alice,,,,\n")
+            shard = root / "csrankings-a.csv"
+            shard.write_text(header + "Alice,,,,\n")
+            self.assertEqual(len(provenance.build_manifest(canonical, root)["profiles"]), 1)
+            invalid = [
+                "name,affiliation,homepage,scholarid\nAlice,,,\n",  # missing blank ORCID
+                "name,affiliation,homepage,scholarid,renamed\nAlice,,,,\n",
+                "name,affiliation,homepage,scholarid,orcid,orcid\nAlice,,,,,\n",
+                "name,homepage,affiliation,scholarid,orcid\nAlice,,,,\n",
+                header + "Alice,,,\n",  # truncated row
+                header + "Alice,,,,,extra\n",
+                "name,affiliation,homepage,scholarid\n",  # empty malformed shard
+            ]
+            for contents in invalid:
+                with self.subTest(contents=contents):
+                    shard.write_text(contents)
+                    with self.assertRaises(ValueError):
+                        provenance.build_manifest(canonical, root)
+
+    def test_manifest_requires_original_fields_in_historical_and_canonical_inputs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            header = ",".join(provenance.SOURCE_FIELDS) + "\n"
+            for letter in string.ascii_lowercase:
+                (root / f"csrankings-{letter}.csv").write_text(header)
+            canonical, historical = root / "profiles.csv", root / "historical.csv"
+            valid = header.rstrip("\n") + ",dblp_profile\nAlice,,,,,old-link\n"
+            invalid = "name,affiliation,homepage,scholarid\nAlice,,,\n"
+            for bad_path in [canonical, historical]:
+                canonical.write_text(valid)
+                historical.write_text(valid)
+                bad_path.write_text(invalid)
+                with self.subTest(path=bad_path), self.assertRaisesRegex(ValueError, "Invalid source schema"):
+                    provenance.build_manifest(canonical, root, historical)
+            canonical.write_text(valid)
+            historical.write_text(valid)
+            self.assertEqual(provenance.build_manifest(canonical, root, historical)["profiles"]["Alice"]["source"], "historical")
+
+    def test_digest_distinguishes_missing_fields_from_explicit_blanks(self):
+        valid = dict(name="Alice", affiliation="", homepage="", scholarid="", orcid="")
+        self.assertTrue(provenance.source_digest(valid))
+        for field in provenance.SOURCE_FIELDS:
+            missing = dict(valid)
+            del missing[field]
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                provenance.source_digest(missing)
+
     def test_capture_queue_matches_current_rosters_and_metrics(self):
         rosters = {name: provenance.read_csv(ROOT / "data" / name)
                    for name in ["acm_fellows.csv", "turing_award_winners.csv"]}

@@ -21,12 +21,16 @@ Preserve existing documented ACM corrections and historical recipients omitted f
 When an ACM profile is unavailable, use retained ACM evidence and corroborating institutional or recipient sources, and state the limitation.
 Do not silently make another publication profile the ground truth.
 
-Invoking this skill authorizes correcting obvious errors in the reviewed profile URLs, quality flags and CSRankings name links, with their dependent dates and profile-table associations, unless the user requests a read-only review or dry run.
+The user has explicitly configured this skill to correct obvious publication-profile and CSRankings-link errors when they request its application, as recorded in [AGENTS.md](../../AGENTS.md#finalized-award-csvs).
+For an explicit request to apply the skill, this standing authorization covers Scholar/DBLP URLs, their quality flags and capture dates, CSRankings name links and alignment dates, and dependent profile-table synchronization.
+It does not authorize changing ACM identities, award fields or roster membership; those require a separate explicit request and the strong evidence described above.
+Automatic skill discovery or a general verification/consistency request alone does not authorize finalized-roster edits; report proposed corrections unless the user has authorized them in the task.
+A read-only review or dry run overrides the standing edit authorization.
 Apply a correction when concrete, converging evidence supports a clear decision; record the previous value, new value and evidence.
 For a proven wrong-person link, use an independently verified replacement if available; otherwise clear the incorrect association and its dependent date rather than inventing a replacement.
 An unavailable, invalid or potentially withdrawn profile is a separate case: follow the flag-for-review policy below instead of automatically clearing, replacing or restoring it.
 Rate a clearly contaminated or inadequately covered publication profile `N` even when the person matches; retain the URL unless a clearly supported better profile is found under the search workflow below.
-Correct ACM data only under the stronger ground-truth exception above, with strong cited evidence of an actual error.
+Correct ACM data only with the separate explicit authorization and stronger ground-truth exception above, with strong cited evidence of an actual error.
 For borderline identity, coverage or contamination findings, preserve the existing values and flag the case for user review with the competing evidence, proposed action and specific decision needed.
 Keep a separate review queue; do not invent a third quality value or use `N` solely to signal uncertainty.
 Do not ask again for permission already given in the current task.
@@ -180,6 +184,7 @@ Documented historical profiles absent from the latest sources remain eligible wh
 When applying obvious link corrections, preserve exact accepted keys and synchronize the table to the union of populated keys across both rosters using the name-link guidance.
 Include newly accepted links in that synchronization, copying the original CSRankings source fields and retaining provenance for historical exceptions.
 Check that each key belongs to only one recipient within a roster and that shared Fellows/Turing recipients use the same accepted key.
+For a key shared across rosters, require matching nonempty normalized ACM recipient IDs; flag conflicting or unavailable identity evidence instead of inferring ownership from a shared profile URL or name.
 Do not run the legacy name-inference builder to regenerate the canonical table.
 Always derive the lookup table's DBLP URL from the original CSRankings name; never copy a reviewed award URL or redirect destination into it, or clear it because upstream is wrong.
 Keep independently reviewed DBLP links and quality decisions in the award rosters; preserve CSRankings-generated links and flag material conflicts in the audit.
