@@ -130,6 +130,39 @@ class ProfileProvenanceTests(unittest.TestCase):
             with self.subTest(field=field), self.assertRaises(ValueError):
                 provenance.source_digest(missing)
 
+    def test_explicit_legacy_schema_preserves_fields_and_marks_absent_orcid(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            header = ','.join(provenance.SOURCE_FIELDS) + '\n'
+            for letter in string.ascii_lowercase:
+                (root / f'csrankings-{letter}.csv').write_text(header)
+            canonical, legacy = root / 'profiles.csv', root / 'old.csv'
+            original = 'Alice,Old University,http://example.org,NOSCHOLARPAGE'
+            canonical.write_text(header + original + ',\n')
+            legacy.write_text(','.join(provenance.SOURCE_FIELDS[:-1]) + '\n' + original + '\n')
+            manifest = provenance.build_manifest(canonical, root, legacy_source=legacy, legacy_names=['Alice'])
+            self.assertEqual(manifest['profiles']['Alice']['source'], 'legacy')
+            self.assertEqual(manifest['sources']['legacy']['absent_fields'], {'orcid': ''})
+            for values in [original.replace('NOSCHOLARPAGE', 'repaired-id') + ',', original + ',invented-orcid']:
+                canonical.write_text(header + values + '\n')
+                with self.assertRaisesRegex(ValueError, 'source fields do not match'):
+                    provenance.build_manifest(canonical, root, legacy_source=legacy, legacy_names=['Alice'])
+            canonical.write_text(header + original + ',\n')
+            with self.assertRaisesRegex(ValueError, 'both a source'):
+                provenance.build_manifest(canonical, root, legacy_source=legacy)
+            with self.assertRaisesRegex(ValueError, 'missing from legacy source'):
+                provenance.build_manifest(canonical, root, legacy_source=legacy, legacy_names=['Absent'])
+            # Legacy evidence cannot override the current source or silently
+            # accept a truncated/malformed modern shard.
+            (root / 'csrankings-a.csv').write_text(header + original.replace('Old University', 'New University') + ',\n')
+            with self.assertRaisesRegex(ValueError, 'source fields do not match'):
+                provenance.build_manifest(canonical, root, legacy_source=legacy, legacy_names=['Alice'])
+            (root / 'csrankings-a.csv').write_text(header)
+            for malformed in [header + original + ',\n', 'name,affiliation,homepage,scholarid\nAlice,,,\nAlice,X,,\n', 'name,affiliation,homepage,scholarid\nAlice,,\n']:
+                legacy.write_text(malformed)
+                with self.assertRaises(ValueError):
+                    provenance.build_manifest(canonical, root, legacy_source=legacy, legacy_names=['Alice'])
+
     def test_capture_queue_matches_current_rosters_and_metrics(self):
         rosters = {name: provenance.read_csv(ROOT / "data" / name)
                    for name in ["acm_fellows.csv", "turing_award_winners.csv"]}

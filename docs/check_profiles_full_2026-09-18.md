@@ -7,7 +7,8 @@ The inspection sections below preserve historical findings; the explicit decisio
 
 The user resolved the following 18 cases on September 18 after reviewing the interim findings, including the subsequent approval of Paola Inverardi's Scholar successor.
 These decisions supersede the pending dispositions in the historical inspection sections below; the observations remain evidence, not open questions.
-Unavailable Scholar candidates and historical CSRankings provenance gaps remain unresolved.
+The unavailable Scholar candidates were subsequently [closed with their links blank](profile_review_status.md#resolved-unavailable-scholar-candidates), and the six historical CSRankings gaps were [resolved from upstream history](csrankings_historical_recovery_2026-09-18.md).
+Statements below that leave those cases pending describe the original checkpoints, not current actions.
 The full roster sweep remains incomplete.
 
 | Person | Service | Applied Decision |

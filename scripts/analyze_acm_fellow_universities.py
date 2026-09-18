@@ -30,14 +30,14 @@ ALIAS_PATTERNS = [
     (r"\bGeorgia Tech\b|Georgia Institute of Technology", "Georgia Institute of Technology"),
     (r"\bCaltech\b|California Inst\.? of Technology|California Institute of Technology", "California Institute of Technology"),
     (r"\bUIUC\b|Univ\.? of Illinois at Urbana[- ]Champaign|University of Illinois(?: at)? Urbana[- ]Champaign", "University of Illinois Urbana-Champaign"),
-    (r"UC Berkeley|U\.?C\.? Berkeley|Univ\.? of California\s*-\s*Berkeley|University of California,? Berkeley", "University of California, Berkeley"),
-    (r"\bUCLA\b|Univ\.? of California\s*-\s*Los Angeles|University of California,? Los Angeles", "University of California, Los Angeles"),
-    (r"\bUCSD\b|Univ\.? of California\s*-\s*San Diego|University of California,? San Diego", "University of California, San Diego"),
-    (r"\bUCSB\b|Univ\.? of California\s*-\s*Santa Barbara|University of California,? Santa Barbara", "University of California, Santa Barbara"),
-    (r"\bUCI\b|Univ\.? of California\s*-\s*Irvine|University of California,? Irvine", "University of California, Irvine"),
-    (r"Univ\.? of California\s*-\s*Santa Cruz|University of California,? Santa Cruz", "University of California, Santa Cruz"),
-    (r"Univ\.? of California\s*-\s*Davis|University of California,? Davis", "University of California, Davis"),
-    (r"Univ\.? of California\s*-\s*Riverside|University of California,? Riverside", "University of California, Riverside"),
+    (r"UC Berkeley|U\.?C\.? Berkeley|(?:Univ\.?|University) of California\s*-\s*Berkeley|University of California,? Berkeley", "University of California, Berkeley"),
+    (r"\bUCLA\b|(?:Univ\.?|University) of California\s*-\s*Los Angeles|University of California,? Los Angeles", "University of California, Los Angeles"),
+    (r"\bUCSD\b|(?:Univ\.?|University) of California\s*-\s*San Diego|University of California,? San Diego", "University of California, San Diego"),
+    (r"\bUCSB\b|(?:Univ\.?|University) of California\s*-\s*Santa Barbara|University of California,? Santa Barbara", "University of California, Santa Barbara"),
+    (r"\bUCI\b|(?:Univ\.?|University) of California\s*-\s*Irvine|University of California,? Irvine", "University of California, Irvine"),
+    (r"(?:Univ\.?|University) of California\s*-\s*Santa Cruz|University of California,? Santa Cruz", "University of California, Santa Cruz"),
+    (r"(?:Univ\.?|University) of California\s*-\s*Davis|University of California,? Davis", "University of California, Davis"),
+    (r"(?:Univ\.?|University) of California\s*-\s*Riverside|University of California,? Riverside", "University of California, Riverside"),
     (r"\bUW[- ]Madison\b|\bUniv\.? of Wisconsin[- ]Madison\b|University of Wisconsin[- ]Madison", "University of Wisconsin-Madison"),
     (r"\bUW\b(?![- ]Madison)|University of Washington", "University of Washington"),
     (r"\bNYU\b|New York University", "New York University"),
@@ -254,7 +254,7 @@ def main() -> int:
     print(f"fellows={len(fellows)} fellows_with_university={fellows_with_university} universities={len(counts)}")
     print(f"{'count':>5}  university")
     print(f"{'-----':>5}  {'-' * 10}")
-    for university, count in counts.most_common():
+    for university, count in sorted(counts.items(), key=lambda item: (-item[1], item[0].casefold(), item[0])):
         if count < args.min_count:
             continue
         suffix = ""

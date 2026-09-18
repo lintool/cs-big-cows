@@ -37,9 +37,13 @@ def source_digest(row):
     return hashlib.sha256(json.dumps(values, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 
 
-def build_manifest(profiles, cache_dir, historical_source=None):
+def build_manifest(profiles, cache_dir, historical_source=None, legacy_source=None, legacy_names=()):
     if historical_source and historical_source.resolve() == profiles.resolve():
         raise ValueError("Historical evidence must be an independent retained snapshot, not the current table")
+    if bool(legacy_source) != bool(legacy_names):
+        raise ValueError("Legacy evidence requires both a source and explicitly reviewed names")
+    if legacy_source and legacy_source.resolve() == profiles.resolve():
+        raise ValueError("Legacy evidence must be an independent upstream snapshot")
     sources, candidates = {}, {}
     for letter in string.ascii_lowercase:
         path = cache_dir / f"csrankings-{letter}.csv"
@@ -55,6 +59,26 @@ def build_manifest(profiles, cache_dir, historical_source=None):
             historical[name] = row
         sources["historical"] = {"snapshot": historical_source.name,
                                  "sha256": hashlib.sha256(historical_source.read_bytes()).hexdigest()}
+    legacy = {}
+    if legacy_source:
+        selected = set(legacy_names)
+        for row in read_csv(legacy_source, SOURCE_FIELDS[:-1], exact=True):
+            if row['name'] not in selected:
+                continue
+            # The historical schema did not contain ORCID. A blank is an
+            # explicit representation of absence, never an inferred ID.
+            row = dict(row, orcid="")
+            if row['name'] in legacy and source_digest(legacy[row['name']]) != source_digest(row):
+                raise ValueError(f"Conflicting legacy source rows: {row['name']}")
+            legacy[row['name']] = row
+        missing = selected - set(legacy)
+        if missing:
+            raise ValueError(f"Reviewed names missing from legacy source: {sorted(missing)}")
+        sources['legacy'] = {'snapshot': legacy_source.name,
+                             'sha256': hashlib.sha256(legacy_source.read_bytes()).hexdigest(),
+                             'fields': SOURCE_FIELDS[:-1],
+                             'absent_fields': {'orcid': ''},
+                             'reviewed_names': sorted(selected)}
     result = {}
     for row in read_csv(profiles, SOURCE_FIELDS):
         name = row["name"]
@@ -68,6 +92,8 @@ def build_manifest(profiles, cache_dir, historical_source=None):
             source = matching[0]
         elif name not in candidates and name in historical and source_digest(historical[name]) == digest:
             source = "historical"
+        elif name not in candidates and name not in historical and name in legacy and source_digest(legacy[name]) == digest:
+            source = "legacy"
         else:
             raise ValueError(f"Original source fields do not match the supplied evidence: {name}")
         result[name] = {"source": source, "sha256": digest}
@@ -79,12 +105,16 @@ def main():
     parser.add_argument("--profiles", type=Path, default=ROOT / "data/csrankings_profiles.csv")
     parser.add_argument("--cache-dir", type=Path, default=ROOT.parent / "bigcows-crawler/.cache/csrankings")
     parser.add_argument("--historical-source", type=Path, help="Independent retained table for documented historical keys")
+    parser.add_argument("--legacy-source", type=Path, help="Independent upstream snapshot with the original four-column schema")
+    parser.add_argument("--legacy-name", action="append", default=[], help="Explicitly reviewed name to accept from --legacy-source; repeat for each name")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    manifest = build_manifest(args.profiles, args.cache_dir, args.historical_source)
+    manifest = build_manifest(args.profiles, args.cache_dir, args.historical_source, args.legacy_source, args.legacy_name)
     protected = [args.profiles, *args.cache_dir.glob("csrankings-?.csv")]
     if args.historical_source:
         protected.append(args.historical_source)
+    if args.legacy_source:
+        protected.append(args.legacy_source)
     if args.output.resolve() in {path.resolve() for path in protected}:
         parser.error("Manifest output cannot overwrite input evidence")
     args.output.parent.mkdir(parents=True, exist_ok=True)
