@@ -1,0 +1,82 @@
+csv_row,name,year,csrankings_name,status,candidate_names,candidate_affiliations
+2,"Bennett, Charles Henry",2025,,unmatched,,
+3,"Brassard, Gilles",2025,Gilles Brassard,normalized_exact,Gilles Brassard,University of Montreal
+4,"Barto, Andrew",2024,,unmatched,,
+5,"Sutton, Richard",2024,,unmatched,,
+6,"Wigderson, Avi",2023,,unmatched,,
+7,"Metcalfe, Robert Melancton",2022,,unmatched,,
+8,"Dongarra, Jack",2021,Jack Dongarra,normalized_exact,Jack Dongarra,University of Tennessee
+9,"Aho, Alfred V",2020,,unmatched,,
+10,"Ullman, Jeffrey D",2020,,unmatched,,
+11,"Catmull, Edwin",2019,,unmatched,,
+12,"Hanrahan, Pat",2019,,unmatched,,
+13,"Bengio, Yoshua",2018,Yoshua Bengio,normalized_exact,Yoshua Bengio,University of Montreal
+14,"Hinton, Geoffrey E",2018,,unmatched,,
+15,"LeCun, Yann",2018,,unmatched,,
+16,"Hennessy, John L",2017,John L. Hennessy,normalized_exact,John L. Hennessy,Stanford University
+17,"Patterson, David",2017,,unmatched,,
+18,"Berners-Lee, Tim",2016,,unmatched,,
+19,"Diffie, Whitfield",2015,,unmatched,,
+20,"Hellman, Martin",2015,,unmatched,,
+21,"Stonebraker, Michael",2014,,unmatched,,
+22,"Lamport, Leslie Barry",2013,,unmatched,,
+23,"Goldwasser, Shafi",2012,Shafi Goldwasser,normalized_exact,Shafi Goldwasser,Univ. of California - Berkeley
+24,"Micali, Silvio",2012,Silvio Micali,normalized_exact,Silvio Micali,Massachusetts Inst. of Technology
+25,"Pearl, Judea",2011,,unmatched,,
+26,"Valiant, Leslie G",2010,Leslie G. Valiant,normalized_exact,Leslie G. Valiant,Harvard University
+27,"Thacker, Charles P",2009,,unmatched,,
+28,"Liskov, Barbara",2008,Barbara Liskov,normalized_exact,Barbara Liskov,Massachusetts Inst. of Technology
+29,"Clarke, Edmund",2007,,unmatched,,
+30,"Emerson, E. Allen",2007,,unmatched,,
+31,"Sifakis, Joseph",2007,,unmatched,,
+32,"Allen, Frances",2006,,unmatched,,
+33,"Naur, Peter",2005,,unmatched,,
+34,"Cerf, Vinton",2004,,unmatched,,
+35,"Kahn, Robert E",2004,,unmatched,,
+36,"Kay, Alan",2003,,unmatched,,
+37,"Adleman, Leonard M.",2002,Leonard M. Adleman,normalized_exact,Leonard M. Adleman,University of Southern California
+38,"Rivest, Ronald L",2002,Ronald L. Rivest,normalized_exact,Ronald L. Rivest,Massachusetts Inst. of Technology
+39,"Shamir, Adi",2002,Adi Shamir,normalized_exact,Adi Shamir,Weizmann Institute of Science
+40,"Dahl, Ole-Johan",2001,,unmatched,,
+41,"Nygaard, Kristen",2001,,unmatched,,
+42,"Yao, Andrew C",2000,Andrew C. Yao,normalized_exact,Andrew C. Yao,Tsinghua University
+43,"Brooks, Frederick",1999,,unmatched,,
+44,"Gray, Jim",1998,,unmatched,,
+45,"Engelbart, Douglas",1997,,unmatched,,
+46,"Pnueli, Amir",1996,,unmatched,,
+47,"Blum, Manuel",1995,Manuel Blum 0001,normalized_exact,Manuel Blum 0001,Carnegie Mellon University
+48,"Feigenbaum, Edward A",1994,,unmatched,,
+49,"Reddy, Raj",1994,Raj Reddy,normalized_exact,Raj Reddy,Carnegie Mellon University
+50,"Hartmanis, Juris",1993,,unmatched,,
+51,"Stearns, Richard E",1993,,unmatched,,
+52,"Lampson, Butler W",1992,,unmatched,,
+53,"Milner, A J",1991,,unmatched,,
+54,"Corbato, Fernando J",1990,,unmatched,,
+55,"Kahan, William",1989,,unmatched,,
+56,"Sutherland, Ivan",1988,,unmatched,,
+57,"Cocke, John",1987,,unmatched,,
+58,"Hopcroft, John E",1986,,unmatched,,
+59,"Tarjan, Robert E",1986,Robert E. Tarjan,normalized_exact,Robert E. Tarjan,Princeton University
+60,"Karp, Richard",1985,,unmatched,,
+61,"Wirth, Niklaus E",1984,,unmatched,,
+62,"Ritchie, Dennis M.",1983,,unmatched,,
+63,"Thompson, Kenneth Lane",1983,,unmatched,,
+64,"Cook, Stephen A",1982,,unmatched,,
+65,"Codd, Edgar F",1981,,unmatched,,
+66,"Hoare, C. Antony R.",1980,,unmatched,,
+67,"Iverson, Kenneth E.",1979,,unmatched,,
+68,"Floyd, Robert W.",1978,,unmatched,,
+69,"Backus, John",1977,,unmatched,,
+70,"Rabin, Michael O.",1976,Michael O. Rabin,normalized_exact,Michael O. Rabin,Harvard University
+71,"Scott, Dana S",1976,,unmatched,,
+72,"Newell, Allen",1975,,unmatched,,
+73,"Simon, Herbert A",1975,,unmatched,,
+74,"Knuth, Donald E",1974,,unmatched,,
+75,"Bachman, Charles W",1973,,unmatched,,
+76,"Dijkstra, Edsger W",1972,,unmatched,,
+77,"McCarthy, John",1971,,unmatched,,
+78,"Wilkinson, J. H.",1970,,unmatched,,
+79,"Minsky, Marvin",1969,,unmatched,,
+80,"Hamming, Richard W",1968,,unmatched,,
+81,"Wilkes, Maurice V.",1967,,unmatched,,
+82,"Perlis, A. J.",1966,,unmatched,,

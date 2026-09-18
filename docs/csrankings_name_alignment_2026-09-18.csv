@@ -1,0 +1,1639 @@
+csv_row,name,year,csrankings_name,status,candidate_names,candidate_affiliations
+2,"Adar, Eytan",2025,Eytan Adar,normalized_exact,Eytan Adar,University of Michigan
+3,"Ahn, Gail-Joon",2025,Gail-Joon Ahn,normalized_exact,Gail-Joon Ahn,Arizona State University
+4,"Allman, Eric",2025,,unmatched,,
+5,"Apel, Sven",2025,Sven Apel,normalized_exact,Sven Apel,Saarland University
+6,"Bauer, Lujo",2025,Lujo Bauer,normalized_exact,Lujo Bauer,Carnegie Mellon University
+7,"Bonifati, Angela",2025,,unmatched,,
+8,"Buyya, Rajkumar",2025,Rajkumar Buyya,normalized_exact,Rajkumar Buyya,University of Melbourne
+9,"Candea, George",2025,George Candea,normalized_exact,George Candea,EPFL
+10,"Cao, Pei",2025,,unmatched,,
+11,"Cappello, Franck",2025,,unmatched,,
+12,"Carloni, Luca P",2025,Luca P. Carloni,normalized_exact,Luca P. Carloni,Columbia University
+13,"Carpendale, Sheelagh",2025,Sheelagh Carpendale,normalized_exact,Sheelagh Carpendale,Simon Fraser University
+14,"Chaudhuri, Swarat",2025,Swarat Chaudhuri,normalized_exact,Swarat Chaudhuri,University of Texas at Austin
+15,"Chen, Baoquan",2025,Baoquan Chen,normalized_exact,Baoquan Chen,Peking University
+16,"Chen, Deming",2025,Deming Chen,normalized_exact,Deming Chen,Univ. of Illinois at Urbana-Champaign
+17,"Cheng, Kwang-Ting",2025,Kwang-Ting Cheng,normalized_exact,Kwang-Ting Cheng,HKUST
+18,"Conati, Cristina",2025,Cristina Conati,normalized_exact,Cristina Conati,University of British Columbia
+19,"Dorigo, Marco",2025,Marco Dorigo,normalized_exact,Marco Dorigo,Université libre de Bruxelles
+20,"Drettakis, George",2025,,unmatched,,
+21,"Dukkipati, Nandita",2025,,unmatched,,
+22,"Esparza, Javier",2025,Javier Esparza,normalized_exact,Javier Esparza,TU Munich
+23,"Ferragina, Paolo",2025,Paolo Ferragina,normalized_exact,Paolo Ferragina,University of Pisa
+24,"Fu, Yun Raymond",2025,,unmatched,,
+25,"Gleicher, Michael L",2025,,unmatched,,
+26,"Heidrich, Wolfgang",2025,Wolfgang Heidrich,normalized_exact,Wolfgang Heidrich,KAUST
+27,"Hodges, Steve",2025,,unmatched,,
+28,"Huang, Zi Helen",2025,Zi Helen Huang,normalized_exact,Zi Helen Huang,University of Queensland
+29,"Jenkins, Odest Chadwicke",2025,Odest Chadwicke Jenkins,normalized_exact,Odest Chadwicke Jenkins,University of Michigan
+30,"Jia, Jiaya",2025,Jiaya Jia,normalized_exact,Jiaya Jia,HKUST
+31,"Jia, Xiaohua",2025,Xiaohua Jia,normalized_exact,Xiaohua Jia,City University of Hong Kong
+32,"Jin, Hai",2025,Hai Jin 0001,normalized_exact,Hai Jin 0001,HUST
+33,"Kawarabayashi, Ken-Ichi",2025,Ken-ichi Kawarabayashi,normalized_exact,Ken-ichi Kawarabayashi,National Inst. of Informatics
+34,"Kiayias, Aggelos",2025,Aggelos Kiayias,normalized_exact,Aggelos Kiayias,University of Edinburgh
+35,"Kohno, Tadayoshi",2025,Tadayoshi Kohno,normalized_exact,Tadayoshi Kohno,University of Washington
+36,"Lehner, Wolfgang",2025,Wolfgang Lehner,normalized_exact,Wolfgang Lehner,TU Dresden
+37,"Ma, Jian",2025,Jian Ma 0004,normalized_exact,Jian Ma 0004,Carnegie Mellon University
+38,"Mahajan, Ratul",2025,Ratul Mahajan,normalized_exact,Ratul Mahajan,University of Washington
+39,"Markopoulou, Athina",2025,,unmatched,,
+40,"Medvidovic, Nenad",2025,Nenad Medvidovic,normalized_exact,Nenad Medvidovic,University of Southern California
+41,"Mei, Tao",2025,,unmatched,,
+42,"Melodia, Tommaso",2025,,unmatched,,
+43,"Milojicic, Dejan S",2025,,unmatched,,
+44,"Moffat, Alistair M",2025,,unmatched,,
+45,"Mokbel, Mohamed F",2025,Mohamed F. Mokbel,normalized_exact,Mohamed F. Mokbel,University of Minnesota
+46,"Musuvathi, Madanlal",2025,,unmatched,,
+47,"Müller, Peter",2025,Peter Müller 0001,normalized_exact,Peter Müller 0001,ETH Zurich
+48,"Nisan, Noam",2025,Noam Nisan,normalized_exact,Noam Nisan,Hebrew University of Jerusalem
+49,"Orso, Alessandro",2025,Alessandro Orso,normalized_exact,Alessandro Orso,University of Georgia
+50,"Palpanas, Themis",2025,,unmatched,,
+51,"Poshyvanyk, Denys",2025,Denys Poshyvanyk,normalized_exact,Denys Poshyvanyk,College of William and Mary
+52,"Procaccia, Ariel",2025,,unmatched,,
+53,"Rappaport, Theodore",2025,,unmatched,,
+54,"Ratnasamy, Sylvia",2025,Sylvia Ratnasamy,normalized_exact,Sylvia Ratnasamy,Univ. of California - Berkeley
+55,"Regev, Oded",2025,Oded Regev 0001,normalized_exact,Oded Regev 0001,New York University
+56,"Rudin, Cynthia",2025,Cynthia Rudin,normalized_exact,Cynthia Rudin,Duke University
+57,"Shankar, Natarajan",2025,,unmatched,,
+58,"Solihin, Yan",2025,Yan Solihin,normalized_exact,Yan Solihin,University of Central Florida
+59,"Starbird, Kate",2025,,unmatched,,
+60,"Suh, Gookwon Edward",2025,,unmatched,,
+61,"Tan, Kian-Lee",2025,Kian-Lee Tan,normalized_exact,Kian-Lee Tan,National University of Singapore
+62,"Tong, Hanghang",2025,Hanghang Tong,normalized_exact,Hanghang Tong,Univ. of Illinois at Urbana-Champaign
+63,"Torralba, Antonio",2025,Antonio Torralba 0001,normalized_exact,Antonio Torralba 0001,Massachusetts Inst. of Technology
+64,"Weirich, Stephanie",2025,Stephanie Weirich,normalized_exact,Stephanie Weirich,University of Pennsylvania
+65,"Wierman, Adam",2025,Adam Wierman,normalized_exact,Adam Wierman,California Inst. of Technology
+66,"Wright, Rebecca N.",2025,,unmatched,,
+67,"Xiong, Hui",2025,Hui Xiong 0001,normalized_exact,Hui Xiong 0001,HKUST
+68,"Xiong, Li",2025,Li Xiong 0001,normalized_exact,Li Xiong 0001,Emory University
+69,"Yang, Junfeng",2025,Junfeng Yang,normalized_exact,Junfeng Yang,Columbia University
+70,"Yi, Ke",2025,Ke Yi 0001,normalized_exact,Ke Yi 0001,HKUST
+71,"Zheng, Yu",2025,,unmatched,,
+72,"Zhu, Jun",2025,Jun Zhu 0001,normalized_exact,Jun Zhu 0001,Tsinghua University
+73,"Alexa, Marc",2024,Marc Alexa,normalized_exact,Marc Alexa,TU Berlin
+74,"Arenas, Marcelo",2024,Marcelo Arenas,normalized_exact,Marcelo Arenas,UC Chile
+75,"Bailey, Michael",2024,,unmatched,,
+76,"Banerjee, Arindam",2024,Arindam Banerjee 0001,normalized_exact,Arindam Banerjee 0001,Univ. of Illinois at Urbana-Champaign
+77,"Barrett, Clark",2024,Clark Barrett,normalized_exact,Clark Barrett,Stanford University
+78,"Bodker, Susanne",2024,,unmatched,,
+79,"Chandra, Satish",2024,,unmatched,,
+80,"Chechik, Marsha",2024,Marsha Chechik,normalized_exact,Marsha Chechik,University of Toronto
+81,"Chen, Lei",2024,Lei Chen 0002,normalized_exact,Lei Chen 0002,HKUST
+82,"Chen, Wei",2024,,ambiguous,Wei Chen 0001 | Wei Chen 0021,Zhejiang University | Peking University
+83,"Chiasserini, Carla Fabiana",2024,,unmatched,,
+84,"Chong, Fred",2024,Fred Chong,normalized_exact,Fred Chong,University of Chicago
+85,"Cook, Diane Joyce",2024,Diane Joyce Cook,normalized_exact,Diane Joyce Cook,Washington State University
+86,"Crocker, Stephen David",2024,,unmatched,,
+87,"Curless, Brian",2024,Brian Curless,normalized_exact,Brian Curless,University of Washington
+88,"de Alfaro, Luca",2024,Luca de Alfaro,normalized_exact,Luca de Alfaro,Univ. of California - Santa Cruz
+89,"de Rijke, Maarten",2024,Maarten de Rijke,normalized_exact,Maarten de Rijke,University of Amsterdam
+90,"Delp, Edward J",2024,,unmatched,,
+91,"Dressler, Falko",2024,Falko Dressler,normalized_exact,Falko Dressler,TU Berlin
+92,"Dreyer, Derek",2024,,unmatched,,
+93,"Elmqvist, Niklas",2024,Niklas Elmqvist,normalized_exact,Niklas Elmqvist,Aarhus University
+94,"Feldman, Michal",2024,Michal Feldman,normalized_exact,Michal Feldman,Tel Aviv University
+95,"Foster, Nate",2024,Nate Foster,normalized_exact,Nate Foster,EPFL
+96,"Goel, Ashish",2024,Ashish Goel,normalized_exact,Ashish Goel,Stanford University
+97,"Guha, Sudipto",2024,,unmatched,,
+98,"Heer, Jeffrey Michael",2024,Jeffrey Michael Heer,normalized_exact,Jeffrey Michael Heer,University of Washington
+99,"Housley, Russell",2024,,unmatched,,
+100,"Hudson, Scott",2024,,unmatched,,
+101,"Kankanhalli, Mohan",2024,Mohan Kankanhalli,normalized_exact,Mohan Kankanhalli,National University of Singapore
+102,"King, Irwin",2024,Irwin King,normalized_exact,Irwin King,Chinese University of Hong Kong
+103,"Lampe, Cliff",2024,,unmatched,,
+104,"Leonardi, Stefano",2024,Stefano Leonardi 0001,normalized_exact,Stefano Leonardi 0001,Sapienza University of Rome
+105,"li, guoliang",2024,Guoliang Li 0001,normalized_exact,Guoliang Li 0001,Tsinghua University
+106,"Madni, Azad M",2024,,unmatched,,
+107,"Menzies, Tim J.",2024,,unmatched,,
+108,"Mezini, Mira",2024,Mira Mezini,normalized_exact,Mira Mezini,TU Darmstadt
+109,"Misra, Sudip",2024,Sudip Misra,normalized_exact,Sudip Misra,IIT Kharagpur
+110,"Nuseibeh, Bashar A",2024,Bashar Ahmad Nuseibeh,compatible_initials,Bashar Ahmad Nuseibeh,Open University UK
+111,"O'Hearn, Peter W",2024,,unmatched,,
+112,"Ozcan, Fatma",2024,,unmatched,,
+113,"Pagh, Rasmus",2024,Rasmus Pagh,normalized_exact,Rasmus Pagh,University of Copenhagen
+114,"Panda, Dhabaleswar K",2024,,ambiguous,Dhabaleswar K. Panda | Dhabaleswar K. Panda 0001,Ohio State University | Ohio State University
+115,"Ramakrishnan, Naren",2024,Naren Ramakrishnan,normalized_exact,Naren Ramakrishnan,Virginia Tech
+116,"Randall, Dana",2024,Dana Randall,normalized_exact,Dana Randall,Georgia Institute of Technology
+117,"Roychoudhury, Abhik",2024,Abhik Roychoudhury,normalized_exact,Abhik Roychoudhury,National University of Singapore
+118,"Silva, Claudio T.",2024,Cláudio T. Silva,normalized_exact,Cláudio T. Silva,New York University
+119,"Starner, Thad",2024,Thad Starner,normalized_exact,Thad Starner,Georgia Institute of Technology
+120,"Tian, Qi",2024,,unmatched,,
+121,"Walid, Anwar",2024,,unmatched,,
+122,"Wang, Haixun",2024,,unmatched,,
+123,"Xing, Guoliang",2024,Guoliang Xing,normalized_exact,Guoliang Xing,Chinese University of Hong Kong
+124,"Zhao, Feng",2024,,unmatched,,
+125,"Zhou, Jingren",2024,,unmatched,,
+126,"Zobel, Justin",2024,Justin Zobel,normalized_exact,Justin Zobel,University of Melbourne
+127,"Zorn, Benjamin G",2024,,unmatched,,
+128,"Akella, Aditya",2023,Aditya Akella,normalized_exact,Aditya Akella,University of Texas at Austin
+129,"Backes, Michael",2023,Michael Backes 0001,normalized_exact,Michael Backes 0001,CISPA Helmholtz Center
+130,"Bafna, Vineet",2023,Vineet Bafna,normalized_exact,Vineet Bafna,Univ. of California - San Diego
+131,"Balcan, Maria-Florina",2023,Maria-Florina Balcan,normalized_exact,Maria-Florina Balcan,Carnegie Mellon University
+132,"Bansal, Nikhil",2023,Nikhil Bansal 0001,normalized_exact,Nikhil Bansal 0001,University of Michigan
+133,"Belkin, Mikhail",2023,Mikhail Belkin,normalized_exact,Mikhail Belkin,Univ. of California - San Diego
+134,"Ben-David, Shai",2023,Shai Ben-David,normalized_exact,Shai Ben-David,University of Waterloo
+135,"Bengio, Yoshua",2023,Yoshua Bengio,normalized_exact,Yoshua Bengio,University of Montreal
+136,"Berners-Lee, Tim",2023,,unmatched,,
+137,"Betz, Vaughn Timothy",2023,,unmatched,,
+138,"Caceres, Ramon",2023,,unmatched,,
+139,"Chekuri, Chandra",2023,Chandra Chekuri,normalized_exact,Chandra Chekuri,Univ. of Illinois at Urbana-Champaign
+140,"Chen, Haibo",2023,Haibo Chen 0001,normalized_exact,Haibo Chen 0001,Shanghai Jiao Tong University
+141,"Chen, Yingying",2023,,unmatched,,
+142,"Church, Kenneth Ward",2023,,unmatched,,
+143,"Dannenberg, Roger B.",2023,,unmatched,,
+144,"Dong, Xin Luna",2023,,unmatched,,
+145,"Drechsler, Rolf",2023,Rolf Drechsler,normalized_exact,Rolf Drechsler,University of Bremen
+146,"Du, Wenliang",2023,Wenliang Du 0001,normalized_exact,Wenliang Du 0001,Zhejiang University
+147,"Dubey, Pradeep",2023,,unmatched,,
+148,"Feldmann, Anja",2023,,unmatched,,
+149,"Fitzmaurice, George",2023,,unmatched,,
+150,"Fomin, Fedor",2023,,unmatched,,
+151,"Foster, Jeffrey S",2023,Jeffrey S. Foster,normalized_exact,Jeffrey S. Foster,Tufts University
+152,"Gao, Jianfeng",2023,,unmatched,,
+153,"Goldberg, Ian",2023,Ian Goldberg 0001,normalized_exact,Ian Goldberg 0001,University of Waterloo
+154,"Gulwani, Sumit",2023,,unmatched,,
+155,"Han, Zhu",2023,Zhu Han 0001,normalized_exact,Zhu Han 0001,University of Houston
+156,"Hinton, Geoffrey E",2023,,unmatched,,
+157,"Immorlica, Nicole",2023,Nicole Immorlica,normalized_exact,Nicole Immorlica,Yale University
+158,"Jaeger, Trent",2023,Trent Jaeger,normalized_exact,Trent Jaeger,Univ. of California - Riverside
+159,"Koedinger, Kenneth Richard",2023,Kenneth R. Koedinger,compatible_initials,Kenneth R. Koedinger,Carnegie Mellon University
+160,"Krause, Andreas",2023,Andreas Krause 0001,normalized_exact,Andreas Krause 0001,ETH Zurich
+161,"Kruegel, Christopher Ian",2023,,unmatched,,
+162,"Kung, Ht",2023,,unmatched,,
+163,"LeCun, Yann",2023,,unmatched,,
+164,"Lo, David",2023,David Lo 0001,normalized_exact,David Lo 0001,Singapore Management University
+165,"Lou, Wenjing",2023,Wenjing Lou,normalized_exact,Wenjing Lou,Virginia Tech
+166,"Ma, Kwan-Liu",2023,Kwan-Liu Ma,normalized_exact,Kwan-Liu Ma,Univ. of California - Davis
+167,"Ma, Wei-Ying",2023,Wei-Ying Ma,normalized_exact,Wei-Ying Ma,City University of Hong Kong
+168,"Mao, Morley",2023,,unmatched,,
+169,"McGuinness, Deborah",2023,,unmatched,,
+170,"Medioni, Gerard",2023,,unmatched,,
+171,"Mehrotra, Sharad",2023,Sharad Mehrotra,normalized_exact,Sharad Mehrotra,Univ. of California - Irvine
+172,"Naor, Seffi",2023,Seffi Naor,normalized_exact,Seffi Naor,Technion
+173,"Narayanan, Shrikanth",2023,Shrikanth Narayanan,normalized_exact,Shrikanth Narayanan,University of Southern California
+174,"Noy, Natasha",2023,,unmatched,,
+175,"Pasareanu, Corina S",2023,,unmatched,,
+176,"Pedram, Massoud",2023,,unmatched,,
+177,"Raghunathan, Anand",2023,,unmatched,,
+178,"Raphael, Benjamin",2023,,unmatched,,
+179,"Ron, Dana",2023,,unmatched,,
+180,"Roughgarden, Tim",2023,Tim Roughgarden,normalized_exact,Tim Roughgarden,Columbia University
+181,"Sankoff, David",2023,,unmatched,,
+182,"Saroiu, Stefan",2023,,unmatched,,
+183,"Schmidt, Albrecht",2023,Albrecht Schmidt 0001,normalized_exact,Albrecht Schmidt 0001,LMU Munich
+184,"Schuller, Björn W.",2023,Björn W. Schuller,normalized_exact,Björn W. Schuller,Imperial College London
+185,"Sengers, Phoebe",2023,Phoebe Sengers,normalized_exact,Phoebe Sengers,Cornell University
+186,"Shi, Elaine",2023,Elaine Shi,normalized_exact,Elaine Shi,Carnegie Mellon University
+187,"Snavely, Keith Noah",2023,,unmatched,,
+188,"Sriram, Ram D",2023,,unmatched,,
+189,"Staab, Steffen",2023,Steffen Staab,normalized_exact,Steffen Staab,University of Stuttgart
+190,"Szalay, Alexander",2023,,unmatched,,
+191,"Varma, Manik",2023,,unmatched,,
+192,"Wang, XiaoFeng",2023,,ambiguous,XiaoFeng Wang 0001 | Xiaofeng Wang 0006,Nanyang Technological University | Nanyang Technological University
+193,"Weinberger, Kilian",2023,,unmatched,,
+194,"Witchel, Emmett",2023,Emmett Witchel,normalized_exact,Emmett Witchel,University of Texas at Austin
+195,"Xie, Xing",2023,,unmatched,,
+196,"Agrawala, Maneesh",2022,Maneesh Agrawala,normalized_exact,Maneesh Agrawala,Stanford University
+197,"Anandkumar, Anima",2022,Anima Anandkumar,normalized_exact,Anima Anandkumar,California Inst. of Technology
+198,"Atienza Alonso, David",2022,,unmatched,,
+199,"Barak, Boaz",2022,Boaz Barak,normalized_exact,Boaz Barak,Harvard University
+200,"Beaudouin-Lafon, Michel",2022,,unmatched,,
+201,"Boncz, Peter",2022,,unmatched,,
+202,"Ceze, Luis H",2022,,unmatched,,
+203,"Chandra, Ranveer",2022,,unmatched,,
+204,"Chawla, Nitesh",2022,,unmatched,,
+205,"Chi, Ed H.",2022,,unmatched,,
+206,"Cortes, Corinna",2022,,unmatched,,
+207,"Curtis, Bill",2022,,unmatched,,
+208,"Daskalakis, Constantinos",2022,Constantinos Daskalakis,normalized_exact,Constantinos Daskalakis,Massachusetts Inst. of Technology
+209,"de Supinski, Bronis R.",2022,,unmatched,,
+210,"Deb, Kalyanmoy",2022,,unmatched,,
+211,"Elbaum, Sebastian",2022,,unmatched,,
+212,"Fang, Yuguang",2022,Yuguang Fang,normalized_exact,Yuguang Fang,City University of Hong Kong
+213,"Fu, Kevin",2022,Kevin Fu,normalized_exact,Kevin Fu,Northeastern University
+214,"Gotsman, Craig",2022,Craig Gotsman,normalized_exact,Craig Gotsman,Technion
+215,"Hassan, Ahmed E.",2022,Ahmed E. Hassan,normalized_exact,Ahmed E. Hassan,Queen’s University
+216,"Helal, Sumi",2022,Sumi Helal,normalized_exact,Sumi Helal,University of Florida
+217,"Henkel, Joerg",2022,,unmatched,,
+218,"Hermenegildo, Manuel V",2022,Manuel V. Hermenegildo,normalized_exact,Manuel V. Hermenegildo,IMDEA Software Institute
+219,"Hicks, Michael W",2022,,unmatched,,
+220,"Hoefler, Torsten",2022,Torsten Hoefler,normalized_exact,Torsten Hoefler,ETH Zurich
+221,"Hong, Jason",2022,,unmatched,,
+222,"Irani, Sandy",2022,Sandy Irani,normalized_exact,Sandy Irani,Univ. of California - Irvine
+223,"Ishii, Hiroshi",2022,,unmatched,,
+224,"Kemper, Alfons",2022,Alfons Kemper,normalized_exact,Alfons Kemper,TU Munich
+225,"Khuller, Samir",2022,Samir Khuller,normalized_exact,Samir Khuller,Northwestern University
+226,"Koushanfar, Farinaz",2022,Farinaz Koushanfar,normalized_exact,Farinaz Koushanfar,Univ. of California - San Diego
+227,"Kuo, Chung C",2022,,unmatched,,
+228,"Li, Hang",2022,,unmatched,,
+229,"Lin, Jimmy",2022,Jimmy Lin,normalized_exact,Jimmy Lin,University of Waterloo
+230,"Marculescu, Radu",2022,Radu Marculescu,normalized_exact,Radu Marculescu,University of Texas at Austin
+231,"Mei, Hong",2022,Hong Mei 0001,normalized_exact,Hong Mei 0001,Peking University
+232,"Mount, David M",2022,David M. Mount,normalized_exact,David M. Mount,Univ. of Maryland - College Park
+233,"Navarro, Gonzalo",2022,,unmatched,,
+234,"Pass, Rafael",2022,Rafael Pass,normalized_exact,Rafael Pass,Tel Aviv University
+235,"Pollefeys, Marc",2022,,unmatched,,
+236,"Pothen, Alex",2022,Alex Pothen,normalized_exact,Alex Pothen,Purdue University
+237,"Qureshi, Moinuddin",2022,,unmatched,,
+238,"Sabharwal, Ashutosh",2022,Ashutosh Sabharwal,normalized_exact,Ashutosh Sabharwal,Rice University
+239,"Sherwood, Tim",2022,Tim Sherwood,normalized_exact,Tim Sherwood,Univ. of California - Santa Barbara
+240,"Soatto, Stefano",2022,,unmatched,,
+241,"Stasko, John",2022,,unmatched,,
+242,"Su, Zhendong",2022,Zhendong Su 0001,normalized_exact,Zhendong Su 0001,ETH Zurich
+243,"Sullivan, Gary J.",2022,,unmatched,,
+244,"Teevan, Jaime",2022,,unmatched,,
+245,"Toyama, Kentaro",2022,,unmatched,,
+246,"Vidal, Rene",2022,René Vidal,normalized_exact,René Vidal,University of Pennsylvania
+247,"Xing, Eric",2022,,unmatched,,
+248,"Yu, Dong",2022,,unmatched,,
+249,"Yu, Yizhou",2022,Yizhou Yu,normalized_exact,Yizhou Yu,University of Hong Kong
+250,"Zheng, Haitao",2022,Haitao Zheng 0001,normalized_exact,Haitao Zheng 0001,University of Chicago
+251,"Zhu, Wenwu",2022,Wenwu Zhu 0001,normalized_exact,Wenwu Zhu 0001,Tsinghua University
+252,"Zorin, Denis",2022,Denis Zorin,normalized_exact,Denis Zorin,New York University
+253,"Adleman, Leonard M.",2021,Leonard M. Adleman,normalized_exact,Leonard M. Adleman,University of Southern California
+254,"Bader, David A",2021,David A. Bader,normalized_exact,David A. Bader,NJIT
+255,"Balakrishnan, Meenakshi",2021,,unmatched,,
+256,"Bjørner, Nikolaj",2021,,unmatched,,
+257,"Braverman, Mark",2021,Mark Braverman,normalized_exact,Mark Braverman,Princeton University
+258,"Camp, Linda Jean",2021,Linda Jean Camp,normalized_exact,Linda Jean Camp,UNC - Charlotte
+259,"Chang, Edward Y",2021,,unmatched,,
+260,"Choudhury, Tanzeem",2021,,unmatched,,
+261,"Cohen-Or, Daniel",2021,Daniel Cohen-Or,normalized_exact,Daniel Cohen-Or,Tel Aviv University
+262,"Das, Gautam",2021,Gautam Das 0001,normalized_exact,Gautam Das 0001,University of Texas at Arlington
+263,"Dey, Anind K.",2021,Anind K. Dey,normalized_exact,Anind K. Dey,University of Washington
+264,"Eeckhout, Lieven",2021,,unmatched,,
+265,"Farach-Colton, Martin",2021,,ambiguous,Martin Farach-Colton | Martín Farach-Colton,New York University | New York University
+266,"Fiat, Amos",2021,,unmatched,,
+267,"Franke, Hubertus",2021,,unmatched,,
+268,"Friedman, Batya",2021,,unmatched,,
+269,"Gabrilovich, Evgeniy",2021,,unmatched,,
+270,"Gal-Ezer, Judith",2021,,unmatched,,
+271,"Ganesan, Deepak",2021,Deepak Ganesan,normalized_exact,Deepak Ganesan,Univ. of Massachusetts Amherst
+272,"Gupta, Anupam",2021,Anupam Gupta 0001,normalized_exact,Anupam Gupta 0001,New York University
+273,"Haas, Zygmunt",2021,,unmatched,,
+274,"Hazan, Elad",2021,Elad Hazan,normalized_exact,Elad Hazan,Princeton University
+275,"Hu, Xiaobo Sharon",2021,Xiaobo Sharon Hu,normalized_exact,Xiaobo Sharon Hu,University of Notre Dame
+276,"Inverardi, Paola",2021,Paola Inverardi,normalized_exact,Paola Inverardi,GSSI
+277,"Ives, Zachary",2021,,unmatched,,
+278,"Jajodia, Sushil",2021,,unmatched,,
+279,"Jhala, Ranjit",2021,Ranjit Jhala,normalized_exact,Ranjit Jhala,Univ. of California - San Diego
+280,"Kaeli, David R",2021,David R. Kaeli,normalized_exact,David R. Kaeli,Northeastern University
+281,"Katz, Jonathan",2021,,unmatched,,
+282,"Kleinberg, Robert",2021,Robert Kleinberg,normalized_exact,Robert Kleinberg,Cornell University
+283,"Lengauer, Thomas",2021,,unmatched,,
+284,"Li, Feifei",2021,,unmatched,,
+285,"Li, Hai",2021,Hai Li 0001,normalized_exact,Hai Li 0001,Duke University
+286,"Li, Ninghui",2021,Ninghui Li 0001,normalized_exact,Ninghui Li 0001,Purdue University
+287,"Liu, Tie-Yan",2021,,unmatched,,
+288,"Marschner, Steve",2021,Steve Marschner,normalized_exact,Steve Marschner,Cornell University
+289,"Mason, Matthew T",2021,Matthew T. Mason,normalized_exact,Matthew T. Mason,Carnegie Mellon University
+290,"Miller, Dale A",2021,,unmatched,,
+291,"Mossel, Elchanan",2021,,unmatched,,
+292,"Nebel, Bernhard",2021,Bernhard Nebel,normalized_exact,Bernhard Nebel,University of Freiburg
+293,"Ostrovsky, Rafail",2021,Rafail Ostrovsky,normalized_exact,Rafail Ostrovsky,Univ. of California - Los Angeles
+294,"Ouaknine, Joel",2021,,unmatched,,
+295,"Pan, David Z.",2021,David Z. Pan,normalized_exact,David Z. Pan,University of Texas at Austin
+296,"Picard, Rosalind Wright",2021,,unmatched,,
+297,"Qadeer, Shaz",2021,,unmatched,,
+298,"Ricart, Glenn",2021,,unmatched,,
+299,"Rosing, Tajana",2021,Tajana Rosing,normalized_exact,Tajana Rosing,Univ. of California - San Diego
+300,"Ross, Robert B",2021,,unmatched,,
+301,"Rusinkiewicz, Szymon",2021,Szymon Rusinkiewicz,normalized_exact,Szymon Rusinkiewicz,Princeton University
+302,"Samarati, Pierangela",2021,,unmatched,,
+303,"Sarawagi, Sunita",2021,Sunita Sarawagi,normalized_exact,Sunita Sarawagi,IIT Bombay
+304,"Schiele, Bernt",2021,,unmatched,,
+305,"Shah, Mubarak Ali",2021,,unmatched,,
+306,"Sheffer, Alla",2021,Alla Sheffer,normalized_exact,Alla Sheffer,University of British Columbia
+307,"Singh, Munindar P.",2021,Munindar P. Singh,normalized_exact,Munindar P. Singh,North Carolina State University
+308,"Sistla, Aravinda P",2021,A. Prasad Sistla,compatible_initials,A. Prasad Sistla,University of Illinois at Chicago
+309,"Smolka, Scott",2021,,unmatched,,
+310,"Tang, Jie",2021,Jie Tang 0001,normalized_exact,Jie Tang 0001,Tsinghua University
+311,"Tehranipoor, Mark",2021,,unmatched,,
+312,"Trevisan, Luca",2021,Luca Trevisan 0001,normalized_exact,Luca Trevisan 0001,Bocconi University
+313,"Wang, Wenping",2021,Wenping Wang 0001,normalized_exact,Wenping Wang 0001,Texas A&M University
+314,"Waters, Brent",2021,,unmatched,,
+315,"White, Ryen W",2021,,unmatched,,
+316,"Wobbrock, Jacob Otto",2021,Jacob O. Wobbrock,compatible_initials,Jacob O. Wobbrock,University of Washington
+317,"Xie, Tao",2021,Tao Xie 0001,normalized_exact,Tao Xie 0001,Peking University
+318,"Yang, Ming-Hsuan",2021,Ming-Hsuan Yang 0001,normalized_exact,Ming-Hsuan Yang 0001,Univ. of California - Merced
+319,"Zaki, Mohammed",2021,,unmatched,,
+320,"Zhao, Ben",2021,,unmatched,,
+321,"Zhong, Lin",2021,Lin Zhong 0001,normalized_exact,Lin Zhong 0001,Yale University
+322,"Zilberstein, Shlomo",2021,Shlomo Zilberstein,normalized_exact,Shlomo Zilberstein,Univ. of Massachusetts Amherst
+323,"Zimmermann, Thomas",2021,Thomas Zimmermann 0001,normalized_exact,Thomas Zimmermann 0001,Univ. of California - Irvine
+324,"Abadi, Daniel J",2020,Daniel J. Abadi,normalized_exact,Daniel J. Abadi,Univ. of Maryland - College Park
+325,"Allan, James",2020,James Allan 0001,normalized_exact,James Allan 0001,Univ. of Massachusetts Amherst
+326,"Aluru, Srinivas",2020,Srinivas Aluru,normalized_exact,Srinivas Aluru,Georgia Institute of Technology
+327,"Arpaci-Dusseau, Andrea",2020,,review_name_variation,Andrea C. Arpaci-Dusseau,University of Wisconsin - Madison
+328,"Arpaci-Dusseau, Remzi",2020,,review_name_variation,Remzi H. Arpaci-Dusseau,University of Wisconsin - Madison
+329,"Banerjee, Suman",2020,,ambiguous,Suman Banerjee 0001 | Suman Banerjee 0002,University of Wisconsin - Madison | IIT Jammu
+330,"Blum, Manuel",2020,Manuel Blum 0001,normalized_exact,Manuel Blum 0001,Carnegie Mellon University
+331,"Briand, Lionel",2020,,unmatched,,
+332,"Brooks, David",2020,David Brooks 0001,normalized_exact,David Brooks 0001,Harvard University
+333,"Canetti, Ran",2020,Ran Canetti,normalized_exact,Ran Canetti,Boston University
+334,"Canny, John",2020,,unmatched,,
+335,"Chandrakasan, Anantha",2020,,unmatched,,
+336,"Chang, Yao-Wen",2020,,unmatched,,
+337,"Charikar, Moses",2020,Moses Charikar,normalized_exact,Moses Charikar,Stanford University
+338,"Chen, Yiran",2020,Yiran Chen 0001,normalized_exact,Yiran Chen 0001,Duke University
+339,"Cormode, Graham R.",2020,,unmatched,,
+340,"Cousot, Patrick",2020,Patrick Cousot,normalized_exact,Patrick Cousot,New York University
+341,"Desbrun, Mathieu",2020,,unmatched,,
+342,"Diffie, Whitfield",2020,,unmatched,,
+343,"Dorr, Bonnie J",2020,Bonnie J. Dorr,normalized_exact,Bonnie J. Dorr,University of Florida
+344,"Duffield, Nicholas",2020,,unmatched,,
+345,"Edelman, Alan",2020,,unmatched,,
+346,"Eiter, Thomas",2020,Thomas Eiter,normalized_exact,Thomas Eiter,TU Wien
+347,"Flanagan, Cormac",2020,Cormac Flanagan,normalized_exact,Cormac Flanagan,Univ. of California - Santa Cruz
+348,"Forlizzi, Jodi",2020,Jodi Forlizzi,normalized_exact,Jodi Forlizzi,Carnegie Mellon University
+349,"Fox, Dieter",2020,,unmatched,,
+350,"Ghemawat, Sanjay",2020,,unmatched,,
+351,"Gonzalez, Antonio",2020,Antonio González 0001,normalized_exact,Antonio González 0001,Polytechnic Univ. of Catalonia
+352,"Gordon, Andrew D.",2020,,unmatched,,
+353,"Gribble, Steven",2020,,unmatched,,
+354,"Hambrusch, Susanne E",2020,,unmatched,,
+355,"Hellman, Martin",2020,,unmatched,,
+356,"Higham, Nicholas",2020,,unmatched,,
+357,"Hoare, C. Antony R.",2020,,unmatched,,
+358,"Hoos, Holger H.",2020,Holger H. Hoos,normalized_exact,Holger H. Hoos,RWTH Aachen University
+359,"Ilyas, Ihab F.",2020,Ihab F. Ilyas,normalized_exact,Ihab F. Ilyas,University of Waterloo
+360,"John, Lizy Kurian",2020,,unmatched,,
+361,"Katoen, Joost-Pieter",2020,Joost-Pieter Katoen,normalized_exact,Joost-Pieter Katoen,RWTH Aachen University
+362,"Kim, Nam Sung",2020,Nam Sung Kim,normalized_exact,Nam Sung Kim,Univ. of Illinois at Urbana-Champaign
+363,"Koenig, Sven",2020,Sven Koenig,normalized_exact,Sven Koenig,Univ. of California - Irvine
+364,"Kotz, David",2020,David Kotz,normalized_exact,David Kotz,Dartmouth College
+365,"Krishnamurthy, Arvind",2020,Arvind Krishnamurthy,normalized_exact,Arvind Krishnamurthy,University of Washington
+366,"Kumar, Ravi",2020,,unmatched,,
+367,"Levine, Brian",2020,,unmatched,,
+368,"Leyton-Brown, Kevin",2020,Kevin Leyton-Brown,normalized_exact,Kevin Leyton-Brown,University of British Columbia
+369,"LI, Xuelong",2020,,unmatched,,
+370,"Low, Steven H.",2020,Steven H. Low,normalized_exact,Steven H. Low,California Inst. of Technology
+371,"Lu, Chenyang",2020,Chenyang Lu 0001,normalized_exact,Chenyang Lu 0001,Washington University in St. Louis
+372,"Madden, Samuel",2020,Samuel Madden 0001,normalized_exact,Samuel Madden 0001,Massachusetts Inst. of Technology
+373,"Mahlke, Scott",2020,,unmatched,,
+374,"Maltz, David",2020,,unmatched,,
+375,"Markl, Volker",2020,Volker Markl,normalized_exact,Volker Markl,TU Berlin
+376,"Mataric, Maja",2020,Maja Mataric,normalized_exact,Maja Mataric,University of Southern California
+377,"Menczer, Filippo",2020,Filippo Menczer,normalized_exact,Filippo Menczer,Indiana University
+378,"Meseguer, Jose",2020,José Meseguer 0001,normalized_exact,José Meseguer 0001,Univ. of Illinois at Urbana-Champaign
+379,"Morris, Meredith Ringel",2020,,unmatched,,
+380,"Nagappan, Nachiappan",2020,,unmatched,,
+381,"Nagpal, Radhika",2020,Radhika Nagpal,normalized_exact,Radhika Nagpal,Princeton University
+382,"Naor, Moni",2020,Moni Naor,normalized_exact,Moni Naor,Weizmann Institute of Science
+383,"Narayanaswami, Chandra",2020,,unmatched,,
+384,"Noh, Sam H.",2020,Sam H. Noh,normalized_exact,Sam H. Noh,Virginia Tech
+385,"Panangaden, Prakash",2020,Prakash Panangaden,normalized_exact,Prakash Panangaden,McGill University
+386,"Panchanathan, Sethuraman",2020,Sethuraman Panchanathan,normalized_exact,Sethuraman Panchanathan,Arizona State University
+387,"Parashar, Manish",2020,Manish Parashar,normalized_exact,Manish Parashar,University of Utah
+388,"Parhi, Keshab K.",2020,,unmatched,,
+389,"Park, Haesun",2020,Haesun Park,normalized_exact,Haesun Park,Georgia Institute of Technology
+390,"Plotkin, Gordon",2020,,unmatched,,
+391,"Rabin, Michael O.",2020,Michael O. Rabin,normalized_exact,Michael O. Rabin,Harvard University
+392,"Ren, Kui",2020,Kui Ren 0001,normalized_exact,Kui Ren 0001,Zhejiang University
+393,"Resnick, Paul",2020,,unmatched,,
+394,"Rosson, Marybeth",2020,,unmatched,,
+395,"Salzberg, Steven",2020,Steven Salzberg,normalized_exact,Steven Salzberg,Johns Hopkins University
+396,"Seshia, Sanjit Arunkumar",2020,Sanjit A. Seshia,compatible_initials,Sanjit A. Seshia,Univ. of California - Berkeley
+397,"Shamir, Adi",2020,Adi Shamir,normalized_exact,Adi Shamir,Weizmann Institute of Science
+398,"Shen, Heng Tao",2020,Heng Tao Shen,normalized_exact,Heng Tao Shen,Tongji University
+399,"Sheth, Amit",2020,,unmatched,,
+400,"Smith, Adam",2020,Adam Smith 0006,normalized_exact,Adam Smith 0006,Boston University
+401,"Sorkine-Hornung, Olga",2020,Olga Sorkine-Hornung,normalized_exact,Olga Sorkine-Hornung,ETH Zurich
+402,"Stevens, Rick",2020,Rick Stevens,normalized_exact,Rick Stevens,University of Chicago
+403,"Stone, Peter",2020,Peter Stone 0001,normalized_exact,Peter Stone 0001,University of Texas at Austin
+404,"Tao, Yufei",2020,Yufei Tao 0001,normalized_exact,Yufei Tao 0001,Chinese University of Hong Kong
+405,"Tassiulas, Leandros",2020,Leandros Tassiulas,normalized_exact,Leandros Tassiulas,Yale University
+406,"Thompson, Kenneth Lane",2020,,unmatched,,
+407,"Tomkins, Andrew",2020,,unmatched,,
+408,"Troyanskaya, Olga",2020,,unmatched,,
+409,"Turk, Matthew A",2020,Matthew A. Turk,normalized_exact,Matthew A. Turk,TTI Chicago
+410,"Van Der Aalst, Wil",2020,,unmatched,,
+411,"Walsh, Toby",2020,Toby Walsh,normalized_exact,Toby Walsh,UNSW
+412,"Wang, Wei",2020,,ambiguous,Wei Wang 0002 | Wei Wang 0009 | Wei Wang 0010 | Wei Wang 0011 | Wei Wang 0012 | Wei Wang 0028 | Wei Wang 0030 | Wei Wang 0050 | Wei Wang 0054 | Wei Wang 0108 | Wei Wang 0190 | Wei Wang 0250,Nanjing University | Fudan University | Univ. of California - Los Angeles | HKUST | Xi'an Jiaotong University | Nanjing University | HKUST | Wuhan University | University of Texas at San Antonio | Beijing Jiaotong University | Texas Tech University | Nankai University
+413,"Williams, Laurie Ann",2020,Laurie A. Williams,compatible_initials,Laurie A. Williams,North Carolina State University
+414,"Wu, Cathy H",2020,Cathy H. Wu,normalized_exact,Cathy H. Wu,University of Delaware
+415,"Yan, Shuicheng",2020,Shuicheng Yan,normalized_exact,Shuicheng Yan,National University of Singapore
+416,"Yi, Wang",2020,Wang Yi 0001,normalized_exact,Wang Yi 0001,Uppsala University
+417,"Zhou, Kun",2020,Kun Zhou 0001,normalized_exact,Kun Zhou 0001,Zhejiang University
+418,"Zyda, Michael J",2020,,unmatched,,
+419,"Aaronson, Scott J",2019,,unmatched,,
+420,"Abdelzaher, Tarek",2019,,unmatched,,
+421,"Amarasinghe, Saman",2019,,unmatched,,
+422,"Bala, Kavita",2019,Kavita Bala,normalized_exact,Kavita Bala,Cornell University
+423,"Balazinska, Magdalena",2019,Magdalena Balazinska,normalized_exact,Magdalena Balazinska,University of Washington
+424,"Beame, Paul",2019,Paul Beame,normalized_exact,Paul Beame,University of Washington
+425,"Berger, Emery David",2019,,unmatched,,
+426,"Boisvert, Ronald F",2019,,unmatched,,
+427,"Cachin, Christian",2019,,unmatched,,
+428,"Calder, Bradley G",2019,,unmatched,,
+429,"Calvanese, Diego",2019,,unmatched,,
+430,"Capkun, Srdjan",2019,Srdjan Capkun,normalized_exact,Srdjan Capkun,ETH Zurich
+431,"Cardie, Claire",2019,Claire Cardie,normalized_exact,Claire Cardie,Cornell University
+432,"Chan, Timothy",2019,,unmatched,,
+433,"Chandy, Kanianthra Mani",2019,,unmatched,,
+434,"Chen, Xilin",2019,Xilin Chen 0001,normalized_exact,Xilin Chen 0001,Chinese Academy of Sciences
+435,"Churchill, Elizabeth Frances",2019,Elizabeth F. Churchill,compatible_initials,Elizabeth F. Churchill,MBZUAI
+436,"Cohen, Philip R",2019,,unmatched,,
+437,"Conitzer, Vincent",2019,Vincent Conitzer,normalized_exact,Vincent Conitzer,Carnegie Mellon University
+438,"Contractor, Noshir",2019,Noshir Contractor,normalized_exact,Noshir Contractor,Northwestern University
+439,"Dwyer, Matthew B",2019,Matthew B. Dwyer,normalized_exact,Matthew B. Dwyer,University of Virginia
+440,"Ferrari, Elena",2019,,unmatched,,
+441,"Freedman, Michael J.",2019,Michael J. Freedman,normalized_exact,Michael J. Freedman,Princeton University
+442,"Frincke, Deborah",2019,,unmatched,,
+443,"Getoor, Lise",2019,Lise Getoor,normalized_exact,Lise Getoor,Univ. of California - Santa Cruz
+444,"Gini, Maria L",2019,Maria L. Gini,normalized_exact,Maria L. Gini,University of Minnesota
+445,"Kambhampati, Subbarao",2019,Subbarao Kambhampati,normalized_exact,Subbarao Kambhampati,Arizona State University
+446,"Kolda, Tamara G",2019,,unmatched,,
+447,"Li, Xiangyang",2019,Xiangyang Li 0001,normalized_exact,Xiangyang Li 0001,USTC
+448,"Lu, Songwu",2019,Songwu Lu,normalized_exact,Songwu Lu,Univ. of California - Los Angeles
+449,"Mackay, Wendy Elizabeth",2019,,unmatched,,
+450,"Marculescu, Diana",2019,Diana Marculescu,normalized_exact,Diana Marculescu,University of Texas at Austin
+451,"McIlraith, Sheila",2019,,unmatched,,
+452,"Mihalcea, Rada",2019,Rada Mihalcea,normalized_exact,Rada Mihalcea,University of Michigan
+453,"Murphy, Robin R",2019,Robin R. Murphy,normalized_exact,Robin R. Murphy,Texas A&M University
+454,"Najork, Marc",2019,,unmatched,,
+455,"Nieh, Jason",2019,Jason Nieh,normalized_exact,Jason Nieh,Columbia University
+456,"Pfister, Hanspeter",2019,Hanspeter Pfister,normalized_exact,Hanspeter Pfister,Harvard University
+457,"Pinkston, Timothy",2019,,unmatched,,
+458,"Pop, Mihai",2019,Mihai Pop,normalized_exact,Mihai Pop,Univ. of Maryland - College Park
+459,"Reuter, Andreas",2019,,unmatched,,
+460,"Rosenschein, Jeffrey S",2019,Jeffrey S. Rosenschein,normalized_exact,Jeffrey S. Rosenschein,Hebrew University of Jerusalem
+461,"Seshan, Srinivasan",2019,Srinivasan Seshan,normalized_exact,Srinivasan Seshan,Carnegie Mellon University
+462,"Shenoy, Prashant J",2019,Prashant J. Shenoy,normalized_exact,Prashant J. Shenoy,Univ. of Massachusetts Amherst
+463,"Shor, Peter W",2019,,unmatched,,
+464,"Singh, Mona",2019,Mona Singh 0001,normalized_exact,Mona Singh 0001,Princeton University
+465,"Sitaraman, Ramesh Kumar",2019,Ramesh K. Sitaraman,compatible_initials,Ramesh K. Sitaraman,Univ. of Massachusetts Amherst
+466,"Song, Dawn",2019,Dawn Song,normalized_exact,Dawn Song,Univ. of California - Berkeley
+467,"Stolfo, Salvatore J",2019,Salvatore J. Stolfo,normalized_exact,Salvatore J. Stolfo,Columbia University
+468,"Tao, Dacheng",2019,Dacheng Tao,normalized_exact,Dacheng Tao,Nanyang Technological University
+469,"Tennenholtz, Moshe",2019,Moshe Tennenholtz,normalized_exact,Moshe Tennenholtz,Technion
+470,"Vigna, Giovanni",2019,Giovanni Vigna,normalized_exact,Giovanni Vigna,Univ. of California - Santa Barbara
+471,"Vishnoi, Nisheeth Kumar",2019,Nisheeth K. Vishnoi,compatible_initials,Nisheeth K. Vishnoi,Yale University
+472,"Whitley, Darrell",2019,Darrell Whitley,normalized_exact,Darrell Whitley,Colorado State University
+473,"Xie, Yuan",2019,Yuan Xie 0001,normalized_exact,Yuan Xie 0001,HKUST
+474,"Youssef, Moustafa",2019,,unmatched,,
+475,"Zaniolo, Carlo A",2019,,unmatched,,
+476,"Zhou, Lidong",2019,,unmatched,,
+477,"Agha, Gul",2018,,unmatched,,
+478,"Asanovic, Krste",2018,,unmatched,,
+479,"Asokan, N",2018,N. Asokan,normalized_exact,N. Asokan,University of Waterloo
+480,"Barham, Paul",2018,,unmatched,,
+481,"Bartlett, Peter L",2018,,unmatched,,
+482,"Basin, David",2018,,unmatched,,
+483,"Belding, Elizabeth",2018,,unmatched,,
+484,"Bodik, Rastislav",2018,,unmatched,,
+485,"Borner, Katy",2018,Katy Börner,normalized_exact,Katy Börner,Indiana University
+486,"Bruckman, Amy S",2018,Amy S. Bruckman,normalized_exact,Amy S. Bruckman,Georgia Institute of Technology
+487,"Camenisch, Jan",2018,,unmatched,,
+488,"Darwiche, Adnan",2018,Adnan Darwiche,normalized_exact,Adnan Darwiche,Univ. of California - Los Angeles
+489,"Dehon, Andre M",2018,,unmatched,,
+490,"Devanbu, Premkumar T",2018,,unmatched,,
+491,"Dey, Tamal Krishna",2018,Tamal Krishna Dey,normalized_exact,Tamal Krishna Dey,Purdue University
+492,"Dwarkadas, Sandhya",2018,Sandhya Dwarkadas,normalized_exact,Sandhya Dwarkadas,University of Virginia
+493,"Feiner, Steven",2018,Steven Feiner,normalized_exact,Steven Feiner,Columbia University
+494,"Finin, Tim",2018,Tim Finin,normalized_exact,Tim Finin,Univ. of Maryland - Baltimore County
+495,"Funkhouser, Thomas",2018,,unmatched,,
+496,"Garofalakis, Minos",2018,,unmatched,,
+497,"Gerla, Mario",2018,,unmatched,,
+498,"Gilbert, Juan E",2018,Juan E. Gilbert,normalized_exact,Juan E. Gilbert,University of Florida
+499,"Hajiaghayi, Mohammad T.",2018,Mohammad Taghi Hajiaghayi,compatible_initials,Mohammad Taghi Hajiaghayi,Univ. of Maryland - College Park
+500,"Halperin, Dan",2018,Dan Halperin,normalized_exact,Dan Halperin,Tel Aviv University
+501,"He, Tian",2018,Tian He 0001,normalized_exact,Tian He 0001,University of Minnesota
+502,"Heinzelman, Wendi Beth",2018,Wendi Beth Heinzelman,normalized_exact,Wendi Beth Heinzelman,University of Rochester
+503,"Hertzmann, Aaron",2018,,unmatched,,
+504,"Hodgins, Jessica K",2018,Jessica K. Hodgins,normalized_exact,Jessica K. Hodgins,Carnegie Mellon University
+505,"Hughes, John",2018,John Hughes 0001,normalized_exact,John Hughes 0001,Chalmers/GU
+506,"Håstad, Johan",2018,Johan Håstad,normalized_exact,Johan Håstad,KTH Royal Inst. of Technology
+507,"Isbell, Charles Lee",2018,Charles Lee Isbell Jr.,normalized_exact,Charles Lee Isbell Jr.,Univ. of Illinois at Urbana-Champaign
+508,"Keeton, Kimberly",2018,,unmatched,,
+509,"Khanna, Sanjeev",2018,Sanjeev Khanna,normalized_exact,Sanjeev Khanna,New York University
+510,"Lee, Lillian",2018,Lillian Lee,normalized_exact,Lillian Lee,Cornell University
+511,"Leighton, Tom",2018,,unmatched,,
+512,"Li, Fei-Fei",2018,Fei-Fei Li 0001,normalized_exact,Fei-Fei Li 0001,Stanford University
+513,"Littman, Michael",2018,,unmatched,,
+514,"Liu, Huan",2018,Huan Liu 0001,normalized_exact,Huan Liu 0001,Arizona State University
+515,"Luo, Jiebo",2018,Jiebo Luo 0001,normalized_exact,Jiebo Luo 0001,University of Rochester
+516,"Maggs, Bruce M",2018,Bruce M. Maggs,normalized_exact,Bruce M. Maggs,Duke University
+517,"Manjunath, Bangalore S",2018,Bangalore S. Manjunath,normalized_exact,Bangalore S. Manjunath,Univ. of California - Santa Barbara
+518,"Misra, Vishal",2018,Vishal Misra,normalized_exact,Vishal Misra,Columbia University
+519,"Mueller, Frank",2018,Frank Mueller 0001,normalized_exact,Frank Mueller 0001,North Carolina State University
+520,"Parkes, David",2018,,unmatched,,
+521,"Parulkar, Gurudatta",2018,,unmatched,,
+522,"Pitassi, Toniann",2018,Toniann Pitassi,normalized_exact,Toniann Pitassi,Columbia University
+523,"Qiu, Lili",2018,Lili Qiu,normalized_exact,Lili Qiu,University of Texas at Austin
+524,"Roughan, Matthew",2018,,unmatched,,
+525,"Sahai, Amit",2018,Amit Sahai,normalized_exact,Amit Sahai,Univ. of California - Los Angeles
+526,"Snoeren, Alex C.",2018,Alex C. Snoeren,normalized_exact,Alex C. Snoeren,Univ. of California - San Diego
+527,"Tesauro, Gerald",2018,,unmatched,,
+528,"Thuraisingham, Bhavani",2018,Bhavani Thuraisingham,normalized_exact,Bhavani Thuraisingham,University of Texas at Dallas
+529,"Vadhan, Salil",2018,,unmatched,,
+530,"Voorhees, Ellen M",2018,,unmatched,,
+531,"Wigderson, Avi",2018,,unmatched,,
+532,"Wolman, Alec",2018,,unmatched,,
+533,"Birkedal, Lars",2017,Lars Birkedal,normalized_exact,Lars Birkedal,Aarhus University
+534,"Bugnion, Edouard",2017,Edouard Bugnion,normalized_exact,Edouard Bugnion,EPFL
+535,"Burnett, Margaret",2017,Margaret Burnett,normalized_exact,Margaret Burnett,Oregon State University
+536,"Chang, Shih Fu",2017,Shih-Fu Chang,normalized_exact,Shih-Fu Chang,Columbia University
+537,"Cohen, Edith",2017,,unmatched,,
+538,"Comaniciu, Dorin",2017,,unmatched,,
+539,"Dray, Susan",2017,,unmatched,,
+540,"Fox, Edward Alan",2017,,unmatched,,
+541,"Fujimoto, Richard M",2017,,unmatched,,
+542,"Goldwasser, Shafi",2017,Shafi Goldwasser,normalized_exact,Shafi Goldwasser,Univ. of California - Berkeley
+543,"Gomes, Carla",2017,,unmatched,,
+544,"Grohe, Martin",2017,Martin Grohe,normalized_exact,Martin Grohe,RWTH Aachen University
+545,"Gupta, Aarti",2017,Aarti Gupta,normalized_exact,Aarti Gupta,Princeton University
+546,"guruswami, venkatesan",2017,Venkatesan Guruswami,normalized_exact,Venkatesan Guruswami,Univ. of California - Berkeley
+547,"Gusfield, Dan",2017,,unmatched,,
+548,"Hager, Gregory",2017,,unmatched,,
+549,"Hand, Steven Michael",2017,,unmatched,,
+550,"Harchol-Balter, Mor",2017,Mor Harchol-Balter,normalized_exact,Mor Harchol-Balter,Carnegie Mellon University
+551,"Kale, Laxmikant",2017,,unmatched,,
+552,"Kass, Michael",2017,,unmatched,,
+553,"Keromytis, Angelos Dennis",2017,Angelos Dennis Keromytis,normalized_exact,Angelos Dennis Keromytis,Georgia Institute of Technology
+554,"Kesselman, Carl",2017,,unmatched,,
+555,"Knightly, Edward",2017,,unmatched,,
+556,"Knoblock, Craig",2017,,unmatched,,
+557,"Lee, Insup",2017,Insup Lee 0001,normalized_exact,Insup Lee 0001,University of Pennsylvania
+558,"Lee, Wenke",2017,Wenke Lee,normalized_exact,Wenke Lee,Georgia Institute of Technology
+559,"Li, Li Erran",2017,,unmatched,,
+560,"Loh, Gabriel H",2017,,unmatched,,
+561,"Lozano-Perez, Tomas",2017,Tomás Lozano-Pérez,normalized_exact,Tomás Lozano-Pérez,Massachusetts Inst. of Technology
+562,"Lynch, Clifford A",2017,,unmatched,,
+563,"Ma, Yi",2017,Yi Ma 0001,normalized_exact,Yi Ma 0001,University of Hong Kong
+564,"Mccallum, Andrew K.",2017,,unmatched,,
+565,"Micali, Silvio",2017,Silvio Micali,normalized_exact,Silvio Micali,Massachusetts Inst. of Technology
+566,"Moshovos, Andreas",2017,Andreas Moshovos,normalized_exact,Andreas Moshovos,University of Toronto
+567,"Murphy, Gail C",2017,Gail C. Murphy,normalized_exact,Gail C. Murphy,University of British Columbia
+568,"Mutlu, Onur",2017,Onur Mutlu,normalized_exact,Onur Mutlu,ETH Zurich
+569,"Oliver, Nuria",2017,,unmatched,,
+570,"Prabhakar, Balaji",2017,Balaji Prabhakar,normalized_exact,Balaji Prabhakar,Stanford University
+571,"Rabin, Tal",2017,,unmatched,,
+572,"Ramakrishnan, K. K.",2017,K. K. Ramakrishnan,normalized_exact,K. K. Ramakrishnan,Univ. of California - Riverside
+573,"Ramamoorthi, Ravi",2017,Ravi Ramamoorthi,normalized_exact,Ravi Ramamoorthi,Univ. of California - San Diego
+574,"Rogers, Yvonne",2017,Yvonne Rogers,normalized_exact,Yvonne Rogers,University College London
+575,"Rui, Yong",2017,,unmatched,,
+576,"Schoelkopf, Bernhard",2017,,unmatched,,
+577,"Seitz, Steve",2017,,unmatched,,
+578,"Sipser, Michael",2017,,unmatched,,
+579,"Sivasubramaniam, Anand",2017,Anand Sivasubramaniam,normalized_exact,Anand Sivasubramaniam,Pennsylvania State University
+580,"Srivastava, Mani B.",2017,Mani B. Srivastava,normalized_exact,Mani B. Srivastava,Univ. of California - Los Angeles
+581,"Vardy, Alexander",2017,,unmatched,,
+582,"Voelker, Geoffrey",2017,,unmatched,,
+583,"Wong, Martin",2017,,unmatched,,
+584,"Yang, Qiang",2017,Qiang Yang 0001,normalized_exact,Qiang Yang 0001,HKUST
+585,"Zhai, Chengxiang",2017,,ambiguous,ChengXiang Zhai | Chengxiang Zhai,Univ. of Illinois at Urbana-Champaign | Univ. of Illinois at Urbana-Champaign
+586,"Zhang, Aidong",2017,Aidong Zhang 0001,normalized_exact,Aidong Zhang 0001,University of Virginia
+587,"Alon, Noga",2016,,unmatched,,
+588,"Barford, Paul",2016,Paul Barford,normalized_exact,Paul Barford,University of Wisconsin - Madison
+589,"Benini, Luca",2016,Luca Benini,normalized_exact,Luca Benini,ETH Zurich
+590,"Bianchini, Ricardo",2016,,unmatched,,
+591,"Blackburn, Steve",2016,,unmatched,,
+592,"Boneh, Dan",2016,Dan Boneh,normalized_exact,Dan Boneh,Stanford University
+593,"Brodley, Carla",2016,,unmatched,,
+594,"Cassell, Justine",2016,Justine Cassell,normalized_exact,Justine Cassell,Carnegie Mellon University
+595,"Demaine, Erik",2016,,unmatched,,
+596,"Druin, Allison",2016,,unmatched,,
+597,"Durand, Fredo",2016,Frédo Durand,normalized_exact,Frédo Durand,Massachusetts Inst. of Technology
+598,"Feamster, Nick",2016,Nick Feamster,normalized_exact,Nick Feamster,University of Chicago
+599,"Flinn, Jason",2016,,unmatched,,
+600,"Freeman, William",2016,,unmatched,,
+601,"Gil, Yolanda",2016,,unmatched,,
+602,"Grossman, Robert L.",2016,,unmatched,,
+603,"Gupta, Rajesh",2016,Rajesh Gupta 0001,normalized_exact,Rajesh Gupta 0001,Univ. of California - San Diego
+604,"Hendler, James",2016,,unmatched,,
+605,"Henzinger, Monika",2016,Monika Henzinger,normalized_exact,Monika Henzinger,IST Austria
+606,"Hey, Anthony",2016,,unmatched,,
+607,"Huang, Xuedong",2016,,unmatched,,
+608,"Jackson, Daniel",2016,Daniel Jackson 0001,normalized_exact,Daniel Jackson 0001,Massachusetts Inst. of Technology
+609,"Jacob, Robert J.K.",2016,Robert J. K. Jacob,normalized_exact,Robert J. K. Jacob,Tufts University
+610,"Jha, Somesh",2016,Somesh Jha,normalized_exact,Somesh Jha,University of Wisconsin - Madison
+611,"Kannan, Ravi",2016,,unmatched,,
+612,"Kermarrec, Anne-Marie",2016,Anne-Marie Kermarrec,normalized_exact,Anne-Marie Kermarrec,EPFL
+613,"Kersten, Martin",2016,,unmatched,,
+614,"Kozyrakis, Christos",2016,Christos Kozyrakis,normalized_exact,Christos Kozyrakis,Stanford University
+615,"Kwiatkowska, Marta",2016,Marta Kwiatkowska,normalized_exact,Marta Kwiatkowska,University of Oxford
+616,"Landay, James",2016,,unmatched,,
+617,"Leino, K. Rustan M.",2016,,unmatched,,
+618,"Lyles, Joseph Bryan",2016,,unmatched,,
+619,"Mowry, Todd C",2016,Todd C. Mowry,normalized_exact,Todd C. Mowry,Carnegie Mellon University
+620,"Mudge, Trevor",2016,,unmatched,,
+621,"Oviatt, Sharon",2016,,unmatched,,
+622,"Padmanabhan, Venkata",2016,,unmatched,,
+623,"Patel, Shwetak N",2016,Shwetak N. Patel,normalized_exact,Shwetak N. Patel,University of Washington
+624,"Peleg, David",2016,David Peleg,normalized_exact,David Peleg,Weizmann Institute of Science
+625,"Perlman, Radia",2016,,unmatched,,
+626,"Perrig, Adrian",2016,Adrian Perrig,normalized_exact,Adrian Perrig,ETH Zurich
+627,"Ramalingam, Ganesan",2016,,unmatched,,
+628,"Raschid, Louiqa",2016,Louiqa Raschid,normalized_exact,Louiqa Raschid,Univ. of Maryland - College Park
+629,"Rushmeier, Holly E",2016,Holly E. Rushmeier,normalized_exact,Holly E. Rushmeier,Yale University
+630,"Saks, Michael E",2016,Michael E. Saks,normalized_exact,Michael E. Saks,Rutgers University
+631,"Sapatnekar, Sachin S.",2016,,unmatched,,
+632,"Sellen, Abigail",2016,,unmatched,,
+633,"Sengupta, Sudipta",2016,,unmatched,,
+634,"Seznec, Andre",2016,,unmatched,,
+635,"Taylor, Valerie",2016,Valerie Taylor 0001,normalized_exact,Valerie Taylor 0001,Texas A&M University
+636,"Tomasi, Carlo",2016,Carlo Tomasi,normalized_exact,Carlo Tomasi,Duke University
+637,"Van Oorschot, Paul",2016,,unmatched,,
+638,"Veloso, Manuela",2016,,unmatched,,
+639,"Zhou, Zhi-Hua",2016,Zhi-Hua Zhou,normalized_exact,Zhi-Hua Zhou,Nanjing University
+640,"Ailamaki, Anastasia",2015,Anastasia Ailamaki,normalized_exact,Anastasia Ailamaki,EPFL
+641,"Amato, Nancy M",2015,Nancy M. Amato,normalized_exact,Nancy M. Amato,Univ. of Illinois at Urbana-Champaign
+642,"Blei, David M.",2015,David M. Blei,normalized_exact,David M. Blei,Columbia University
+643,"Chang, Naehyuck",2015,Naehyuck Chang,normalized_exact,Naehyuck Chang,KAIST
+644,"Chen, Hsinchun",2015,,unmatched,,
+645,"Czerwinski, Mary P.",2015,,unmatched,,
+646,"De Giacomo, Giuseppe",2015,Giuseppe De Giacomo,normalized_exact,Giuseppe De Giacomo,University of Oxford
+647,"Dourish, Paul",2015,Paul Dourish,normalized_exact,Paul Dourish,Univ. of California - Irvine
+648,"Dwork, Cynthia",2015,Cynthia Dwork,normalized_exact,Cynthia Dwork,Harvard University
+649,"Fall, Kevin",2015,,unmatched,,
+650,"Falsafi, Babak",2015,Babak Falsafi,normalized_exact,Babak Falsafi,EPFL
+651,"Franz, Michael",2015,Michael Franz,normalized_exact,Michael Franz,Univ. of California - Irvine
+652,"Grumberg, Orna",2015,,unmatched,,
+653,"Guha, Ramanathan",2015,,unmatched,,
+654,"Haritsa, Jayant R",2015,Jayant R. Haritsa,normalized_exact,Jayant R. Haritsa,IISc Bangalore
+655,"Hirschberg, Julia",2015,Julia Hirschberg,normalized_exact,Julia Hirschberg,Columbia University
+656,"Indyk, Piotr",2015,Piotr Indyk,normalized_exact,Piotr Indyk,Massachusetts Inst. of Technology
+657,"Kuo, Tei-Wei",2015,Tei-Wei Kuo,normalized_exact,Tei-Wei Kuo,National Taiwan University
+658,"Leroy, Xavier",2015,Xavier Leroy,normalized_exact,Xavier Leroy,INRIA
+659,"Lin, Chih-Jen",2015,Chih-Jen Lin,normalized_exact,Chih-Jen Lin,National Taiwan University
+660,"Liu, Bing",2015,Bing Liu 0001,normalized_exact,Bing Liu 0001,University of Illinois at Chicago
+661,"Liu, Yunhao",2015,Yunhao Liu 0001,normalized_exact,Yunhao Liu 0001,Tsinghua University
+662,"Luby, Michael George",2015,,unmatched,,
+663,"Lyu, Michael Rung-Tsong",2015,Michael Rung-Tsong Lyu,normalized_exact,Michael Rung-Tsong Lyu,Chinese University of Hong Kong
+664,"Maurer, Ueli M",2015,Ueli M. Maurer,normalized_exact,Ueli M. Maurer,ETH Zurich
+665,"McDaniel, Patrick",2015,Patrick McDaniel,normalized_exact,Patrick McDaniel,University of Wisconsin - Madison
+666,"Miller, Victor",2015,,unmatched,,
+667,"Mynatt, Elizabeth D.",2015,Elizabeth D. Mynatt,normalized_exact,Elizabeth D. Mynatt,Northeastern University
+668,"Pearl, Judea",2015,,unmatched,,
+669,"Pei, Jian",2015,Jian Pei 0001,normalized_exact,Jian Pei 0001,Duke University
+670,"Pfenning, Frank",2015,Frank Pfenning,normalized_exact,Frank Pfenning,Carnegie Mellon University
+671,"Radev, Dragomir R",2015,,unmatched,,
+672,"Rajamani, Sriram",2015,,unmatched,,
+673,"Rodriguez, Pablo",2015,,unmatched,,
+674,"Sagiv, Shmuel",2015,Shmuel Sagiv,normalized_exact,Shmuel Sagiv,Tel Aviv University
+675,"Schroeder, Peter",2015,,unmatched,,
+676,"Schuster, Assaf",2015,Assaf Schuster,normalized_exact,Assaf Schuster,Technion
+677,"Skadron, Kevin",2015,Kevin Skadron,normalized_exact,Kevin Skadron,University of Virginia
+678,"Tan, Wang-Chiew",2015,,unmatched,,
+679,"Vempala, Santosh",2015,Santosh Vempala,normalized_exact,Santosh Vempala,Georgia Institute of Technology
+680,"Warnow, Tandy",2015,,unmatched,,
+681,"Wooldridge, Michael",2015,Michael Wooldridge,normalized_exact,Michael Wooldridge,University of Oxford
+682,"Abramsky, Samson",2014,Samson Abramsky,normalized_exact,Samson Abramsky,University College London
+683,"Adve, Vikram",2014,,unmatched,,
+684,"Afrati, Foto",2014,,unmatched,,
+685,"Bachman, Charles W",2014,,unmatched,,
+686,"Borodin, Allan",2014,Allan Borodin,normalized_exact,Allan Borodin,University of Toronto
+687,"Bundy, Alan",2014,Alan Bundy,normalized_exact,Alan Bundy,University of Edinburgh
+688,"Cranor, Lorrie Faith",2014,Lorrie Faith Cranor,normalized_exact,Lorrie Faith Cranor,Carnegie Mellon University
+689,"Davis, Timothy Alden",2014,Timothy A. Davis 0001,compatible_initials,Timothy A. Davis 0001,Texas A&M University
+690,"Devadas, Srinivas",2014,Srinivas Devadas,normalized_exact,Srinivas Devadas,Massachusetts Inst. of Technology
+691,"Dhillon, Inderjit",2014,,unmatched,,
+692,"Dutt, Nikil D.",2014,,unmatched,,
+693,"Ellen, Faith",2014,Faith Ellen,normalized_exact,Faith Ellen,University of Toronto
+694,"Ernst, Michael D",2014,Michael D. Ernst,normalized_exact,Michael D. Ernst,University of Washington
+695,"Finkelstein, Adam",2014,Adam Finkelstein,normalized_exact,Adam Finkelstein,Princeton University
+696,"Freire, Juliana",2014,Juliana Freire,normalized_exact,Juliana Freire,New York University
+697,"Gehrke, Johannes",2014,,unmatched,,
+698,"Grimson, Eric",2014,,unmatched,,
+699,"Guzdial, Mark",2014,Mark Guzdial,normalized_exact,Mark Guzdial,University of Michigan
+700,"Heiser, Gernot",2014,Gernot Heiser,normalized_exact,Gernot Heiser,UNSW
+701,"Horvitz, Eric",2014,,unmatched,,
+702,"Joachims, Thorsten",2014,Thorsten Joachims,normalized_exact,Thorsten Joachims,Cornell University
+703,"Kearns, Michael",2014,Michael Kearns,normalized_exact,Michael Kearns,University of Pennsylvania
+704,"King, Valerie",2014,Valerie King,normalized_exact,Valerie King,University of Victoria
+705,"Kraus, Sarit",2014,Sarit Kraus,normalized_exact,Sarit Kraus,Bar-Ilan University
+706,"Lamport, Leslie Barry",2014,,unmatched,,
+707,"Malik, Sharad",2014,,unmatched,,
+708,"Mansour, Yishay",2014,Yishay Mansour,normalized_exact,Yishay Mansour,Tel Aviv University
+709,"Mitra, Subhasish",2014,Subhasish Mitra,normalized_exact,Subhasish Mitra,Stanford University
+710,"Mitzenmacher, Michael",2014,Michael Mitzenmacher,normalized_exact,Michael Mitzenmacher,Harvard University
+711,"Morris, Robert",2014,,unmatched,,
+712,"Narayanan, Vijaykrishnan",2014,Vijaykrishnan Narayanan,normalized_exact,Vijaykrishnan Narayanan,Pennsylvania State University
+713,"Navathe, Shamkant",2014,,unmatched,,
+714,"Patel, Jignesh M",2014,Jignesh M. Patel,normalized_exact,Jignesh M. Patel,Carnegie Mellon University
+715,"Ranganathan, Parthasarathy",2014,,unmatched,,
+716,"Reingold, Omer",2014,Omer Reingold,normalized_exact,Omer Reingold,Stanford University
+717,"Rodden, Tom",2014,Tom Rodden,normalized_exact,Tom Rodden,University of Nottingham
+718,"Rubinfeld, Ronitt",2014,Ronitt Rubinfeld,normalized_exact,Ronitt Rubinfeld,Massachusetts Inst. of Technology
+719,"Rus, Daniela",2014,Daniela Rus,normalized_exact,Daniela Rus,Massachusetts Inst. of Technology
+720,"Sangiovanni Vincentelli, Alberto Luigi",2014,Alberto L. Sangiovanni-Vincentelli,compatible_initials,Alberto L. Sangiovanni-Vincentelli,Univ. of California - Berkeley
+721,"Schulzrinne, Henning",2014,Henning Schulzrinne,normalized_exact,Henning Schulzrinne,Columbia University
+722,"Shieber, Stuart",2014,,unmatched,,
+723,"Srikant, Ramakrishnan",2014,,unmatched,,
+724,"Srinivasan, Aravind",2014,Aravind Srinivasan,normalized_exact,Aravind Srinivasan,Univ. of Maryland - College Park
+725,"Sudarshan, S.",2014,S. Sudarshan 0001,normalized_exact,S. Sudarshan 0001,IIT Bombay
+726,"Syverson, Paul",2014,,unmatched,,
+727,"Tsudik, Gene",2014,Gene Tsudik,normalized_exact,Gene Tsudik,Univ. of California - Irvine
+728,"Whittaker, Stephen J",2014,,unmatched,,
+729,"Ackerman, Mark S",2013,,unmatched,,
+730,"Aggarwal, Charu Chandra",2013,,unmatched,,
+731,"Anderson, James H",2013,James H. Anderson,normalized_exact,James H. Anderson,University of North Carolina
+732,"Bellare, Mihir",2013,Mihir Bellare,normalized_exact,Mihir Bellare,Univ. of California - San Diego
+733,"Borgman, Christine L",2013,,unmatched,,
+734,"Ceri, Stefano",2013,Stefano Ceri,normalized_exact,Stefano Ceri,Politecnico di Milano
+735,"Chakrabarty, Krishnendu",2013,Krishnendu Chakrabarty,normalized_exact,Krishnendu Chakrabarty,Arizona State University
+736,"Chellappa, Ramalingam",2013,Ramalingam Chellappa,normalized_exact,Ramalingam Chellappa,Johns Hopkins University
+737,"Cox, Ingemar J.",2013,Ingemar J. Cox,normalized_exact,Ingemar J. Cox,University College London
+738,"De Lucena, Carlos J P",2013,,ambiguous,Carlos J. P. Lucena | Carlos José Pereira de Lucena,PUC-RIO | PUC-RIO
+739,"Dechter, Rina",2013,Rina Dechter,normalized_exact,Rina Dechter,Univ. of California - Irvine
+740,"Elliott, Chip",2013,,unmatched,,
+741,"Forsyth, David",2013,,unmatched,,
+742,"Gao, Wen",2013,Wen Gao 0001,normalized_exact,Wen Gao 0001,Peking University
+743,"Garlan, David",2013,David Garlan,normalized_exact,David Garlan,Carnegie Mellon University
+744,"Gosling, James",2013,,unmatched,,
+745,"Haas, Peter",2013,,unmatched,,
+746,"Hearst, Marti",2013,Marti Hearst,normalized_exact,Marti Hearst,Univ. of California - Berkeley
+747,"Jarke, Matthias",2013,Matthias Jarke,normalized_exact,Matthias Jarke,RWTH Aachen University
+748,"Kannan, Sampath Kumar",2013,,unmatched,,
+749,"Kasik, David J",2013,,unmatched,,
+750,"Katabi, Dina",2013,Dina Katabi,normalized_exact,Dina Katabi,Massachusetts Inst. of Technology
+751,"Kautz, Henry A",2013,Henry A. Kautz,normalized_exact,Henry A. Kautz,University of Virginia
+752,"Kleinberg, Jon",2013,,unmatched,,
+753,"Kumar, Panganamala",2013,,unmatched,,
+754,"Lea, Douglas",2013,,unmatched,,
+755,"Maarek, Yoelle",2013,,unmatched,,
+756,"Manning, Christopher",2013,,unmatched,,
+757,"Marathe, Madhav",2013,Madhav Marathe,normalized_exact,Madhav Marathe,University of Virginia
+758,"Mellor-Crummey, John",2013,,review_name_variation,John M. Mellor-Crummey,Rice University
+759,"Morrisett, Greg",2013,,unmatched,,
+760,"Myers, Andrew",2013,,unmatched,,
+761,"Nau, Dana",2013,,unmatched,,
+762,"Rao, Satish",2013,Satish Rao,normalized_exact,Satish Rao,Univ. of California - Berkeley
+763,"Robertson, S E",2013,,unmatched,,
+764,"Roscoe, Timothy",2013,Timothy Roscoe,normalized_exact,Timothy Roscoe,ETH Zurich
+765,"Sellis, Timoleon",2013,,unmatched,,
+766,"Shasha, Dennis E",2013,Dennis E. Shasha,normalized_exact,Dennis E. Shasha,New York University
+767,"Shavit, Nir N",2013,,unmatched,,
+768,"Shim, Kyuseok",2013,Kyuseok Shim,normalized_exact,Kyuseok Shim,Seoul National University
+769,"Smyth, Padhraic",2013,Padhraic Smyth,normalized_exact,Padhraic Smyth,Univ. of California - Irvine
+770,"Tambe, Milind",2013,Milind Tambe,normalized_exact,Milind Tambe,Harvard University
+771,"Tannen, Val",2013,Val Tannen,normalized_exact,Val Tannen,University of Pennsylvania
+772,"Williamson, David",2013,,unmatched,,
+773,"Wong, Limsoon",2013,Limsoon Wong,normalized_exact,Limsoon Wong,National University of Singapore
+774,"Yung, Moti",2013,,unmatched,,
+775,"Zegura, Ellen",2013,,unmatched,,
+776,"Zhang, Zhengyou",2013,,unmatched,,
+777,"Zhou, Yuanyuan",2013,Yuanyuan Zhou 0001,normalized_exact,Yuanyuan Zhou 0001,Univ. of California - San Diego
+778,"Zuckerman, David",2013,David Zuckerman,normalized_exact,David Zuckerman,University of Texas at Austin
+779,"Alonso, Gustavo",2012,Gustavo Alonso,normalized_exact,Gustavo Alonso,ETH Zurich
+780,"Arge, Lars",2012,,unmatched,,
+781,"Baldi, Pierre",2012,Pierre Baldi,normalized_exact,Pierre Baldi,Univ. of California - Irvine
+782,"Boehm, Hans",2012,,unmatched,,
+783,"Boutilier, Craig",2012,,unmatched,,
+784,"Camp, Tracy",2012,Tracy Camp,normalized_exact,Tracy Camp,Colorado School of Mines
+785,"Cattell, Rick",2012,,unmatched,,
+786,"Davis, Larry S",2012,,unmatched,,
+787,"Elmagarmid, Ahmed",2012,,unmatched,,
+788,"Fan, Wenfei",2012,Wenfei Fan,normalized_exact,Wenfei Fan,University of Edinburgh
+789,"Gao, Lixin",2012,Lixin Gao 0001,normalized_exact,Lixin Gao 0001,Univ. of Massachusetts Amherst
+790,"Garfinkel, Simson L",2012,,unmatched,,
+791,"Gibson, Garth A",2012,,unmatched,,
+792,"Greenberg, Saul",2012,Saul Greenberg,normalized_exact,Saul Greenberg,University of Calgary
+793,"Gross, Markus",2012,Markus Gross 0001,normalized_exact,Markus Gross 0001,ETH Zurich
+794,"Grove, David Paul",2012,,unmatched,,
+795,"Grudin, Jonathan",2012,,unmatched,,
+796,"Guerraoui, Rachid",2012,Rachid Guerraoui,normalized_exact,Rachid Guerraoui,EPFL
+797,"Gupta, Manish",2012,,unmatched,,
+798,"Hershberger, John",2012,,unmatched,,
+799,"Kahng, Andrew B.",2012,Andrew B. Kahng,normalized_exact,Andrew B. Kahng,Univ. of California - San Diego
+800,"Karlin, Anna",2012,,unmatched,,
+801,"Keshav, Srinivasan",2012,Srinivasan Keshav,normalized_exact,Srinivasan Keshav,University of Cambridge
+802,"Kiczales, Gregor",2012,Gregor Kiczales,normalized_exact,Gregor Kiczales,University of British Columbia
+803,"Kitsuregawa, Masaru",2012,Masaru Kitsuregawa,normalized_exact,Masaru Kitsuregawa,University of Tokyo
+804,"Libkin, Leonid",2012,Leonid Libkin,normalized_exact,Leonid Libkin,University of Edinburgh
+805,"Milo, Tova",2012,Tova Milo,normalized_exact,Tova Milo,Tel Aviv University
+806,"Nahrstedt, Klara",2012,Klara Nahrstedt,normalized_exact,Klara Nahrstedt,Univ. of Illinois at Urbana-Champaign
+807,"O'Rourke, Joseph",2012,,unmatched,,
+808,"Pierce, Benjamin C.",2012,Benjamin C. Pierce,normalized_exact,Benjamin C. Pierce,University of Pennsylvania
+809,"Pingali, Keshav K",2012,,unmatched,,
+810,"Pitts, Andrew M",2012,,unmatched,,
+811,"Rastogi, Rajeev Ramnarain",2012,,unmatched,,
+812,"Reddy, Raj",2012,Raj Reddy,normalized_exact,Raj Reddy,Carnegie Mellon University
+813,"Ross, Keith",2012,,unmatched,,
+814,"Sakallah, Karem",2012,,unmatched,,
+815,"Schreiber, Robert",2012,,unmatched,,
+816,"Scott, Steven",2012,,unmatched,,
+817,"Selman, Bart",2012,Bart Selman,normalized_exact,Bart Selman,Cornell University
+818,"Shamir, Ron",2012,Ron Shamir,normalized_exact,Ron Shamir,Tel Aviv University
+819,"Shoham, Yoav",2012,,unmatched,,
+820,"Sifakis, Joseph",2012,,unmatched,,
+821,"Sinclair, Alistair",2012,Alistair Sinclair,normalized_exact,Alistair Sinclair,Univ. of California - Berkeley
+822,"Stein, Clifford",2012,Clifford Stein 0001,normalized_exact,Clifford Stein 0001,Columbia University
+823,"Stoica, Ion",2012,Ion Stoica,normalized_exact,Ion Stoica,Univ. of California - Berkeley
+824,"Tamassia, Roberto",2012,Roberto Tamassia,normalized_exact,Roberto Tamassia,Brown University
+825,"Tichy, Walter F.",2012,Walter F. Tichy,normalized_exact,Walter F. Tichy,Karlsruhe Inst. of Technology
+826,"Valduriez, Patrick",2012,,unmatched,,
+827,"Valiant, Leslie G",2012,Leslie G. Valiant,normalized_exact,Leslie G. Valiant,Harvard University
+828,"Yelick, Katherine",2012,,unmatched,,
+829,"Zabih, Ramin",2012,,unmatched,,
+830,"Zhang, Xiaodong",2012,Xiaodong Zhang 0001,normalized_exact,Xiaodong Zhang 0001,Ohio State University
+831,"Abiteboul, Serge",2011,Serge Abiteboul,normalized_exact,Serge Abiteboul,Ecole Normale Superieure de Cachan
+832,"Agrawal, Divyakant",2011,Divyakant Agrawal,normalized_exact,Divyakant Agrawal,Univ. of California - Santa Barbara
+833,"Baecker, Ronald M",2011,Ronald M. Baecker,normalized_exact,Ronald M. Baecker,University of Toronto
+834,"Ball, Thomas",2011,,unmatched,,
+835,"Blelloch, Guy",2011,,unmatched,,
+836,"Ebeling, Carl",2011,,unmatched,,
+837,"Eppstein, David",2011,David Eppstein,normalized_exact,David Eppstein,Univ. of California - Irvine
+838,"Fox, Geoffrey",2011,,unmatched,,
+839,"Furnas, George",2011,,unmatched,,
+840,"Gifford, David K",2011,David K. Gifford,normalized_exact,David K. Gifford,Massachusetts Inst. of Technology
+841,"Govindan, Ramesh",2011,Ramesh Govindan,normalized_exact,Ramesh Govindan,University of Southern California
+842,"Guo, Baining",2011,,unmatched,,
+843,"Heckerman, David",2011,,unmatched,,
+844,"Holzmann, Gerard J.",2011,,unmatched,,
+845,"Hoppe, Hugues",2011,,unmatched,,
+846,"Jensen, Christian S.",2011,Christian S. Jensen,normalized_exact,Christian S. Jensen,Aalborg University
+847,"Karloff, Howard J",2011,,unmatched,,
+848,"Keckler, Stephen",2011,,unmatched,,
+849,"Key, Peter B.",2011,,unmatched,,
+850,"Kirkpatrick, Scott",2011,,unmatched,,
+851,"Kraut, Robert E",2011,,unmatched,,
+852,"Landau, Susan",2011,Susan Landau 0001,normalized_exact,Susan Landau 0001,Tufts University
+853,"Lin, Ming C",2011,Ming C. Lin,normalized_exact,Ming C. Lin,Univ. of Maryland - College Park
+854,"Magnusson, Peter",2011,,unmatched,,
+855,"Malkhi, Dahlia",2011,Dahlia Malkhi,normalized_exact,Dahlia Malkhi,Univ. of California - Santa Barbara
+856,"Marzullo, Keith",2011,Keith Marzullo,normalized_exact,Keith Marzullo,Univ. of Massachusetts Amherst
+857,"MATSUOKA, SATOSHI",2011,Satoshi Matsuoka,normalized_exact,Satoshi Matsuoka,Institute of Science Tokyo
+858,"Max, Nelson",2011,,unmatched,,
+859,"Mitchell, Joseph",2011,,unmatched,,
+860,"Mukherjee, Shubu",2011,,unmatched,,
+861,"Ooi, Beng Chin",2011,Beng Chin Ooi,normalized_exact,Beng Chin Ooi,National University of Singapore
+862,"Ozsoyoglu, Zehra",2011,,unmatched,,
+863,"Pach, Janos",2011,,unmatched,,
+864,"Petzold, Linda",2011,,unmatched,,
+865,"Pollack, Martha",2011,,unmatched,,
+866,"Roth, Dan",2011,Dan Roth 0001,normalized_exact,Dan Roth 0001,University of Pennsylvania
+867,"Sanguinetti, John",2011,,unmatched,,
+868,"Seltzer, Margo",2011,,unmatched,,
+869,"Singhal, Amit",2011,,unmatched,,
+870,"Souvaine, Diane L",2011,Diane L. Souvaine,normalized_exact,Diane L. Souvaine,Tufts University
+871,"Srivastava, Divesh",2011,,unmatched,,
+872,"Suciu, Dan",2011,Dan Suciu,normalized_exact,Dan Suciu,University of Washington
+873,"Tullsen, Dean",2011,,unmatched,,
+874,"Vahdat, Amin",2011,,unmatched,,
+875,"Wetherall, David",2011,,unmatched,,
+876,"Zadeck, Frank Kenneth",2011,,unmatched,,
+877,"Abramson, David A",2010,,unmatched,,
+878,"Adve, Sarita",2010,,unmatched,,
+879,"Alvisi, Lorenzo",2010,Lorenzo Alvisi,normalized_exact,Lorenzo Alvisi,Cornell University
+880,"Barroso, Luiz Andre",2010,,unmatched,,
+881,"Burger, Douglas C",2010,,unmatched,,
+882,"Chayes, Jennifer",2010,,unmatched,,
+883,"Chen, Peter",2010,,unmatched,,
+884,"Condon, Anne",2010,Anne Condon,normalized_exact,Anne Condon,University of British Columbia
+885,"Crovella, Mark",2010,Mark Crovella,normalized_exact,Mark Crovella,Boston University
+886,"Cytron, Ron",2010,Ron Cytron,normalized_exact,Ron Cytron,Washington University in St. Louis
+887,"Dahlin, Michael D",2010,,unmatched,,
+888,"El Abbadi, Amr",2010,Amr El Abbadi,normalized_exact,Amr El Abbadi,Univ. of California - Santa Barbara
+889,"Ellis, Carla S.",2010,,unmatched,,
+890,"Faloutsos, Christos",2010,Christos Faloutsos,normalized_exact,Christos Faloutsos,Carnegie Mellon University
+891,"Fisher, Kathleen S",2010,,unmatched,,
+892,"Goodman, James",2010,,unmatched,,
+893,"Hall, Wendy",2010,Wendy Hall 0001,normalized_exact,Wendy Hall 0001,University of Southampton
+894,"Hubaux, Jean-Pierre",2010,Jean-Pierre Hubaux,normalized_exact,Jean-Pierre Hubaux,EPFL
+895,"Jordan, Michael I.",2010,Michael I. Jordan,normalized_exact,Michael I. Jordan,INRIA
+896,"Kavraki, Lydia",2010,,unmatched,,
+897,"Kiesler, Sara",2010,,unmatched,,
+898,"Klein, Philip N",2010,Philip N. Klein,normalized_exact,Philip N. Klein,Brown University
+899,"Kossmann, Donald",2010,,unmatched,,
+900,"Launchbury, John",2010,,unmatched,,
+901,"Lyon, Richard F",2010,,unmatched,,
+902,"Mooney, Raymond",2010,,unmatched,,
+903,"Muthukrishnan, S.",2010,,unmatched,,
+904,"Pereira, Fernando",2010,,unmatched,,
+905,"Pevzner, Pavel",2010,,unmatched,,
+906,"Rombach, Dieter",2010,,unmatched,,
+907,"Rosenblum, David S.",2010,,unmatched,,
+908,"Savage, Stefan",2010,Stefan Savage,normalized_exact,Stefan Savage,Univ. of California - San Diego
+909,"Schnabel, Robert B",2010,Robert B. Schnabel,normalized_exact,Robert B. Schnabel,University of Colorado Boulder
+910,"Spielman, Daniel A",2010,Daniel A. Spielman,normalized_exact,Daniel A. Spielman,Yale University
+911,"Suri, Subhash",2010,Subhash Suri,normalized_exact,Subhash Suri,Univ. of California - Santa Barbara
+912,"Tompa, Frank Wm",2010,,unmatched,,
+913,"Torrellas, Josep",2010,Josep Torrellas,normalized_exact,Josep Torrellas,Univ. of Illinois at Urbana-Champaign
+914,"Trimberger, Stephen",2010,,unmatched,,
+915,"Ungar, David M",2010,,unmatched,,
+916,"zeller, andreas",2010,Andreas Zeller,normalized_exact,Andreas Zeller,CISPA Helmholtz Center
+917,"Zhai, Shumin",2010,,unmatched,,
+918,"Attiya, Hagit",2009,Hagit Attiya,normalized_exact,Hagit Attiya,Technion
+919,"Bacon, David F",2009,,unmatched,,
+920,"Baeza-Yates, Ricardo A",2009,,unmatched,,
+921,"Bajaj, Chandrajit L.",2009,Chandrajit L. Bajaj,normalized_exact,Chandrajit L. Bajaj,University of Texas at Austin
+922,"Bhatkar, Vijay P",2009,,unmatched,,
+923,"Blakeley, Jose A",2009,,unmatched,,
+924,"Borriello, Gaetano",2009,,unmatched,,
+925,"Choudhary, Alok",2009,,unmatched,,
+926,"Dale, Nell Boylan",2009,,unmatched,,
+927,"Davie, Bruce",2009,,unmatched,,
+928,"Dean, Jeffrey A",2009,,unmatched,,
+929,"Dean, Thomas L",2009,,unmatched,,
+930,"Donald, Bruce R.",2009,Bruce Randall Donald,compatible_initials,Bruce Randall Donald,Duke University
+931,"Erickson, Thomas D",2009,,unmatched,,
+932,"Esteves-Verissimo, Paulo",2009,Paulo Esteves Veríssimo,normalized_exact,Paulo Esteves Veríssimo,KAUST
+933,"Fischer, Gerhard",2009,,unmatched,,
+934,"Foster, Ian T",2009,Ian T. Foster,normalized_exact,Ian T. Foster,University of Chicago
+935,"Goldberg, Andrew V",2009,,unmatched,,
+936,"Goodrich, Michael T",2009,Michael T. Goodrich,normalized_exact,Michael T. Goodrich,Univ. of California - Irvine
+937,"Govindaraju, Venu",2009,Venu Govindaraju,normalized_exact,Venu Govindaraju,University at Buffalo
+938,"Gupta, Rajiv",2009,Rajiv Gupta 0001,normalized_exact,Rajiv Gupta 0001,Univ. of California - Riverside
+939,"Hellerstein, Joseph M",2009,,unmatched,,
+940,"Hendren, Laurie J",2009,,unmatched,,
+941,"Hoelzle, Urs",2009,,unmatched,,
+942,"Jahanian, Farnam",2009,Farnam Jahanian,normalized_exact,Farnam Jahanian,Carnegie Mellon University
+943,"Kaltofen, Erich L",2009,,unmatched,,
+944,"Karger, David",2009,,unmatched,,
+945,"Kaufman, Arie E",2009,Arie E. Kaufman,normalized_exact,Arie E. Kaufman,Stony Brook University
+946,"Kriegel, Hans-Peter",2009,Hans-Peter Kriegel,normalized_exact,Hans-Peter Kriegel,LMU Munich
+947,"Lenzerini, Maurizio",2009,Maurizio Lenzerini,normalized_exact,Maurizio Lenzerini,Sapienza University of Rome
+948,"Lui, John Chi-Shing",2009,John Chi-Shing Lui,normalized_exact,John Chi-Shing Lui,Chinese University of Hong Kong
+949,"Manocha, Dinesh",2009,Dinesh Manocha,normalized_exact,Dinesh Manocha,Univ. of Maryland - College Park
+950,"Martonosi, Margaret",2009,Margaret Martonosi,normalized_exact,Margaret Martonosi,Princeton University
+951,"Matias, Yossi",2009,Yossi Matias,normalized_exact,Yossi Matias,Tel Aviv University
+952,"Miller, Rj",2009,,unmatched,,
+953,"Riedl, John T",2009,,unmatched,,
+954,"Rinard, Martin",2009,,unmatched,,
+955,"Selinger, Patricia G.",2009,,unmatched,,
+956,"Shyamasundar, Rudrapatna K",2009,,unmatched,,
+957,"Teng, Shang-Hua",2009,Shang-Hua Teng,normalized_exact,Shang-Hua Teng,University of Southern California
+958,"Thekkath, Chandramohan A",2009,,unmatched,,
+959,"Van Renesse, Robbert",2009,Robbert van Renesse,normalized_exact,Robbert van Renesse,Cornell University
+960,"Vemuri, Baba C",2009,Baba C. Vemuri,normalized_exact,Baba C. Vemuri,University of Florida
+961,"Vetterli, Martin",2009,Martin Vetterli,normalized_exact,Martin Vetterli,EPFL
+962,"Whang, Kyu-Young",2009,Kyu-Young Whang,normalized_exact,Kyu-Young Whang,KAIST
+963,"Wilks, Yorick",2009,,unmatched,,
+964,"Winograd, Terry",2009,,unmatched,,
+965,"Abadi, Martin",2008,,unmatched,,
+966,"Abowd, Gregory D.",2008,Gregory D. Abowd,normalized_exact,Gregory D. Abowd,Northeastern University
+967,"Aiken, Alex",2008,Alex Aiken,normalized_exact,Alex Aiken,Stanford University
+968,"Arora, Sanjeev",2008,Sanjeev Arora,normalized_exact,Sanjeev Arora,Princeton University
+969,"Balakrishnan, Hari",2008,Hari Balakrishnan,normalized_exact,Hari Balakrishnan,Massachusetts Inst. of Technology
+970,"Buxton, William A.S.",2008,,unmatched,,
+971,"Clarkson, Kenneth L",2008,,unmatched,,
+972,"Cong, Jason",2008,Jason Cong,normalized_exact,Jason Cong,Univ. of California - Los Angeles
+973,"Cook, Perry",2008,,unmatched,,
+974,"Cook, Stephen A",2008,,unmatched,,
+975,"Davidson, Jack",2008,,unmatched,,
+976,"Dayal, Umeshwar",2008,,unmatched,,
+977,"Deng, Xiaotie",2008,Xiaotie Deng,normalized_exact,Xiaotie Deng,Peking University
+978,"Garcia-Luna-Aceves, J.J.",2008,J. J. Garcia-Luna-Aceves,normalized_exact,J. J. Garcia-Luna-Aceves,Univ. of California - Santa Cruz
+979,"Goemans, Michel X",2008,,unmatched,,
+980,"Hanrahan, Pat",2008,,unmatched,,
+981,"House, Charles H",2008,,unmatched,,
+982,"Humphrey, Watts S",2008,,unmatched,,
+983,"Kay, Alan",2008,,unmatched,,
+984,"Konstan, Joseph A",2008,Joseph A. Konstan,normalized_exact,Joseph A. Konstan,University of Minnesota
+985,"Levin, Roy",2008,,unmatched,,
+986,"Lowney, Paul G",2008,,unmatched,,
+987,"Malik, Jitendra",2008,Jitendra Malik,normalized_exact,Jitendra Malik,Univ. of California - Berkeley
+988,"McKinley, Kathryn S",2008,,unmatched,,
+989,"Meyer, Bertrand",2008,,unmatched,,
+990,"Mitchell, John C.",2008,John C. Mitchell,normalized_exact,John C. Mitchell,Stanford University
+991,"Moses, Joel",2008,Joel Moses,normalized_exact,Joel Moses,Massachusetts Inst. of Technology
+992,"Munro, Ian",2008,Ian Munro 0001,normalized_exact,Ian Munro 0001,University of Waterloo
+993,"Olson, Judith S",2008,,unmatched,,
+994,"Paulson, Lawrence Charles",2008,,unmatched,,
+995,"Pirahesh, Hamid",2008,,unmatched,,
+996,"Randell, Brian",2008,,unmatched,,
+997,"Reiter, Michael",2008,Michael Reiter,normalized_exact,Michael Reiter,Duke University
+998,"Rexford, Jennifer",2008,Jennifer Rexford,normalized_exact,Jennifer Rexford,Princeton University
+999,"Rose, Jonathan",2008,,unmatched,,
+1000,"Rosenblum, Mendel",2008,Mendel Rosenblum,normalized_exact,Mendel Rosenblum,Stanford University
+1001,"Rutenbar, Rob A",2008,Rob A. Rutenbar,normalized_exact,Rob A. Rutenbar,University of Pittsburgh
+1002,"Sandholm, Tuomas",2008,Tuomas Sandholm,normalized_exact,Tuomas Sandholm,Carnegie Mellon University
+1003,"Sarkar, Vivek",2008,Vivek Sarkar,normalized_exact,Vivek Sarkar,Georgia Institute of Technology
+1004,"Squillante, Mark S",2008,,unmatched,,
+1005,"Stenstrom, Per O",2008,,unmatched,,
+1006,"Sudan, Madhu",2008,Madhu Sudan 0001,normalized_exact,Madhu Sudan 0001,Harvard University
+1007,"Szeliski, Richard",2008,,unmatched,,
+1008,"Terry, Douglas B",2008,,unmatched,,
+1009,"Agarwal, Anant",2007,Anant Agarwal,normalized_exact,Anant Agarwal,Massachusetts Inst. of Technology
+1010,"Alur, Rajeev",2007,Rajeev Alur,normalized_exact,Rajeev Alur,University of Pennsylvania
+1011,"Banerjee, Utpal",2007,,unmatched,,
+1012,"Beeri, Catriel",2007,,unmatched,,
+1013,"Blum, Avrim",2007,Avrim Blum,normalized_exact,Avrim Blum,TTI Chicago
+1014,"Brewer, Eric A.",2007,,unmatched,,
+1015,"Broder, Andrei Z",2007,,unmatched,,
+1016,"Cohen, Michael F.",2007,,unmatched,,
+1017,"Constantine, Larry",2007,,unmatched,,
+1018,"Dolev, Danny",2007,Danny Dolev,normalized_exact,Danny Dolev,Hebrew University of Jerusalem
+1019,"Downey, Rodney",2007,,unmatched,,
+1020,"Feigenbaum, Edward A",2007,,unmatched,,
+1021,"Felten, Edward",2007,,unmatched,,
+1022,"Fortnow, Lance",2007,Lance Fortnow,normalized_exact,Lance Fortnow,Illinois Institute of Technology
+1023,"Gao, Guang",2007,,unmatched,,
+1024,"Gottlob, Georg",2007,,unmatched,,
+1025,"Hull, Richard",2007,,unmatched,,
+1026,"Huttenlocher, Daniel",2007,,unmatched,,
+1027,"Jiang, Tao",2007,Tao Jiang 0001,normalized_exact,Tao Jiang 0001,Univ. of California - Riverside
+1028,"Klensin, John C",2007,,unmatched,,
+1029,"Lam, Monica",2007,Monica Lam 0001,normalized_exact,Monica Lam 0001,Stanford University
+1030,"Levoy, Marc",2007,,unmatched,,
+1031,"Mishra, Bud",2007,Bud Mishra,normalized_exact,Bud Mishra,New York University
+1032,"Moss, Eliot",2007,,unmatched,,
+1033,"Motwani, Rajeev",2007,,unmatched,,
+1034,"Odersky, Martin",2007,Martin Odersky,normalized_exact,Martin Odersky,EPFL
+1035,"Olson, Gary M",2007,,unmatched,,
+1036,"Padua, David",2007,,unmatched,,
+1037,"Pausch, Randy",2007,,unmatched,,
+1038,"Pnueli, Amir",2007,,unmatched,,
+1039,"Prasanna, Viktor",2007,Viktor Prasanna 0001,normalized_exact,Viktor Prasanna 0001,University of Southern California
+1040,"Requicha, Aristides",2007,,unmatched,,
+1041,"Roberts, Eric S",2007,,unmatched,,
+1042,"Terzopoulos, Demetri",2007,Demetri Terzopoulos,normalized_exact,Demetri Terzopoulos,Univ. of California - Los Angeles
+1043,"Thomas, Donald E",2007,,unmatched,,
+1044,"Wadler, Philip",2007,Philip Wadler,normalized_exact,Philip Wadler,University of Edinburgh
+1045,"Wand, Mitchell",2007,,unmatched,,
+1046,"Zhang, HongJiang",2007,,unmatched,,
+1047,"allender, eric",2006,Eric Allender,normalized_exact,Eric Allender,Rutgers University
+1048,Arvind,2006,,unmatched,,
+1049,"Atallah, Mikhail",2006,,unmatched,,
+1050,"Chen, Ming-Syan",2006,,unmatched,,
+1051,"Dumais, Susan T",2006,,unmatched,,
+1052,"Fayyad, Usama M",2006,,unmatched,,
+1053,"Felleisen, Matthias",2006,Matthias Felleisen,normalized_exact,Matthias Felleisen,Northeastern University
+1054,"Forbus, Kenneth",2006,,unmatched,,
+1055,"Gibbons, Phillip B",2006,Phillip B. Gibbons,normalized_exact,Phillip B. Gibbons,Carnegie Mellon University
+1056,"Giles, Lee",2006,,unmatched,,
+1057,"Greenberg, Albert G",2006,,unmatched,,
+1058,"Gropp, William D",2006,William D. Gropp,normalized_exact,William D. Gropp,Univ. of Illinois at Urbana-Champaign
+1059,"Guerin, Roch",2006,Roch Guérin,normalized_exact,Roch Guérin,Washington University in St. Louis
+1060,"Guttag, John",2006,,unmatched,,
+1061,"Haas, Laura M",2006,Laura M. Haas,normalized_exact,Laura M. Haas,Univ. of Massachusetts Amherst
+1062,"Halevy, Alon Yitzchak",2006,,unmatched,,
+1063,"Hearn, Anthony C",2006,,unmatched,,
+1064,"Henzinger, Thomas A",2006,Thomas A. Henzinger,normalized_exact,Thomas A. Henzinger,IST Austria
+1065,"Jouppi, Norman",2006,,unmatched,,
+1066,"Laird, John E.",2006,,unmatched,,
+1067,"Larus, James",2006,,unmatched,,
+1068,"Leiserson, Charles E",2006,Charles E. Leiserson,normalized_exact,Charles E. Leiserson,Massachusetts Inst. of Technology
+1069,"Li, Ming",2006,,ambiguous,Ming Li 0001 | Ming Li 0005 | Ming Li 0006,University of Waterloo | Nanjing University | University of Texas at Arlington
+1070,"McKeown, Nick",2006,,unmatched,,
+1071,"Moore, J Strother",2006,,unmatched,,
+1072,"Newell, Alan",2006,,unmatched,,
+1073,"Norvig, Peter",2006,,unmatched,,
+1074,"O'Leary, Dianne Prost",2006,,unmatched,,
+1075,"Olsen, Dan R",2006,,unmatched,,
+1076,"Olukotun, Oyekunle",2006,,unmatched,,
+1077,"Ozsu, M. Tamer",2006,M. Tamer Özsu,normalized_exact,M. Tamer Özsu,University of Waterloo
+1078,"Paxson, Vern",2006,Vern Paxson,normalized_exact,Vern Paxson,Univ. of California - Berkeley
+1079,"Scott, Michael",2006,,unmatched,,
+1080,"Shum, Heung-Yeung",2006,,unmatched,,
+1081,"Spector, Alfred Z",2006,,unmatched,,
+1082,"Vianu, Victor",2006,Victor Vianu,normalized_exact,Victor Vianu,Univ. of California - San Diego
+1083,"Winslett, Marianne",2006,,unmatched,,
+1084,"Wolf, Alexander L",2006,Alexander L. Wolf,normalized_exact,Alexander L. Wolf,Univ. of California - Santa Cruz
+1085,"York, Bryant W",2006,,unmatched,,
+1086,"Zdonik, Stanley",2006,,unmatched,,
+1087,"Zhang, Lixia",2006,Lixia Zhang 0001,normalized_exact,Lixia Zhang 0001,Univ. of California - Los Angeles
+1088,"Anderson, Thomas",2005,,unmatched,,
+1089,"Bjorner, Dines",2005,,unmatched,,
+1090,"Bourne, Stephen",2005,,unmatched,,
+1091,"Brooks, Rodney A",2005,,unmatched,,
+1092,"Chaudhuri, Surajit",2005,,unmatched,,
+1093,"Cooper, Keith",2005,,unmatched,,
+1094,"Dill, David",2005,,unmatched,,
+1095,"Diot, Christophe",2005,,unmatched,,
+1096,"Dubois, Michel",2005,,unmatched,,
+1097,"Franklin, Michael J",2005,Michael J. Franklin,normalized_exact,Michael J. Franklin,University of Chicago
+1098,"Frieder, Ophir",2005,Ophir Frieder,normalized_exact,Ophir Frieder,Georgetown University
+1099,"Harper, Robert",2005,Robert Harper 0001,normalized_exact,Robert Harper 0001,Carnegie Mellon University
+1100,"Herlihy, Maurice",2005,Maurice Herlihy,normalized_exact,Maurice Herlihy,Brown University
+1101,"Kolaitis, Phokion",2005,,unmatched,,
+1102,"kumar, vipin",2005,Vipin Kumar 0001,normalized_exact,Vipin Kumar 0001,University of Minnesota
+1103,"Lakshman, T V",2005,,unmatched,,
+1104,"Myers, Brad A",2005,Brad A. Myers,normalized_exact,Brad A. Myers,Carnegie Mellon University
+1105,"Nicol, David M",2005,,unmatched,,
+1106,"Palem, Krishna",2005,,unmatched,,
+1107,"Reps, Thomas",2005,,unmatched,,
+1108,"Sha, Lui",2005,Lui Sha,normalized_exact,Lui Sha,Univ. of Illinois at Urbana-Champaign
+1109,"Thorup, Mikkel",2005,Mikkel Thorup,normalized_exact,Mikkel Thorup,University of Copenhagen
+1110,"Upfal, Eli",2005,Eli Upfal,normalized_exact,Eli Upfal,Brown University
+1111,"Vazirani, Umesh",2005,,unmatched,,
+1112,"Vazirani, Vijay V",2005,Vijay V. Vazirani,normalized_exact,Vijay V. Vazirani,Univ. of California - Irvine
+1113,"Want, Roy",2005,,unmatched,,
+1114,"Weikum, Gerhard",2005,,unmatched,,
+1115,"Weiser, Uri",2005,,unmatched,,
+1116,"Weld, Daniel",2005,,unmatched,,
+1117,"Wellman, Michael",2005,,unmatched,,
+1118,"Widom, Jennifer",2005,Jennifer Widom,normalized_exact,Jennifer Widom,Stanford University
+1119,"Willinger, Walter",2005,,unmatched,,
+1120,"Wood, David A",2005,,unmatched,,
+1121,"Zhang, Hui",2005,Hui Zhang 0005,normalized_exact,Hui Zhang 0005,University College London
+1122,"Bose, Bella",2004,Bella Bose,normalized_exact,Bella Bose,Oregon State University
+1123,"Bubenko, Janis A",2004,,unmatched,,
+1124,"Cardelli, Luca",2004,,unmatched,,
+1125,"Chien, Andrew A",2004,Andrew A. Chien,normalized_exact,Andrew A. Chien,University of Chicago
+1126,"Collins, George E",2004,,unmatched,,
+1127,"Emer, Joel",2004,,unmatched,,
+1128,"Gottlieb, Allan",2004,,unmatched,,
+1129,"Hanson, Vicki",2004,,unmatched,,
+1130,"Hill, Mark D.",2004,,unmatched,,
+1131,"Ioannidis, Yannis",2004,,unmatched,,
+1132,"Kaashoek, Frans",2004,,unmatched,,
+1133,"larson, per-ake",2004,,unmatched,,
+1134,"Lee, Peter",2004,,unmatched,,
+1135,"Mockapetris, Paul",2004,,unmatched,,
+1136,"Peyton-Jones, Simon L",2004,,unmatched,,
+1137,"Schantz, Richard",2004,,unmatched,,
+1138,"Schroeder, Michael D",2004,,unmatched,,
+1139,"Vassiliadis, Stamatis",2004,,unmatched,,
+1140,"Wah, Benjamin W.",2004,Benjamin W. Wah,normalized_exact,Benjamin W. Wah,Chinese University of Hong Kong
+1141,"Wise, David S",2004,,unmatched,,
+1142,"Agrawal, Rakesh",2003,,unmatched,,
+1143,"Ammar, Mostafa",2003,,unmatched,,
+1144,"Bahl, Victor",2003,,unmatched,,
+1145,"Berger, Bonnie",2003,Bonnie Berger,normalized_exact,Bonnie Berger,Massachusetts Inst. of Technology
+1146,"Bertino, Elisa",2003,Elisa Bertino,normalized_exact,Elisa Bertino,Purdue University
+1147,"Carroll, John Millar",2003,John Millar Carroll,normalized_exact,John Millar Carroll,Pennsylvania State University
+1148,"DeMillo, Richard",2003,,unmatched,,
+1149,"Grosz, Barbara J",2003,Barbara J. Grosz,normalized_exact,Barbara J. Grosz,Harvard University
+1150,"Hailpern, Brent T",2003,,unmatched,,
+1151,"Han, Jiawei",2003,Jiawei Han 0001,normalized_exact,Jiawei Han 0001,Univ. of Illinois at Urbana-Champaign
+1152,"Harrold, Mary",2003,,unmatched,,
+1153,"Hart, Peter E",2003,,unmatched,,
+1154,"Horowitz, Mark A",2003,Mark A. Horowitz,normalized_exact,Mark A. Horowitz,Stanford University
+1155,"Hudak, Paul",2003,,unmatched,,
+1156,"Jagadish, H V",2003,H. V. Jagadish,normalized_exact,H. V. Jagadish,University of Michigan
+1157,"Jain, Anil K",2003,Anil K. Jain 0001,normalized_exact,Anil K. Jain 0001,Michigan State University
+1158,"Jain, Ramesh C",2003,,unmatched,,
+1159,"Jha, Niraj K.",2003,,unmatched,,
+1160,"Kozen, Dexter",2003,,unmatched,,
+1161,"Lin, Yi-Bing",2003,Yi-Bing Lin,normalized_exact,Yi-Bing Lin,National Chiao Tung University
+1162,"McKeown, Kathleen",2003,Kathleen McKeown,normalized_exact,Kathleen McKeown,Columbia University
+1163,"Moran, Thomas",2003,,unmatched,,
+1164,"Myers, Eugene",2003,,unmatched,,
+1165,"Partridge, Craig",2003,Craig Partridge,normalized_exact,Craig Partridge,Colorado State University
+1166,"Reed, Daniel A",2003,Daniel A. Reed,normalized_exact,Daniel A. Reed,University of Utah
+1167,"Russell, Stuart",2003,Stuart Russell 0001,normalized_exact,Stuart Russell 0001,Univ. of California - Berkeley
+1168,"Sanders, William",2003,,unmatched,,
+1169,"Shenker, Scott J",2003,,unmatched,,
+1170,"Sohi, Gurindar S",2003,Gurindar S. Sohi,normalized_exact,Gurindar S. Sohi,University of Wisconsin - Madison
+1171,"Van Rijsbergen, C J",2003,,unmatched,,
+1172,"Agarwal, Pankaj",2002,,unmatched,,
+1173,"Agrawal, Vishwani D",2002,,unmatched,,
+1174,"Babaoglu, Ozalp",2002,,unmatched,,
+1175,"Crowcroft, Jon",2002,Jon Crowcroft,normalized_exact,Jon Crowcroft,University of Cambridge
+1176,"Culler, David",2002,,unmatched,,
+1177,"Dally, William",2002,,unmatched,,
+1178,"Dietterich, Thomas G",2002,,unmatched,,
+1179,"Eggers, Susan",2002,,unmatched,,
+1180,"Gabow, Harold N",2002,,unmatched,,
+1181,"Goyal, Ambuj",2002,,unmatched,,
+1182,"Guzman, Adolfo",2002,,unmatched,,
+1183,"Halpern, Joseph",2002,,unmatched,,
+1184,"Hwu, Wen-Mei",2002,,unmatched,,
+1185,"Immerman, Neil",2002,,unmatched,,
+1186,"Karin, Sidney",2002,,unmatched,,
+1187,"Kellogg, Wendy A",2002,,unmatched,,
+1188,"Lomet, David B",2002,,unmatched,,
+1189,"Miller, Gary L",2002,,unmatched,,
+1190,"Mohan, C.",2002,,unmatched,,
+1191,"Naughton, Jeffrey F",2002,,unmatched,,
+1192,"Rau, Bantwal R",2002,,unmatched,,
+1193,"Salesin, David H",2002,,unmatched,,
+1194,"Satyanarayanan, Mahadev",2002,Mahadev Satyanarayanan,normalized_exact,Mahadev Satyanarayanan,Carnegie Mellon University
+1195,"Valero, Mateo",2002,Mateo Valero,normalized_exact,Mateo Valero,Polytechnic Univ. of Catalonia
+1196,"Varghese, George",2002,George Varghese,normalized_exact,George Varghese,Univ. of California - Los Angeles
+1197,"Wilkes, John",2002,,unmatched,,
+1198,"Abraham, Jacob",2001,,unmatched,,
+1199,"Aiken, Robert",2001,,unmatched,,
+1200,"Asano, Tetsuo",2001,,unmatched,,
+1201,"Bernstein, Philip A",2001,,unmatched,,
+1202,"Birnbaum, Joel S",2001,,unmatched,,
+1203,"Borning, Alan H",2001,,unmatched,,
+1204,"Breitbart, Yuri",2001,,unmatched,,
+1205,"Cai, Jin-Yi",2001,,ambiguous,Jin-Yi Cai | Jin-yi Cai,University of Wisconsin - Madison | University of Wisconsin - Madison
+1206,"Clark, David D",2001,,unmatched,,
+1207,"Davidson, Susan B",2001,Susan B. Davidson,normalized_exact,Susan B. Davidson,University of Pennsylvania
+1208,"de Kleer, Johan",2001,,unmatched,,
+1209,"De Micheli, Giovanni",2001,Giovanni De Micheli,normalized_exact,Giovanni De Micheli,EPFL
+1210,"Dongarra, Jack",2001,Jack Dongarra,normalized_exact,Jack Dongarra,University of Tennessee
+1211,"Farber, David J.",2001,,unmatched,,
+1212,"Feigenbaum, Joan",2001,Joan Feigenbaum,normalized_exact,Joan Feigenbaum,Yale University
+1213,"Ferrari, Domenico",2001,,unmatched,,
+1214,"Floyd, Sally J",2001,,unmatched,,
+1215,"Gelenbe, Erol",2001,,unmatched,,
+1216,"Hayes, John P",2001,,unmatched,,
+1217,"Iyengar, Sitharama",2001,,unmatched,,
+1218,"Iyer, Ravishankar",2001,,unmatched,,
+1219,"Jaja, Joseph F",2001,,unmatched,,
+1220,"Kahn, Robert E",2001,,unmatched,,
+1221,"Kang , Sung Mo",2001,,unmatched,,
+1222,"Kieburtz, Richard B",2001,,unmatched,,
+1223,"Kowalski, Robert A",2001,,unmatched,,
+1224,"Kramer, Jeffrey",2001,Jeffrey Kramer,normalized_exact,Jeffrey Kramer,Imperial College London
+1225,"Kurose, James",2001,,unmatched,,
+1226,"Lee, Ruby B",2001,,unmatched,,
+1227,"Litwin, Witold",2001,,unmatched,,
+1228,"Miller, Barton P",2001,Barton P. Miller,normalized_exact,Barton P. Miller,University of Wisconsin - Madison
+1229,"Mogul, Jeffrey C",2001,,unmatched,,
+1230,"Norman, Don",2001,,unmatched,,
+1231,"Pancake, Cherri M",2001,Cherri M. Pancake,normalized_exact,Cherri M. Pancake,Oregon State University
+1232,"Papadimitriou, Christos",2001,,unmatched,,
+1233,"Parker, Donn B",2001,,unmatched,,
+1234,"Patel, Janak H",2001,,unmatched,,
+1235,"Patt, Yale",2001,,unmatched,,
+1236,"Pohl, Ira",2001,,unmatched,,
+1237,"Pullen, John Mark",2001,,unmatched,,
+1238,"Raghavan, Prabhakar",2001,,unmatched,,
+1239,"Ramakrishnan, Raghu",2001,,unmatched,,
+1240,"ramamritham, krithivasan",2001,,unmatched,,
+1241,"Reynolds, John C",2001,,unmatched,,
+1242,"Robertson, George",2001,,unmatched,,
+1243,"Roussopoulos, Nick",2001,,unmatched,,
+1244,"Sabnani, Krishan K.",2001,,unmatched,,
+1245,"Sandhu, Ravinderpal S",2001,Ravinderpal Singh Sandhu,compatible_initials,Ravinderpal Singh Sandhu,University of Texas at San Antonio
+1246,"Schek, Hans-Joerg",2001,,unmatched,,
+1247,"Schlichting, Richard D",2001,,unmatched,,
+1248,"Shin, Kang",2001,,unmatched,,
+1249,"Shmoys, David Bernard",2001,David B. Shmoys,compatible_initials,David B. Shmoys,Cornell University
+1250,"Smith, Alan J",2001,,unmatched,,
+1251,"Steinmetz, Ralf",2001,,unmatched,,
+1252,"Turner, Jonathan",2001,,unmatched,,
+1253,"Wolf, Marilyn",2001,,unmatched,,
+1254,"Wolfson, Ouri",2001,Ouri Wolfson,normalized_exact,Ouri Wolfson,University of Illinois at Chicago
+1255,"Zave, Pamela",2001,,unmatched,,
+1256,"Banerjee, Prithviraj",2000,,unmatched,,
+1257,"Berman, Francine",2000,Francine Berman,normalized_exact,Francine Berman,Rensselaer Polytechnic Institute
+1258,"Bhuyan, Laxmi Narayan",2000,,unmatched,,
+1259,"Biermann, Alan W",2000,,unmatched,,
+1260,"Bokhari, Shahid H",2000,,unmatched,,
+1261,"Bryant, Randal E",2000,,unmatched,,
+1262,"Buneman, Peter",2000,Peter Buneman,normalized_exact,Peter Buneman,University of Edinburgh
+1263,"Card, Stuart K.",2000,,unmatched,,
+1264,"Carey, Michael J.",2000,Michael J. Carey 0001,normalized_exact,Michael J. Carey 0001,Univ. of California - Irvine
+1265,"Comer, Douglas E",2000,Douglas E. Comer,normalized_exact,Douglas E. Comer,Purdue University
+1266,"Duncan, Karen",2000,,unmatched,,
+1267,"Estrin, Deborah",2000,,unmatched,,
+1268,"Fagin, Ronald",2000,,unmatched,,
+1269,"Freeman, Peter A",2000,,unmatched,,
+1270,"Fuchs, Wesley Kent",2000,,unmatched,,
+1271,"Haderle, Donald J",2000,,unmatched,,
+1272,"Heath, Michael",2000,,unmatched,,
+1273,"Kleinrock, Leonard",2000,,unmatched,,
+1274,"Korth, Henry F",2000,Henry F. Korth,normalized_exact,Henry F. Korth,Lehigh University
+1275,"Lamsweerde, Axel Van",2000,,unmatched,,
+1276,"Lorie, Raymond A",2000,,unmatched,,
+1277,"Loveland, Donald W",2000,,unmatched,,
+1278,"Meyer, Albert R",2000,,unmatched,,
+1279,"Morris, James H",2000,,ambiguous,James H. Morris | James H. Morris Jr.,Carnegie Mellon University | Carnegie Mellon University
+1280,"Peterson, Larry L",2000,Larry L. Peterson,normalized_exact,Larry L. Peterson,University of Arizona
+1281,"Vardi, Moshe Yaakov",2000,Moshe Y. Vardi,compatible_initials,Moshe Y. Vardi,Rice University
+1282,"Warren, David S",2000,,unmatched,,
+1283,"Wilhelm, Reinhard",2000,Reinhard Wilhelm,normalized_exact,Reinhard Wilhelm,Saarland University
+1284,"Williams, Robin",2000,,unmatched,,
+1285,"Zwaenepoel, Willy E",2000,,unmatched,,
+1286,"Auslander, Marc",1999,,unmatched,,
+1287,"Birman, Ken",1999,Ken Birman,normalized_exact,Ken Birman,Cornell University
+1288,"Brachman, Ronald J.",1999,Ronald J. Brachman,normalized_exact,Ronald J. Brachman,Cornell University
+1289,"Braden, Robert T",1999,,unmatched,,
+1290,"Cook, Rob",1999,,unmatched,,
+1291,"DeBlasi, Joseph S",1999,,unmatched,,
+1292,"Demmel, James",1999,,unmatched,,
+1293,"Fateman, Richard J",1999,,unmatched,,
+1294,"Foley, James D",1999,,unmatched,,
+1295,"Geschke, Charles M",1999,,unmatched,,
+1296,"Ghezzi, Carlo",1999,,unmatched,,
+1297,"Glass, Robert L",1999,,unmatched,,
+1298,"Graham, Ronald L.",1999,,unmatched,,
+1299,"Guibas, Leonidas",1999,,unmatched,,
+1300,"Ibaraki, Toshihide",1999,,unmatched,,
+1301,John D Gannon,1999,,unmatched,,
+1302,"Kanade, Takeo",1999,Takeo Kanade,normalized_exact,Takeo Kanade,Carnegie Mellon University
+1303,"Lewis, Philip M",1999,,unmatched,,
+1304,"MacQueen, David",1999,,unmatched,,
+1305,"Martin, C. Dianne",1999,,unmatched,,
+1306,"Masinter, Larry M",1999,,unmatched,,
+1307,"Mehlhorn, Kurt",1999,,unmatched,,
+1308,"Mills, David L",1999,,unmatched,,
+1309,"Pradhan, Dhiraj",1999,,unmatched,,
+1310,"Sameh, Ahmed",1999,,unmatched,,
+1311,"Samuelson, Pamela",1999,,unmatched,,
+1312,"Snir, Marc",1999,,unmatched,,
+1313,"Snodgrass, Richard",1999,,unmatched,,
+1314,"Soffa, Mary Lou",1999,Mary Lou Soffa,normalized_exact,Mary Lou Soffa,University of Virginia
+1315,"Tan, Chung Jen",1999,,unmatched,,
+1316,"Torii, Koji",1999,,unmatched,,
+1317,"Waltz, David L",1999,,unmatched,,
+1318,"Warnock, John",1999,,unmatched,,
+1319,"Yonezawa, Akinori",1999,,unmatched,,
+1320,"Agrawal, Dharma P",1998,,unmatched,,
+1321,"Andrews, Gregory R",1998,Gregory R. Andrews,normalized_exact,Gregory R. Andrews,University of Arizona
+1322,"Appel, Andrew W",1998,,unmatched,,
+1323,"Berghel, Hal",1998,Hal Berghel,normalized_exact,Hal Berghel,University of Nevada Las Vegas
+1324,"Browne, James C",1998,,unmatched,,
+1325,"Cartwright, Robert Staley",1998,,unmatched,,
+1326,"Chen, Peter P",1998,,unmatched,,
+1327,"Clarke, Edmund",1998,,unmatched,,
+1328,"Clarke, Lori",1998,,unmatched,,
+1329,"Cole, Richard J",1998,,unmatched,,
+1330,"Ellis, Clarence A",1998,,unmatched,,
+1331,"Gabriel, Richard P.",1998,,unmatched,,
+1332,"Gupta, Gopal Krishna",1998,,unmatched,,
+1333,"Horning, James Jay",1998,,unmatched,,
+1334,"Jones, Neil",1998,,unmatched,,
+1335,"Joshi, Aravind K",1998,,unmatched,,
+1336,"Kandel, Abraham",1998,,unmatched,,
+1337,"Kent, Stephen T",1998,,unmatched,,
+1338,"LAM, SIMON S",1998,,unmatched,,
+1339,"Li, Kai",1998,,ambiguous,Kai Li 0001 | Kai Li 0017,Princeton University | Stevens Institute of Technology
+1340,"Maier, David",1998,David Maier 0001,normalized_exact,David Maier 0001,Portland State University
+1341,"Notkin, David S",1998,,unmatched,,
+1342,"Nycum, Susan H",1998,,unmatched,,
+1343,"Osterweil, Leon J",1998,,unmatched,,
+1344,"Rangan, Venkat P",1998,,unmatched,,
+1345,"Richards, John T",1998,,unmatched,,
+1346,"Rowe, Lawrence A",1998,,unmatched,,
+1347,"Ryder, Barbara Gershon",1998,,unmatched,,
+1348,"Selman, Alan",1998,,unmatched,,
+1349,"Sequin, Carlo H",1998,,unmatched,,
+1350,"Siegel, H. J.",1998,,unmatched,,
+1351,"Spafford, Eugene H.",1998,Eugene H. Spafford,normalized_exact,Eugene H. Spafford,Purdue University
+1352,"Tardos, Eva",1998,Éva Tardos,normalized_exact,Éva Tardos,Cornell University
+1353,"Taylor, Richard N",1998,,unmatched,,
+1354,"Turner, Albert J",1998,,unmatched,,
+1355,"Welzl, Emmerich",1998,,unmatched,,
+1356,"Wing, Jeannette M.",1998,,unmatched,,
+1357,"Yannakakis, Mihalis",1998,Mihalis Yannakakis,normalized_exact,Mihalis Yannakakis,Columbia University
+1358,"Zweben, Stuart",1998,,unmatched,,
+1359,"akyildiz, ian f",1997,,unmatched,,
+1360,"Baer, Jean-Loup",1997,,unmatched,,
+1361,"Basili, Victor",1997,,unmatched,,
+1362,"Bate, Roger R",1997,,unmatched,,
+1363,"Boehm, Barry",1997,,unmatched,,
+1364,"Chlamtac, Imrich",1997,,unmatched,,
+1365,"Croft, Bruce",1997,,unmatched,,
+1366,"Davis, Gordon B",1997,,unmatched,,
+1367,"Dobkin, David P",1997,,unmatched,,
+1368,"Freeman, Herbert",1997,,unmatched,,
+1369,"Garcia-Molina, Hector",1997,,unmatched,,
+1370,"Greif, Irene",1997,,unmatched,,
+1371,"Gurevich, Yuri",1997,,unmatched,,
+1372,"Hennessy, John L",1997,John L. Hennessy,normalized_exact,John L. Hennessy,Stanford University
+1373,J D Couger,1997,,unmatched,,
+1374,"Kedem, Zvi Meir",1997,,unmatched,,
+1375,"Kemmerer, Richard A.",1997,Richard A. Kemmerer,normalized_exact,Richard A. Kemmerer,Univ. of California - Santa Barbara
+1376,"Lawson, H W",1997,,unmatched,,
+1377,"Lee, Der-Tsai",1997,,unmatched,,
+1378,"Lipton, Richard",1997,,unmatched,,
+1379,"Lynch, Nancy",1997,,unmatched,,
+1380,"Menasce, Daniel A.",1997,,unmatched,,
+1381,"Miller, Raymond",1997,,unmatched,,
+1382,"Perrott, Ron",1997,,unmatched,,
+1383,"Pippenger, Nicholas",1997,,unmatched,,
+1384,"Pratt, Vaughan Ronald",1997,,unmatched,,
+1385,Raymond Reiter,1997,,unmatched,,
+1386,"Reif, John H",1997,John H. Reif,normalized_exact,John H. Reif,Duke University
+1387,"Schneck, Paul",1997,,unmatched,,
+1388,"Sedgewick, Robert",1997,,unmatched,,
+1389,"Sevcik, Kenneth C",1997,,unmatched,,
+1390,"Sharir, Micha",1997,,unmatched,,
+1391,"Shaw, Alan C",1997,,unmatched,,
+1392,"Shneiderman, Ben",1997,,unmatched,,
+1393,"Steiglitz, Kenneth",1997,,unmatched,,
+1394,"Towsley, Donald F",1997,Donald F. Towsley,normalized_exact,Donald F. Towsley,Univ. of Massachusetts Amherst
+1395,"Weyuker, Elaine",1997,,unmatched,,
+1396,"Widmayer, Peter",1997,Peter Widmayer,normalized_exact,Peter Widmayer,ETH Zurich
+1397,"Wilensky, Robert",1997,,unmatched,,
+1398,"Yu, Philip S",1997,Philip S. Yu,normalized_exact,Philip S. Yu,University of Illinois at Chicago
+1399,"Zanella, Paolo",1997,,unmatched,,
+1400,"Adrion, William Richards",1996,,unmatched,,
+1401,"Aho, Alfred V",1996,,unmatched,,
+1402,"Ahuja, Narendra",1996,,unmatched,,
+1403,"Akeley, Kurt B",1996,,unmatched,,
+1404,"Bajcsy, Ruzena",1996,,unmatched,,
+1405,"Bochmann, Gregor V",1996,,ambiguous,Gregor V. Bochmann | Gregor v. Bochmann,University of Ottawa | University of Ottawa
+1406,"Borg, Anita",1996,,unmatched,,
+1407,"Chandrasekaran, B.",1996,B. Chandrasekaran 0002,normalized_exact,B. Chandrasekaran 0002,VU Amsterdam
+1408,"Chazelle, Bernard",1996,Bernard Chazelle,normalized_exact,Bernard Chazelle,Princeton University
+1409,"Deo, Narsingh",1996,Narsingh Deo,normalized_exact,Narsingh Deo,University of Central Florida
+1410,"Dodd, George",1996,,unmatched,,
+1411,"Encarnacao, Jose L.",1996,,unmatched,,
+1412,"Ferrante, Jeanne",1996,,unmatched,,
+1413,"Fischer, Michael J",1996,Michael J. Fischer,normalized_exact,Michael J. Fischer,Yale University
+1414,"Frailey, Dennis",1996,,unmatched,,
+1415,"Graham, Robert M",1996,,unmatched,,
+1416,"Harrison, Michael A",1996,,unmatched,,
+1417,"Heidelberger, Philip",1996,,unmatched,,
+1418,"Irwin, Mary Jane",1996,,unmatched,,
+1419,"Jaffe, Jeffrey",1996,,unmatched,,
+1420,"Jain, Raj",1996,Raj Jain,normalized_exact,Raj Jain,Washington University in St. Louis
+1421,"Jones, Anita K",1996,,unmatched,,
+1422,"Katz, Randy H.",1996,,unmatched,,
+1423,"Klawe, Maria",1996,,unmatched,,
+1424,"Landweber, Lawrence H",1996,,unmatched,,
+1425,Larry Stockmeyer,1996,,unmatched,,
+1426,"Lesk, Michael E",1996,,unmatched,,
+1427,"Levy, Henry M",1996,,unmatched,,
+1428,"Liskov, Barbara",1996,Barbara Liskov,normalized_exact,Barbara Liskov,Massachusetts Inst. of Technology
+1429,"Muntz, Richard R",1996,,unmatched,,
+1430,"Nance, Richard E",1996,,unmatched,,
+1431,"Nishizeki, Takao",1996,,unmatched,,
+1432,"Preas, Bryan",1996,,unmatched,,
+1433,"Rao, TRN",1996,,unmatched,,
+1434,"Reingold, Edward M",1996,,unmatched,,
+1435,"Rice, John",1996,,unmatched,,
+1436,"Rosenberg, Arnold",1996,,unmatched,,
+1437,"Sahni, Sartaj K",1996,Sartaj K. Sahni,normalized_exact,Sartaj K. Sahni,University of Florida
+1438,"Samet, Hanan",1996,Hanan Samet,normalized_exact,Hanan Samet,Univ. of Maryland - College Park
+1439,"Savage, John E",1996,,unmatched,,
+1440,"Sethi, Ravi",1996,Ravi Sethi,normalized_exact,Ravi Sethi,University of Arizona
+1441,"Shaw, Mary M",1996,,unmatched,,
+1442,"Silberschatz, Abraham",1996,Abraham Silberschatz,normalized_exact,Abraham Silberschatz,Yale University
+1443,"Stankovic, John A",1996,John A. Stankovic,normalized_exact,John A. Stankovic,University of Virginia
+1444,"Tanenbaum, Andrew S",1996,Andrew S. Tanenbaum,normalized_exact,Andrew S. Tanenbaum,VU Amsterdam
+1445,"Vernon, Mary K",1996,,unmatched,,
+1446,"Vishkin, Uzi",1996,Uzi Vishkin,normalized_exact,Uzi Vishkin,Univ. of Maryland - College Park
+1447,"Vitter, Jeffrey S.",1996,,unmatched,,
+1448,"Wasserman, Anthony I",1996,,unmatched,,
+1449,"Wegman, Mark",1996,,unmatched,,
+1450,"Weingarten, Fred W",1996,,unmatched,,
+1451,"Witten, Ian",1996,,unmatched,,
+1452,"Yovits, Marshall C",1996,,unmatched,,
+1453,"Abrahams, Paul W",1995,,unmatched,,
+1454,"Ashenhurst, R L",1995,,unmatched,,
+1455,"Barr, Alan H",1995,Alan H. Barr,normalized_exact,Alan H. Barr,California Inst. of Technology
+1456,"Bernstein, Lawrence",1995,,unmatched,,
+1457,"Booch, Grady Ernest",1995,,unmatched,,
+1458,"Brandin, David H",1995,,unmatched,,
+1459,"Brent, Richard P",1995,,unmatched,,
+1460,"Carpenter, Loren C",1995,,unmatched,,
+1461,"Catmull, Edwin",1995,,unmatched,,
+1462,Chris S Wallace,1995,,unmatched,,
+1463,"Constable, Robert",1995,,unmatched,,
+1464,"Denning, Dorothy E",1995,,unmatched,,
+1465,"DeWitt, David",1995,,unmatched,,
+1466,"Druffel, Larry",1995,,unmatched,,
+1467,"Engeler, Erwin",1995,,unmatched,,
+1468,"Feldman, Stuart",1995,,unmatched,,
+1469,"Fuchs, Henry",1995,Henry Fuchs,normalized_exact,Henry Fuchs,University of North Carolina
+1470,"Galil, Zvi",1995,Zvi Galil,normalized_exact,Zvi Galil,Georgia Institute of Technology
+1471,"Garey, Michael R",1995,,unmatched,,
+1472,"Ginsberg, Myron",1995,,unmatched,,
+1473,"Goodenough, John B",1995,,unmatched,,
+1474,"Greenberg, Donald",1995,,unmatched,,
+1475,"Grosch, Herbert R J",1995,,unmatched,,
+1476,Harold J Highland,1995,,unmatched,,
+1477,"Herzog, Bertram",1995,,unmatched,,
+1478,"Hoffman, Lance J",1995,,unmatched,,
+1479,"Ibarra, Oscar",1995,,unmatched,,
+1480,"Johnson, David S",1995,,unmatched,,
+1481,"Jones, Cliff B",1995,,unmatched,,
+1482,"Kennedy, Kenneth W",1995,,unmatched,,
+1483,"Kim, Won",1995,,unmatched,,
+1484,"Kosaraju, Sambasiva",1995,,unmatched,,
+1485,"Ladner, Richard E.",1995,,unmatched,,
+1486,"Lakshmivarahan, S",1995,S. Lakshmivarahan,normalized_exact,S. Lakshmivarahan,University of Oklahoma
+1487,"Lazowska, Edward",1995,,unmatched,,
+1488,"Leveson, Nancy",1995,,unmatched,,
+1489,"Misra, Jayadev",1995,,unmatched,,
+1490,"Nievergelt, J",1995,,unmatched,,
+1491,"Oettinger, Anthony",1995,,unmatched,,
+1492,"Preparata, Franco P",1995,,unmatched,,
+1493,"Rada, Roy F",1995,,unmatched,,
+1494,"Rosenkrantz, Daniel J",1995,,unmatched,,
+1495,"Salton, Gerard",1995,,unmatched,,
+1496,"Schneider, Fred B",1995,Fred B. Schneider,normalized_exact,Fred B. Schneider,Cornell University
+1497,"Snyder, Larry",1995,,unmatched,,
+1498,"Suzuki, Norihisa",1995,,unmatched,,
+1499,"Ullman, Jeffrey D",1995,,unmatched,,
+1500,"Wegner, Peter",1995,,unmatched,,
+1501,"White, John R.",1995,,unmatched,,
+1502,"Whitted, J Turner",1995,,unmatched,,
+1503,"Wiederhold, Gio",1995,,unmatched,,
+1504,"Wong, Chak-Kuen",1995,,unmatched,,
+1505,"Yao, Andrew C",1995,Andrew C. Yao,normalized_exact,Andrew C. Yao,Tsinghua University
+1506,"Young, Paul",1995,,unmatched,,
+1507,"Adams, James M",1994,,unmatched,,
+1508,"Allen, Frances",1994,,unmatched,,
+1509,"Alt, Franz L",1994,,unmatched,,
+1510,"Atchison, William F.",1994,,unmatched,,
+1511,"Austing, Richard H",1994,,unmatched,,
+1512,"Batcher, Kenneth E",1994,,unmatched,,
+1513,"Bell, C Gordon",1994,,unmatched,,
+1514,"Blasgen, Michael W",1994,,unmatched,,
+1515,Bob O Evans,1994,,unmatched,,
+1516,"Bobrow, Daniel",1994,,unmatched,,
+1517,"Boggs, David R.",1994,,unmatched,,
+1518,"Borman, Lorraine",1994,,unmatched,,
+1519,"Bradshaw, Charles L",1994,,unmatched,,
+1520,"Bricklin, Daniel S",1994,,unmatched,,
+1521,"Brooks, Frederick",1994,,unmatched,,
+1522,"Brotz, Douglas K",1994,,unmatched,,
+1523,"Burton, Richard R.",1994,,unmatched,,
+1524,"Canning, Richard G",1994,,unmatched,,
+1525,"Carlson, Walter",1994,,unmatched,,
+1526,"Cerf, Vinton",1994,,unmatched,,
+1527,"Chamberlin, Donald",1994,,unmatched,,
+1528,"Codd, Edgar F",1994,,unmatched,,
+1529,"Coffman, Ed",1994,,unmatched,,
+1530,"Corbato, Fernando J",1994,,unmatched,,
+1531,"Cragon, Harvey G",1994,,unmatched,,
+1532,"D'Auria, Thomas A",1994,,unmatched,,
+1533,David John Wheeler,1994,,unmatched,,
+1534,"DeFanti, Thomas",1994,,unmatched,,
+1535,"Denning, Peter J",1994,Peter J. Denning,normalized_exact,Peter J. Denning,Naval Postgraduate School
+1536,"Dennis, Jack",1994,,unmatched,,
+1537,"Deutsch, L Peter",1994,,unmatched,,
+1538,"Dijkstra, Edsger W",1994,,unmatched,,
+1539,"Dunwell, Stephen",1994,,unmatched,,
+1540,"Engel, Gerald L",1994,,unmatched,,
+1541,"Esbin, John H",1994,,unmatched,,
+1542,"Feng, Tse-Yun",1994,,unmatched,,
+1543,"Finerman, Aaron",1994,,unmatched,,
+1544,"Floyd, Robert W.",1994,,unmatched,,
+1545,"Flynn, Michael J",1994,,unmatched,,
+1546,"Frankston, Robert M",1994,,unmatched,,
+1547,"Friedman, Frank L",1994,,unmatched,,
+1548,"Galler, Bernard A",1994,,unmatched,,
+1549,"Gear, Charles W",1994,,unmatched,,
+1550,"Goldberg, Adele",1994,,unmatched,,
+1551,"Gotlieb, Calvin C.",1994,,unmatched,,
+1552,"Graham, Susan L",1994,,unmatched,,
+1553,"Gray, Jim",1994,,unmatched,,
+1554,"Green, Cordell",1994,,unmatched,,
+1555,"Gries, David Joseph",1994,,unmatched,,
+1556,"Hammer, Carl",1994,,unmatched,,
+1557,"Hamming, Richard W",1994,,unmatched,,
+1558,"Harel, David",1994,David Harel,normalized_exact,David Harel,Weizmann Institute of Science
+1559,"Harris, Fred H",1994,,unmatched,,
+1560,"Hartmanis, Juris",1994,,unmatched,,
+1561,"Hillis, William Daniel",1994,,unmatched,,
+1562,"Hopcroft, John E",1994,,unmatched,,
+1563,"Hull, Tom",1994,,unmatched,,
+1564,"Hume, J N",1994,,unmatched,,
+1565,"Huskey, Harry D",1994,,unmatched,,
+1566,J Presper Eckert,1994,,unmatched,,
+1567,"Kahan, William",1994,,unmatched,,
+1568,"Kaplan, Ronald M",1994,,unmatched,,
+1569,"Karp, Richard",1994,,unmatched,,
+1570,"Knuth, Donald E",1994,,unmatched,,
+1571,"Kuck, David J",1994,,unmatched,,
+1572,"Kurtz, Thomas E",1994,,unmatched,,
+1573,"Kurzweil, Ray",1994,,unmatched,,
+1574,"Lampson, Butler W",1994,,unmatched,,
+1575,"Lavenberg, Stephen S",1994,,unmatched,,
+1576,"Lederberg, Joshua",1994,,unmatched,,
+1577,"Lee, John A",1994,,unmatched,,
+1578,"Lehman, Meir",1994,,unmatched,,
+1579,"Lindsay, Bruce",1994,,unmatched,,
+1580,"Little, Joyce Currie",1994,,unmatched,,
+1581,"Liu, C.L.",1994,,review_name_variation,Chun-Lei Liu,Univ. of California - Berkeley
+1582,"Lynn, M Stuart",1994,,unmatched,,
+1583,"Maisel, Herbert",1994,,unmatched,,
+1584,"Manna, Zohar",1994,,unmatched,,
+1585,"McCarthy, John",1994,,unmatched,,
+1586,"McCluskey, Edward",1994,,unmatched,,
+1587,"McCracken, Daniel D",1994,,unmatched,,
+1588,"McJones, Paul R",1994,,unmatched,,
+1589,"Milner, A J",1994,,unmatched,,
+1590,"Minker, Jack",1994,,unmatched,,
+1591,"Neumann, Peter G",1994,,unmatched,,
+1592,"Newborn, Monroe",1994,,unmatched,,
+1593,"Ousterhout, John",1994,,unmatched,,
+1594,"Owicki, Susan S",1994,,unmatched,,
+1595,"Parnas, David Lorge",1994,,unmatched,,
+1596,"Patterson, David",1994,,unmatched,,
+1597,Peter Elias,1994,,unmatched,,
+1598,"Poucher, William B",1994,,unmatched,,
+1599,"Ralston, Anthony",1994,,unmatched,,
+1600,"Rivest, Ronald L",1994,Ronald L. Rivest,normalized_exact,Ronald L. Rivest,Massachusetts Inst. of Technology
+1601,Roger M Needham,1994,,unmatched,,
+1602,"Rosenfeld, Azriel",1994,,unmatched,,
+1603,"Rulifson, Jeff",1994,,unmatched,,
+1604,"Sammet, Jean E",1994,,unmatched,,
+1605,"Scott, Dana S",1994,,unmatched,,
+1606,"Siewiorek, Daniel",1994,,unmatched,,
+1607,"Simon, Herbert A",1994,,unmatched,,
+1608,"Simons, Barbara B",1994,,unmatched,,
+1609,"Sloan, Martha",1994,,unmatched,,
+1610,"Slutz, Donald R",1994,,unmatched,,
+1611,"Smith, Burton",1994,,unmatched,,
+1612,"Stearns, Richard E",1994,,unmatched,,
+1613,"Steel, Thomas B",1994,,unmatched,,
+1614,"Steele, Guy L",1994,,unmatched,,
+1615,"Stone, Harold",1994,,unmatched,,
+1616,"Stonebraker, Michael",1994,,unmatched,,
+1617,"Strecker, William",1994,,unmatched,,
+1618,"Stroustrup, Bjarne",1994,,unmatched,,
+1619,"Suppes, Patrick",1994,,unmatched,,
+1620,"Sussman, Gerald",1994,,unmatched,,
+1621,"Sutherland, Ivan",1994,,unmatched,,
+1622,"Taft, Edward A",1994,,unmatched,,
+1623,"Tarjan, Robert E",1994,Robert E. Tarjan,normalized_exact,Robert E. Tarjan,Princeton University
+1624,"Taylor, Robert W",1994,,unmatched,,
+1625,"Thacker, Charles P",1994,,unmatched,,
+1626,"Traiger, Irv",1994,,unmatched,,
+1627,"Traub, Joseph",1994,,unmatched,,
+1628,"Tucker, Allen",1994,,unmatched,,
+1629,"van Dam, Andries",1994,Andries van Dam,normalized_exact,Andries van Dam,Brown University
+1630,"Ware, Willis H",1994,,unmatched,,
+1631,"Wecker, Stuart",1994,,unmatched,,
+1632,"Wegbreit, Ben",1994,,unmatched,,
+1633,"Weiss, Eric A",1994,,unmatched,,
+1634,"Wilkes, Maurice V.",1994,,unmatched,,
+1635,"Winograd, Shmuel",1994,,unmatched,,
+1636,"Wirth, Niklaus E",1994,,unmatched,,
+1637,"Wolfson, Seymour J",1994,,unmatched,,
+1638,"Wulf, William A",1994,,unmatched,,
+1639,"Zadeh, L A",1994,,unmatched,,
