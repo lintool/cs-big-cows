@@ -148,7 +148,6 @@ Canonical CSV files live under `data/`:
 ```text
 data/acm_fellows.csv
 data/csrankings_profiles.csv
-data/dblp_profiles.csv
 data/google_scholar_profiles.csv
 data/turing_award_winners.csv
 ```
@@ -157,7 +156,7 @@ data/turing_award_winners.csv
 Its current columns are:
 
 ```text
-name,year,location,citation,acm_fellow_profile,dblp_profile,google_scholar_profile
+name,year,location,citation,acm_fellow_profile,dblp_profile,dblp_crawl_date,google_scholar_profile
 ```
 
 The `name` field should be a clean person name.
@@ -170,7 +169,16 @@ ACM profile URLs and propagated ACM profile metadata belong in `data/acm_fellows
 Its `year` is the Turing Award year, not the announcement year or Fellowship year.
 Its `acm_fellow_profile` column holds the ACM recipient URL for compatibility with the shared crawler; always select `--award turing` when crawling or comparing this dataset.
 
-`data/csrankings_profiles.csv` contains CSRankings faculty rows that align to exactly one known DBLP profile from `data/dblp_profiles.csv`.
+Both award rosters store `dblp_crawl_date` beside `dblp_profile`.
+It is the accepted successful capture's UTC date (`YYYY-MM-DD`), derived from `fetched_at`, not the import date.
+Keep it blank when the DBLP URL is blank or no successful capture has been accepted for that URL.
+When a DBLP URL changes or is cleared, clear its old crawl date and populate a new date only from an accepted capture of the new URL.
+For URLs shared across the two rosters, update both dates together and keep them identical.
+A crawl date records successful capture, not a guarantee of identity or publication attribution.
+Full timestamps, HTML and validation evidence remain in the shared crawler cache.
+The distinct nonempty DBLP URLs across both rosters define the known DBLP profiles; there is no separate canonical DBLP table.
+
+`data/csrankings_profiles.csv` contains CSRankings faculty rows that align to exactly one known DBLP profile from the two award rosters.
 Its columns are:
 
 ```text
@@ -245,7 +253,7 @@ When adding directory-only rows to `data/acm_fellows.csv`, fill what is availabl
 - `year`: directory year;
 - `location`: directory region, until the individual profile page provides a more specific location;
 - `acm_fellow_profile`: directory profile URL;
-- leave `citation`, `dblp_profile`, and `google_scholar_profile` blank if unavailable.
+- leave `citation`, `dblp_profile`, `dblp_crawl_date`, and `google_scholar_profile` blank if unavailable.
 
 Apply the [award CSV sort order](#award-csv-sort-order) after adding or renaming Fellows.
 
@@ -263,11 +271,12 @@ Inspect the directory separately in regular Safari if direct HTTP requests are b
 The script:
 
 - reads `../bigcows-crawler/.cache/csrankings/csrankings-[a-z].csv`;
-- reads `data/dblp_profiles.csv`;
+- reads `data/acm_fellows.csv` and `data/turing_award_winners.csv`;
+- normalizes DBLP links to HTTPS without `.html`, query strings or fragments, then deduplicates nonempty URLs, using the Fellows roster's name first for shared URLs;
 - loops through DBLP profiles and includes only profiles that align to exactly one CSRankings row;
 - preserves the original CSRankings columns;
 - appends `crawl_date` and `dblp_profile`;
-- writes `.cache/csrankings-profiles-report.json` with included, unmatched DBLP, and ambiguous DBLP counts.
+- writes `../bigcows-crawler/.cache/csrankings-profiles-report.json` with input roster paths, included, unmatched DBLP, and ambiguous DBLP counts.
 
 Basic commands:
 
@@ -275,6 +284,7 @@ Basic commands:
 python scripts/build_csrankings_profiles.py
 python scripts/build_csrankings_profiles.py --crawl-date 2026-05-01
 python scripts/build_csrankings_profiles.py --cache-dir path/to/csrankings-cache --output data/csrankings_profiles.csv
+python scripts/build_csrankings_profiles.py --fellows path/to/fellows.csv --turing path/to/turing.csv
 ```
 
 For a full source refresh, run the shared crawler with `--refresh` before rebuilding:
@@ -286,7 +296,8 @@ python scripts/build_csrankings_profiles.py
 
 Use the shared [CSRankings workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#csrankings-crawler) for partial runs, pacing, and cache/report details.
 Inspect cache completeness before a full rebuild and investigate surprising drops in the included-row count.
-Preserve original CSRankings fields and do not edit `data/dblp_profiles.csv` unless the user requests it.
+Preserve original CSRankings fields and do not edit the award rosters unless the user requests it.
+The alignment's `crawl_date` remains its build date; it does not reuse the rosters' `dblp_crawl_date`.
 
 Compile-check the script:
 
@@ -305,12 +316,13 @@ The script normalizes names by ignoring case, punctuation, diacritics, common ho
 It accepts exact normalized name matches and compatible first-name/initial plus last-name matches.
 It excludes unmatched and ambiguous rows instead of writing weak guesses.
 
-The alignment report is `.cache/csrankings-profiles-report.json`.
+The alignment report is `../bigcows-crawler/.cache/csrankings-profiles-report.json`.
 It contains:
 
 - `generated_at`
 - `cache_dir`
-- `dblp_profiles`
+- `fellows`
+- `turing`
 - `output`
 - `crawl_date`
 - `csrankings_rows`
@@ -321,7 +333,7 @@ It contains:
 - `unmatched_sample`
 - `ambiguous`
 
-When asked to check or validate CSRankings profiles, join `data/csrankings_profiles.csv` with `data/dblp_profiles.csv` on `dblp_profile` and flag suspicious name mismatches.
+When asked to check or validate CSRankings profiles, join `data/csrankings_profiles.csv` with the deduplicated union of both award rosters on `dblp_profile` and flag suspicious name mismatches.
 Names should match modulo minor variations such as accent characters, diacritics, periods, punctuation, initials, spacing, hyphens, and capitalization.
 For suspicious rows, report the CSRankings name, DBLP name, affiliation, DBLP profile URL, and why it looks like a different person.
 Do not modify CSV files during validation unless the user explicitly asks.

@@ -1,0 +1,87 @@
+"""Check award-roster inputs, shared DBLP identities and crawl-date semantics."""
+import csv
+from datetime import date
+import importlib.util
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location("csrankings_builder", ROOT / "scripts/build_csrankings_profiles.py")
+builder = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(builder)
+
+
+class RosterAlignmentTests(unittest.TestCase):
+    def test_defaults_use_both_rosters_and_shared_cache(self):
+        with patch.object(sys, "argv", ["builder"]):
+            args = builder.parse_args()
+        self.assertEqual(args.fellows, ROOT / "data/acm_fellows.csv")
+        self.assertEqual(args.turing, ROOT / "data/turing_award_winners.csv")
+        self.assertEqual(args.report.parent, ROOT.parent / "bigcows-crawler/.cache")
+
+    def test_url_deduplication_preserves_distinct_people_with_same_name(self):
+        rows = builder.unique_dblp_rows([
+            {"name": "Alice First", "dblp_profile": "https://dblp.org/pid/1/2"},
+            {"name": "A. First", "dblp_profile": "http://dblp.org/pid/1/2.html?view=by-type#ref"},
+            {"name": "Alice First", "dblp_profile": "https://dblp.org/pid/1/3"},
+            {"name": "Missing", "dblp_profile": ""},
+        ])
+        self.assertEqual(rows, [
+            {"name": "Alice First", "profile": "https://dblp.org/pid/1/2"},
+            {"name": "Alice First", "profile": "https://dblp.org/pid/1/3"},
+        ])
+
+    def test_cli_includes_turing_only_people_and_keeps_alignment_date_separate(self):
+        def write(path, fields, rows):
+            with path.open("w", newline="") as stream:
+                writer = csv.DictWriter(stream, fieldnames=fields)
+                writer.writeheader()
+                writer.writerows(rows)
+
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory)
+            fellows, turing = tmp / "fellows.csv", tmp / "turing.csv"
+            fields = ["name", "dblp_profile", "dblp_crawl_date"]
+            alice = {"name": "Alice Example", "dblp_profile": "https://dblp.org/pid/1/1", "dblp_crawl_date": "2026-09-17"}
+            bob = {"name": "Bob Example", "dblp_profile": "https://dblp.org/pid/1/2", "dblp_crawl_date": "2026-09-18"}
+            write(fellows, fields, [alice, {"name": "No Profile", "dblp_profile": "", "dblp_crawl_date": ""}])
+            write(turing, fields, [alice, bob,
+                {"name": "Unmatched Person", "dblp_profile": "https://dblp.org/pid/1/3", "dblp_crawl_date": ""},
+                {"name": "Ambiguous Person", "dblp_profile": "https://dblp.org/pid/1/4", "dblp_crawl_date": ""},
+            ])
+            write(tmp / "csrankings-a.csv", builder.CSRANKINGS_COLUMNS, [
+                {"name": "Alice Example", "affiliation": "A"},
+                {"name": "Bob Example", "affiliation": "B"},
+                {"name": "Ambiguous Person", "affiliation": "C"},
+                {"name": "Ambiguous Person", "affiliation": "D"},
+            ])
+            output, report = tmp / "output.csv", tmp / "report.json"
+            with patch.object(sys, "argv", ["builder", "--fellows", str(fellows), "--turing", str(turing),
+                    "--cache-dir", str(tmp), "--output", str(output), "--report", str(report), "--crawl-date", "2026-10-01"]):
+                self.assertEqual(builder.main(), 0)
+            result = builder.read_csv(output)
+            self.assertEqual([r["name"] for r in result], ["Alice Example", "Bob Example"])
+            self.assertEqual({r["crawl_date"] for r in result}, {"2026-10-01"})
+            counts = json.loads(report.read_text())
+            self.assertEqual((counts["dblp_profiles_rows"], counts["included_rows"], counts["unmatched_dblp_profiles"], counts["ambiguous_dblp_profiles"]), (4, 2, 1, 1))
+            self.assertEqual((counts["fellows"], counts["turing"]), (str(fellows), str(turing)))
+
+    def test_canonical_roster_dates_are_valid_and_shared_profiles_agree(self):
+        dates = {}
+        for filename in ["acm_fellows.csv", "turing_award_winners.csv"]:
+            for row in builder.read_csv(ROOT / "data" / filename):
+                captured = row["dblp_crawl_date"]
+                if not row["dblp_profile"]:
+                    self.assertEqual(captured, "", row["name"])
+                    continue
+                self.assertEqual(date.fromisoformat(captured).isoformat(), captured)
+                profile = builder.unique_dblp_rows([row])[0]["profile"]
+                self.assertEqual(dates.setdefault(profile, captured), captured, profile)
+
+
+if __name__ == "__main__":
+    unittest.main()

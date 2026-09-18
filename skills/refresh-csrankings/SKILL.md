@@ -21,4 +21,4 @@ The shared [crawler reference](https://github.com/lintool/bigcows-crawler/blob/m
 Use the reference's read-only validation procedure when asked to check existing matches.
 Report suspicious name associations with both source names, the affiliation, the profile URL, and the reason for concern.
 Do not fetch or rebuild merely to perform a validation request, and do not modify CSVs unless fixes are requested.
-Do not force weak matches into the output or edit the DBLP source dataset without an explicit request.
+Do not force weak matches into the output or edit the source award rosters without an explicit request.

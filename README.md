@@ -5,9 +5,8 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 
 ## Data
 
-- [ACM Fellows](data/acm_fellows.csv): canonical dataset, including ACM profile, DBLP, and Google Scholar links.
-- [Turing Award winners](data/turing_award_winners.csv): canonical dataset, organized by award year.
-- [DBLP profiles](data/dblp_profiles.csv): known DBLP profile links for ACM Fellows.
+- [ACM Fellows](data/acm_fellows.csv): canonical dataset, including ACM profile, DBLP, and Google Scholar links and DBLP crawl dates.
+- [Turing Award winners](data/turing_award_winners.csv): canonical dataset with profile links and DBLP crawl dates, organized by award year.
 - [Google Scholar profiles](data/google_scholar_profiles.csv): profile links, affiliations, interests, and citation statistics for ACM Fellows and Turing Award winners.
 - [CSRankings profiles](data/csrankings_profiles.csv): faculty rows that align to known DBLP profiles.
 
