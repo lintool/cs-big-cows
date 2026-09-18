@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-09-18T18:50:38.023058+00:00",
+  "generated_at": "2026-09-18T20:07:09.837038+00:00",
   "scope": "Accepted stored links only; excludes missing links and unadopted discovery candidates",
   "tasks": [
     {
@@ -51,6 +51,23 @@
           "award_year": "2021",
           "acm_profile": "https://awards.acm.org/award-recipients/das_4900977",
           "stored_url": "https://dblp.org/pid/07/1181"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/15/4740",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "turing_award_winners.csv",
+          "name": "Wilkinson, J. H.",
+          "award_year": "1970",
+          "acm_profile": "https://awards.acm.org/award-recipients/wilkinson_0671216",
+          "stored_url": "https://dblp.org/pid/15/4740.html"
         }
       ]
     },
@@ -685,6 +702,30 @@
     },
     {
       "service": "dblp",
+      "url": "https://dblp.org/pid/g/JimGray",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Gray, Jim",
+          "award_year": "1994",
+          "acm_profile": "https://awards.acm.org/award-recipients/gray_3649936",
+          "stored_url": "https://dblp.org/pid/g/JimGray.html"
+        },
+        {
+          "roster": "turing_award_winners.csv",
+          "name": "Gray, Jim",
+          "award_year": "1998",
+          "acm_profile": "https://awards.acm.org/award-recipients/gray_3649936",
+          "stored_url": "https://dblp.org/pid/g/JimGray.html"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
       "url": "https://dblp.org/pid/g/RajivGupta",
       "status": "awaiting_refresh_approval",
       "reasons": [
@@ -799,6 +840,30 @@
           "award_year": "2020",
           "acm_profile": "https://awards.acm.org/award-recipients/kumar_2505048",
           "stored_url": "https://dblp.org/pid/k/RaviKumar"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/k/RichardMKarp",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Karp, Richard",
+          "award_year": "1994",
+          "acm_profile": "https://awards.acm.org/award-recipients/karp_3256708",
+          "stored_url": "https://dblp.org/pid/k/RichardMKarp"
+        },
+        {
+          "roster": "turing_award_winners.csv",
+          "name": "Karp, Richard",
+          "award_year": "1985",
+          "acm_profile": "https://awards.acm.org/award-recipients/karp_3256708",
+          "stored_url": "https://dblp.org/pid/k/RichardMKarp"
         }
       ]
     },
@@ -952,6 +1017,30 @@
           "award_year": "2011",
           "acm_profile": "https://awards.acm.org/award-recipients/mitchell_3261294",
           "stored_url": "https://dblp.org/pid/m/JosephSBMitchell"
+        }
+      ]
+    },
+    {
+      "service": "dblp",
+      "url": "https://dblp.org/pid/p/DAPatterson",
+      "status": "awaiting_refresh_approval",
+      "reasons": [
+        "no_accepted_capture"
+      ],
+      "recipients": [
+        {
+          "roster": "acm_fellows.csv",
+          "name": "Patterson, David",
+          "award_year": "1994",
+          "acm_profile": "https://awards.acm.org/award-recipients/patterson_2316693",
+          "stored_url": "https://dblp.org/pid/p/DAPatterson.html"
+        },
+        {
+          "roster": "turing_award_winners.csv",
+          "name": "Patterson, David",
+          "award_year": "2017",
+          "acm_profile": "https://awards.acm.org/award-recipients/patterson_2316693",
+          "stored_url": "https://dblp.org/pid/p/DAPatterson.html"
         }
       ]
     },

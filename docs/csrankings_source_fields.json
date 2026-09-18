@@ -89,6 +89,27 @@
     "historical": {
       "snapshot": "csrankings_profiles.csv.before",
       "sha256": "6f019bf705a95f7bc02568ef1f1e9321a5e9e3948184841e653c6e1a1b519a95"
+    },
+    "legacy": {
+      "snapshot": "csrankings.csv",
+      "sha256": "0809df80d410b21b7614bf49dc90ee0bd91406968f6929811f61256dde2fab6d",
+      "fields": [
+        "name",
+        "affiliation",
+        "homepage",
+        "scholarid"
+      ],
+      "absent_fields": {
+        "orcid": ""
+      },
+      "reviewed_names": [
+        "Allan Gottlieb",
+        "John E. Hopcroft",
+        "Joseph M. Hellerstein",
+        "Larry S. Davis",
+        "Laxmi N. Bhuyan",
+        "Peter L. Bartlett"
+      ]
     }
   },
   "profiles": {
@@ -211,6 +232,10 @@
     "Allan Borodin": {
       "source": "csrankings-a.csv",
       "sha256": "1937e830805f3d21cdcca44ac5de94313fc8c37dd9ada91753e29780e1eaa764"
+    },
+    "Allan Gottlieb": {
+      "source": "legacy",
+      "sha256": "f1f7ca469d90e2454eba68429fe075b34d1802aeef10bb19e2fdbcfb8d55d551"
     },
     "Alok N. Choudhary": {
       "source": "csrankings-a.csv",
@@ -1408,6 +1433,10 @@
       "source": "csrankings-j.csv",
       "sha256": "f51ab0f45559541f7c776c352b3f0f688fcbc11eb13684c5ff5162fded87c689"
     },
+    "John E. Hopcroft": {
+      "source": "legacy",
+      "sha256": "f82c82bd6f66faead4f91250b234de10258b923f51190ff67521db8804886307"
+    },
     "John F. Canny": {
       "source": "csrankings-j.csv",
       "sha256": "f78835d20a0622164ddd132a2824ceb84b5ff0969e3e841f8e8051dec4718a35"
@@ -1455,6 +1484,10 @@
     "Joseph A. Konstan": {
       "source": "csrankings-j.csv",
       "sha256": "285c346fcb111c195aa28082cd7d594b64fb5681d38fd766081875cd2c5d0c5d"
+    },
+    "Joseph M. Hellerstein": {
+      "source": "legacy",
+      "sha256": "71b39ae9f15196b76529a98bf34d963fb9eab6c9a58d82d0e1e8ec5bb44743c6"
     },
     "Joseph S. B. Mitchell": {
       "source": "csrankings-j.csv",
@@ -1644,6 +1677,10 @@
       "source": "csrankings-l.csv",
       "sha256": "325d1127cf49fbdc8296841934ca8b14573998b113f7b78478774f33f3af5b93"
     },
+    "Larry S. Davis": {
+      "source": "legacy",
+      "sha256": "9b42d0f3a286c0ac88d931d0369976fadfd63fc5ac41336ddfe63245e14f055d"
+    },
     "Lars Birkedal": {
       "source": "csrankings-l.csv",
       "sha256": "2e034783b2dcdcf6fc9b8604788e50f1d4f681262cee134502b61aadb38edde0"
@@ -1655,6 +1692,10 @@
     "Laurie A. Williams": {
       "source": "csrankings-l.csv",
       "sha256": "eb96b81dd116050c9e9ad51f6a1c9a2d78feaf85cb099eb79cd9f20b5d9748d7"
+    },
+    "Laxmi N. Bhuyan": {
+      "source": "legacy",
+      "sha256": "796bbffed7c8d90a1123ac2bffd2fbaf1c43349e68278b148e88aa0ba73436db"
     },
     "Leandros Tassiulas": {
       "source": "csrankings-l.csv",
@@ -2359,6 +2400,10 @@
     "Peter J. Haas": {
       "source": "csrankings-p.csv",
       "sha256": "f65b11cdc02a9b1c976a7cc2bd2bc576281bff197870ba9564d5ec37857dd0fa"
+    },
+    "Peter L. Bartlett": {
+      "source": "legacy",
+      "sha256": "f7a55b7746f209c9314f76c149c5892226e8ebd4e45ac30c52547642653e21bb"
     },
     "Peter M. Chen": {
       "source": "csrankings-p.csv",

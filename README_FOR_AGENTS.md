@@ -323,6 +323,8 @@ The user rejected the stored DBLP profiles for David Patterson, Jim Gray, Richar
 The [September 18 user dispositions](docs/check_profiles_full_2026-09-18.md#explicit-user-decisions) additionally retain the reviewed Meenakshi Balakrishnan and Mihai Pop DBLP candidates as `N`, rate Sudipta Sengupta's Scholar profile `N`, and accept Aravind Srinivasan and Vishwani Agrawal's Scholar profiles as `Y`.
 They accept George Varghese and Prithviraj Banerjee's DBLP profiles as `Y`, select Sung Mo Kang's `57/2381-1.html` bibliography as `Y`, and reject both reviewed Steven Scott DBLP candidates.
 The same user disposition removes the sparse DBLP associations for Victor Miller, James Gosling, Charles H. House, Bryant York, Stephen Bourne, Sidney Karin, Joel Birnbaum and Charles Geschke; do not restore these rejected profiles from older evidence or reopen their coverage decisions without new evidence.
+The later [Turing review and user decisions](docs/check_profiles_turing_2026-09-18.md#subsequent-user-decisions) accept distinct replacement DBLP URLs for Karp, Patterson and Gray as `Y` and Wilkinson as `N`; the earlier rejected URLs remain excluded.
+They retain Catmull's Scholar and DBLP links, and Thacker and Hamming's DBLP links, with quality `N`, and reject Manuel Blum's CSRankings-supplied Scholar candidate as the wrong person while preserving his original upstream fields.
 Consult the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) and later Data Notes entries for individual decisions and inspection limits.
 The quality fields do not currently filter the citation visualization, CSRankings alignment or university-affiliation analysis, or alter shared Scholar metrics.
 
@@ -331,7 +333,7 @@ The quality fields do not currently filter the citation visualization, CSRanking
 Keep committed CSV files on Unix LF line endings.
 Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
 Apply the [award CSV sort order](#award-csv-sort-order) to both rosters.
-The CSRankings output schema and matching behavior are documented in [CSRankings DBLP Alignment](#csrankings-dblp-alignment).
+Canonical CSRankings source preservation, historical schemas and synchronization are documented in [CSRankings Name Links](#csrankings-name-links); [CSRankings DBLP Alignment](#csrankings-dblp-alignment) describes the separate legacy matcher.
 
 ### Google Scholar Statistics
 
@@ -468,6 +470,7 @@ Preserve manual assignments on future matching passes rather than overwriting th
 `data/csrankings_profiles.csv` contains exactly one row per distinct nonempty `csrankings_name` across both rosters.
 To synchronize it, resolve each accepted key exactly against all 26 refreshed alphabetical faculty files and copy their original `name`, `affiliation`, `homepage`, `scholarid` and `orcid` values.
 Preserve documented historical records absent from those sources using the retained profile table; investigate any other missing or duplicate key instead of inferring a replacement.
+Original four-column upstream snapshots from before ORCID was introduced can support explicitly reviewed historical keys; preserve all four values and represent the absent `orcid` as blank with source-schema provenance.
 Remove unreferenced keys and sort by case-insensitive name with the exact name as a tie-breaker.
 Record synchronization time in Data Notes; do not add a `crawl_date` column to this lookup table.
 Profile capture dates and CSRankings name-alignment dates remain in the award rosters, while source-download timestamps remain in the crawler evidence.
@@ -477,12 +480,13 @@ Preserve discrepancies as source evidence, including known upstream errors; appl
 Earlier reports describing roster-derived URLs or blank exceptions in this table are historical and are superseded by this generation policy.
 Validate exact key coverage, uniqueness and source fields, retain input snapshots and a validation report in the shared cache, and preserve both award rosters and generated visualizations.
 
-The corrected September 18 table contains 829 unique keys, including five retained historical profiles; see the [PR review corrections](docs/data_notes.md#2026-09-18-0742-edt---correct-csrankings-identity-links-from-pr-review).
+After the [historical source recovery](docs/csrankings_historical_recovery_2026-09-18.md), the table contains 835 unique keys, including 11 historical profiles absent from the current faculty snapshot.
 University analysis joins through the exact `csrankings_name` key.
 The separate legacy DBLP-based builder below still uses inferred names and must not replace the canonical table.
 
-The [source-field manifest](docs/csrankings_source_fields.json) protects the five original CSRankings fields independently of the derived DBLP field.
-Its per-name hashes were verified against all 26 retained September 18 source shards and an independent retained table for the five documented historical keys.
+The [source-field manifest](docs/csrankings_source_fields.json) protects source values independently of the derived DBLP field.
+Its per-name hashes were verified against all 26 retained September 18 source shards, an independent retained table for five historical keys and an original four-column upstream snapshot for six recovered historical keys.
+The manifest explicitly records the legacy schema and the blank local representation of its absent ORCID column.
 Tests compare the canonical table against those hashes without requiring a local crawler cache.
 After an authorized source update, regenerate the manifest from independently retained inputs and inspect its changes; do not update hashes merely to make a failing test pass.
 For the current retained evidence:
@@ -490,12 +494,21 @@ For the current retained evidence:
 ```bash
 python scripts/build_csrankings_source_manifest.py \
   --historical-source ../bigcows-crawler/.cache/check-profiles-full-2026-09-18/csrankings_profiles.csv.before \
+  --legacy-source ../bigcows-crawler/.cache/csrankings-history-recovery-2026-09-18/2020-12-30/csrankings.csv \
+  --legacy-name 'Peter L. Bartlett' \
+  --legacy-name 'Larry S. Davis' \
+  --legacy-name 'Joseph M. Hellerstein' \
+  --legacy-name 'Allan Gottlieb' \
+  --legacy-name 'Laxmi N. Bhuyan' \
+  --legacy-name 'John E. Hopcroft' \
   --output docs/csrankings_source_fields.json
 ```
 
 This command checks existing files only; it performs no crawl and rejects fields that differ from the supplied source evidence.
-Every source shard must have exactly the five source columns in order, even when it contains no data rows.
-Canonical and historical inputs must contain all five original columns; missing fields, duplicate headers and malformed row widths are rejected rather than converted to blank values.
+Every current alphabetical source shard must have exactly the five source columns in order, even when it contains no data rows.
+The canonical table and `--historical-source` input must contain all five table fields; missing columns, duplicate headers and malformed row widths are rejected rather than converted to blank values.
+Only the separately supplied `--legacy-source` accepts the exact older four-column schema, and only explicitly selected `--legacy-name` records may be used from it.
+That input must be an independently retained upstream snapshot; the builder validates it before representing its absent ORCID as blank and cannot use it to override a current or previously retained historical row.
 For each selected name, conflicting upstream rows are rejected even when one matches the local table; identical duplicate rows are harmless.
 Conflicting duplicate names in historical input are also rejected instead of silently choosing the last row.
 Record the selected source snapshots and any legitimate changes in Data Notes.
@@ -524,7 +537,7 @@ After an authorized table synchronization or generation-policy update, replace o
 python scripts/csrankings_dblp.py --write
 ```
 
-This command preserves all five original fields, row order and table membership; it does not read or modify either award roster, resolve redirects, or update any dates.
+This command preserves all five stored source fields, including the documented blank ORCID for legacy rows, as well as row order and table membership; it does not read or modify either award roster, resolve redirects, or update any dates.
 When source code changes upstream, explicitly review the conversion and update the pinned implementation and regression examples rather than silently changing link semantics.
 Use the [DBLP acquisition instructions](#review-and-import-dblp-data) to inspect redirect destinations within an approved evidence scope.
 Record materially conflicting identities in the audit without repairing the CSRankings-derived URL; established upstream errors are non-actionable once the person's association is independently supported.
@@ -634,7 +647,7 @@ The script:
 - extracts university-like organizations from both affiliation fields;
 - normalizes common university variants;
 - counts every distinct normalized university found per fellow;
-- prints a count-descending plain text table.
+- prints a count-descending plain text table with case-insensitive alphabetical tie-breaking.
 
 Basic commands:
 
@@ -662,7 +675,10 @@ Counting semantics:
 - A fellow can count toward multiple universities if Scholar and CSRankings provide distinct universities.
 - The same normalized university from multiple sources counts once per fellow.
 - Companies and generic job titles should not be counted as universities.
+- Institution extraction remains heuristic: current source text can yield false labels from endowed titles (`Rachleff University`, `Herbert A. Simon University`) or partial institution names (`University of Singapore`, `Zayed University`, `University of AI`).
+  Inspect examples before treating these counts as an authoritative institutional ranking; preserve the source affiliation text when improving the extractor.
 - Common variants such as `MIT`, `Massachusetts Inst. of Technology`, `CMU`, `UC Berkeley`, `UCLA`, `UIUC`, `Georgia Tech`, and `UBC` are normalized.
+- Historical full-name spellings such as `University of California - Berkeley` and `University of California - Riverside` retain their specific campuses.
 - Preserve `University of British Columbia` as distinct from `Columbia University`.
 - The helper prints normalization warnings to stderr with `--show-warnings` when it suppresses ambiguous captures such as generic parent institutions or substring collisions.
   Use `--warnings-limit N` to control how many warnings are shown.

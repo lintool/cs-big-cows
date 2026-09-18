@@ -16,6 +16,7 @@ See the [source policy](AGENTS.md#acm-source-of-truth), [Fellows reconciliation 
 
 The CSVs are ready to download or use from a clone.
 Both award tables include Y/N quality assessments for DBLP and Google Scholar profiles; see the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), and [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) for criteria, findings, and inspection limits.
+Later [Fellows decisions](docs/check_profiles_full_2026-09-18.md#explicit-user-decisions) and the [full Turing review](docs/check_profiles_turing_2026-09-18.md) supersede those initial findings where documented.
 See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and known source differences.
 The [data dictionary](README_FOR_AGENTS.md#data-layout) explains both award schemas, Scholar statistics, joins, dates, and missing values.
 A missing profile means the corresponding URL cell is blank; always distinguish ACM, DBLP, and Scholar when reporting coverage.

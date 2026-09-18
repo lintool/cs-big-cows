@@ -15,8 +15,8 @@ Do not restore their old DBLP cells or blank exceptions, and do not treat their 
 | Fellows 1–100 | Trial audit recorded for 100 recipients and 300 services | Preserve the [trial outcomes and evidence limits](check_profiles_trial_100_2026-09-18.md). |
 | Fellows 101–1,300 | Initial individual inspection notes saved for 1,200 recipients | Finish the service audit and remaining follow-ups. |
 | Fellows 1,301–1,638 | 338 recipients lack a saved completed initial inspection | Continue the remaining review; preliminary sampling is not counted as completed. |
-| Turing Award roster | 81 rows still await this full sweep | Reuse supported same-person evidence and record separate award-row outcomes. |
-| Explicit user dispositions | All 18 presented judgment cases are resolved and applied | Preserve the [accepted links, ratings and removals](check_profiles_full_2026-09-18.md#explicit-user-decisions). |
+| Turing Award roster | All 81 rows have 243 service outcomes; all presented profile decisions and Hopcroft's historical CSRankings link are applied | Capture accepted replacement links; broader Scholar coverage remains unverified. |
+| Explicit user dispositions | The earlier 18 cases, three DBLP quality decisions and five further profile decisions are resolved and applied | Preserve the [earlier decisions](check_profiles_full_2026-09-18.md#explicit-user-decisions) and all [subsequent Turing decisions](check_profiles_turing_2026-09-18.md#subsequent-user-decisions), including the rejected Manuel Blum Scholar ID. |
 | Rob Cook DBLP candidate | Candidate inspection saved, but its proposed replacement is not applied | Reconcile the saved proposal when resuming profile review; this documentation cleanup does not change the roster. |
 | Final service audit | The full 5,157-assessment audit is not assembled | Distinguish recorded trial outcomes, initial inspection, unresolved evidence and unreviewed rows. |
 | Visualization | Regeneration remains deferred | Regenerate only when requested. |
@@ -28,17 +28,21 @@ It remains a proposal, not an accepted CSV value or imported capture.
 
 ## Capture and Import Backlog
 
-The [machine-readable queue](profile_capture_queue.json) contains 85 distinct accepted service URLs: 80 DBLP links without accepted capture dates and five Scholar links without accepted captures or statistics imports.
-All currently refer to Fellows; no Turing links are in this queue.
+The [machine-readable queue](profile_capture_queue.json) contains 89 distinct accepted service URLs: 84 DBLP links without accepted capture dates and five Scholar links without accepted captures or statistics imports.
+All except J. H. Wilkinson's DBLP task refer to Fellows; Richard Karp, David Patterson and Jim Gray's DBLP tasks are shared with their Turing rows.
 The five Scholar recipients are Paola Inverardi, David Abramson, Lawrence Paulson, Richard DeMillo and Vishwani Agrawal.
 Blank dates are intentional pending an accepted capture; quality approval alone does not import metrics.
 The queue is ready for a separately approved targeted refresh and contains no unadopted discovery candidates.
 Equivalent DBLP URL spellings share one task; each recipient entry preserves its exact roster URL in `stored_url`.
 Use the [queue-generation workflow](../README_FOR_AGENTS.md#capture-and-import-backlog) after relevant CSV updates, then update these counts.
 
-## Unavailable Scholar Candidates
+## Resolved Unavailable Scholar Candidates
 
-These 13 discovery cases remain open as availability findings, with blank roster links.
+The user instructed removal of all failed Scholar candidates on September 18 at 16:01 EDT.
+The 13 discovery cases below and the historical candidates for Herbert Simon, Edsger Dijkstra and John McCarthy are resolved: their award-roster links and dates remain blank with quality `N`.
+All 19 affected award rows (16 Fellows and three Turing rows) already had those values, and none of the failed IDs occurs in the canonical Scholar statistics table, so no CSV edits were needed.
+The links below are retained as historical evidence, not an active review queue or accepted associations.
+Victor Vianu's original CSRankings `scholarid` remains untouched under the user's source-preservation policy.
 The observations were made on September 18 and do not establish intentional withdrawal.
 Do not restore an association from search-index text or treat retained evidence as proof of current availability.
 
@@ -60,10 +64,12 @@ Do not restore an association from search-index text or treat retained evidence 
 
 Paola Inverardi is resolved and is not part of this availability list; her approved successor is in the capture/import queue.
 
-## Historical CSRankings Source Gaps
+## Resolved Historical CSRankings Source Gaps
 
-These five candidate associations remain blank because the original source rows have not been recovered from the selected evidence.
-This is a provenance task, not permission to invent missing source fields or repair upstream IDs.
+All six associations below are now linked using original rows recovered from upstream commit `4b714f69c839ca538825054f94bdf57f5d4ea3da` of December 30, 2020.
+The [recovery report](csrankings_historical_recovery_2026-09-18.md) records the exact source values, identity evidence, historical scope and applied changes.
+The historical source predates ORCID; that unavailable field is explicitly represented as blank, and the four actual source values remain unmodified.
+The following links retain the initial discovery leads; these cases no longer await source recovery.
 
 | Person | Candidate Key | Existing Lead |
 | --- | --- | --- |
@@ -72,8 +78,9 @@ This is a provenance task, not permission to invent missing source fields or rep
 | Joseph Hellerstein | Joseph M. Hellerstein | [Public historical mirror](https://csrankings.swag.cispa.de/). |
 | Allan Gottlieb | Allan Gottlieb | [Historical source mirror](https://gitee.com/mirrors/CSrankings/blob/gh-pages/csrankings-a.csv). |
 | Laxmi Bhuyan | Laxmi N. Bhuyan | [Institution-hosted 2019 printout](https://vsclab.engr.ucr.edu/media/261/download?attachment=). |
+| John Hopcroft | John E. Hopcroft | [Public historical mirror](https://csrankings.swag.cispa.de/), identified during the [Turing sweep](check_profiles_turing_2026-09-18.md). |
 
-These are distinct from the five already accepted historical keys in the canonical lookup table: Donald Greenberg, Georg Gottlob, Judith S. Olson, Luca Cardelli and Ruby B. Lee.
+Together with Donald Greenberg, Georg Gottlob, Judith S. Olson, Luca Cardelli and Ruby B. Lee, these make 11 accepted historical keys within the 835-row canonical lookup table.
 The accepted historical fields are protected by the [source-field manifest](csrankings_source_fields.json).
 
 ## Evidence and Resume Point
@@ -81,5 +88,6 @@ The accepted historical fields are protected by the [source-field manifest](csra
 The retained run is `../bigcows-crawler/.cache/check-profiles-full-2026-09-18/`.
 It contains the input snapshots, `queue.json`, `inspection-notes-1286-1300.json`, `candidate-decisions-1286-1300.json`, earlier batch notes and `user-dispositions-2026-09-18.json`.
 The public status index consolidates that progress without claiming the unfinished notes constitute a final audit.
-On resumption, reconcile the saved Cook proposal, continue at Fellow 1,301, then review the Turing rows and assemble the full audit.
+The separate completed Turing audit and discovery follow-ups are retained in `../bigcows-crawler/.cache/check-profiles-turing-2026-09-18/` and summarized in the [Turing report](check_profiles_turing_2026-09-18.md).
+On resumption, reconcile the saved Cook proposal, continue at Fellow 1,301, finish earlier Fellow follow-ups, and combine the completed Turing outcomes with the eventual full audit.
 Preserve the explicit user dispositions, original CSRankings source fields, finalized ACM award data and deferred visualization snapshots.

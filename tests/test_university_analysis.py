@@ -56,6 +56,31 @@ class UniversityAnalysisTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Duplicate CSRankings name key: Alice"):
             analysis.build_indexes([], [{"name": "Alice"}, {"name": "Alice"}])
 
+    def test_historical_uc_affiliations_retain_the_campus(self):
+        for campus in ['Berkeley', 'Los Angeles', 'San Diego', 'Santa Barbara', 'Irvine', 'Santa Cruz', 'Davis', 'Riverside']:
+            for prefix in ['University', 'Univ.', 'Univ']:
+                with self.subTest(campus=campus, prefix=prefix):
+                    self.assertEqual(analysis.extract_universities(f'{prefix} of California - {campus}'),
+                                     {f'University of California, {campus}'})
+        self.assertEqual(analysis.extract_universities('University of California'), set())
+
+    def test_historical_csrankings_affiliation_counts_without_scholar(self):
+        output = self.run_analysis(
+            [{'name': 'Bhuyan, Laxmi Narayan', 'csrankings_name': 'Laxmi N. Bhuyan', 'google_scholar_profile': ''}],
+            [],
+            [{'name': 'Laxmi N. Bhuyan', 'affiliation': 'University of California - Riverside'}],
+        )
+        self.assertIn('fellows=1 fellows_with_university=1 universities=1', output)
+        self.assertIn('    1  University of California, Riverside  Bhuyan, Laxmi Narayan', output)
+
+    def test_equal_counts_have_deterministic_alphabetical_order(self):
+        fellows = [{'name': 'Z', 'csrankings_name': 'Z'}, {'name': 'A', 'csrankings_name': 'A'}]
+        sources = [{'name': 'Z', 'affiliation': 'Princeton University'},
+                   {'name': 'A', 'affiliation': 'Cornell University'}]
+        output = self.run_analysis(fellows, [], sources)
+        self.assertEqual(output, self.run_analysis(list(reversed(fellows)), [], sources))
+        self.assertLess(output.index('Cornell University'), output.index('Princeton University'))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -14,6 +14,89 @@ A low quality rating or failed latest fetch does not mean that a URL cell is bla
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
+## 2026-09-18 16:19 EDT - Data Quality and Documentation Consistency Pass
+
+Checked all 17 canonical and historical audit CSVs for header uniqueness, row widths and LF storage, plus canonical ordering, unique profile keys, URL/date/quality consistency, shared-recipient agreement, Scholar joins and numeric/JSON metric fields.
+The four canonical tables have no structural or join inconsistencies under these checks; the 835 CSRankings keys exactly equal the union of populated award keys.
+Rebuilt the source-field manifest from all retained modern, historical and explicitly selected legacy inputs; it exactly reproduces the committed manifest.
+All canonical CSVs, historical row-audit CSVs, source values and visualization datasets remain byte-for-byte unchanged during this pass.
+
+Fixed university-affiliation analysis to recognize historical full-name UC campus spellings, including `University of California - Berkeley` and `University of California - Riverside`, without changing source text.
+This restores Laxmi Bhuyan's Riverside affiliation: Fellows with a detected university increase from 1,008 to 1,009, and the Riverside count increases from four to five.
+Added deterministic alphabetical tie-breaking for equal university counts and regression tests for campus preservation, CSRankings-only affiliation counting and stable ordering.
+The [analysis reference](../README_FOR_AGENTS.md#acm-fellow-university-analysis) records remaining heuristic extraction limitations: endowed-title fragments and partial institution names can still appear as false university labels.
+Examples include `Rachleff University`, `Herbert A. Simon University`, `University of Singapore`, `Zayed University` and `University of AI`; this pass does not claim a comprehensive institution-entity review.
+
+Separated current Turing status from the initial sweep counts and unresolved questions, preserving the historical row audit while linking all superseding decisions.
+Updated the Fellows report to close the failed-Scholar and historical-CSRankings cases, linked the latest decisions from the human README and clarified the modern versus legacy source-schema rules in the agent reference.
+Validated 22 Markdown files, local links and anchors, and 23 documented Python commands against script paths and declared options.
+All 38 targeted canonical-data, provenance, analysis and profile-validation tests passed.
+The incomplete Fellows inspection, 89-task capture/import backlog and deferred visualization regeneration remain separate outstanding work, as recorded in the [current status](profile_review_status.md).
+
+## 2026-09-18 16:13 EDT - Recover Six Historical CSRankings Links
+
+Broadened the six open cases across aliases, identifiers, institutional context and upstream Git history, recovering their original rows from the combined `csrankings.csv` at commit `4b714f69c839ca538825054f94bdf57f5d4ea3da` of December 30, 2020.
+Linked Peter L. Bartlett, Larry S. Davis, Joseph M. Hellerstein, Allan Gottlieb, Laxmi N. Bhuyan and John E. Hopcroft in the Fellows roster, plus Hopcroft in the Turing roster, with alignment date `2026-09-18`.
+The [recovery report](csrankings_historical_recovery_2026-09-18.md) records source URLs, identity evidence and the historical nature of these memberships.
+Copied all four available source fields literally; the historical schema had no ORCID column, so the six new local ORCID cells are blank with explicit absent-field provenance.
+Original Scholar IDs, `NOSCHOLARPAGE` values and homepages are preserved, and each lookup DBLP URL is generated from its source name.
+Added six lookup rows for 835 unique keys, exactly covering 833 Fellows links and 18 Turing links with 16 shared keys.
+Changed 14 award cells, limited to the seven name links and paired alignment dates; preserved all publication profiles, quality ratings, capture dates, Scholar metrics and visualization snapshots.
+Extended the source-manifest builder with an explicit legacy-schema input and per-name selection, preserving strict modern-schema checks and rejecting source-field repairs or invented ORCIDs.
+Regenerated the manifest from independent source files; all previous 829 profile hashes are unchanged.
+Retained source captures, commit responses, timestamps, hashes, before snapshots and validation evidence under `../bigcows-crawler/.cache/csrankings-history-recovery-2026-09-18/`.
+
+## 2026-09-18 16:07 EDT - Five Profile Review Decisions Applied
+
+Applied the user's decisions: retain Edwin Catmull's Scholar link with quality `N`; accept David Patterson's `p/DAPatterson.html` and Jim Gray's `g/JimGray.html` DBLP candidates with quality `Y`; accept J. H. Wilkinson's `15/4740.html` DBLP candidate with quality `N`; reject Manuel Blum's Scholar candidate `7S-LSKoAAAAJ` as the wrong person.
+Shared-recipient decisions are synchronized across both award rosters; Wilkinson appears only in the Turing roster.
+Blum's award Scholar links and dates were already blank with quality `N`, and his original CSRankings fields remain unchanged under the upstream-preservation policy.
+The [Turing review follow-up](check_profiles_turing_2026-09-18.md#subsequent-user-decisions) supersedes these five pending cases in the historical row audit.
+Exactly 11 canonical cells changed; existing capture dates are preserved and new DBLP dates remain blank pending accepted captures.
+The [capture/import queue](profile_capture_queue.json) was regenerated locally and now contains 89 distinct URLs: 84 DBLP and five Scholar.
+No crawl, source refresh, statistics import or visualization regeneration was performed.
+
+## 2026-09-18 16:01 EDT - Failed Scholar Candidate Removal Confirmed
+
+The user instructed removal of the 16 failed Scholar candidates listed in the review discussion, including both historical Herbert Simon IDs.
+Verified all 19 affected award rows (16 Fellows and three Turing winners) already have blank Scholar URLs and capture dates with quality `N`.
+None of the 17 failed IDs occurs in either award roster or `data/google_scholar_profiles.csv`; no canonical CSV changes were needed.
+Marked those availability cases resolved in the [current status](profile_review_status.md#resolved-unavailable-scholar-candidates) and Turing report, retaining historical evidence rather than deleting audit history.
+Victor Vianu's failed ID remains in the original CSRankings `scholarid` field under the user's explicit policy to preserve upstream source data.
+This disposition concerns the failed-candidate list; Catmull's linked Scholar profile and the separate Patterson, Gray, Wilkinson and Blum candidates remain under review.
+No crawl or visualization regeneration was performed.
+
+## 2026-09-18 15:43 EDT - Catmull, Thacker and Hamming DBLP Quality Decisions
+
+Applied the user's explicit decision to retain Edwin Catmull, Charles P. Thacker and Richard W. Hamming's DBLP URLs but change their quality from `Y` to `N` in both award rosters.
+The [Turing review follow-up](check_profiles_turing_2026-09-18.md#subsequent-user-decisions) records these limited-coverage decisions, superseding the three pending DBLP questions in the original sweep and row audit.
+Exactly six `dblp_profile_quality` cells changed; names, award data, URLs, capture dates, Scholar fields and CSRankings fields remain unchanged.
+No new crawl or visualization regeneration was performed.
+Catmull's Scholar coverage remains unresolved; the [current review status](profile_review_status.md) preserves the other evidence gaps and unfinished Fellows work.
+
+## 2026-09-18 15:34 EDT - Full Turing Award Profile Review
+
+Completed all 243 Scholar, DBLP and CSRankings assessments for the 81 Turing recipients using the approved existing September 13–18 evidence, with general web discovery for missing and limited-coverage profiles.
+The [report](check_profiles_turing_2026-09-18.md) and [244-row audit](check_profiles_turing_2026-09-18.csv) distinguish supported findings, four coverage assessments awaiting review, missing links and candidate/source evidence gaps.
+The extra audit row records dependent Fellow synchronization for Richard Karp.
+
+Added [Richard M. Karp's distinct DBLP profile](https://dblp.org/pid/k/RichardMKarp) with quality `Y` to both award rosters after inspecting its Berkeley identity and career-spanning publication evidence.
+The previously rejected Richard Alan Karp profile remains excluded.
+The new capture date stays blank because web discovery is not an accepted crawler capture; the rebuilt [capture/import queue](profile_capture_queue.json) contains 86 distinct accepted URLs, including this one task shared across rosters.
+No crawl or source refresh was started.
+
+Final Turing link totals are 40 Scholar, 78 DBLP and 17 CSRankings associations.
+The limited captures leave broader Scholar coverage unresolved for all 40 linked profiles; sampled support is not full-bibliography verification.
+Catmull's Scholar and DBLP coverage, Thacker's DBLP coverage and Hamming's DBLP coverage are flagged with existing values preserved.
+Patterson, Gray and Wilkinson have distinct DBLP candidates awaiting accessible bibliography evidence; Manuel Blum's upstream Scholar identifier remains unverified and Hopcroft's historical CSRankings row still needs original source fields.
+Previously recorded unavailable Scholar candidates remain unlinked.
+
+Exactly four canonical cells changed: Karp's DBLP URL and quality in each roster.
+All capture dates, original ACM data, CSRankings source fields, Scholar metrics and visualization snapshots were preserved.
+All 34 targeted validation tests passed, along with the field-level snapshot comparison, complete service-audit check and validation of all 829 generated CSRankings DBLP links.
+The [current status index](profile_review_status.md) now marks the Turing sweep complete with unresolved findings; the broader Fellows sweep remains unfinished.
+Retained evidence and changes are under `../bigcows-crawler/.cache/check-profiles-turing-2026-09-18/`.
+
 ## 2026-09-18 15:15 EDT - PR Review Validation Fixes
 
 Addressed the [PR 65 review](https://github.com/lintool/acm-bigcows/pull/65#pullrequestreview-5251564838) without changing canonical data.
