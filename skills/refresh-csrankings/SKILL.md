@@ -14,7 +14,9 @@ The shared [crawler reference](https://github.com/lintool/bigcows-crawler/blob/m
 1. Check repository status and distinguish a requested source refresh from a rebuild using existing shards.
 2. Follow the name-link reference to refresh the requested source scope and synchronize accepted exact keys, retaining documented historical records.
    Do not overwrite the canonical table with the legacy `scripts/build_csrankings_profiles.py`, which does not consume explicit name links.
-3. Validate exact key coverage, uniqueness, source fields and documented DBLP exceptions, retaining input snapshots and the validation report.
+3. Generate `dblp_profile` from each original CSRankings name using the [upstream-compatible generator](../../README_FOR_AGENTS.md#csrankings-dblp-link-generation), independently of reviewed award links.
+   Preserve its generated URL even when upstream is wrong; record redirect destinations as evidence rather than replacing the source-derived link.
+   Validate exact key coverage, uniqueness, original source fields and generated links, retaining input snapshots and the validation report.
    Follow the name-link reference to verify and update the source-field manifest after authorized source changes; preserve original fields even when upstream identifiers are wrong.
 4. Report changes, cache coverage, and unresolved matches with representative evidence.
 

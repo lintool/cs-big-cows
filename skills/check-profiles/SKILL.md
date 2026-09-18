@@ -164,7 +164,11 @@ Use the selected cached faculty sources or an approved refresh to check inclusio
 Do not describe inclusion in an older source snapshot as confirmed current inclusion.
 Respect source disambiguation numbers and campus tags: stripping them for candidate generation must not erase evidence of a namesake.
 Ignore blank identifiers and `NOSCHOLARPAGE` as matching evidence.
-The local DBLP field may have been copied from the roster, so agreement is not independent confirmation.
+The current table's DBLP field reproduces CSRankings' name-generated link; follow the [generation and acquisition rules](../../README_FOR_AGENTS.md#csrankings-dblp-link-generation).
+Earlier audits used roster-derived DBLP links and cannot independently corroborate those same roster associations.
+For current links, inspect retained captures or an approved refresh, recording the original generated URL, final URL, evidence time and author identity.
+Compare the resolved author with the award-roster profile; `/pers/hd/` and `/pid/` spelling differences alone are not evidence of different people.
+Generation is not a successful capture and does not update profile-crawl or name-alignment dates.
 An upstream Scholar identifier can also be wrong; investigate conflicts rather than deciding by identifier alone.
 Preserve the original CSRankings source fields, including demonstrably incorrect upstream identifiers; ignore established source errors as matching evidence and do not try to repair them.
 Once independent evidence supports the recipient’s name association, treat an obvious upstream error as non-actionable; record a brief audit note when useful without opening a user-review item or repeatedly asking whether to fix it.
@@ -177,7 +181,8 @@ When applying obvious link corrections, preserve exact accepted keys and synchro
 Include newly accepted links in that synchronization, copying the original CSRankings source fields and retaining provenance for historical exceptions.
 Check that each key belongs to only one recipient within a roster and that shared Fellows/Turing recipients use the same accepted key.
 Do not run the legacy name-inference builder to regenerate the canonical table.
-Never copy a reviewed wrong-person DBLP URL into a CSRankings row, even if the award roster retains it.
+Always derive the lookup table's DBLP URL from the original CSRankings name; never copy a reviewed award URL or redirect destination into it, or clear it because upstream is wrong.
+Keep independently reviewed DBLP links and quality decisions in the award rosters; preserve CSRankings-generated links and flag material conflicts in the audit.
 
 ## Update CSV Dates
 
@@ -209,7 +214,7 @@ Write the review summary and a completion-time entry in Data Notes according to 
 
 Validate changes against the input snapshots: only authorized fields changed, original award rows/order remain intact, shared-recipient decisions agree, and every populated CSRankings key resolves exactly once with no unreferenced table rows.
 Apply the CSV date updates above and the repository's [profile capture-date rules](../../README_FOR_AGENTS.md#profile-crawl-dates), checking old and new dates in the field-level audit.
-Verify the canonical CSRankings table contains no known wrong-person DBLP associations and that generated visualizations remain unchanged.
+Verify every CSRankings DBLP link matches upstream-compatible generation, including links with known upstream errors, and that generated visualizations remain unchanged.
 Run the source-field manifest checks; after an authorized source update, rebuild that manifest only from the independently retained inputs described in the name-link guidance, never merely to bless a local mismatch.
 
 Report per-roster and per-service totals for reviewed, supported, poor-quality, missing and unresolved cases, distinguishing award rows from unique people and identity problems from coverage or contamination.

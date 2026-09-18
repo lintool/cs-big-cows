@@ -72,7 +72,7 @@ class RosterAlignmentTests(unittest.TestCase):
                             read.assert_not_called()
                         self.assertEqual(canonical.read_text(), "preserved table\n")
 
-    def test_canonical_profile_keys_and_reviewed_identity_exclusions(self):
+    def test_canonical_profile_keys_and_rejected_name_links(self):
         rosters = builder.read_csv(ROOT / "data/acm_fellows.csv") + builder.read_csv(ROOT / "data/turing_award_winners.csv")
         profiles = builder.read_csv(builder.CANONICAL_OUTPUT)
         self.assertEqual(list(profiles[0]), builder.OUTPUT_COLUMNS)
@@ -83,10 +83,6 @@ class RosterAlignmentTests(unittest.TestCase):
         self.assertEqual(len(actual), len(set(actual)))
         rejected_names = {"Hui Zhang 0005", "B. Chandrasekaran 0002"}
         self.assertFalse(expected & rejected_names)
-        review = builder.read_csv(ROOT / "docs/dblp_profile_quality_2026-09-17.csv")
-        rejected_urls = {r["dblp_profile"] for r in review if r["category"] == "identity_mismatch" and r["dblp_profile"]}
-        for row in profiles:
-            self.assertNotIn(row["dblp_profile"], rejected_urls, row["name"])
 
     def test_url_deduplication_preserves_distinct_people_with_same_name(self):
         rows = builder.unique_dblp_rows([
@@ -130,6 +126,8 @@ class RosterAlignmentTests(unittest.TestCase):
                 self.assertEqual(builder.main(), 0)
             result = builder.read_csv(output)
             self.assertEqual([r["name"] for r in result], ["Alice Example", "Bob Example"])
+            self.assertEqual([r["dblp_profile"] for r in result], [
+                "https://dblp.org/pers/hd/e/Example:Alice", "https://dblp.org/pers/hd/e/Example:Bob"])
             self.assertEqual(list(result[0]), builder.OUTPUT_COLUMNS)
             self.assertNotIn("crawl_date", result[0])
             counts = json.loads(report.read_text())

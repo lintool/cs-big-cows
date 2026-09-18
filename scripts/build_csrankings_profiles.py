@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """Build a legacy name-inferred CSRankings report in the shared cache.
 
-Each distinct roster DBLP URL is included when its roster name matches exactly
-one CSRankings row. This does not verify the DBLP page's identity or enforce a
+Each distinct roster DBLP URL supplies a candidate when its name matches exactly
+one CSRankings row. Output links are generated from the CSRankings names.
+This does not verify the DBLP page's identity or enforce a
 one-to-one mapping across all URLs. Unmatched and ambiguous names are omitted
 from the CSV and summarized in the report. The canonical explicit-key profile
 table is protected and cannot be used as an output or report destination.
@@ -21,6 +22,10 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
+try:
+    from csrankings_dblp import csrankings_dblp_url
+except ModuleNotFoundError:
+    from scripts.csrankings_dblp import csrankings_dblp_url
 
 
 APP_ROOT = Path(__file__).resolve().parents[1]
@@ -243,25 +248,19 @@ def main() -> int:
     output_rows: list[dict[str, str]] = []
     unmatched: list[dict[str, Any]] = []
     ambiguous: list[dict[str, Any]] = []
-    seen_output_keys: set[tuple[str, str, str, str, str, str]] = set()
+    seen_output_keys: set[tuple[str, ...]] = set()
 
     for dblp_row in dblp_rows:
         name = dblp_row["name"]
         candidates = csrankings_candidates_for_name(name, cs_exact, cs_by_last)
         if len(candidates) == 1:
             row = candidates[0]
-            key = (
-                row.get("name", ""),
-                row.get("affiliation", ""),
-                row.get("homepage", ""),
-                row.get("scholarid", ""),
-                dblp_row["profile"],
-            )
+            key = tuple(row.get(column, "") for column in CSRANKINGS_COLUMNS)
             if key in seen_output_keys:
                 continue
             seen_output_keys.add(key)
             output_row = {column: row.get(column, "") for column in CSRANKINGS_COLUMNS}
-            output_row["dblp_profile"] = dblp_row["profile"]
+            output_row["dblp_profile"] = csrankings_dblp_url(row["name"])
             output_rows.append(output_row)
         elif candidates:
             ambiguous.append(

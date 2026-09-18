@@ -82,6 +82,10 @@ See the shared reference for pacing and progress; a completed invocation alone d
 Use the shared [DBLP workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#dblp-profile-crawler) for transport and pacing.
 For a fresh crawl, save both roster snapshots and the selected commands in a new run directory under `../bigcows-crawler/.cache/`, and use a new cache or Safari run directory instead of reusing historical successes.
 Fetch the distinct nonempty URLs from the selected rosters, retaining the association to each award row.
+The rosters contain independently reviewed DBLP profiles; the CSRankings lookup table instead contains [upstream-generated name links](#csrankings-dblp-link-generation).
+When an approved check includes those CSRankings links, retain each exact source key and generated request URL alongside the response's final URL, capture time and identity findings.
+Compare resolved author identities using the available captures; a `/pers/hd/` URL and a `/pid/` URL can identify the same author despite different spellings.
+Do not infer agreement or conflict from the URL strings alone, advance an award capture date from a CSRankings-only fetch, or replace the lookup table's generated URL with a redirect destination or reviewed roster URL.
 The Safari runner binds a run directory to one stable input snapshot; for a combined crawl, prepare one deduplicated input CSV containing `name` and `dblp_profile`, or use separate run directories for the two rosters.
 Begin with a paced pilot and resume with the original input.
 
@@ -93,7 +97,7 @@ Before importing, check the retained HTML, capture timestamp and hash, final URL
 Update reviewed URLs, crawl dates and quality fields in the award rosters; there is no separate canonical DBLP CSV to rebuild.
 Apply shared-URL decisions consistently across both rosters, even during a single-roster refresh.
 Retain rejected URLs and rationale in the review evidence, and record removals or unresolved cases in Data Notes.
-Check dependent CSRankings links after a URL change or removal.
+Reassess conflicting CSRankings evidence after an award URL change or removal, preserving the CSRankings-generated link even when it is wrong.
 Validate the [schema and ordering rules](#data-layout), preserve unrelated fields, and record coverage and inspection limits before describing the refresh as complete.
 
 ### Other Fetching Commands
@@ -466,12 +470,10 @@ Preserve documented historical records absent from those sources using the retai
 Remove unreferenced keys and sort by case-insensitive name with the exact name as a tie-breaker.
 Record synchronization time in Data Notes; do not add a `crawl_date` column to this lookup table.
 Profile capture dates and CSRankings name-alignment dates remain in the award rosters, while source-download timestamps remain in the crawler evidence.
-Copy the linked recipient's normalized DBLP URL only after checking agreement across shared recipients and known identity conflicts; a quality flag alone does not determine whether to retain a URL.
-Exclude exact URLs classified as `identity_mismatch` in the [DBLP review](docs/dblp_profile_quality_2026-09-17.csv), unless later documented identity evidence supersedes that finding.
-Match reviewed URLs, not historical award-name spellings, and do not copy known wrong-person URLs into the lookup table even when the award roster retains them.
-Other `N` categories do not automatically imply a different person or removal.
-The accepted UCLA key `Wei Wang 0010` initially had a blank table DBLP field because the roster URL identified the HKUST namesake, as documented in the [broader review](docs/csrankings_broader_alignment_2026-09-18.md).
-The [full profile review](docs/check_profiles_full_2026-09-18.md) subsequently accepted the UCLA bibliography `https://dblp.org/pid/w/WeiWang` for both the roster and lookup table.
+Generate `dblp_profile` from that row's original CSRankings name using the [upstream-compatible generator](#csrankings-dblp-link-generation).
+Never copy the award roster's DBLP URL, clear the generated link because of a quality or identity finding, or substitute its redirect destination.
+Preserve discrepancies as source evidence, including known upstream errors; apply reviewed profile corrections only to the authorized award-roster fields.
+Earlier reports describing roster-derived URLs or blank exceptions in this table are historical and are superseded by this generation policy.
 Validate exact key coverage, uniqueness and source fields, retain input snapshots and a validation report in the shared cache, and preserve both award rosters and generated visualizations.
 
 The corrected September 18 table contains 829 unique keys, including five retained historical profiles; see the [PR review corrections](docs/data_notes.md#2026-09-18-0742-edt---correct-csrankings-identity-links-from-pr-review).
@@ -495,6 +497,35 @@ For each selected name, conflicting upstream rows are rejected even when one mat
 Conflicting duplicate names in historical input are also rejected instead of silently choosing the last row.
 Record the selected source snapshots and any legitimate changes in Data Notes.
 
+### CSRankings DBLP Link Generation
+
+The 26 upstream faculty files contain `name`, `affiliation`, `homepage`, `scholarid` and `orcid`; they do not contain a DBLP URL column.
+CSRankings constructs its own DBLP link from each name when loading the website.
+Our `dblp_profile` column reproduces that generated link, independently of the award rosters, and preserves upstream meaning even when the link is wrong or unavailable.
+This is a deterministic derivation, not a crawl, successful identity verification or an upstream PID field.
+
+`scripts/csrankings_dblp.py` follows CSRankings commit `b2e76bcec658a429c26011530767528839d524df`: [name loading](https://github.com/emeryberger/CSrankings/blob/b2e76bcec658a429c26011530767528839d524df/src/data-loader.ts#L100-L113), [campus-note matching](https://github.com/emeryberger/CSrankings/blob/b2e76bcec658a429c26011530767528839d524df/src/config.ts#L275-L276), and [URL construction](https://github.com/emeryberger/CSrankings/blob/b2e76bcec658a429c26011530767528839d524df/src/utils.ts#L40-L70).
+It trims the conversion input and removes bracketed campus notes, preserving the exact source `name` cell and numeric disambiguators.
+It follows upstream punctuation, suffix and percent-encoding rules and uses the named-reference data from the bundled `he` 1.2.0 encoder, with its license retained in `scripts/data/he-LICENSE.txt`.
+The resulting URL retains `/pers/hd/` form; for example, `Kai Li 0001` becomes `https://dblp.org/pers/hd/l/Li_0001:Kai`.
+
+Check existing links without writes or network access:
+
+```bash
+python scripts/csrankings_dblp.py
+```
+
+After an authorized table synchronization or generation-policy update, replace only its DBLP column:
+
+```bash
+python scripts/csrankings_dblp.py --write
+```
+
+This command preserves all five original fields, row order and table membership; it does not read or modify either award roster, resolve redirects, or update any dates.
+When source code changes upstream, explicitly review the conversion and update the pinned implementation and regression examples rather than silently changing link semantics.
+Use the [DBLP acquisition instructions](#review-and-import-dblp-data) to inspect redirect destinations within an approved evidence scope.
+Record materially conflicting identities in the audit without repairing the CSRankings-derived URL; established upstream errors are non-actionable once the person's association is independently supported.
+
 ## CSRankings DBLP Alignment
 
 `scripts/build_csrankings_profiles.py` is the legacy builder from known DBLP profiles and cached CSRankings shards.
@@ -502,13 +533,14 @@ It defaults to `../bigcows-crawler/.cache/csrankings-legacy-profiles.csv` and re
 It does not preserve explicit accepted name links or historical exceptions.
 Use the synchronization procedure above for canonical updates; the following documents the legacy implementation for investigation and future migration.
 It matches each DBLP-linked award recipient's roster name against CSRankings names; it does not fetch DBLP pages or read their parsed author names.
+Its selected rows now also use CSRankings-generated DBLP links; the legacy name-selection process remains unsuitable for canonical synchronization.
 
 The script:
 
 - reads `../bigcows-crawler/.cache/csrankings/csrankings-[a-z].csv`;
 - reads `data/acm_fellows.csv` and `data/turing_award_winners.csv`;
 - normalizes DBLP links to HTTPS without `.html`, query strings or fragments, then deduplicates nonempty URLs, using the Fellows roster's name first for shared URLs;
-- loops through those roster names and includes a DBLP URL only when its name matches exactly one CSRankings row;
+- loops through those roster names and selects a source row only when the name matches exactly one CSRankings row, then generates the output DBLP link from the source name;
 - preserves the original CSRankings columns;
 - appends `dblp_profile`;
 - writes `../bigcows-crawler/.cache/csrankings-profiles-report.json` with input roster paths, included, unmatched DBLP, and ambiguous DBLP counts.
@@ -578,7 +610,8 @@ The total counts cover the whole input, but `unmatched_sample` includes at most 
 Output order follows the deduplicated roster traversal: Fellows first, then Turing-only URLs; it is not a global alphabetical sort.
 
 When asked to check or validate CSRankings profiles, first join both rosters by exact `csrankings_name` and verify that every populated key resolves exactly once and every table row is referenced.
-Then normalize DBLP URLs as the builder does and flag conflicting URLs or suspicious identity associations, allowing documented blank-field exceptions.
+Validate the DBLP field against the upstream-compatible name generator, independently of the roster's reviewed URL and quality.
+When retained captures or an approved refresh establish a redirect destination, compare author identity with the reviewed roster profile and flag material conflicts; different URL spellings alone are not identity conflicts.
 Names should match modulo minor variations such as accent characters, diacritics, periods, punctuation, initials, spacing, hyphens, and capitalization.
 For suspicious rows, report the CSRankings name, award-roster name, affiliation, DBLP URL, and why the identity is doubtful.
 Include the DBLP page's author name only when a retained capture or separate inspection supplies it, and label it distinctly from the roster name.
@@ -738,7 +771,7 @@ The snapshot check deliberately fails when generated datasets lag the CSVs; do n
 For canonical-data and builder validation during that deferral, run:
 
 ```bash
-PYTHONPATH=tests python -B -m unittest test_csrankings_rosters test_scholar_citation_data.CitationDataTests test_university_analysis test_profile_provenance test_profile_validation -v
+PYTHONPATH=tests python -B -m unittest test_csrankings_rosters test_csrankings_dblp test_scholar_citation_data.CitationDataTests test_university_analysis test_profile_provenance test_profile_validation -v
 ```
 
 These checks build Scholar joins in memory without writing visualization files.
@@ -747,7 +780,8 @@ Accepted links without an imported capture may have blank capture dates and miss
 When a Scholar statistics row exists, its capture date must equal the referring roster's Scholar capture date.
 The canonical checks also enforce roster and CSRankings ordering, original CSRankings source-field hashes, the current capture/import queue and exact-name affiliation joins.
 Shared recipients are identified by normalized ACM recipient IDs before comparing publication URLs, quality flags, capture dates and CSRankings links/dates across awards; missing ACM identities are not inferred from names alone.
-Derived CSRankings DBLP fields must agree with the normalized roster URLs, except that documented wrong-person URLs from the identity review require blank lookup fields, as with Kai Li.
+Derived CSRankings DBLP fields must exactly match the upstream-compatible name generator, even when roster URLs differ, are blank, or have quality N.
+Tests preserve this independence and cover accents, campus notes, suffixes, disambiguators and generated-link checks without fetching profiles.
 CSRankings alignment dates must be valid `YYYY-MM-DD` values when a name link is present and blank when it is absent; a key cannot be assigned to two recipients within one roster.
 For visualization changes, also run the JavaScript checks in the [visualization workflow](#google-scholar-citation-visualization).
 Before completing an edit, check `git diff --check`, canonical ordering, preservation of unrelated data, and any applicable report totals.

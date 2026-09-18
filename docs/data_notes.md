@@ -14,6 +14,27 @@ A low quality rating or failed latest fetch does not mean that a URL cell is bla
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
+## 2026-09-18 15:11 EDT - Preserve CSRankings-Generated DBLP Links
+
+At the user's request, changed the meaning of `dblp_profile` in `data/csrankings_profiles.csv` to CSRankings' own name-generated DBLP link, independently of our reviewed award-roster URLs.
+The upstream faculty CSVs have no DBLP URL column; their website constructs a `/pers/hd/` link from each source name.
+This supersedes earlier table synchronization rules that copied award URLs or left blank exceptions for known identity mismatches.
+Historical reports retain their original findings, but their roster-derived DBLP agreement is not independent corroboration.
+
+Added an offline generator matching CSRankings commit `b2e76bcec658a429c26011530767528839d524df`, including [name loading](https://github.com/emeryberger/CSrankings/blob/b2e76bcec658a429c26011530767528839d524df/src/data-loader.ts#L100-L113), campus-note removal, numeric disambiguators and [URL construction](https://github.com/emeryberger/CSrankings/blob/b2e76bcec658a429c26011530767528839d524df/src/utils.ts#L40-L70).
+Retained the bundled `he` 1.2.0 encoder's named-reference data and MIT license so accents and entity spellings match without a network dependency.
+Evaluating the actual upstream JavaScript with its bundled encoder confirmed exact agreement for all 829 source names and additional edge-case examples.
+Changed exactly the 829 DBLP cells; preserved all five original source fields, 829-row membership, order and the source-field manifest.
+Both award CSVs, all profile dates and quality ratings, Scholar statistics, the capture queue and both visualization snapshots are unchanged.
+
+Updated DBLP acquisition, table synchronization, validation and both profile skills to preserve generated source links, recording redirect destinations and identity conflicts as evidence instead of repairing the source-derived field.
+The legacy candidate builder now generates these links too, while remaining prohibited from replacing the canonical table.
+The current review index warns that saved historical checkpoint writers must adopt the new generation policy before resuming.
+No profile pages were fetched, redirects resolved or identities re-reviewed in this change; generated links do not establish availability, identity or quality.
+
+All 30 targeted tests pass, including upstream conversion examples, independent roster/source associations, source-field preservation, check-only behavior and idempotent updates.
+CSV structure, local Markdown links and anchors, both skill validators and `git diff --check` pass.
+
 ## 2026-09-18 14:51 EDT - Additional Cross-Table and Provenance Checks
 
 Added persistent validation of derived CSRankings DBLP associations against the award rosters, preserving documented wrong-identity exclusions such as Kai Li's blank derived association.

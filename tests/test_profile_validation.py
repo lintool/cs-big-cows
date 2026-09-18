@@ -30,9 +30,7 @@ class ProfileValidationTests(unittest.TestCase):
         for rows in rosters.values():
             validate_alignment_dates(rows)
         self.assertGreater(validate_shared_recipients(rosters), 0)
-        rejected = [row["dblp_profile"] for row in read(ROOT / "docs/dblp_profile_quality_2026-09-17.csv")
-                    if row["category"] == "identity_mismatch"]
-        validate_derived_dblp_links(rosters, read(ROOT / "data/csrankings_profiles.csv"), rejected)
+        validate_derived_dblp_links(rosters, read(ROOT / "data/csrankings_profiles.csv"))
 
     def test_shared_person_profiles_cannot_diverge(self):
         fellow = recipient()
@@ -58,22 +56,19 @@ class ProfileValidationTests(unittest.TestCase):
             with self.subTest(name=name, value=value), self.assertRaises(ValueError):
                 validate_alignment_dates([recipient(csrankings_name=name, csrankings_name_alignment_date=value)])
 
-    def test_derived_dblp_requires_agreement_except_documented_exclusions(self):
+    def test_csrankings_dblp_is_independent_of_reviewed_roster_links(self):
         roster = recipient()
-        table = {"name": "Alice Person", "dblp_profile": "http://dblp.org/pid/1/2.html#ref"}
-        validate_derived_dblp_links({"fellows": [roster]}, [table], [])
-        for wrong in ["https://dblp.org/pid/9/9", ""]:
-            with self.subTest(wrong=wrong), self.assertRaisesRegex(ValueError, "Derived DBLP mismatch"):
-                validate_derived_dblp_links({"fellows": [roster]}, [dict(table, dblp_profile=wrong)], [])
-        rejected = ["http://dblp.org/pid/1/2.html"]
-        validate_derived_dblp_links({"fellows": [roster]}, [dict(table, dblp_profile="")], rejected)
-        with self.assertRaisesRegex(ValueError, "Derived DBLP mismatch"):
-            validate_derived_dblp_links({"fellows": [roster]}, [table], rejected)
+        table = {"name": "Alice Person", "dblp_profile": "https://dblp.org/pers/hd/p/Person:Alice"}
+        for profile, quality in [("https://dblp.org/pid/1/2", "Y"), ("https://dblp.org/pid/9/9", "N"), ("", "N")]:
+            validate_derived_dblp_links({"fellows": [dict(roster, dblp_profile=profile, dblp_profile_quality=quality)]}, [table])
+        for wrong in ["https://dblp.org/pid/1/2", "", "http://dblp.org/pers/hd/p/Person:Alice"]:
+            with self.subTest(wrong=wrong), self.assertRaisesRegex(ValueError, "CSRankings-generated DBLP mismatch"):
+                validate_derived_dblp_links({"fellows": [roster]}, [dict(table, dblp_profile=wrong)])
 
     def test_csrankings_key_cannot_be_reused_within_one_roster(self):
-        table = [{"name": "Alice Person", "dblp_profile": "https://dblp.org/pid/1/2"}]
+        table = [{"name": "Alice Person", "dblp_profile": "https://dblp.org/pers/hd/p/Person:Alice"}]
         with self.assertRaisesRegex(ValueError, "Repeated CSRankings key"):
-            validate_derived_dblp_links({"fellows": [recipient(), recipient(name="Someone Else")]}, table, [])
+            validate_derived_dblp_links({"fellows": [recipient(), recipient(name="Someone Else")]}, table)
 
 
 if __name__ == "__main__":

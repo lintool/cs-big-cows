@@ -4,6 +4,9 @@ This is the current progress and open-work index for the September 18, 2026 revi
 The [detailed report](check_profiles_full_2026-09-18.md) retains historical observations and the 18 explicit user dispositions.
 The full roster review is incomplete; recorded initial inspection is not equivalent to a completed service audit or a fresh capture.
 No new crawl or source refresh is authorized by maintaining this index.
+The lookup table now preserves [CSRankings-generated DBLP links](../README_FOR_AGENTS.md#csrankings-dblp-link-generation), independently of reviewed award links.
+Historical audits and saved resume scripts used roster-derived lookup URLs; update any such writer to regenerate from source names before applying another checkpoint.
+Do not restore their old DBLP cells or blank exceptions, and do not treat their agreement with award URLs as independent corroboration.
 
 ## Progress
 

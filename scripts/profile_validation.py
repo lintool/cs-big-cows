@@ -1,6 +1,10 @@
 """Read-only checks for reviewed profile associations across canonical tables."""
 from datetime import date
 from urllib.parse import urlsplit
+try:
+    from csrankings_dblp import csrankings_dblp_url
+except ModuleNotFoundError:
+    from scripts.csrankings_dblp import csrankings_dblp_url
 
 
 def normalize_dblp_url(value):
@@ -63,14 +67,16 @@ are deliberately not inferred from names or publication-profile links.
     return compared
 
 
-def validate_derived_dblp_links(rosters, profiles, rejected_urls):
-    """Require roster agreement, retaining blanks for documented wrong-person URLs."""
+def validate_derived_dblp_links(rosters, profiles):
+    """Require upstream-generated links and exact key coverage, not roster URLs."""
     by_name = {}
     for profile in profiles:
         if profile["name"] in by_name:
             raise ValueError(f"Duplicate CSRankings key: {profile['name']}")
         by_name[profile["name"]] = profile
-    rejected = {normalize_dblp_url(url) for url in rejected_urls if url}
+        expected = csrankings_dblp_url(profile["name"])
+        if profile["dblp_profile"] != expected:
+            raise ValueError(f"CSRankings-generated DBLP mismatch for {profile['name']}: expected {expected!r}")
     referenced = set()
     for roster, rows in rosters.items():
         roster_keys = set()
@@ -84,11 +90,5 @@ def validate_derived_dblp_links(rosters, profiles, rejected_urls):
             referenced.add(key)
             if key not in by_name:
                 raise ValueError(f"Missing CSRankings key: {key}")
-            expected = normalize_dblp_url(row["dblp_profile"])
-            if expected in rejected:
-                expected = ""
-            actual = normalize_dblp_url(by_name[key]["dblp_profile"])
-            if actual != expected:
-                raise ValueError(f"Derived DBLP mismatch for {key}: expected {expected!r}, got {actual!r}")
     if referenced != set(by_name):
         raise ValueError(f"Unreferenced CSRankings keys: {sorted(set(by_name) - referenced)}")
