@@ -3,6 +3,7 @@
 Completed 2026-09-17 21:32 EDT.
 
 This report and its row audit assess Scholar profiles using the evidence available at that time.
+Recipient names retain their review-time forms from before the directory reconciliation; use the canonical roster for current names.
 DBLP is assessed separately in the later [DBLP review](dblp_profile_quality_2026-09-17.md); its removals do not change these Scholar judgments.
 The [maintenance policy](../README_FOR_AGENTS.md#publication-profile-quality) defines the shared criteria; the sections below preserve this assessment's scope and decisions.
 

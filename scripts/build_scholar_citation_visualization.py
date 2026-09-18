@@ -95,7 +95,7 @@ def render_data_script(data: dict[str, Any]) -> str:
     payload = payload.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     return (
         "// Generated citation dataset; do not edit by hand.\n"
-        "// Rebuild with scripts/build_scholar_citation_visualization.py.\n"
+        f"// Rebuild default inputs with python scripts/build_scholar_citation_visualization.py --award {data['metadata']['award']}\n"
         f"window.SCHOLAR_DATA = {payload};\n"
     )
 

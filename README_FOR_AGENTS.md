@@ -1,12 +1,14 @@
-# README For Agents
+# README for Agents
 
 Follow [AGENTS.md](AGENTS.md) for documentation audiences.
+Follow its [ACM source-of-truth policy](AGENTS.md#acm-source-of-truth) for award reconciliation and evidence-backed exceptions.
 [README.md](README.md) is the human entry point; this file owns application maintenance workflows and constraints.
 Keep dataset provenance, reconciliation history, and deliberate source differences in [Data Notes](docs/data_notes.md).
 
 Use the [award field dictionary](#award-roster-fields) for CSV meaning, [missing-profile definitions](#missing-profiles-and-review-status) for coverage questions, and [quality criteria](#publication-profile-quality) for matching and rating decisions.
 Canonical CSVs contain the current stored values; dated reports and Data Notes explain the evidence and decisions at each batch's completion.
 Read later decisions before using an older report as an import source.
+The [finalized-award-CSV instruction](AGENTS.md#finalized-award-csvs) limits the import workflows below to explicitly requested future data changes.
 
 This repository owns canonical data, application-specific joins, analysis, and visualization.
 All crawlers live in [bigcows-crawler](https://github.com/lintool/bigcows-crawler).
@@ -176,6 +178,7 @@ Do not use `--output data/google_scholar_profiles.csv` as the review or import s
 
 The ACM crawlers never update canonical CSVs.
 Verify the person and award using the captured HTML, and inspect exact differences as well as name compatibility.
+Profile headings often use given-name-first order; preserve the directory-based canonical name unless the [source policy](AGENTS.md#acm-source-of-truth) supports a documented correction.
 Use successful captures as evidence; preserve existing values when source fields are blank, truncated, malformed, or otherwise less accurate.
 A recent fetch is not automatically more authoritative than the reviewed CSV.
 Set `acm_fellow_profile_crawl_date` from the accepted capture's UTC date, including when review confirms that the existing award fields should remain unchanged.
@@ -200,7 +203,7 @@ Each row represents a recipient in that award roster; a person who received both
 
 | Field | Meaning |
 | --- | --- |
-| `name` | Clean recipient name, preserving reviewed spelling and punctuation. |
+| `name` | Literal surname-first name from the corresponding ACM award directory unless a documented, evidence-backed exception applies. |
 | `year` | Fellowship class year or Turing Award year, depending on the roster; not the announcement year. |
 | `location` | Reviewed ACM location text; a directory region may remain when no more specific profile location is available. |
 | `citation` | ACM award citation describing the recognized contributions; unrelated to Scholar citation counts. |
@@ -213,11 +216,23 @@ Each row represents a recipient in that award roster; a person who received both
 | `google_scholar_profile_crawl_date` | Accepted capture's UTC date for the stored Scholar URL, or blank when unavailable. |
 | `google_scholar_profile_quality` | Required `Y` or `N` under the publication-quality criteria below. |
 
-Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP` in `name`.
+For both award rosters, use the corresponding directory's literal surname-first display names by default, subject to the [ACM source-of-truth policy](AGENTS.md#acm-source-of-truth).
+Convert HTML entities and rendered whitespace to ordinary text; override directory spelling, initials or name order only when cited evidence establishes an obvious error, and document the exception.
+The eleven confirmed historical Fellows absent from the current directory retain their previously reviewed names as documented exceptions; see the [directory reconciliation](docs/acm_directory_reconciliation_2026-09-17.md).
+The seven [supported name corrections](docs/acm_directory_reconciliation_2026-09-17.md#subsequent-review-of-obvious-name-errors) are accepted exceptions; preserve them on future imports, including the single-name form `Arvind`.
+Do not substitute an individual profile's heading or honorifics for the directory display name.
 For Turing rows, `acm_fellow_profile` and its crawl date refer to the Turing recipient's ACM page; always select `--award turing` when crawling or comparing this dataset.
 There is no ACM profile quality field.
 There is no separate canonical `data/acm_fellow_profiles.csv` or `data/dblp_profiles.csv`; profile links belong in the award rosters.
 The distinct nonempty DBLP URLs across both rosters define the known DBLP profiles used by the CSRankings builder.
+
+### Historical Review Artifacts
+
+Dated reports and row-audit CSVs under `docs/` retain the names, URLs, fields and counts used in their review batch.
+Many precede the surname-first directory reconciliation, so differences from current roster names or profile links are expected.
+Preserve that evidence instead of renaming historical rows or treating an old link as a current association.
+Likewise, references to removed tables or former visualization paths describe the repository at the time of that work.
+Use the canonical award CSVs for current values and later Data Notes entries for superseding decisions.
 
 ### Missing Profiles and Review Status
 
@@ -336,7 +351,8 @@ In contrast, `data/csrankings_profiles.csv` uses `crawl_date` for the alignment 
 ### Award CSV Sort Order
 
 Keep both `data/acm_fellows.csv` and `data/turing_award_winners.csv` sorted by numeric `year` descending, then by the full `name` field ascending using Python's `str.lower()` for case-insensitive comparison.
-Compare the full name as stored, starting with the given name; do not extract or sort by surname.
+Compare the full name as stored: directory-listed names in both rosters generally start with the surname, `Arvind` is a single name, and the eleven historical Fellows exceptions retain given-name-first order.
+Do not extract a separate surname sort key for the CSV.
 Preserve spelling, capitalization, punctuation, and accents in the CSV cells; lowercasing is only part of the comparison key, with no other normalization or locale-specific collation.
 Use a stable sort so rows with equal keys keep their relative order:
 
@@ -344,15 +360,21 @@ Use a stable sort so rows with equal keys keep their relative order:
 rows.sort(key=lambda row: (-int(row["year"]), row["name"].lower()))
 ```
 
-## ACM Fellows Directory
+## ACM Award Directories
 
-The ACM Fellows directory is the source list for all ACM Fellows:
+### ACM Fellows Directory
+
+The ACM Fellows directory is the default source for recipient discovery and reconciliation:
 
 ```text
-https://awards.acm.org/fellows/award-recipients
+https://awards.acm.org/fellows/award-recipients?year=2025&award=158&region=&submit=Submit&isSpecialCategory=
 ```
 
 Use this page to discover new ACM Fellows before running profile-page enrichment.
+Select the requested class with `year`, keeping `award=158`, and work backward through 1994 for a full historical reconciliation.
+The current directory omits eleven confirmed historical Fellows retained in the CSV; absence alone does not justify deleting a row.
+It also lists deceased recipients, so do not assume that it is a directory of living Fellows only.
+See the [Fellows reconciliation](docs/acm_directory_reconciliation_2026-09-17.md) for coverage and evidence-backed exceptions.
 The directory provides:
 
 - fellow name in `Last, Given` display order;
@@ -363,7 +385,7 @@ The directory provides:
 It does not provide the full citation, DBLP profile, or Google Scholar profile.
 When adding directory-only rows to `data/acm_fellows.csv`, fill what is available:
 
-- `name`: convert `Last, Given` to clean `Given Last`;
+- `name`: preserve literal `Last, Given` directory text, subject to the documented source-policy exceptions;
 - `year`: directory year;
 - `location`: directory region, until the individual profile page provides a more specific location;
 - `acm_fellow_profile`: directory profile URL;
@@ -380,6 +402,19 @@ Inspect the directory separately in regular Safari if direct HTTP requests are b
 ```text
 ../bigcows-crawler/.cache/acm-fellows-directory-scan-YYYY-MM-DD.json
 ```
+
+### Turing Award Directory
+
+Use the same directory endpoint with `award=140` for Turing Award winners:
+
+```text
+https://awards.acm.org/fellows/award-recipients?year=2025&award=140&region=&submit=Submit&isSpecialCategory=
+```
+
+Select each award year with `year` and work backward through 1966 for a full historical reconciliation.
+Apply the same name, field, capture-date and ordering rules to `data/turing_award_winners.csv`; verify individual profiles with `--award turing`.
+The [Turing reconciliation](docs/turing_directory_reconciliation_2026-09-17.md) matched all 81 recipients and years, with no missing directory entries or blank stored ACM links.
+Match modern and legacy ACM recipient URLs using the final recipient ID, allowing alphanumeric IDs, case differences and the legacy `.cfm` suffix; verify the person and award before accepting a changed URL.
 
 ## CSRankings DBLP Alignment
 
@@ -433,6 +468,8 @@ name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
 
 The matching policy is conservative.
 The script normalizes names by ignoring case, punctuation, diacritics, common honorifics, suffixes, and excess whitespace.
+It converts comma-separated surname-first directory names to given-name-first order for matching, while recognizing trailing suffixes such as `John Smith, Jr.`.
+It removes a trailing degree such as `Ph.D.` as a complete credential, preserving standalone initials such as `D.` for identity matching.
 It prefers exact normalized name matches, falling back to compatible first-name/initial, surname and middle-name checks.
 The fallback rejects cases where only one name has middle tokens and checks spelled-out middle tokens for compatibility; it is stricter than matching just first and last initials.
 It excludes unmatched and ambiguous rows instead of writing weak guesses.
@@ -551,6 +588,7 @@ Unavailable metrics and crawl dates stay `null`, and missing citation histories 
 `hasScholar` indicates a joined row with citation-by-year data, not merely the presence of a profile URL.
 The renderer also hides scalar metrics when `hasScholar` is false, even if a joined source record contains all-time totals.
 Do not hand-edit the generated data file.
+Newly generated files include a rebuild hint selecting the corresponding award and its default inputs; custom input or output paths must still be supplied explicitly.
 
 Use a scratch output to inspect current CSV joins without updating the displayed snapshot:
 
@@ -572,11 +610,12 @@ Presentation changes do not require rebuilding data.
 See [Data Notes](docs/data_notes.md) for the history of imported Scholar statistics and displayed snapshots, capture dates, missing links and known attribution concerns.
 
 The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
+Search accepts a directory name in its stored surname-first order or given-name-first order, ignoring case, commas and repeated whitespace.
 Recipient names link directly to their Google Scholar profiles when available; names without a profile stay plain text.
 Under each title, the source note is followed by an initially collapsed, keyboard-accessible About the Data panel containing total coverage counts, the filtered row count, the displayed year range, and links to the award CSV, shared Scholar statistics CSV, and data notes.
 Search and the missing-data toggle remain visible outside the panel.
 Display order defaults to award year descending, then last name ascending, without changing canonical CSV or generated data order.
-Last-name sorting uses the final name token, excluding suffixes Jr., Sr., II, III, and IV, with the full name breaking ties.
+Last-name sorting uses the text before the comma for surname-first directory names, or the final name token for given-name-first names, excluding suffixes Jr., Sr., II, III, and IV, with the full name breaking ties.
 Year, Name, Citations, and h-index headers toggle sorting; Name starts ascending, and numeric columns start descending.
 Unavailable metrics remain last in either direction, and sorting persists while filtering.
 Citations and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
@@ -588,7 +627,7 @@ Years absent from a recipient's history appear as empty bars; the underlying dat
 The current hover text renders absent years as zero, so consult `citationByYear` to distinguish a recorded zero from a missing year.
 A missing or unsupported data script produces a visible error instead of an empty page.
 
-Check award selection, canonical joins, missing-data semantics, renderer controls, and JavaScript syntax:
+After authorized regeneration, check snapshot synchronization, award selection, canonical joins, renderer controls and JavaScript syntax:
 
 ```bash
 python -B -m unittest discover -s tests -p 'test_scholar_citation_data.py'
@@ -598,9 +637,10 @@ node --check turing_scholar_data.js
 node --check scholar_visualization.js
 ```
 
-After changing data, verify the generated row counts, missing-data semantics and actual crawl dates, then inspect the page directly from disk.
+When regeneration is authorized after changing data, verify the generated row counts, missing-data semantics and actual crawl dates, then inspect the page directly from disk.
 After changing rendering, check author search, the missing-data toggle and the empty-result state.
-Commit the generated data file when refreshing its source data; include HTML and rendering code only when those change.
+Include regenerated data files when publishing a refreshed visualization; include HTML and rendering code only when those change.
+While regeneration is deferred under [AGENTS.md](AGENTS.md#visualization-regeneration), preserve both generated datasets, use the [canonical-data validation](#repository-validation) below instead of the snapshot check, and run the JavaScript checks when rendering changes.
 
 ## Repository Validation
 
@@ -611,6 +651,15 @@ python -B -m unittest discover -s tests -v
 ```
 
 It checks the current published snapshots as well as builder behavior, roster field order, quality values and shared-profile dates.
+The snapshot check deliberately fails when generated datasets lag the CSVs; do not weaken it or regenerate files solely to make it pass while the user has deferred regeneration.
+For canonical-data and builder validation during that deferral, run:
+
+```bash
+PYTHONPATH=tests python -B -m unittest test_csrankings_rosters test_scholar_citation_data.CitationDataTests -v
+```
+
+These checks build Scholar joins in memory without writing visualization files.
+Run the full suite after authorized regeneration and report snapshot synchronization separately until then.
 The current-data check requires a capture date for every stored profile URL; the schema permits blank dates while new links await capture, but such work is incomplete for the fully captured snapshot checked by this suite.
 For visualization changes, also run the JavaScript checks in the [visualization workflow](#google-scholar-citation-visualization).
 Before completing an edit, check `git diff --check`, canonical ordering, preservation of unrelated data, and any applicable report totals.

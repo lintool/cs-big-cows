@@ -48,8 +48,6 @@ SUFFIXES = {
     "iii",
     "iv",
     "phd",
-    "ph",
-    "d",
     "dphil",
 }
 PARTICLES = {"al", "bin", "da", "de", "del", "den", "der", "di", "du", "la", "le", "van", "von"}
@@ -86,6 +84,14 @@ def strip_accents(value: str) -> str:
 
 
 def name_tokens(value: str) -> list[str]:
+    # Strip the complete trailing credential before punctuation splits Ph.D.
+    # into tokens; a standalone D is a person's initial, not a suffix.
+    value = re.sub(r"(?:,\s*|\s+)(?:ph\.?\s*d\.?|dphil)\s*$", "", value, flags=re.IGNORECASE)
+    if "," in value:
+        surname, given = value.split(",", 1)
+        # Keep ordinary trailing suffixes in place (e.g. "John Smith, Jr.").
+        if not re.fullmatch(r"(?:jr\.?|sr\.?|ii|iii|iv|ph\.?d\.?|dphil)", given.strip(), re.IGNORECASE):
+            value = f"{given} {surname}"
     text = strip_accents(value).lower()
     text = re.sub(r"[^\w\s-]", " ", text)
     text = text.replace("-", " ")

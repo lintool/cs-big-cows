@@ -5,6 +5,9 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 
 ## Data
 
+**The ACM awards directory is the source of truth unless evidence shows it is obviously wrong.**
+See the [source policy](AGENTS.md#acm-source-of-truth), [Fellows reconciliation and exceptions](docs/acm_directory_reconciliation_2026-09-17.md), and [Turing Award reconciliation](docs/turing_directory_reconciliation_2026-09-17.md).
+
 - [ACM Fellows](data/acm_fellows.csv): canonical dataset, including ACM, DBLP, and Google Scholar profile links and crawl dates.
 - [Turing Award winners](data/turing_award_winners.csv): canonical dataset with profile links and crawl dates, organized by award year.
 - [Google Scholar profiles](data/google_scholar_profiles.csv): profile links, affiliations, interests, and citation statistics for ACM Fellows and Turing Award winners.
@@ -15,16 +18,18 @@ Both award tables include Y/N quality assessments for DBLP and Google Scholar pr
 See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and known source differences.
 The [data dictionary](README_FOR_AGENTS.md#data-layout) explains both award schemas, Scholar statistics, joins, dates, and missing values.
 A missing profile means the corresponding URL cell is blank; always distinguish ACM, DBLP, and Scholar when reporting coverage.
-A quality rating of `N` can describe either a missing link or a poor linked profile, while a crawl date records when a page was captured.
+A quality rating of `N` can describe either a missing link or a poor linked profile.
+Profile crawl dates record accepted page captures; the CSRankings `crawl_date` instead records the alignment build date.
 
 ## Visualizations
 
 Start at the [visualization landing page](https://lintool.github.io/acm-bigcows/).
 Explore separate citation timelines for [ACM Fellows](https://lintool.github.io/acm-bigcows/acm_fellows.html) and [Turing Award winners](https://lintool.github.io/acm-bigcows/turing_award_winners.html).
+The timelines use generated snapshots and can lag the canonical CSVs; see [Data Notes](docs/data_notes.md) for imports and deferred regeneration.
 Bars show citations received in each calendar year, not publications produced that year.
 Each person's bars are scaled to their own highest year in the displayed window, so equal-height bars across people can represent different citation counts.
 Citations and h-index show Scholar's reported all-time metrics, which may include known publication-attribution errors documented in the reviews.
-Both timelines show the same 45-year window ending in the current year.
+Both timelines show the same 45-year window ending in the current UTC year.
 An empty bar can mean a reported zero or an absent year in the captured history; it does not establish zero citations.
 Recipients without citation histories are hidden by default; use **Show missing Scholar data** to include them.
 Click **Year**, **Name**, **Citations**, or **h-index** to sort, and expand **About the Data** for coverage counts and source links.

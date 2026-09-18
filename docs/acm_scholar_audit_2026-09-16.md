@@ -1,7 +1,7 @@
 # ACM Fellows Scholar Sweep — September 16, 2026
 
 This identity and import audit predates the [Scholar quality assessment](acm_scholar_quality_2026-09-17.md), which applies the tolerant profile-level standard and records the user's four `N` decisions.
-An accepted identity in this audit does not certify publication quality; reference links and export statuses describe this batch's snapshot.
+An accepted identity in this audit does not certify publication quality; recipient names, reference links and export statuses describe this batch's snapshot.
 
 **Import update (2026-09-16 21:21 EDT):** All 1,250 accepted fresh profiles have now been imported and the visualization data refreshed.
 The findings and row-level export statuses below describe the earlier audit snapshot; see [Data Notes](data_notes.md) for the completed import.

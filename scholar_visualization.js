@@ -28,7 +28,7 @@
       ['Without citation data', DATA.rows.length - withData],
     ].map(([label, count]) => `<div><dt>${label}</dt><dd>${fmt(count)}</dd></div>`).join(''));
 
-    d3.select('#search').on('input', event => { state.query = event.target.value.trim().toLowerCase(); render(); });
+    d3.select('#search').on('input', event => { state.query = searchText(event.target.value); render(); });
     d3.select('#showMissing').on('change', event => { state.showMissing = event.target.checked; render(); });
     table.on('click', event => {
       const button = event.target.closest('button[data-sort]');
@@ -45,8 +45,23 @@
     }
 
     function lastName(name) {
+      const comma = name.indexOf(',');
+      if (comma >= 0 && !/^(?:Jr\.?|Sr\.?|II|III|IV)$/i.test(name.slice(comma + 1).trim())) {
+        return name.slice(0, comma).trim();
+      }
       const parts = name.trim().replace(/,?\s+(?:Jr\.?|Sr\.?|II|III|IV)$/i, '').split(/\s+/);
       return parts[parts.length - 1];
+    }
+
+    function searchText(value) {
+      return value.toLowerCase().replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function matchesName(name, query) {
+      if (searchText(name).includes(query)) return true;
+      const comma = name.indexOf(',');
+      if (comma < 0 || /^(?:Jr\.?|Sr\.?|II|III|IV)$/i.test(name.slice(comma + 1).trim())) return false;
+      return searchText(`${name.slice(comma + 1)} ${name.slice(0, comma)}`).includes(query);
     }
 
     function compareNames(a, b) {
@@ -69,7 +84,7 @@
       return DATA.rows.filter(row => {
         if (!state.showMissing && !row.hasScholar) return false;
         if (!state.query) return true;
-        return row.name.toLowerCase().includes(state.query);
+        return matchesName(row.name, state.query);
       }).sort(compareRows);
     }
 

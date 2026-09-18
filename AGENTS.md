@@ -1,5 +1,26 @@
 # Repository Instructions
 
+## ACM Source of Truth
+
+**The ACM awards directory is the source of truth unless there is evidence that it is obviously wrong.**
+Use its award-recipient records and displayed names by default; do not replace them based on preference, familiarity, a different abbreviation or capitalization alone.
+An exception needs concrete, cited evidence identifying the error and the same recipient, preferably from ACM itself, the recipient or their institution.
+Record the directory value, supported alternative, source links and reasoning in [Data Notes](docs/data_notes.md) or a linked review before applying an exception.
+The [Fellows reconciliation](docs/acm_directory_reconciliation_2026-09-17.md) records confirmed historical omissions and the subsequent name-error review.
+The [Turing Award reconciliation](docs/turing_directory_reconciliation_2026-09-17.md) records complete annual coverage and reviewed profile links.
+This authority concerns award data, not independent DBLP or Google Scholar profile quality.
+
+## Finalized Award CSVs
+
+The user has confirmed that `data/acm_fellows.csv` and `data/turing_award_winners.csv` are finalized after reconciliation.
+Do not change their rows, fields or ordering during consistency sweeps, documentation cleanup or code maintenance.
+Further changes to either award CSV require an explicit user request to change that data; general requests to fix repository inconsistencies do not reopen the finalized rows.
+
+## Visualization Regeneration
+
+During the current data-reconciliation work, do not regenerate the visualization datasets unless the user explicitly requests it.
+The user will regenerate them at the end; preserve the checked-in snapshots and distinguish data-validation results from snapshot-synchronization checks while they are deferred.
+
 ## Crawl Artifact Storage
 
 Store all crawl captures and their input snapshots, manifests, state, reports, and logs under the sibling `bigcows-crawler/.cache/`, including custom runs and dry runs that write crawl artifacts.
