@@ -1,5 +1,8 @@
 # Turing Award Google Scholar Review — September 16, 2026
 
+This identity and import audit predates the [Scholar quality assessment](turing_scholar_quality_2026-09-17.md).
+Accepted identities, reference links and publication caveats below describe this batch's snapshot; use the later quality report for `Y`/`N` judgments.
+
 **Visualization update (2026-09-16 22:38 EDT):** Both award visualizations were subsequently regenerated from the reviewed canonical data, including all 40 accepted Turing profiles.
 The pending-regeneration statements below describe the audit-time snapshot; see the [completed visualization update](data_notes.md#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
 

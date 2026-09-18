@@ -5,14 +5,17 @@ Data about ACM Fellows and Turing Award winners: the "big cows" of CS.
 
 ## Data
 
-- [ACM Fellows](data/acm_fellows.csv): canonical dataset, including ACM profile, DBLP, and Google Scholar links and DBLP crawl dates.
-- [Turing Award winners](data/turing_award_winners.csv): canonical dataset with profile links and DBLP crawl dates, organized by award year.
+- [ACM Fellows](data/acm_fellows.csv): canonical dataset, including ACM, DBLP, and Google Scholar profile links and crawl dates.
+- [Turing Award winners](data/turing_award_winners.csv): canonical dataset with profile links and crawl dates, organized by award year.
 - [Google Scholar profiles](data/google_scholar_profiles.csv): profile links, affiliations, interests, and citation statistics for ACM Fellows and Turing Award winners.
-- [CSRankings profiles](data/csrankings_profiles.csv): faculty rows that align to known DBLP profiles.
+- [CSRankings profiles](data/csrankings_profiles.csv): faculty rows matched by name to award recipients with stored DBLP links.
 
 The CSVs are ready to download or use from a clone.
+Both award tables include Y/N quality assessments for DBLP and Google Scholar profiles; see the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), and [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) for criteria, findings, and inspection limits.
 See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and known source differences.
-The [data dictionary](README_FOR_AGENTS.md#google-scholar-statistics) explains Scholar fields, joins, dates, and missing values.
+The [data dictionary](README_FOR_AGENTS.md#data-layout) explains both award schemas, Scholar statistics, joins, dates, and missing values.
+A missing profile means the corresponding URL cell is blank; always distinguish ACM, DBLP, and Scholar when reporting coverage.
+A quality rating of `N` can describe either a missing link or a poor linked profile, while a crawl date records when a page was captured.
 
 ## Visualizations
 
@@ -46,6 +49,7 @@ Fetching is handled by the shared [bigcows-crawler repository](https://github.co
 It stores pages and reports in its local, Git-ignored `.cache/`; this repository owns the reviewed datasets and analysis.
 ACM profile fetching uses Safari on macOS and does not edit the CSVs automatically.
 Scholar updates follow a [fresh-capture, identity-review, and import workflow](README_FOR_AGENTS.md#review-and-import-google-scholar-data) before the visualization data is regenerated.
+DBLP updates follow a [separate reviewed import](README_FOR_AGENTS.md#review-and-import-dblp-data) into the award rosters.
 
 See [README_FOR_AGENTS.md](README_FOR_AGENTS.md) for maintenance workflows, application-specific crawler commands, and data-review rules.
 [AGENTS.md](AGENTS.md) defines the documentation policy.

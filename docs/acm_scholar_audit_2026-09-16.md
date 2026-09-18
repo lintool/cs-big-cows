@@ -1,5 +1,8 @@
 # ACM Fellows Scholar Sweep — September 16, 2026
 
+This identity and import audit predates the [Scholar quality assessment](acm_scholar_quality_2026-09-17.md), which applies the tolerant profile-level standard and records the user's four `N` decisions.
+An accepted identity in this audit does not certify publication quality; reference links and export statuses describe this batch's snapshot.
+
 **Import update (2026-09-16 21:21 EDT):** All 1,250 accepted fresh profiles have now been imported and the visualization data refreshed.
 The findings and row-level export statuses below describe the earlier audit snapshot; see [Data Notes](data_notes.md) for the completed import.
 
@@ -11,7 +14,7 @@ Found seven additional wrong-person or mixed-person associations, verified two r
 The resulting dataset has **1,250 distinct linked profiles with fresh captures and supported identities**, plus **388 blank Scholar fields**.
 A blank field is a coverage gap, not proof that a public profile does not exist.
 No historical record was used as a substitute for a rejected profile.
-The visualization was not changed.
+The audit itself did not change the visualization; the subsequent import update above did.
 
 ## Identity Corrections
 
