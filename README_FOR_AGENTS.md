@@ -327,6 +327,7 @@ The later [Turing review and user decisions](docs/check_profiles_turing_2026-09-
 They retain Catmull's Scholar and DBLP links, and Thacker and Hamming's DBLP links, with quality `N`, and reject Manuel Blum's CSRankings-supplied Scholar candidate as the wrong person while preserving his original upstream fields.
 Consult the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) and later Data Notes entries for individual decisions and inspection limits.
 The quality fields do not currently filter the citation visualization, CSRankings alignment or university-affiliation analysis, or alter shared Scholar metrics.
+The citation visualization uses the Scholar quality flag only to color `N` histograms gray.
 
 ### CSV Storage Conventions
 
@@ -696,10 +697,18 @@ The two static timelines separate presentation, rendering and generated data:
 - `scholar_visualization.js` and `scholar_visualization.css` provide shared filtering, rendering, and styles.
 - Each data script assigns its award's joined dataset to `window.SCHOLAR_DATA`.
 
+The shared renderer's `columns` definitions control header labels, cell formatting, alignment, sort values and default sort directions.
+Keep missing-value rules in each column's value/format functions so display and sorting agree, including the pre-1986 Turing estimate exception.
+Search and sorting share `parseName` for directory names and suffixes; parsed names, search keys and complete row markup are cached once per page without modifying source rows.
+Column alignment and title attributes are explicit properties rather than inferred from CSS class names.
+The native `Intl.NumberFormat` formatter, profile-icon definitions and citation-axis markup are initialized once per page.
+Tooltip setup and positioning are separate helpers; dimensions are reused while hovering within a bar and reset on dismissal or viewport resize.
+CSS names the row dimensions and shares `--chart-width` between histograms and the axis; the table minimum includes all columns, gaps, padding and borders.
+
 Each HTML page loads its data script before the renderer as classic scripts and links to the other award page.
 It works on static hosting and when opened directly from disk; no fetch, module loader or backend is required.
-D3 v7 still loads from a CDN, so network access to the CDN is needed.
-Keep the landing page, both visualization pages, both data scripts, the renderer, and the stylesheet together at the repository root when copying or publishing the visualizations.
+The renderer uses native DOM APIs and has no external JavaScript dependencies; viewing either timeline works offline.
+Keep the landing page, both visualization pages, both data scripts, the renderer, the stylesheet and the `assets/` directory together at the repository root when copying or publishing the visualizations.
 GitHub Pages publishes from the repository root (`/`); the root `.nojekyll` disables Jekyll processing.
 The `docs/` directory retains review reports and data provenance.
 
@@ -718,7 +727,14 @@ The data object contains `schemaVersion`, `generatedAt` (UTC), `metadata` and `r
 Metadata includes `award` (`fellows` or `turing`), which the renderer checks against the page's `data-award` attribute to prevent displaying the wrong roster.
 Each row includes recipient identity, award year, profile URLs, citations, h-index, yearly citation counts, missing-data status and `crawlDate` from the source Scholar record.
 Generation time does not represent crawl freshness.
-The generated rows omit DBLP links and both quality fields; changing only those fields does not change the displayed snapshot.
+Each generated row includes `approximate_citations_at_induction`: total reported citations minus the sum of captured annual citations for years greater than or equal to that row's award year.
+This derived field is specific to the award and uses the full captured history, independently of the displayed window; shared recipients can therefore have different estimates in the two datasets.
+It is `null` when the total, award year or citation history is missing, and zero remains a valid estimate.
+The result is approximate: missing annual counts are not imputed, histories starting after the award cannot subtract uncaptured intervening years, and current Scholar attribution may differ from what existed at induction.
+Preserve the arithmetic result without clamping; this estimate is not a historical capture or a new canonical roster field.
+Each row's `scholarQuality` copies `google_scholar_profile_quality` from the award roster; regenerate the dataset after changing this flag to update histogram colors.
+Each row's `dblpProfile` copies the award roster's reviewed `dblp_profile`, independently of CSRankings-generated links.
+The generated rows omit DBLP quality; changing only that flag does not change the displayed snapshot.
 Unavailable metrics and crawl dates stay `null`, and missing citation histories stay empty objects.
 `hasScholar` indicates a joined row with citation-by-year data, not merely the presence of a profile URL.
 The renderer also hides scalar metrics when `hasScholar` is false, even if a joined source record contains all-time totals.
@@ -746,20 +762,30 @@ See [Data Notes](docs/data_notes.md) for the history of imported Scholar statist
 
 The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
 Search accepts a directory name in its stored surname-first order or given-name-first order, ignoring case, commas and repeated whitespace.
-Recipient names link directly to their Google Scholar profiles when available; names without a profile stay plain text.
-Under each title, the source note is followed by an initially collapsed, keyboard-accessible About the Data panel containing total coverage counts, the filtered row count, the displayed year range, and links to the award CSV, shared Scholar statistics CSV, and data notes.
+Recipient names are plain text, followed by small ACM, Google Scholar and DBLP profile icons for the nonblank roster links.
+Scholar links use Google's multicolor G, and DBLP links use its blue-and-yellow site icon; both images are bundled locally with provenance in [assets/README.md](assets/README.md).
+The ACM diamond is also a local SVG asset; its 18px display size remains distinct from the 15px Google and DBLP icons.
+Each icon link has a service tooltip, an accessible label naming the recipient, and a visible keyboard-focus indicator; links remain available even when citation statistics are missing.
+The three service positions are fixed across rows; missing links leave empty, noninteractive slots so the remaining icons do not shift.
+Under each title, an initially collapsed, keyboard-accessible About the Data panel contains total coverage counts, the Google Scholar source note, the displayed year range, and links to the award CSV, shared Scholar statistics CSV, and data notes.
 Search and the missing-data toggle remain visible outside the panel.
 Display order defaults to award year descending, then last name ascending, without changing canonical CSV or generated data order.
 Last-name sorting uses the text before the comma for surname-first directory names, or the final name token for given-name-first names, excluding suffixes Jr., Sr., II, III, and IV, with the full name breaking ties.
-Year, Name, Citations, and h-index headers toggle sorting; Name starts ascending, and numeric columns start descending.
+Year, Name, Cites, cites at award, and h-index headers toggle sorting; Name starts ascending, and numeric columns start descending.
 Unavailable metrics remain last in either direction, and sorting persists while filtering.
-Citations and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
-Both pages use the shared renderer's 45-calendar-year window, ending in the current UTC year (1982–2026 in 2026), regardless of each dataset's coverage.
+Cites, cites at award, and h-index occupy separate right-aligned columns, followed by yearly bars with the latest year at the right.
+The cites at award column displays `approximate_citations_at_induction`, leaving unavailable estimates blank; About the Data explains the inclusive award-year subtraction and limitations.
+For Turing awards before 1986, the column displays `-` and sorts these rows as unavailable in either direction; the underlying generated estimate and Fellows display are unchanged.
+Both pages use the shared renderer's fixed start year of 1986 and end in the current UTC year (1986–2026 in 2026), regardless of each dataset's coverage.
 The renderer sets the CSS year count, keeping chart widths and year labels identical across awards.
+The main content area contains horizontal overflow at every viewport width, so wide timelines scroll within it without widening the page beyond the sticky banner.
+Histograms with `scholarQuality` equal to `N` are gray, with an accessible quality label and an explanation in About the Data; their metrics, bar heights and visibility are otherwise unchanged.
+Bars before the award year use a darker shade; the award year and all later years use the lighter shade, including for gray histograms.
 Every year has a tick, with horizontal labels at five-year intervals.
 Bar heights are normalized independently to each person's maximum within the displayed window; compare absolute counts using hover values and the metrics columns, not bar heights across people.
 Years absent from a recipient's history appear as empty bars; the underlying data and its coverage metadata remain unchanged.
-The current hover text renders absent years as zero, so consult `citationByYear` to distinguish a recorded zero from a missing year.
+Hovering over a bar immediately shows just its year and captured citation count in a tooltip kept within the viewport.
+Absent years show `no captured data`, while reported zeros show `0 cites`; the tooltip hides on pointer exit, scrolling, Escape or rerendering.
 A missing or unsupported data script produces a visible error instead of an empty page.
 
 After authorized regeneration, check snapshot synchronization, award selection, canonical joins, renderer controls and JavaScript syntax:
@@ -822,7 +848,7 @@ python scripts/build_profile_capture_queue.py --output docs/profile_capture_queu
 
 The command only reads canonical CSVs and writes the queue; it does not fetch pages, accept captures or update metrics.
 Entries await the user's refresh approval, and queue-generation timestamps never substitute for profile capture dates.
-Keep this backlog distinct from the unfinished holistic review and the deferred visualization rebuild.
+Keep this backlog distinct from profile-review decisions and visualization snapshot regeneration; rebuilding snapshots does not fetch or import missing evidence.
 
 ## Git Hygiene
 

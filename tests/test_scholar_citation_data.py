@@ -14,6 +14,33 @@ spec.loader.exec_module(builder)
 
 
 class CitationDataTests(unittest.TestCase):
+    def test_induction_estimate_uses_inclusive_award_year_and_full_history(self):
+        metrics = [{"profile": "profile", "citations": "1000", "citation_by_year":
+                    json.dumps({"1985": 100, "2022": 50, "2023": 200, "2024": 100, "2026": 50})}]
+        for award in ("fellows", "turing"):
+            for year, expected in (("2023", 650), ("1985", 500), ("2027", 1000)):
+                with self.subTest(award=award, year=year):
+                    roster = [{"name": "Recipient", "year": year, "google_scholar_profile": "profile",
+                               "google_scholar_profile_quality": "N"}]
+                    row = builder.build_data(roster, metrics, award)["rows"][0]
+                    self.assertEqual(row["approximate_citations_at_induction"], expected)
+
+    def test_induction_estimate_requires_total_year_and_history(self):
+        metrics = [
+            {"profile": "complete", "citations": "5", "citation_by_year": '{"2023": 5}'},
+            {"profile": "no-total", "citation_by_year": '{"2023": 5}'},
+            {"profile": "no-history", "citations": "5"},
+        ]
+        roster = [{"name": name, "year": year, "google_scholar_profile": profile} for name, year, profile in (
+            ("zero", "2023", "complete"), ("missing-total", "2023", "no-total"),
+            ("missing-history", "2023", "no-history"), ("missing-profile", "2023", ""),
+            ("missing-year", "", "complete"),
+        )]
+        rows = builder.build_data(roster, metrics)["rows"]
+        self.assertEqual({r["name"]: r["approximate_citations_at_induction"] for r in rows},
+                         {"zero": 0, "missing-total": None, "missing-history": None,
+                          "missing-profile": None, "missing-year": None})
+
     def test_rebuild_hint_selects_the_generated_award(self):
         for award in ("fellows", "turing"):
             with self.subTest(award=award):
@@ -57,8 +84,11 @@ class CitationDataTests(unittest.TestCase):
                 self.assertEqual(expected["metadata"]["joinedRows"], histories)
                 self.assertEqual(expected["metadata"]["missingRows"], len(source) - histories)
                 for row in expected["rows"]:
+                    recipient = next(r for r in source if r["name"] == row["name"])
+                    self.assertEqual(row["scholarQuality"], recipient["google_scholar_profile_quality"])
+                    self.assertEqual(row["acmProfile"], recipient["acm_fellow_profile"])
+                    self.assertEqual(row["dblpProfile"], recipient["dblp_profile"])
                     if row["scholarProfile"] not in by_profile:
-                        recipient = next(r for r in source if r["name"] == row["name"])
                         self.assertFalse(recipient["google_scholar_profile_crawl_date"])
                         self.assertFalse(row["hasScholar"])
                         self.assertIsNone(row["citations"])

@@ -14,6 +14,93 @@ A low quality rating or failed latest fetch does not mean that a URL cell is bla
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
+## 2026-09-18 17:29 EDT - Consolidate Test Helpers and Presentation Assets
+
+Consolidated synthetic dataset setup, row-name extraction and sort interactions in the renderer test harness.
+Renamed the builder's internal ACM-specific roster variables and extracted the unchanged induction estimate into `estimate_citations_at_induction`.
+Expanded CSS declarations and added component sections while preserving every selector, declaration and rule order.
+Moved the existing ACM SVG artwork into `assets/acm-icon.svg`, retaining its 18px display size and fixed profile-link slot.
+All 41 Python tests and JavaScript renderer checks passed, including local icon asset references.
+Compared 34 before-and-after views with matching content except for the inline ACM SVG becoming a local image reference; canonical CSVs and generated datasets remain unchanged.
+
+## 2026-09-18 17:24 EDT - Align Profile Icons and Complete Renderer Cleanup
+
+Reserved fixed ACM, Google Scholar and DBLP icon slots so missing links no longer shift the remaining icons; empty slots are noninteractive and hidden from assistive technology.
+Replaced D3 with native DOM and number-formatting APIs and removed the CDN scripts, allowing both timelines to work offline with their bundled assets.
+Cached parsed names, search keys and row markup, separated tooltip setup and positioning, and made column alignment and title behavior explicit.
+Tooltip dimensions are reused within each hovered bar and reset on dismissal or resize.
+All 41 Python tests and JavaScript renderer checks passed, including all eight combinations of available profile links, local script references and tooltip measurement reuse.
+Compared 34 views with the previous renderer: content and behavior match apart from the intentional empty icon slots.
+Canonical CSVs and generated datasets remain byte-for-byte unchanged by both refactoring passes.
+
+## 2026-09-18 17:18 EDT - Refactor the Shared Visualization Renderer
+
+Centralized column labels, formatting, alignment and sorting rules, consolidated name parsing for search and sorting, and initialized the number formatter, profile icons and citation-axis markup once per page.
+Replaced the CSS's hard-coded table-width adjustment with named dimensions and shared the histogram/axis width calculation.
+Both page layouts and data semantics are preserved; canonical CSVs and generated datasets are byte-for-byte unchanged by this refactor.
+Compared 34 before-and-after views across both awards: rendered content and ordering match after ignoring formatting whitespace and the new explicit numeric-header alignment class.
+Confirmed equivalent desktop/mobile width formulas for 2026 and 2027; the 41 Python tests and JavaScript renderer checks passed.
+
+## 2026-09-18 17:00 EDT - Show Immediate Citation Tooltips
+
+Both timelines now show the year, citation count and award period immediately when the pointer moves over a bar, replacing delayed native browser tooltips.
+Tooltips stay within the viewport and dismiss on pointer exit, scrolling, Escape or table rerendering.
+Recorded zeros show `0 citations`; absent years show `no captured data` rather than implying a measured zero.
+Renderer checks cover tooltip text, viewport-edge positioning, dismissal and zero-versus-missing labels for both awards; JavaScript syntax and whitespace checks passed.
+
+## 2026-09-18 16:56 EDT - Display Estimated Citations at Award
+
+Added the sortable `~citations at award` column immediately to the right of Citations on both timelines, using the existing generated estimate.
+Unavailable values remain blank and sort last in either direction; zero remains a displayed numeric value.
+Both About the Data panels explain the calculation, including subtraction of the award year's citations, a 2023 example, and the limits of incomplete or changing Scholar evidence.
+Renderer checks cover the column order and ascending/descending sorting with zero and missing values; JavaScript syntax and whitespace checks passed.
+
+## 2026-09-18 16:55 EDT - Reverse Award Period Shades
+
+At the user's request, reversed the histogram shades on both timelines: years before the award are dark, while the award year and all later years are light.
+The same ordering applies to gray histograms for Scholar quality `N`.
+Updated the page legends and documentation; citation estimates, generated datasets and canonical CSVs are unchanged.
+
+## 2026-09-18 16:52 EDT - Estimate Citations at Induction and Shade Award Periods
+
+Added `approximate_citations_at_induction` to both generated visualization datasets, calculated as total citations minus captured annual citations from the award year onward, including the award year.
+The estimate uses all captured years, not just the displayed window, and is null when total citations, award year or annual history is unavailable.
+No canonical CSV fields or capture dates changed.
+Two Fellows and 12 Turing recipients with imported histories have captures beginning after their award year, so their estimates cannot subtract uncaptured intervening years; no current estimate is negative.
+Histograms now use lighter bars before the award year and darker bars for the award year and later years, retaining gray shades for Scholar quality `N`.
+Both datasets were regenerated, and all 41 Python tests, JavaScript renderer checks, syntax checks and whitespace validation passed.
+Tests cover inclusive award-year subtraction, history outside the display window, missing evidence, zero estimates and the shading boundary for both awards and quality values.
+
+## 2026-09-18 16:48 EDT - Add Profile Link Icons to Both Timelines
+
+Recipient names now display as plain text beside small ACM, Google Scholar and DBLP profile icons.
+Icons appear only for nonblank roster links and include service tooltips, accessible recipient labels and keyboard-focus indicators.
+Added reviewed roster DBLP URLs to the generated datasets and regenerated both snapshots; no canonical data changed in this presentation update.
+Widened the name column to accommodate icons while retaining horizontal scrolling within the main content area at every viewport width.
+All 39 Python tests, renderer checks for profile links with and without citation data, JavaScript syntax checks and whitespace validation passed.
+
+## 2026-09-18 16:45 EDT - Remove Shyamasundar's Rejected Scholar Association
+
+The user rejected [gNhIpRwAAAAJ](https://scholar.google.com/citations?user=gNhIpRwAAAAJ) for Shyamasundar, Rudrapatna K and requested its removal.
+Cleared his Scholar URL and capture date, retaining quality `N`, and removed the corresponding statistics record after confirming neither award roster still references it.
+His ACM and DBLP information remains unchanged; the historical capture is not an accepted association and must not be restored from earlier review artifacts.
+Regenerated the Fellows visualization: 1,249 recipients now have citation histories and 389 do not, across the unchanged roster of 1,638.
+The Turing dataset and the 89-task capture/import queue remain unchanged.
+All 39 Python tests, including both snapshot checks, and the JavaScript renderer checks passed.
+
+## 2026-09-18 16:42 EDT - Refresh Both Citation Visualizations
+
+At the user's request, regenerated both citation datasets from the current canonical award rosters and imported Scholar statistics.
+The Fellows snapshot contains 1,638 recipients, including 1,250 with citation histories and 388 without; the Turing snapshot contains 81 recipients, including 40 with histories and 41 without.
+Both timelines now start at 1986 and end in the current UTC year, while coverage metadata continues to describe the actual captured years.
+Generated rows now carry the award roster's Scholar quality flag as `scholarQuality`; profiles rated `N` display gray histograms without changing counts, bar heights or filtering.
+Both About the Data panels explain the gray histograms.
+No canonical CSVs, profile decisions or capture dates changed, and no new evidence was crawled or imported.
+
+All 39 Python tests, including snapshot synchronization, passed, as did the JavaScript renderer checks, syntax checks and whitespace validation.
+Renderer checks cover both awards, the fixed 1986 start in 2026 and 2027, and the histogram classes for profiles rated `N`.
+Visual browser inspection was unavailable because browser security policy blocked the local file URL.
+
 ## 2026-09-18 16:19 EDT - Data Quality and Documentation Consistency Pass
 
 Checked all 17 canonical and historical audit CSVs for header uniqueness, row widths and LF storage, plus canonical ordering, unique profile keys, URL/date/quality consistency, shared-recipient agreement, Scholar joins and numeric/JSON metric fields.

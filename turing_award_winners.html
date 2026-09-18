@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Turing Award Winner Citation Timelines</title>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <title>Citation Timelines: Turing Award Winners</title>
   <link rel="stylesheet" href="./scholar_visualization.css">
 </head>
 <body data-award="turing">
@@ -15,13 +14,21 @@
         <a href="./acm_fellows.html">ACM Fellows</a>
         <a href="./turing_award_winners.html" aria-current="page">Turing Award Winners</a>
       </nav>
-      <h1>Turing Award Winner Citation Timelines</h1>
-      <p class="source-note">All citation statistics from Google Scholar</p>
+      <h1>Citation Timelines: Turing Award Winners</h1>
       <details class="data-details">
-        <summary>About the Data <span class="details-hint">Coverage &amp; downloads</span></summary>
+        <summary>About the Data</summary>
         <div class="metadata">
           <dl id="coverage" class="coverage-stats" aria-label="Dataset coverage"></dl>
-          <p id="summary" class="view-summary" aria-live="polite"></p>
+          <ul class="view-summary data-notes">
+            <li>All citation statistics from Google Scholar.</li>
+            <li id="summary" aria-live="polite"></li>
+            <li>Gray histograms indicate Scholar profiles of questionable data quality.</li>
+            <li>Darker bars precede the award year; lighter bars include the award year and all later years.</li>
+            <li><strong>cites at award</strong> estimates citations before the award year: total citations minus captured annual citations from the award year onward, including the award year.
+              For a 2023 award, we subtract citations in 2023 and every later captured year.
+              This is approximate because histories may be incomplete and Scholar records can change; blank values mean the required data is unavailable.
+              Awards before 1986 show "-" because they predate the citation-history window.</li>
+          </ul>
           <div class="data-resources">
             <h2>Data and Sources</h2>
             <div class="data-links">
@@ -42,6 +49,7 @@
     <div id="table" class="table" role="table" aria-label="Citation timelines" aria-live="polite"></div>
     <div id="empty" class="empty">No rows match the current filters.</div>
   </main>
+  <div id="citation-tooltip" class="citation-tooltip" role="tooltip"></div>
   <script src="./turing_scholar_data.js"></script>
   <script src="./scholar_visualization.js"></script>
 </body>
