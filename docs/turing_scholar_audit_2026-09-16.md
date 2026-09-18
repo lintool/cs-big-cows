@@ -1,5 +1,8 @@
 # Turing Award Google Scholar Review — September 16, 2026
 
+This identity and import audit predates the [Scholar quality assessment](turing_scholar_quality_2026-09-17.md).
+Accepted identities, reference links and publication caveats below describe this batch's snapshot; use the later quality report for `Y`/`N` judgments.
+
 **Visualization update (2026-09-16 22:38 EDT):** Both award visualizations were subsequently regenerated from the reviewed canonical data, including all 40 accepted Turing profiles.
 The pending-regeneration statements below describe the audit-time snapshot; see the [completed visualization update](data_notes.md#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
 
@@ -47,7 +50,7 @@ A page mentioning Juris Hartmanis linked to John Hopcroft's Scholar ID, which wa
 A Michael Stonebraker directory lead did not yield a usable profile ID.
 Other unresolved entries remain blank, with individual outcomes recorded in the CSV audit.
 
-## Identity and Publication Limits
+## Identity And Publication Limits
 
 Retained profiles were reviewed using their names, affiliations where available, and representative publications from the fetched profile page.
 All 30 profiles shared with ACM Fellows retained the same Scholar name and affiliation as the earlier reviewed captures.
@@ -58,7 +61,7 @@ Frederick Brooks's profile also has a possible attribution issue: *Computer arch
 These are retained as the correct people's profiles, with raw Scholar totals and explicit audit notes.
 Sparse affiliation or missing verified-email metadata remains noted where applicable.
 
-## Import and Validation
+## Import And Validation
 
 Replaced 36 existing statistics records with fresh captures and added four previously absent records for Charles H. Bennett, Gilles Brassard, Andrew Barto, and Richard Sutton.
 Removed the two wrong-person records, leaving 1,260 unique profiles in `data/google_scholar_profiles.csv`.

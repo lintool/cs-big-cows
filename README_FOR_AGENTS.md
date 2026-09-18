@@ -4,6 +4,10 @@ Follow [AGENTS.md](AGENTS.md) for documentation audiences.
 [README.md](README.md) is the human entry point; this file owns application maintenance workflows and constraints.
 Keep dataset provenance, reconciliation history, and deliberate source differences in [Data Notes](docs/data_notes.md).
 
+Use the [award field dictionary](#award-roster-fields) for CSV meaning, [missing-profile definitions](#missing-profiles-and-review-status) for coverage questions, and [quality criteria](#publication-profile-quality) for matching and rating decisions.
+Canonical CSVs contain the current stored values; dated reports and Data Notes explain the evidence and decisions at each batch's completion.
+Read later decisions before using an older report as an import source.
+
 This repository owns canonical data, application-specific joins, analysis, and visualization.
 All crawlers live in [bigcows-crawler](https://github.com/lintool/bigcows-crawler).
 Its [agent reference](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md) is authoritative for transport, pacing, retries, manifests, cache schemas, and troubleshooting.
@@ -16,7 +20,8 @@ Use Python 3.10 or newer, available as `python`.
 Run the commands below from `acm-bigcows`, with `bigcows-crawler` checked out beside it.
 Crawl artifacts default to the shared crawler's `.cache/`, independent of the working directory; they are Git-ignored and absent from a fresh clone.
 Explicit relative paths resolve from the working directory.
-This application's `.cache/` holds derived analysis and alignment artifacts.
+The CSRankings shard cache and default alignment report also live in the shared crawler's `.cache/`.
+Use this application's `tmp/` for disposable analysis output; retain crawl and import evidence in the shared cache.
 The CSRankings builder accepts `--cache-dir` if the shared shard cache is elsewhere.
 
 ### Review Existing ACM Captures
@@ -38,7 +43,7 @@ Without it, JSON goes to stdout.
 See [report interpretation](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#reports-and-data-review) for exact differences, name compatibility, missing captures, and duplicate URLs.
 The crawler's `--limit-new 0` mode writes crawl artifacts and is not this audit.
 
-### Prepare, Start, and Resume an ACM Crawl
+### Prepare, Start, And Resume An ACM Crawl
 
 Read the shared [ACM workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#acm-fellow-and-turing-award-profile-crawler) and [Safari setup](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#safari-setup-and-lifecycle) before fetching.
 Both awards use the same runner; `--award turing` is required for Turing years and citations.
@@ -70,7 +75,26 @@ Do not add `--refresh` when resuming.
 If the start is postponed to a later date, prepare a new crawl for that date.
 See the shared reference for pacing and progress; a completed invocation alone does not mean every profile succeeded or matched.
 
-### Other Sources
+### Review And Import DBLP Data
+
+Use the shared [DBLP workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#dblp-profile-crawler) for transport and pacing.
+For a fresh crawl, save both roster snapshots and the selected commands in a new run directory under `../bigcows-crawler/.cache/`, and use a new cache or Safari run directory instead of reusing historical successes.
+Fetch the distinct nonempty URLs from the selected rosters, retaining the association to each award row.
+The Safari runner binds a run directory to one stable input snapshot; for a combined crawl, prepare one deduplicated input CSV containing `name` and `dblp_profile`, or use separate run directories for the two rosters.
+Begin with a paced pilot and resume with the original input.
+
+Redirects do not pause the Safari crawl: inspect saved `redirect_review` captures afterward to determine whether the final page identifies the intended person.
+A redirected author page, a namesake profile, and a name-disambiguation page require different identity decisions; a redirect alone neither validates nor rejects the link.
+Persistent access challenges or transport failures leave the refresh incomplete and do not justify clearing stored links.
+
+Before importing, check the retained HTML, capture timestamp and hash, final URL, ACM identity, and [publication quality criteria](#publication-profile-quality).
+Update reviewed URLs, crawl dates and quality fields in the award rosters; there is no separate canonical DBLP CSV to rebuild.
+Apply shared-URL decisions consistently across both rosters, even during a single-roster refresh.
+Retain rejected URLs and rationale in the review evidence, and record removals or unresolved cases in Data Notes.
+Check dependent CSRankings links after a URL change or removal.
+Validate the [schema and ordering rules](#data-layout), preserve unrelated fields, and record coverage and inspection limits before describing the refresh as complete.
+
+### Other Fetching Commands
 
 These commands fetch DBLP pages or CSRankings shards; the builder writes the application's alignment:
 
@@ -80,10 +104,12 @@ python ../bigcows-crawler/scripts/cache_csrankings.py
 python scripts/build_csrankings_profiles.py
 ```
 
+The DBLP command above uses the HTTP transport and its default cache; it can reuse older captures and is not a fresh full-roster refresh by itself.
+Use the reviewed DBLP workflow above when updating canonical data.
 Follow the shared reference for source pacing and retries.
 For Scholar, use the reviewed workflow below rather than exporting directly into the canonical CSV.
 
-### Review and Import Google Scholar Data
+### Review And Import Google Scholar Data
 
 The shared crawler handles transport and parsing; this repository owns identity decisions and canonical imports.
 Read its [Scholar workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#google-scholar-profile-crawler) for pacing, retries, cache fields, and blocking behavior.
@@ -95,7 +121,7 @@ Do not use `--output data/google_scholar_profiles.csv` as the review or import s
    Keep original inputs stable for resuming; record newly discovered candidates in a separate input file.
 2. **Crawl into a fresh cache without canonical output:** An unused cache makes this a fresh capture rather than reuse of the default historical cache.
    For both awards, share the new cache so a profile common to both is fetched once, and retain separate reports and logs.
-   The following example starts a new combined run; replace the placeholder with a unique run label and create the directory only once:
+   The following example prepares a combined run and starts only the Fellows crawl; replace the placeholder with a unique run label and create the directory only once:
 
    ```bash
    (
@@ -107,25 +133,38 @@ Do not use `--output data/google_scholar_profiles.csv` as the review or import s
      cp data/turing_award_winners.csv "$scholar_run/turing-input.csv"
      cp data/google_scholar_profiles.csv "$scholar_run/statistics-before.csv"
      python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/fellows-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/fellows-report.json" > "$scholar_run/fellows.log" 2>&1
-     python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/turing-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/turing-report.json" > "$scholar_run/turing.log" 2>&1
    )
    ```
 
    The subshell stops on command failure, including an existing run directory, before later commands can overwrite retained inputs or logs.
-   Run only the selected award command for a single-roster refresh.
-   Monitor the active run and stop on blocking; do not start the next award while a block is unresolved.
+   The Scholar runner records blocked responses but does not automatically stop on them; monitor the log and cache and interrupt the run if blocking appears.
+   Exit code 0 does not establish successful coverage, freshness or identity.
+   Inspect the Fellows report and recorded fetch errors before starting Turing; do not continue while a block is unresolved.
+   Start the second award separately with the same run label and shared cache:
+
+   ```bash
+   scholar_run=../bigcows-crawler/.cache/scholar-refresh-YYYY-MM-DD-HHMM
+   python -u ../bigcows-crawler/scripts/cache_google_scholar_profiles.py --data "$scholar_run/turing-input.csv" --cache "$scholar_run/cache.json" --report "$scholar_run/turing-report.json" > "$scholar_run/turing.log" 2>&1
+   ```
+
+   For a single-roster refresh, snapshot both rosters for reconciliation but run only the selected award command, using `turing-input.csv`, `turing-report.json` and `turing.log` for a Turing-only run.
    Resume using the same snapshots and cache without `--refresh`, retaining previous logs and using a new log filename for each attempt.
+   Ordinary resume usually skips cached failures; entries with an HTML-required status but no HTML are retried automatically.
+   After inspecting failures and resolving any block, use the shared crawler's [resume and cache rules](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#cache) to select the appropriate retry.
    `--limit-new 0` rebuilds a report without fetching, but still writes cache/report artifacts and does not establish freshness.
 3. **Review freshness and identity:** Require a successful capture from the selected run with complete HTML, parsed statistics, and a supported identity before accepting a profile.
    Check capture timestamps and recorded fetch errors; a retained older success is not evidence of a successful current refresh.
+   Inspect `last_fetch_error` in the cache itself: it is not exposed in the Scholar report and can accompany a retained `ok` status.
    Compare names, affiliations, research areas, and representative publications against ACM and primary institutional sources.
    A compatible name or HTTP 200 response alone is insufficient.
 4. **Resolve missing and rejected links:** Search for replacement profiles when discovery is in scope, then freshly crawl and verify candidates before accepting them.
-   Leave the Scholar field blank if no fresh, verified replacement can be found; do not fill the gap with historical statistics.
+   If a link is missing or rejected and no fresh, verified replacement can be found, leave its Scholar URL and crawl date blank and set its quality to `N`; do not fill the gap with historical statistics.
    Treat a blocked or interrupted run as incomplete, rather than clearing links solely because of a temporary access failure.
    Record accepted, rejected, unresolved, and deferred decisions with evidence and capture references.
 5. **Reconcile and import across both rosters:** Build the accepted statistics set by unique Scholar URL, with one record for a person shared by the awards.
-   Apply reviewed link changes without altering unrelated award fields, then replace or add statistics only from accepted captures.
+   Apply reviewed link changes and reassess quality using the [profile-quality criteria](#publication-profile-quality), then replace or add statistics only from accepted captures.
+   Update `google_scholar_profile_crawl_date` from the same accepted capture as the statistics row's `crawl_date`, synchronizing recipients shared by both rosters.
+   Preserve unrelated award fields.
    Remove rejected or obsolete statistics records only after confirming that neither roster still references them.
    Preserve reviewed records outside a single-award refresh's scope, with their original crawl dates; never describe those as newly refreshed.
    The generic exporter is not a reviewed importer: use a reviewed run-specific import script or prepare an explicit import for review, retaining it and the before/after evidence in the run directory.
@@ -139,6 +178,8 @@ The ACM crawlers never update canonical CSVs.
 Verify the person and award using the captured HTML, and inspect exact differences as well as name compatibility.
 Use successful captures as evidence; preserve existing values when source fields are blank, truncated, malformed, or otherwise less accurate.
 A recent fetch is not automatically more authoritative than the reviewed CSV.
+Set `acm_fellow_profile_crawl_date` from the accepted capture's UTC date, including when review confirms that the existing award fields should remain unchanged.
+An inaccessible page leaves the refresh incomplete; do not clear a link solely because a request was blocked or timed out.
 Follow the data conventions below and record dataset-specific decisions in [Data Notes](docs/data_notes.md).
 
 ## Data Layout
@@ -152,46 +193,118 @@ data/google_scholar_profiles.csv
 data/turing_award_winners.csv
 ```
 
-`data/acm_fellows.csv` is the canonical ACM Fellows table.
-Its current columns are:
+### Award Roster Fields
 
-```text
-name,year,location,citation,acm_fellow_profile,dblp_profile,dblp_crawl_date,google_scholar_profile
-```
+`data/acm_fellows.csv` and `data/turing_award_winners.csv` use the same columns, in the order below.
+Each row represents a recipient in that award roster; a person who received both awards appears once in each roster.
 
-The `name` field should be a clean person name.
-Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP`.
+| Field | Meaning |
+| --- | --- |
+| `name` | Clean recipient name, preserving reviewed spelling and punctuation. |
+| `year` | Fellowship class year or Turing Award year, depending on the roster; not the announcement year. |
+| `location` | Reviewed ACM location text; a directory region may remain when no more specific profile location is available. |
+| `citation` | ACM award citation describing the recognized contributions; unrelated to Scholar citation counts. |
+| `acm_fellow_profile` | ACM recipient URL for the award; the legacy field name also applies to Turing winners. |
+| `acm_fellow_profile_crawl_date` | Accepted ACM profile capture's UTC date, or blank when unavailable. |
+| `dblp_profile` | Stored DBLP author URL, or blank when no accepted link is recorded. |
+| `dblp_profile_crawl_date` | Accepted capture's UTC date for the stored DBLP URL, or blank when unavailable. |
+| `dblp_profile_quality` | Required `Y` or `N` under the publication-quality criteria below. |
+| `google_scholar_profile` | Stored Scholar author URL, or blank when no accepted link is recorded. |
+| `google_scholar_profile_crawl_date` | Accepted capture's UTC date for the stored Scholar URL, or blank when unavailable. |
+| `google_scholar_profile_quality` | Required `Y` or `N` under the publication-quality criteria below. |
 
-There is no separate `data/acm_fellow_profiles.csv`.
-ACM profile URLs and propagated ACM profile metadata belong in `data/acm_fellows.csv`.
+Do not include leading honorifics such as `Dr.`, `Prof.`, `Professor`, `Mr.`, `Dame`, or trailing credentials such as `PhD`, `Ph.D.`, `DPhil`, or `CCP` in `name`.
+For Turing rows, `acm_fellow_profile` and its crawl date refer to the Turing recipient's ACM page; always select `--award turing` when crawling or comparing this dataset.
+There is no ACM profile quality field.
+There is no separate canonical `data/acm_fellow_profiles.csv` or `data/dblp_profiles.csv`; profile links belong in the award rosters.
+The distinct nonempty DBLP URLs across both rosters define the known DBLP profiles used by the CSRankings builder.
 
-`data/turing_award_winners.csv` uses the same columns.
-Its `year` is the Turing Award year, not the announcement year or Fellowship year.
-Its `acm_fellow_profile` column holds the ACM recipient URL for compatibility with the shared crawler; always select `--award turing` when crawling or comparing this dataset.
+### Missing Profiles And Review Status
 
-Both award rosters store `dblp_crawl_date` beside `dblp_profile`.
-It is the accepted successful capture's UTC date (`YYYY-MM-DD`), derived from `fetched_at`, not the import date.
-Keep it blank when the DBLP URL is blank or no successful capture has been accepted for that URL.
-When a DBLP URL changes or is cleared, clear its old crawl date and populate a new date only from an accepted capture of the new URL.
+Specify the service whenever reporting a “missing profile”: ACM means a blank `acm_fellow_profile`, DBLP means a blank `dblp_profile`, and Scholar means a blank `google_scholar_profile`.
+A blank URL means no accepted link is currently recorded; it does not prove that no public profile exists or that the recipient should be removed from the award roster.
+The [unavailable ACM profile record](docs/data_notes.md#2026-09-13---unavailable-individual-acm-profiles) identifies the Fellows whose former ACM URLs were cleared and preserves the historical evidence.
+
+| State | Interpretation |
+| --- | --- |
+| Blank URL | Missing stored link for that service; its crawl date is blank and its publication quality, where present, is `N`. |
+| URL present, crawl date blank | A link is stored, but no successful capture has been accepted for that URL. |
+| URL present, quality `N` | A linked profile judged poor, wrong, substantially mixed, or, for DBLP, clearly incomplete; consult the review rationale. |
+| URL present, quality `Y` | A reasonable profile under the reviewed scope; isolated attribution concerns may remain. |
+| Failed latest fetch | An access or freshness problem; preserve the previous link, accepted date and rating until evidence justifies a change. |
+| Review flag | A request to inspect evidence; independent of whether the link is present or its quality is `Y` or `N`. |
+
+Count missing links directly from the relevant URL cells, not from quality ratings, blank dates, or review flags.
+When combining awards, state whether the result counts award rows or distinct people; adding roster counts double-counts shared recipients.
+Likewise, “missing any profile” means at least one of the three URL cells is blank, whereas “missing all profiles” means all three are blank.
+A resolved review case can still have a missing URL or an `N` rating.
+Dated audit CSVs preserve their batch's links and evidence; use the canonical rosters for current coverage.
+
+### Profile Crawl Dates
+
+Both award rosters store each `*_profile_crawl_date` immediately after its corresponding URL.
+Each is the accepted successful capture's UTC date (`YYYY-MM-DD`), derived from `fetched_at`, not the run start, import or quality-review date.
+For example, a capture at `2026-09-18T01:00:00Z` receives `2026-09-18`, even when the run and Data Notes entry are dated September 17 in Toronto.
+Keep the date blank when the URL is blank or no successful capture has been accepted for that URL.
+When a URL changes or is cleared, clear its old date and populate a new date only from an accepted capture of the new URL.
 For URLs shared across the two rosters, update both dates together and keep them identical.
-A crawl date records successful capture, not a guarantee of identity or publication attribution.
-Full timestamps, HTML and validation evidence remain in the shared crawler cache.
-The distinct nonempty DBLP URLs across both rosters define the known DBLP profiles; there is no separate canonical DBLP table.
+An unsuccessful refresh leaves the previous accepted date in place; report the refresh as incomplete rather than advancing the date.
 
-`data/csrankings_profiles.csv` contains CSRankings faculty rows that align to exactly one known DBLP profile from the two award rosters.
-Its columns are:
+Accepting a capture means accepting its page and timestamp as evidence; it does not certify the profile's identity or publication quality.
+A retained publication profile rated `N` can therefore have a crawl date.
+A quality reassessment using existing evidence does not advance that date.
+Keep full timestamps, HTML, capture hashes and validation evidence in the shared crawler cache.
 
-```text
-name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
-```
+### Publication Profile Quality
+
+`dblp_profile_quality` and `google_scholar_profile_quality` are required for every award row and must be `Y` or `N`.
+Use the appropriate ACM Fellow or Turing recipient profile as the identity and research ground truth.
+If the individual ACM URL is missing, use retained ACM roster/directory evidence and corroborating primary sources, state the limitation, and flag uncertain identity or coverage for review.
+Do not claim an individual ACM page was inspected when no such capture exists.
+
+| Finding | Rating And Action |
+| --- | --- |
+| Most reviewed publications reasonably match or are adjacent to the recipient's research | `Y`, allowing a couple of questionable or misattributed papers. |
+| Wrong person or substantial unrelated contamination | `N`; record the identity or contamination evidence. |
+| Missing link | `N`, with URL and crawl date blank. |
+| Obviously incomplete DBLP bibliography | `N`, including incidental or split fragments omitting the established body of work. |
+| Very sparse DBLP bibliography without positive identity and completeness evidence | `N` pending verification; record the actual count and coverage concern. |
+
+Assess DBLP and Scholar independently.
+The explicit incompleteness rule applies to DBLP; a short captured Scholar first page alone does not establish that the Scholar profile is incomplete or poor.
+For DBLP, assess coverage against the ACM-recognized contributions and corroborating publication evidence.
+The user expects substantial publication coverage for ACM Fellows: do not retain `Y` merely because a handful of titles fit the topic or the recipient has a historical or service-oriented career.
+There is no universal numerical cutoff; the nine one-to-four-record profiles in the September 17 reassessment describe that batch, not a general threshold.
+
+Substantial contamination can warrant `N` despite a relevant majority; this is a profile-level judgment, not a percentage formula.
+An isolated attribution error, abbreviated author list, name variant, contributor credit or interdisciplinary topic does not by itself justify `N`.
+Cross-service title agreement is corroboration, not independent proof of authorship.
+A rating does not certify every publication or aggregate citation total.
+Record the evidence dates, inspection scope, rationale and any remaining review questions.
+
+Link retention and quality are separate decisions.
+An instruction to keep a URL does not establish `Y`, and an `N` rating does not by itself instruct removal of the link.
+When a URL changes, reassess its quality instead of carrying the old URL's rating forward; clearing a URL requires `N` and a blank date.
+Keep quality ratings consistent for the same publication-service URL shared across both rosters, preserving explicit user decisions.
+
+The user explicitly rated the Scholar profiles of Arindam Banerjee, Ramesh C Jain, James H Morris and David S Johnson `N`; do not upgrade them solely because a majority of sampled papers are adjacent.
+The user rejected the stored DBLP profiles for David Patterson, Jim Gray, Richard Karp, J. H. Wilkinson, Seymour J. Wolfson, Roger R Bate and Karen Duncan; rejected URLs remain evidence only and must not be restored from older captures or snapshots.
+Consult the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) and later Data Notes entries for individual decisions and inspection limits.
+The quality fields do not currently filter the citation visualization, CSRankings alignment or university-affiliation analysis, or alter shared Scholar metrics.
+
+### CSV Storage Conventions
 
 Keep committed CSV files on Unix LF line endings.
 Python's `csv.DictWriter` defaults to CRLF unless `lineterminator="\n"` is supplied.
+Apply the [award CSV sort order](#award-csv-sort-order) to both rosters.
+The CSRankings output schema and matching behavior are documented in [CSRankings DBLP Alignment](#csrankings-dblp-alignment).
 
 ### Google Scholar Statistics
 
 `data/google_scholar_profiles.csv` stores one row per unique Scholar `profile` URL across both award rosters.
 Join each roster's `google_scholar_profile` to this `profile` field; names are descriptive fields, not join keys.
+Use the canonical URL form `https://scholar.google.com/citations?user=...` in both tables; the visualization and affiliation helper use exact-string joins rather than normalizing URL variants at read time.
+The row's `crawl_date` and each referring roster's `google_scholar_profile_crawl_date` should identify the same accepted capture.
 
 | Field | Meaning |
 | --- | --- |
@@ -216,6 +329,7 @@ A blank Scholar link in an award roster means no accepted profile link is record
 
 The generated visualization data uses `null` for missing scalar metrics and dates and `{}` for missing histories.
 Its `hasScholar` flag requires a joined, nonempty citation history; a URL alone does not satisfy it.
+The visualization's `joinedRows` and `missingRows` metadata count rows with and without that history, not rows with and without stored profile links.
 Its `generatedAt` timestamp records data-file generation, while each row's `crawlDate` retains the source capture date.
 In contrast, `data/csrankings_profiles.csv` uses `crawl_date` for the alignment build's UTC date by default (or the explicit `--crawl-date` value), not necessarily the shard-fetch date.
 
@@ -253,7 +367,10 @@ When adding directory-only rows to `data/acm_fellows.csv`, fill what is availabl
 - `year`: directory year;
 - `location`: directory region, until the individual profile page provides a more specific location;
 - `acm_fellow_profile`: directory profile URL;
-- leave `citation`, `dblp_profile`, `dblp_crawl_date`, and `google_scholar_profile` blank if unavailable.
+- leave `citation`, `dblp_profile`, and `google_scholar_profile` blank if unavailable.
+- leave each profile's crawl date blank until a successful capture of that profile has been accepted; a directory listing alone does not establish `acm_fellow_profile_crawl_date`.
+- set `google_scholar_profile_quality` to `N` when the Scholar link is missing; otherwise assess the linked profile against the ACM identity.
+- set `dblp_profile_quality` to `N` when the DBLP link is missing; otherwise assess it independently using the same criteria.
 
 Apply the [award CSV sort order](#award-csv-sort-order) after adding or renaming Fellows.
 
@@ -267,13 +384,14 @@ Inspect the directory separately in regular Safari if direct HTTP requests are b
 ## CSRankings DBLP Alignment
 
 `scripts/build_csrankings_profiles.py` builds `data/csrankings_profiles.csv` from known DBLP profiles and cached CSRankings shards.
+It matches each DBLP-linked award recipient's roster name against CSRankings names; it does not fetch DBLP pages or read their parsed author names.
 
 The script:
 
 - reads `../bigcows-crawler/.cache/csrankings/csrankings-[a-z].csv`;
 - reads `data/acm_fellows.csv` and `data/turing_award_winners.csv`;
 - normalizes DBLP links to HTTPS without `.html`, query strings or fragments, then deduplicates nonempty URLs, using the Fellows roster's name first for shared URLs;
-- loops through DBLP profiles and includes only profiles that align to exactly one CSRankings row;
+- loops through those roster names and includes a DBLP URL only when its name matches exactly one CSRankings row;
 - preserves the original CSRankings columns;
 - appends `crawl_date` and `dblp_profile`;
 - writes `../bigcows-crawler/.cache/csrankings-profiles-report.json` with input roster paths, included, unmatched DBLP, and ambiguous DBLP counts.
@@ -296,8 +414,10 @@ python scripts/build_csrankings_profiles.py
 
 Use the shared [CSRankings workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#csrankings-crawler) for partial runs, pacing, and cache/report details.
 Inspect cache completeness before a full rebuild and investigate surprising drops in the included-row count.
+The builder silently skips missing shard files and replaces its output; a successful exit does not establish that all 26 shards were available.
 Preserve original CSRankings fields and do not edit the award rosters unless the user requests it.
-The alignment's `crawl_date` remains its build date; it does not reuse the rosters' `dblp_crawl_date`.
+The alignment's `crawl_date` defaults to its UTC build date, or takes the explicit `--crawl-date` value; it does not reuse the rosters' `dblp_profile_crawl_date`.
+Changing `--cache-dir` or `--output` does not relocate the default report; set `--report` explicitly to retain a separate report under the shared cache.
 
 Compile-check the script:
 
@@ -313,8 +433,11 @@ name,affiliation,homepage,scholarid,orcid,crawl_date,dblp_profile
 
 The matching policy is conservative.
 The script normalizes names by ignoring case, punctuation, diacritics, common honorifics, suffixes, and excess whitespace.
-It accepts exact normalized name matches and compatible first-name/initial plus last-name matches.
+It prefers exact normalized name matches, falling back to compatible first-name/initial, surname and middle-name checks.
+The fallback rejects cases where only one name has middle tokens and checks spelled-out middle tokens for compatibility; it is stricter than matching just first and last initials.
 It excludes unmatched and ambiguous rows instead of writing weak guesses.
+Uniqueness is checked separately for each DBLP URL; the builder does not enforce a one-to-one mapping across all output rows or validate the linked DBLP identity.
+Quality ratings do not filter this output.
 
 The alignment report is `../bigcows-crawler/.cache/csrankings-profiles-report.json`.
 It contains:
@@ -333,9 +456,14 @@ It contains:
 - `unmatched_sample`
 - `ambiguous`
 
-When asked to check or validate CSRankings profiles, join `data/csrankings_profiles.csv` with the deduplicated union of both award rosters on `dblp_profile` and flag suspicious name mismatches.
+`dblp_profiles_rows` is the count of distinct usable roster DBLP URLs, not rows from a separate DBLP table.
+The total counts cover the whole input, but `unmatched_sample` includes at most 50 profiles, `ambiguous` at most 100 profiles, and each ambiguous entry at most ten candidates.
+Output order follows the deduplicated roster traversal: Fellows first, then Turing-only URLs; it is not a global alphabetical sort.
+
+When asked to check or validate CSRankings profiles, normalize DBLP URLs as the builder does, then join `data/csrankings_profiles.csv` with the deduplicated union of both award rosters and flag suspicious name mismatches.
 Names should match modulo minor variations such as accent characters, diacritics, periods, punctuation, initials, spacing, hyphens, and capitalization.
-For suspicious rows, report the CSRankings name, DBLP name, affiliation, DBLP profile URL, and why it looks like a different person.
+For suspicious rows, report the CSRankings name, award-roster name, affiliation, DBLP URL, and why the identity is doubtful.
+Include the DBLP page's author name only when a retained capture or separate inspection supplies it, and label it distinctly from the roster name.
 Do not modify CSV files during validation unless the user explicitly asks.
 
 Use the repo-local skill `skills/refresh-csrankings` when asked to refresh CSRankings and rebuild this DBLP-aligned output.
@@ -373,6 +501,8 @@ python -m py_compile scripts/analyze_acm_fellow_universities.py
 Counting semantics:
 
 - Profile affiliations are source evidence, not canonical employment history.
+- Counts use all linked source affiliations, including those whose publication profile quality is `N`; the helper does not apply quality filters.
+- Both joins use exact stored URLs; unlike the CSRankings builder, this helper does not normalize DBLP URL variants, so a `.html` suffix or other variant can leave an otherwise available affiliation unmatched.
 - A fellow can count toward multiple universities if Scholar and CSRankings provide distinct universities.
 - The same normalized university from multiple sources counts once per fellow.
 - Companies and generic job titles should not be counted as universities.
@@ -416,8 +546,10 @@ The data object contains `schemaVersion`, `generatedAt` (UTC), `metadata` and `r
 Metadata includes `award` (`fellows` or `turing`), which the renderer checks against the page's `data-award` attribute to prevent displaying the wrong roster.
 Each row includes recipient identity, award year, profile URLs, citations, h-index, yearly citation counts, missing-data status and `crawlDate` from the source Scholar record.
 Generation time does not represent crawl freshness.
+The generated rows omit DBLP links and both quality fields; changing only those fields does not change the displayed snapshot.
 Unavailable metrics and crawl dates stay `null`, and missing citation histories stay empty objects.
 `hasScholar` indicates a joined row with citation-by-year data, not merely the presence of a profile URL.
+The renderer also hides scalar metrics when `hasScholar` is false, even if a joined source record contains all-time totals.
 Do not hand-edit the generated data file.
 
 Use a scratch output to inspect current CSV joins without updating the displayed snapshot:
@@ -437,8 +569,7 @@ python scripts/build_scholar_citation_visualization.py --award turing --roster p
 `--acm` remains a legacy alias for `--roster`.
 Generate data only when the underlying dataset refresh is ready to be reflected in the visualization.
 Presentation changes do not require rebuilding data.
-The September 16 extraction preserved the previously displayed snapshot, and the subsequent full import refreshed all 1,250 accepted ACM profiles.
-See [Data Notes](docs/data_notes.md) for capture dates, missing profiles, retained Turing-only records and known attribution concerns.
+See [Data Notes](docs/data_notes.md) for the history of imported Scholar statistics and displayed snapshots, capture dates, missing links and known attribution concerns.
 
 The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
 Recipient names link directly to their Google Scholar profiles when available; names without a profile stay plain text.
@@ -454,6 +585,7 @@ The renderer sets the CSS year count, keeping chart widths and year labels ident
 Every year has a tick, with horizontal labels at five-year intervals.
 Bar heights are normalized independently to each person's maximum within the displayed window; compare absolute counts using hover values and the metrics columns, not bar heights across people.
 Years absent from a recipient's history appear as empty bars; the underlying data and its coverage metadata remain unchanged.
+The current hover text renders absent years as zero, so consult `citationByYear` to distinguish a recorded zero from a missing year.
 A missing or unsupported data script produces a visible error instead of an empty page.
 
 Check award selection, canonical joins, missing-data semantics, renderer controls, and JavaScript syntax:
@@ -470,6 +602,20 @@ After changing data, verify the generated row counts, missing-data semantics and
 After changing rendering, check author search, the missing-data toggle and the empty-result state.
 Commit the generated data file when refreshing its source data; include HTML and rendering code only when those change.
 
+## Repository Validation
+
+Run the full offline Python suite after changing roster schemas, joins or canonical data:
+
+```bash
+python -B -m unittest discover -s tests -v
+```
+
+It checks the current published snapshots as well as builder behavior, roster field order, quality values and shared-profile dates.
+The current-data check requires a capture date for every stored profile URL; the schema permits blank dates while new links await capture, but such work is incomplete for the fully captured snapshot checked by this suite.
+For visualization changes, also run the JavaScript checks in the [visualization workflow](#google-scholar-citation-visualization).
+Before completing an edit, check `git diff --check`, canonical ordering, preservation of unrelated data, and any applicable report totals.
+For documentation-only changes, verify field names, local links, section anchors and commands against the existing files without refreshing datasets or starting crawls.
+
 ## Git Hygiene
 
 Do not commit these generated artifacts:
@@ -481,3 +627,4 @@ scripts/__pycache__/
 ```
 
 The repository `.gitignore` already excludes `.cache/` and Python bytecode.
+Keep disposable `tmp/` files out of commits as well; this directory is not currently covered by `.gitignore`.

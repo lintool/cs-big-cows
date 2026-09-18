@@ -8,24 +8,197 @@ Filesystem paths are relative to the repository root unless stated otherwise.
 Each entry is a historical snapshot: counts, blank cells, and pending decisions describe the end of that batch unless stated otherwise.
 Later entries supersede earlier decisions without erasing the original evidence or rationale.
 Scholar entries concern `data/acm_fellows.csv` unless they explicitly name the Turing Award dataset.
-Blank Scholar cells refer to `google_scholar_profile`; blank ACM profile cells refer to `acm_fellow_profile`.
+Blank profile cells always refer to a specific service: `acm_fellow_profile`, `dblp_profile`, or `google_scholar_profile`.
+A low quality rating or failed latest fetch does not mean that a URL cell is blank; see the [coverage and review definitions](../README_FOR_AGENTS.md#missing-profiles-and-review-status).
 A recorded Scholar URL alone does not establish current profile availability or validate every publication and citation metric.
 Scholar links labeled as cached evidence identify the source profile URLs; the historical captures are in the local cache files named in the entry.
 
-Start with the completed [Fellows statistics import](#2026-09-16-2121-edt---import-all-reviewed-fresh-acm-scholar-statistics) and [Turing refresh](#2026-09-16-2213-edt---refresh-turing-award-google-scholar-profiles), followed by the [combined visualization update](#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
-These entries supersede earlier pending-import and historical-fallback statements.
-For current file locations, display behavior, and maintenance commands, use the [visualization reference](../README_FOR_AGENTS.md#google-scholar-citation-visualization).
+For current values, start with the [Fellows roster](../data/acm_fellows.csv) and [Turing roster](../data/turing_award_winners.csv); use the [data dictionary](../README_FOR_AGENTS.md#data-layout) for field meanings and current policy.
+Read the newest relevant entries below for decisions that supersede earlier reports.
+For display behavior and regeneration commands, use the [visualization reference](../README_FOR_AGENTS.md#google-scholar-citation-visualization).
 Paths in older entries describe the layout at that time and are retained as provenance.
 
 Selected entries and reports:
 
-- **Latest completed data updates:** [Fellows import](#2026-09-16-2121-edt---import-all-reviewed-fresh-acm-scholar-statistics), [Turing refresh](#2026-09-16-2213-edt---refresh-turing-award-google-scholar-profiles), and [both visualization datasets](#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
-- **Fresh identity audits:** [Fellows report](acm_scholar_audit_2026-09-16.md) and [Turing report](turing_scholar_audit_2026-09-16.md), including publication-attribution concerns and links to row-level evidence.
+- **DBLP profile quality:** [Combined review](dblp_profile_quality_2026-09-17.md) and [row audit](dblp_profile_quality_2026-09-17.csv), including identity, contamination and obvious-incompleteness findings for both rosters.
+- **Scholar profile quality:** [Fellows review](acm_scholar_quality_2026-09-17.md) and [Turing review](turing_scholar_quality_2026-09-17.md), applying the user's tolerant standard while preserving explicit decisions about substantial contamination, publication-level concerns and links to row audits.
+- **Profile fields and DBLP decisions:** [DBLP table removal](#2026-09-17-2056-edt---move-dblp-crawl-dates-into-award-rosters), [explicit DBLP date name](#2026-09-17-2136-edt---clarify-dblp-profile-crawl-date-field), [ACM and Scholar dates](#2026-09-17-2138-edt---add-acm-and-scholar-profile-crawl-dates), and [latest DBLP removals and sparse-profile reassessment](#2026-09-17-2215-edt---reject-three-dblp-links-and-reassess-sparse-profiles).
+- **Scholar statistics and visualization imports:** [Fellows import](#2026-09-16-2121-edt---import-all-reviewed-fresh-acm-scholar-statistics), [Turing refresh](#2026-09-16-2213-edt---refresh-turing-award-google-scholar-profiles), and [both visualization datasets](#2026-09-16-2238-edt---separate-fellows-and-turing-citation-visualizations).
+- **September 16 identity audits:** [Fellows report](acm_scholar_audit_2026-09-16.md) and [Turing report](turing_scholar_audit_2026-09-16.md), including publication-attribution concerns and links to row-level evidence; later quality reviews refine these assessments.
 - **Missing-profile searches:** [Turing follow-up](#2026-09-16-2219-edt---follow-up-missing-turing-scholar-profiles-with-general-web-search) and [remaining Fellows search outcomes](#2026-09-15-1349-edt---google-scholar-links-review-of-all-remaining-missing-entries).
 - **Shared recipients:** [Fellows-to-Turing synchronization](#2026-09-16-2200-edt---synchronize-shared-turing-recipients-from-acm-fellows) and [earlier user resolutions](#2026-09-15-1821-edt---user-resolution-of-shared-recipient-scholar-links).
 - **Rejected links and historical statistics:** [Broken-link resolution](#2026-09-16-2044-edt---resolve-45-broken-acm-fellow-scholar-links) and [historical-record removal](#2026-09-16-2049-edt---remove-unverified-historical-scholar-records).
 - **Canonical ordering:** [Award CSV sorting decision](#2026-09-15-1822-edt---consistent-award-csv-sort-order).
 - **ACM source reconciliation:** [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
+- **Missing individual ACM pages:** [Eleven Fellows and their former URLs](#2026-09-13---unavailable-individual-acm-profiles), with the evidence for clearing those links while retaining the award rows.
+
+## 2026-09-17 22:28 EDT - Reconcile Documentation With Implementation
+
+Repeated the consistency review across application guides, published review reports, repo-local skill references and the shared crawler documentation.
+Corrected the CSRankings matching description and module docstring to identify the award-roster name as the matching input, distinguish per-URL candidate uniqueness from a global one-to-one mapping, and explain report sampling and missing-shard behavior.
+Documented exact-URL joins, the absence of quality filtering in affiliation analysis, and visualization coverage and missing-year display semantics.
+Clarified review flags and evidence timestamps, including capture metadata retained for rejected DBLP links.
+Confirmed that the DBLP review queue contains 114 linked N rows and 14 Y rows with caveats.
+
+Separated the Scholar award commands so the first report can be inspected before starting the second crawl, and made the need to interrupt blocked runs explicit.
+Aligned the shared crawler reference with its actual HTML storage, DBLP Safari locking, Scholar retry selection and retained fetch-error behavior.
+Added the full offline validation workflow and clarified that the current snapshot tests require capture dates for stored links even though the schema allows dates to remain blank while capture work is incomplete.
+
+Validated 175 local and locally resolvable crawler links and anchors, 26 documented Python commands, shell-example syntax, both award headers and current quality-audit agreement with the canonical rosters.
+All seven Python tests and the JavaScript visualization checks passed; both repositories passed `git diff --check`.
+The final review found no further actionable documentation inconsistencies within this scope.
+Canonical data, row audits and generated visualization assets were preserved, and an AST comparison confirmed that the matching-script change affects only its module docstring.
+
+## 2026-09-17 22:22 EDT - Clarify Profile Documentation And Review History
+
+Reorganized the maintenance reference into an ordered award-field dictionary, service-specific missing-profile definitions, crawl-date semantics, and publication-quality criteria.
+Clarified that blank URLs, failed fetches, low quality ratings and review flags are different states, and that combined counts must distinguish award rows from distinct people.
+Documented the fallback to retained ACM context when an individual page is unavailable, while preserving the limitation on identity evidence.
+Added the reviewed DBLP import workflow, including continued crawling through redirects, shared-roster consistency and checks on dependent CSRankings links.
+Clarified Scholar date synchronization and corrected the cache-location guidance.
+
+Added historical-snapshot notices and links to later decisions in the identity, search and quality reports, preserving their original findings and rejected-URL evidence.
+Updated the navigation here to distinguish profile-schema changes, quality decisions, statistics imports and visualization updates, and to surface the eleven unavailable ACM pages.
+Validated local Markdown links and anchors and checked that the field dictionary matches both award CSV headers.
+All CSVs, row audits, code and generated visualization data remain unchanged by this documentation cleanup.
+
+## 2026-09-17 22:15 EDT - Reject Three DBLP Links And Reassess Sparse Profiles
+
+The user identified the stored DBLP profiles for Seymour J. Wolfson, Roger R Bate and Karen Duncan as wrong and requested removal.
+Cleared their Fellow roster DBLP URLs and crawl dates, changed their quality ratings from Y to N, and marked their review cases resolved.
+None of these URLs was used by the Turing roster or CSRankings alignment.
+The Fellows roster now has nine missing DBLP links; Turing retains four missing links.
+
+The user clarified that ACM Fellows should have substantial publication coverage and that unusually small bibliographies are likely wrong.
+Individually reread all entries in the nine remaining Y profiles with only one to four captured records: Paolo Zanella, Bob O Evans, Charles L. Bradshaw, Daniel S. Bricklin, Douglas K Brotz, Herbert Maisel, Stephen Dunwell, Thomas A D'Auria and William B Poucher.
+Changed those nine quality ratings to N pending positive identity and coverage verification, retaining their URLs and dates and flagging them for review.
+These are likely wrong or incomplete profiles under the clarified criterion, not newly confirmed wrong-person findings.
+The one-to-four-record range describes this reassessment batch, not a universal cutoff specified by the user.
+
+Fellows now have 1,515 Y and 123 N DBLP quality ratings; Turing remains at 77 Y and four N.
+Updated the [review report](dblp_profile_quality_2026-09-17.md), [row audit](dblp_profile_quality_2026-09-17.csv) and authoritative matching criteria, preserving rejected URLs and previous assessments as evidence.
+The remaining review queue contains 128 award rows.
+Before snapshots, the script and validation are retained under `../bigcows-crawler/.cache/dblp-sparse-review-2026-09-17-221348/`.
+All seven tests passed; unrelated cells, row order, Turing data, Scholar statistics and CSRankings data were preserved.
+
+## 2026-09-17 22:11 EDT - Remove Four User-Rejected DBLP Associations
+
+The user confirmed that the stored DBLP profiles for David Patterson, Jim Gray, Richard Karp and J. H. Wilkinson are wrong and requested removal.
+Cleared `dblp_profile` and `dblp_profile_crawl_date` in seven award rows: Patterson, Gray and Karp in both rosters, and Wilkinson in the Turing roster.
+Their `dblp_profile_quality` values remain N, now with missing URLs; all award-recipient rows and Scholar fields are preserved.
+The Fellows roster now has six missing DBLP links and the Turing roster has four; quality totals remain 1,527 Y / 111 N and 77 Y / 4 N respectively.
+None of the rejected URLs was used by the canonical CSRankings alignment, so no dependent alignment rows needed removal.
+
+Updated the [DBLP review](dblp_profile_quality_2026-09-17.md) and [row audit](dblp_profile_quality_2026-09-17.csv) to mark these cases resolved, retain rejected URLs and previous assessments as evidence, and reduce the active review queue from 134 award rows to 127.
+The user's wrong-profile decision supersedes the earlier incomplete-profile assessment for Wilkinson.
+Before snapshots, the removal script and exact changes are retained under `../bigcows-crawler/.cache/dblp-user-removals-2026-09-17-221023/`.
+Validation confirmed preservation of all unrelated cells and row order, canonical/audit agreement, unchanged Scholar statistics and CSRankings CSVs, and seven passing repository tests.
+
+## 2026-09-17 21:50 EDT - Assess DBLP Profile Quality For Both Award Rosters
+
+Added `dblp_profile_quality` immediately after `dblp_profile_crawl_date` in both award rosters, using Y/N with the same tolerant ACM-grounded identity and relevance criteria as Scholar.
+The user additionally instructed that obviously incomplete DBLP profiles receive N; clear fragments are therefore distinguished from wrong-person links and substantially mixed bibliographies.
+Fellows now have 1,527 Y and 111 N ratings: 58 identity mismatches, 14 substantial-contamination cases, 36 obviously incomplete profiles and three missing links.
+Turing winners have 77 Y and four N ratings: David Patterson, Jim Gray and Richard Karp have wrong-person associations, while J. H. Wilkinson has an obviously incomplete two-record bibliography.
+All URLs, crawl dates, Scholar quality ratings, other existing fields and row order were preserved.
+
+Reused the 1,653 accepted September 17 Toronto DBLP captures and verified every HTML hash.
+Parsed 392,385 bibliography entries for screening and corroboration, individually triaged 490 profiles without strong support from the previously reviewed Scholar sample, and individually reviewed 246 additional lexical topic-screen candidates.
+Expanded flagged cases with metadata and broader publication inspection; this work does not establish that every captured publication was individually verified.
+The remaining Y assessments rely on retained ACM-grounded identity review and corroborating publication evidence, with the inspection scope stated in the row audit.
+The [combined report](dblp_profile_quality_2026-09-17.md) and [row audit](dblp_profile_quality_2026-09-17.csv) flag 134 award rows for review, including all 112 linked N rows and 22 Y rows with identity, coverage or mixed-profile caveats.
+These are assessment flags, not completed user adjudications.
+
+The previously user-retained Roy Levin, Prithviraj Banerjee, Ahmed Sameh and Johan de Kleer URLs remain stored; their DBLP quality ratings are N, Y, N and N respectively.
+DBLP and Scholar ratings are independent, and isolated questionable publications do not automatically lower a profile to N.
+Updated the authoritative policy and agent pointer to cover both services and the DBLP incompleteness criterion.
+Snapshots, extracted evidence, curated decisions, scripts and validation are retained under `../bigcows-crawler/.cache/dblp-quality-2026-09-17-214051/`.
+All seven data-repository tests passed, including schema order, Y/N values, missing-link ratings and consistency across shared profile URLs; canonical Scholar statistics and CSRankings data remain byte-for-byte unchanged.
+No new crawl or replacement-profile search was performed.
+
+## 2026-09-17 21:38 EDT - Add ACM And Scholar Profile Crawl Dates
+
+Added `acm_fellow_profile_crawl_date` and `google_scholar_profile_crawl_date` immediately after their corresponding URLs in both award rosters.
+Populated the UTC dates from successful retained captures matched by URL and verified against the exact timestamps and HTML hashes used in the completed quality assessments; no new crawl was performed.
+The Fellows roster has 1,627 ACM dates of `2026-09-13` and 11 blanks for missing ACM links, plus 1,192 Scholar dates of `2026-09-16`, 58 of `2026-09-17` and 388 blanks for missing Scholar links.
+The Turing roster has 81 ACM dates of `2026-09-13`, plus 40 Scholar dates of `2026-09-17` and 41 blanks for missing Scholar links.
+All stored URLs have accepted captures, and shared URLs have consistent dates across rosters.
+Linked Scholar profiles rated N retain capture dates; these dates record successful capture rather than profile quality.
+
+Preserved every existing roster cell and row order, both shared profile datasets byte-for-byte, and Unix LF line endings.
+Updated the active schema and maintenance instructions, and expanded the existing roster-date validation to cover all three profile types.
+All seven data-repository tests and 53 shared-crawler tests passed; the crawler code requires no changes.
+Before snapshots, the migration script, the 2,998-row capture manifest and validation results are retained under `../bigcows-crawler/.cache/profile-crawl-dates-2026-09-17-213737/`.
+
+## 2026-09-17 21:36 EDT - Clarify DBLP Profile Crawl Date Field
+
+Renamed `dblp_crawl_date` to `dblp_profile_crawl_date` in both award rosters, keeping it immediately after `dblp_profile` to make the date's scope explicit.
+All data rows, dates and row order were preserved byte-for-byte; only the CSV headers changed.
+Updated the active schema documentation and existing tests; historical entries and retained crawl evidence keep their original field names.
+The shared crawler does not reference the renamed field and requires no changes.
+All seven repository tests passed.
+
+## 2026-09-17 21:33 EDT - Assess Turing Award Google Scholar Profile Quality
+
+Added `google_scholar_profile_quality` to all 81 rows in `data/turing_award_winners.csv`, applying the same tolerant profile-level policy and explicit user adjudications as the Fellows assessment.
+The result is 40 Y ratings for linked profiles and 41 N ratings for missing stored Scholar links.
+Individually reviewed all 800 captured publication entries against the ACM Turing recipient identities and research citations; no linked sample showed substantial contamination comparable to the four Fellows explicitly rated N by the user.
+All 30 profiles shared with Fellows retain consistent Y ratings; the other 10 linked profiles were reviewed independently, and none of the four user-rejected Fellows appears in the Turing roster.
+
+Frederick Brooks and Raj Reddy retain narrow contributor or thesis-attribution questions for optional review while remaining Y.
+Isolated concerns for David Patterson, Kenneth Lane Thompson, Stephen A Cook and Dana S Scott are documented without lowering their overall quality ratings.
+The [Turing quality report](turing_scholar_quality_2026-09-17.md) provides ACM and Scholar references, findings and scope limits, while the [row audit](turing_scholar_quality_2026-09-17.csv) records every recipient and rating rationale.
+This assessment reused the successful September 17 UTC Scholar captures from the September 16 Toronto crawl and the September 13 ACM captures; it did not perform a new crawl, full-bibliography review or missing-profile search.
+Input snapshots, exact selected captures, all publication samples, primary-source checks, decisions and validation are retained in `../bigcows-crawler/.cache/turing-scholar-quality-2026-09-17-213022/`.
+
+Validation confirmed preservation of all original Turing cells and row order, byte-for-byte preservation of Fellows and both shared profile datasets, all 81 ACM and 40 Scholar capture hashes, consistent ratings for 30 shared URLs, and LF line endings.
+All seven repository tests passed; profile URLs, metrics and visualization data were unchanged.
+
+## 2026-09-17 21:29 EDT - Resolve Four Substantially Mixed Scholar Profiles
+
+The user reviewed Arindam Banerjee, Ramesh C Jain, James H Morris and David S Johnson and explicitly requested N for all four profiles.
+Changed only those four canonical quality values from Y to N, giving 1,246 Y ratings and 392 N ratings: four linked profiles with substantial contamination and 388 missing stored links.
+The tolerant treatment of isolated questionable papers remains unchanged; these explicit decisions override the prior majority-based Y ratings for the four named profiles.
+Updated the [review report](acm_scholar_quality_2026-09-17.md) and [row audit](acm_scholar_quality_2026-09-17.csv), preserving the previous ratings and reasons and marking these four cases resolved.
+The other 25 review caveats remain pending or optional as previously documented.
+Pre-edit snapshots and the decision record are retained in `../bigcows-crawler/.cache/scholar-quality-user-decisions-2026-09-17-212922/`.
+No profile URLs, publication evidence, metrics or other canonical fields changed.
+
+## 2026-09-17 21:22 EDT - Apply Tolerant Scholar Profile Quality Standard
+
+The user clarified that a couple of questionable papers are acceptable and that a profile should receive Y when most publications are reasonably adjacent to the Fellow's research.
+Reserve N for really poor linked profiles; the earlier explicit N policy for missing links remains in force.
+Reassessed all 121 linked N profiles and changed them to Y, yielding 1,250 Y ratings and 388 N ratings, all of the latter missing stored Scholar links.
+For 92 reassessed profiles, a majority of captured titles already matched the reviewed DBLP bibliography alongside the ACM-grounded identity and topic assessment.
+Individually reconsidered all 20 captured entries for each of the other 29 profiles and recorded conservative relevant/adjacent lower bounds, all exceeding half of the sample.
+This majority judgment does not establish authorship of each paper or certify aggregate citation metrics.
+
+Arindam Banerjee, Ramesh C Jain, James H Morris and David S Johnson retain prominent review flags because multiple outliers remain despite a relevant majority.
+The 25 earlier Y caveats remain available for optional review, while the other 117 former N cases retain their publication-level findings without active quality-review flags.
+The updated [review report](acm_scholar_quality_2026-09-17.md) and [row audit](acm_scholar_quality_2026-09-17.csv) distinguish overall quality from individual attribution concerns and preserve previous ratings and reasons.
+The original stricter published reports are snapshotted in `../bigcows-crawler/.cache/scholar-quality-tolerant-2026-09-17-212031/before/docs/`, with row-level reassessment decisions and validation in the same run directory.
+The existing September 16–17 UTC first-page captures were reused; no new crawl was required for this policy change.
+Validation confirmed exactly 121 N-to-Y changes, preservation of every other roster cell and row order, byte-for-byte preservation of the other canonical CSVs, row-audit consistency, LF line endings and seven passing repository tests.
+
+## 2026-09-17 21:18 EDT - Assess ACM Fellows Google Scholar Profile Quality
+
+Added `google_scholar_profile_quality` to every row of `data/acm_fellows.csv`, using only `Y` and `N`.
+The 1,638 Fellows now comprise 1,129 Y ratings and 509 N ratings: 388 missing stored Scholar links, 13 verified publication-attribution conflicts, and 108 provisional attribution concerns.
+Missing profiles receive N as explicitly requested by the user; this does not establish that no public profile exists.
+All 121 linked N profiles and 25 Y profiles with narrower ambiguities or coverage limitations are flagged in the [review report](acm_scholar_quality_2026-09-17.md), with ACM and Scholar references.
+The [dated row audit](acm_scholar_quality_2026-09-17.csv) records a decision for every Fellow, reasons, inspection counts, evidence links and capture metadata.
+
+The ACM Fellow profiles/directory and the prior identity audit establish the identity reference.
+The assessment uses 24,983 first-page publication entries from retained successful captures for all 1,250 current Scholar URLs, fetched on September 16 and September 17 UTC.
+Automated author-credit and DBLP-title checks produced 345 profiles for individual candidate review, supplemented by subject-outlier screening and targeted primary-source verification.
+DBLP supplies corroboration only, and legitimate short author lists, name variants, contributor credits and interdisciplinary publications were not automatically rejected.
+This was not a fresh Scholar crawl or a complete bibliography inspection; Y indicates a reasonable reviewed sample, while provisional N findings still require adjudication.
+Sparse but coherent samples can remain Y with an explicit coverage caveat.
+
+Input snapshots, extracted publication evidence, curated decisions, source searches, exact selected Scholar captures, reproduction scripts and validation results are retained in `../bigcows-crawler/.cache/scholar-quality-2026-09-17-210744/`.
+All original Fellow cells and row order were preserved, and the three other canonical CSVs were verified byte-for-byte unchanged.
+Scholar URLs, aggregate metrics, Turing quality fields and visualization data were not changed.
+Validation checked all Y/N values, all 388 missing-link N ratings, row-audit alignment, all 1,250 selected capture hashes and LF line endings; all seven repository tests passed.
 
 ## 2026-09-17 20:56 EDT - Move DBLP Crawl Dates Into Award Rosters
 

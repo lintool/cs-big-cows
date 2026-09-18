@@ -1,5 +1,10 @@
 # DBLP Identity Review
 
+This report records the initial identity-review batch, not the current roster or quality-review queue.
+Some removed associations were subsequently replaced in the [missing-profile search](dblp_missing_profile_search_2026-09-17.md).
+The later [DBLP quality review](dblp_profile_quality_2026-09-17.md) adds quality assessments and further removals; keeping a link here does not establish a `Y` rating.
+Use the canonical award CSVs for current links and [Data Notes](data_notes.md) for subsequent decisions.
+
 Review prepared 2026-09-17 20:13 EDT from the completed September 17 Safari crawl.
 Updated 2026-09-17 20:31 EDT: eleven DBLP identity associations have been removed and four retained by explicit user decision; all fifteen cases in this review queue are resolved.
 Evidence comes from the retained DBLP pages, ACM roster citations, reviewed Scholar affiliations where available, and the [earlier identity audit](acm_scholar_audit_2026-09-16.md).
@@ -41,7 +46,7 @@ Completed 2026-09-17 20:29 EDT, using ACM as the identity reference and the reta
 Removed nine Fellow DBLP links and Kristen Nygaard's Turing DBLP link, nine DBLP table records, and six dependent CSRankings alignment rows.
 Nygaard's rejected URL existed only in the Turing roster and had no DBLP table record.
 All award-recipient rows remain present.
-The five cases pending at the end of this batch were subsequently resolved by the user as recorded below.
+The five cases pending at the end of this batch were subsequently resolved in [Final User Decisions](#final-user-decisions).
 Levin's older HYDRA work and Banerjee's VLSI/parallel-computing work match their ACM citations, so their full profiles were not rejected.
 
 The eight remaining Scholar links in these 15 cases match the intended identities: Haitao Zheng, Zhendong Su, N Asokan, Tian He, Peter Schroeder, Satish Rao, Jiawei Han and Johan de Kleer.

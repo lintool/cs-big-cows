@@ -1,5 +1,9 @@
 # Missing DBLP Profile Search — September 17, 2026
 
+This report describes the completed search batch before the [DBLP table was removed](data_notes.md#2026-09-17-2056-edt---move-dblp-crawl-dates-into-award-rosters) and later profiles were rejected in the [quality review](dblp_profile_quality_2026-09-17.md).
+Counts and references to a separate DBLP table below are historical; current links, crawl dates and quality ratings live in the two award rosters.
+The DBLP column includes both accepted and rejected candidates; read the decision before treating a candidate as an accepted link.
+
 Searched all 36 distinct recipients represented by 37 missing roster cells using general web search, including name variants and institutional or publication follow-ups.
 Verified 33 author profiles against the ACM award citations, research histories and available institutional evidence, then filled 28 Fellow cells and all 6 missing Turing cells.
 John McCarthy occurs in both rosters.

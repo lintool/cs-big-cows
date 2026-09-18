@@ -45,13 +45,13 @@ class RosterAlignmentTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             tmp = Path(directory)
             fellows, turing = tmp / "fellows.csv", tmp / "turing.csv"
-            fields = ["name", "dblp_profile", "dblp_crawl_date"]
-            alice = {"name": "Alice Example", "dblp_profile": "https://dblp.org/pid/1/1", "dblp_crawl_date": "2026-09-17"}
-            bob = {"name": "Bob Example", "dblp_profile": "https://dblp.org/pid/1/2", "dblp_crawl_date": "2026-09-18"}
-            write(fellows, fields, [alice, {"name": "No Profile", "dblp_profile": "", "dblp_crawl_date": ""}])
+            fields = ["name", "dblp_profile", "dblp_profile_crawl_date"]
+            alice = {"name": "Alice Example", "dblp_profile": "https://dblp.org/pid/1/1", "dblp_profile_crawl_date": "2026-09-17"}
+            bob = {"name": "Bob Example", "dblp_profile": "https://dblp.org/pid/1/2", "dblp_profile_crawl_date": "2026-09-18"}
+            write(fellows, fields, [alice, {"name": "No Profile", "dblp_profile": "", "dblp_profile_crawl_date": ""}])
             write(turing, fields, [alice, bob,
-                {"name": "Unmatched Person", "dblp_profile": "https://dblp.org/pid/1/3", "dblp_crawl_date": ""},
-                {"name": "Ambiguous Person", "dblp_profile": "https://dblp.org/pid/1/4", "dblp_crawl_date": ""},
+                {"name": "Unmatched Person", "dblp_profile": "https://dblp.org/pid/1/3", "dblp_profile_crawl_date": ""},
+                {"name": "Ambiguous Person", "dblp_profile": "https://dblp.org/pid/1/4", "dblp_profile_crawl_date": ""},
             ])
             write(tmp / "csrankings-a.csv", builder.CSRANKINGS_COLUMNS, [
                 {"name": "Alice Example", "affiliation": "A"},
@@ -72,15 +72,30 @@ class RosterAlignmentTests(unittest.TestCase):
 
     def test_canonical_roster_dates_are_valid_and_shared_profiles_agree(self):
         dates = {}
+        qualities = {}
         for filename in ["acm_fellows.csv", "turing_award_winners.csv"]:
             for row in builder.read_csv(ROOT / "data" / filename):
-                captured = row["dblp_crawl_date"]
-                if not row["dblp_profile"]:
-                    self.assertEqual(captured, "", row["name"])
-                    continue
-                self.assertEqual(date.fromisoformat(captured).isoformat(), captured)
-                profile = builder.unique_dblp_rows([row])[0]["profile"]
-                self.assertEqual(dates.setdefault(profile, captured), captured, profile)
+                for field in ["acm_fellow_profile", "dblp_profile", "google_scholar_profile"]:
+                    date_field = field + "_crawl_date"
+                    fields = list(row)
+                    self.assertEqual(fields[fields.index(field) + 1], date_field)
+                    captured = row[date_field]
+                    if field in ["dblp_profile", "google_scholar_profile"]:
+                        quality_field = field + "_quality"
+                        self.assertEqual(fields[fields.index(date_field) + 1], quality_field)
+                        self.assertIn(row[quality_field], {"Y", "N"})
+                        if not row[field]:
+                            self.assertEqual(row[quality_field], "N")
+                    if not row[field]:
+                        self.assertEqual(captured, "", (row["name"], field))
+                        continue
+                    self.assertEqual(date.fromisoformat(captured).isoformat(), captured)
+                    profile = builder.unique_dblp_rows([row])[0]["profile"] if field == "dblp_profile" else row[field]
+                    key = (field, profile)
+                    self.assertEqual(dates.setdefault(key, captured), captured, key)
+                    if field in ["dblp_profile", "google_scholar_profile"]:
+                        quality = row[field + "_quality"]
+                        self.assertEqual(qualities.setdefault(key, quality), quality, key)
 
 
 if __name__ == "__main__":

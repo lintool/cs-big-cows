@@ -1,5 +1,8 @@
 # ACM Fellows Scholar Sweep — September 16, 2026
 
+This identity and import audit predates the [Scholar quality assessment](acm_scholar_quality_2026-09-17.md), which applies the tolerant profile-level standard and records the user's four `N` decisions.
+An accepted identity in this audit does not certify publication quality; reference links and export statuses describe this batch's snapshot.
+
 **Import update (2026-09-16 21:21 EDT):** All 1,250 accepted fresh profiles have now been imported and the visualization data refreshed.
 The findings and row-level export statuses below describe the earlier audit snapshot; see [Data Notes](data_notes.md) for the completed import.
 
@@ -11,7 +14,7 @@ Found seven additional wrong-person or mixed-person associations, verified two r
 The resulting dataset has **1,250 distinct linked profiles with fresh captures and supported identities**, plus **388 blank Scholar fields**.
 A blank field is a coverage gap, not proof that a public profile does not exist.
 No historical record was used as a substitute for a rejected profile.
-The visualization was not changed.
+The audit itself did not change the visualization; the subsequent import update above did.
 
 ## Identity Corrections
 
@@ -52,7 +55,7 @@ No citation totals were manually adjusted, and no papers were removed from Schol
 | Ramesh C Jain | Needs publication review: Diabetes burden and membrane-transporter papers appear alongside multimedia work; attribution needs checking. | [Captured profile](https://scholar.google.com/citations?user=wOYUPpwAAAAJ) |
 | James H Morris | Needs publication review: Known prostate-cancer xenograft paper among authentic KMP/Andrew publications; user-approved identity remains unchanged. | [Captured profile](https://scholar.google.com/citations?user=9Y2cn3EAAAAJ) |
 
-## Coverage and Export Issues
+## Coverage And Export Issues
 
 - **388 Fellows have blank Scholar fields:** 383 were already blank and five were cleared in this sweep.
 - **Canonical metrics import remains pending:** 827 currently linked profiles still have historical metrics, 419 have no canonical metrics row, and 4 have fresh canonical rows.
@@ -64,7 +67,7 @@ No citation totals were manually adjusted, and no papers were removed from Schol
 - Rudrapatna K. Shyamasundar’s profile shows only three publications, so it is a poor basis for career citation coverage even though its TIFR email, IIT Bombay affiliation and research interests support the identity.
 - Missing email verification and sparse affiliation metadata are recorded per row, not treated as automatic evidence of a wrong person.
 
-## Method and Limits
+## Method And Limits
 
 Checked the entire roster for capture availability, HTTP status, timestamps, nonempty HTML, parsed metrics, duplicate URLs and duplicate capture bodies.
 The initial identity screen found 842 name-compatible profiles with at least two exact normalized publication-title matches to cached DBLP records, 26 recently resolved profiles, and 387 profiles requiring detailed review.
@@ -78,7 +81,7 @@ The 383 initially blank fields were inventoried with the existing September 15/1
 Cached DBLP records are older corroborating evidence, not fresh DBLP crawls.
 Original raw captures remain as audit evidence; they are not active historical fallbacks.
 
-## Files and Validation
+## Files And Validation
 
 The [full row audit](acm_scholar_audit_2026-09-16.csv) contains one record per Fellow, including status, freshness, identity basis, source capture hash, export status and issues.
 Detailed initial evidence, final rows, new full-HTML captures, correction decisions and the fresh-only export are under `tmp/scholar-full-sweep-2026-09-16/`.

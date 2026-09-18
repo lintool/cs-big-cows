@@ -8,6 +8,11 @@ Crawl artifacts are retained evidence; the general rule to put disposable scratc
 Keep canonical datasets and published review documentation in this repository.
 Before starting a crawl, read the [crawler workflow](README_FOR_AGENTS.md#crawlers) and the shared crawler's [authoritative instructions](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md).
 
+## Publication Profile Quality
+
+Before matching or rating DBLP or Google Scholar profiles for either award roster, follow the authoritative [publication profile quality criteria](README_FOR_AGENTS.md#publication-profile-quality), including the linked review reports and explicit user decisions.
+Use the [missing-profile definitions](README_FOR_AGENTS.md#missing-profiles-and-review-status) when reporting coverage or review queues.
+
 ## Documentation Audiences
 
 - README.md is for humans: project overview, setup, basic usage, and a few useful examples.

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-"""Build DBLP-aligned CSRankings profiles from cached CSRankings shards.
+"""Match DBLP-linked award-roster names against cached CSRankings shards.
 
-The output contains only CSRankings rows that align to exactly one known DBLP
-profile with high confidence. Unmatched and ambiguous rows are omitted from the
-CSV and summarized in the report.
+Each distinct roster DBLP URL is included when its roster name matches exactly
+one CSRankings row. This does not verify the DBLP page's identity or enforce a
+one-to-one mapping across all URLs. Unmatched and ambiguous names are omitted
+from the CSV and summarized in the report.
 """
 
 from __future__ import annotations
