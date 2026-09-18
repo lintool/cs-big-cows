@@ -98,17 +98,17 @@ Validate the [schema and ordering rules](#data-layout), preserve unrelated field
 
 ### Other Fetching Commands
 
-These commands fetch DBLP pages or CSRankings shards; the builder writes the application's alignment:
+These commands fetch DBLP pages or CSRankings shards:
 
 ```bash
 python ../bigcows-crawler/scripts/cache_dblp_profiles.py --data data/acm_fellows.csv
 python ../bigcows-crawler/scripts/cache_csrankings.py
-python scripts/build_csrankings_profiles.py
 ```
 
 The DBLP command above uses the HTTP transport and its default cache; it can reuse older captures and is not a fresh full-roster refresh by itself.
 Use the reviewed DBLP workflow above when updating canonical data.
 Follow the shared reference for source pacing and retries.
+After refreshing CSRankings sources, follow [CSRankings Name Links](#csrankings-name-links) to synchronize the profile lookup table.
 For Scholar, use the reviewed workflow below rather than exporting directly into the canonical CSV.
 
 ### Review and Import Google Scholar Data
@@ -198,7 +198,7 @@ data/turing_award_winners.csv
 
 ### Award Roster Fields
 
-`data/acm_fellows.csv` and `data/turing_award_winners.csv` use the same columns, in the order below.
+`data/acm_fellows.csv` and `data/turing_award_winners.csv` use the same columns below, in this order.
 Each row represents a recipient in that award roster; a person who received both awards appears once in each roster.
 
 | Field | Meaning |
@@ -215,6 +215,15 @@ Each row represents a recipient in that award roster; a person who received both
 | `google_scholar_profile` | Stored Scholar author URL, or blank when no accepted link is recorded. |
 | `google_scholar_profile_crawl_date` | Accepted capture's UTC date for the stored Scholar URL, or blank when unavailable. |
 | `google_scholar_profile_quality` | Required `Y` or `N` under the publication-quality criteria below. |
+| `csrankings_name` | Exact CSRankings name key from the refreshed faculty sources or a documented retained historical profile, or blank when no accepted link is recorded. |
+| `csrankings_name_alignment_date` | UTC date the stored CSRankings name association was established or explicitly revalidated; blank when the name link is blank. |
+
+The `csrankings_name` field stores the exact `name` from a CSRankings faculty source row or documented retained `data/csrankings_profiles.csv` record, including spelling, punctuation and any disambiguation number.
+Historical links absent from the latest upstream files require explicit provenance; a populated name does not establish current CSRankings inclusion or current faculty status.
+It is an explicit name key, not a URL, and is independent of whether a DBLP URL is present or rated `Y`.
+A blank means no accepted CSRankings name link is recorded, not proof that the person is absent from CSRankings.
+The adjacent `csrankings_name_alignment_date` records the name-alignment decision date, independently of the CSRankings source download date.
+See [CSRankings Name Links](#csrankings-name-links) for matching and manual-edit guidance.
 
 For both award rosters, use the corresponding directory's literal surname-first display names by default, subject to the [ACM source-of-truth policy](AGENTS.md#acm-source-of-truth).
 Convert HTML entities and rendered whitespace to ordinary text; override directory spelling, initials or name order only when cited evidence establishes an obvious error, and document the exception.
@@ -224,7 +233,7 @@ Do not substitute an individual profile's heading or honorifics for the director
 For Turing rows, `acm_fellow_profile` and its crawl date refer to the Turing recipient's ACM page; always select `--award turing` when crawling or comparing this dataset.
 There is no ACM profile quality field.
 There is no separate canonical `data/acm_fellow_profiles.csv` or `data/dblp_profiles.csv`; profile links belong in the award rosters.
-The distinct nonempty DBLP URLs across both rosters define the known DBLP profiles used by the CSRankings builder.
+The distinct nonempty `csrankings_name` keys across both rosters define the current CSRankings profile lookup table.
 
 ### Historical Review Artifacts
 
@@ -416,9 +425,53 @@ Apply the same name, field, capture-date and ordering rules to `data/turing_awar
 The [Turing reconciliation](docs/turing_directory_reconciliation_2026-09-17.md) matched all 81 recipients and years, with no missing directory entries or blank stored ACM links.
 Match modern and legacy ACM recipient URLs using the final recipient ID, allowing alphanumeric IDs, case differences and the legacy `.cfm` suffix; verify the person and award before accepting a changed URL.
 
+## CSRankings Name Links
+
+Both award rosters record explicit links in `csrankings_name`.
+The initial [Fellows audit](docs/csrankings_name_alignment_2026-09-18.csv) and [Turing audit](docs/turing_csrankings_name_alignment_2026-09-18.csv) record every recipient, the accepted links, match statuses and candidate names with affiliations for manual review.
+Their row numbers and statuses describe those batches; use the rosters' current `csrankings_name` values after manual edits.
+
+The initial pass used all 26 alphabetical faculty source files refreshed on September 18, 2026.
+It accepted unique normalized name matches using the existing name normalization described below, then unique compatible initial expansions only when tokens aligned in order, the surname matched and the roster's first given token was spelled out.
+Ambiguous names, initials-only given names, differing token counts and duplicate target assignments were left blank.
+This is name-based alignment, not independent identity verification or a publication-profile quality assessment.
+The combined alias-expanded CSV and alias/name-change helper files were retained but not used to populate this initial pass.
+
+A subsequent [broader alignment review](docs/csrankings_broader_alignment_2026-09-18.md) added links using reviewed Scholar identifiers, alternate names, current or historical institutions, and selected institutional pages corroborating the award's research area.
+Its [row audit](docs/csrankings_broader_alignment_2026-09-18.csv) covers all rows that were unlinked at the start of that pass.
+The upstream DBLP alias file helped generate candidates; institution or research similarity alone was not sufficient to accept them.
+Scholar IDs and existing DBLP links can also conflict with identity evidence, so inspect name and institution context rather than treating an identifier or a `Y` rating as conclusive.
+When several source spellings represent the same person, prefer the exact reviewed DBLP or Scholar spelling, preserving source disambiguators and campus tags; document other choices.
+The [local profile-table audit](docs/csrankings_profile_evidence_2026-09-18.csv) also checks `scholarid` and normalized `dblp_profile` against both rosters.
+The table's DBLP association was inferred by the old name matcher, so it supplies a candidate rather than independent proof; that review rejected two misleading legacy associations and accepted five corroborated historical profiles absent from the fresh sources.
+
+For manual corrections, copy the exact `name` from the appropriate source row into `csrankings_name`; preserve the ACM `name` and other reviewed roster fields.
+Set `csrankings_name_alignment_date` to the UTC date of that correction or explicit revalidation; clear it when removing the link, and preserve it during unrelated source refreshes.
+Check that the source key exists exactly once and is not already assigned to another recipient within the same roster, and record evidence for ambiguous identity decisions in the data notes.
+For a documented historical link, validate the key against the retained profile-table record and preserve that source evidence through future rebuilds.
+The same person may share a key across both award rosters; keep those shared recipients' links consistent.
+Preserve manual assignments on future matching passes rather than overwriting them with inferred matches.
+
+`data/csrankings_profiles.csv` contains exactly one row per distinct nonempty `csrankings_name` across both rosters.
+To synchronize it, resolve each accepted key exactly against all 26 refreshed alphabetical faculty files and copy their original `name`, `affiliation`, `homepage`, `scholarid` and `orcid` values.
+Preserve documented historical records absent from those sources using the retained profile table; investigate any other missing or duplicate key instead of inferring a replacement.
+Remove unreferenced keys, sort by case-insensitive name with the exact name as a tie-breaker, and set `crawl_date` to the UTC synchronization date, independently of source download and name-alignment dates.
+Copy the linked recipient's normalized DBLP URL only after checking agreement across shared recipients and known identity conflicts; a quality flag alone does not determine whether to retain a URL.
+Exclude exact URLs classified as `identity_mismatch` in the [DBLP review](docs/dblp_profile_quality_2026-09-17.csv), unless later documented identity evidence supersedes that finding.
+Match reviewed URLs, not historical award-name spellings, and do not copy known wrong-person URLs into the lookup table even when the award roster retains them.
+Other `N` categories do not automatically imply a different person or removal.
+The accepted UCLA key `Wei Wang 0010` has a blank table DBLP field because the roster URL identifies the HKUST namesake, as documented in the [broader review](docs/csrankings_broader_alignment_2026-09-18.md).
+Validate exact key coverage, uniqueness and source fields, retain input snapshots and a validation report in the shared cache, and preserve both award rosters and generated visualizations.
+
+The corrected September 18 table contains 829 unique keys, including five retained historical profiles; see the [PR review corrections](docs/data_notes.md#2026-09-18-0742-edt---correct-csrankings-identity-links-from-pr-review).
+The existing DBLP-based builder and university analysis below still use their prior matching and join behavior; they do not yet consume `csrankings_name`.
+
 ## CSRankings DBLP Alignment
 
-`scripts/build_csrankings_profiles.py` builds `data/csrankings_profiles.csv` from known DBLP profiles and cached CSRankings shards.
+`scripts/build_csrankings_profiles.py` is the legacy builder from known DBLP profiles and cached CSRankings shards.
+It defaults to `../bigcows-crawler/.cache/csrankings-legacy-profiles.csv` and rejects the canonical profile table as either `--output` or `--report`, including symlink aliases.
+It does not preserve explicit accepted name links or historical exceptions.
+Use the synchronization procedure above for canonical updates; the following documents the legacy implementation for investigation and future migration.
 It matches each DBLP-linked award recipient's roster name against CSRankings names; it does not fetch DBLP pages or read their parsed author names.
 
 The script:
@@ -431,20 +484,19 @@ The script:
 - appends `crawl_date` and `dblp_profile`;
 - writes `../bigcows-crawler/.cache/csrankings-profiles-report.json` with input roster paths, included, unmatched DBLP, and ambiguous DBLP counts.
 
-Basic commands:
+Run the legacy builder only with a separate output and report under a retained cache run directory:
 
 ```bash
-python scripts/build_csrankings_profiles.py
-python scripts/build_csrankings_profiles.py --crawl-date 2026-05-01
-python scripts/build_csrankings_profiles.py --cache-dir path/to/csrankings-cache --output data/csrankings_profiles.csv
-python scripts/build_csrankings_profiles.py --fellows path/to/fellows.csv --turing path/to/turing.csv
+mkdir -p ../bigcows-crawler/.cache/csrankings-legacy-review
+python scripts/build_csrankings_profiles.py \
+  --output ../bigcows-crawler/.cache/csrankings-legacy-review/profiles.csv \
+  --report ../bigcows-crawler/.cache/csrankings-legacy-review/report.json
 ```
 
-For a full source refresh, run the shared crawler with `--refresh` before rebuilding:
+For a full source refresh, run the shared crawler with `--refresh` before synchronizing accepted name keys:
 
 ```bash
 python ../bigcows-crawler/scripts/cache_csrankings.py --refresh
-python scripts/build_csrankings_profiles.py
 ```
 
 Use the shared [CSRankings workflow](https://github.com/lintool/bigcows-crawler/blob/main/README_FOR_AGENTS.md#csrankings-crawler) for partial runs, pacing, and cache/report details.
@@ -497,7 +549,8 @@ It contains:
 The total counts cover the whole input, but `unmatched_sample` includes at most 50 profiles, `ambiguous` at most 100 profiles, and each ambiguous entry at most ten candidates.
 Output order follows the deduplicated roster traversal: Fellows first, then Turing-only URLs; it is not a global alphabetical sort.
 
-When asked to check or validate CSRankings profiles, normalize DBLP URLs as the builder does, then join `data/csrankings_profiles.csv` with the deduplicated union of both award rosters and flag suspicious name mismatches.
+When asked to check or validate CSRankings profiles, first join both rosters by exact `csrankings_name` and verify that every populated key resolves exactly once and every table row is referenced.
+Then normalize DBLP URLs as the builder does and flag conflicting URLs or suspicious identity associations, allowing documented blank-field exceptions.
 Names should match modulo minor variations such as accent characters, diacritics, periods, punctuation, initials, spacing, hyphens, and capitalization.
 For suspicious rows, report the CSRankings name, award-roster name, affiliation, DBLP URL, and why the identity is doubtful.
 Include the DBLP page's author name only when a retained capture or separate inspection supplies it, and label it distinctly from the roster name.

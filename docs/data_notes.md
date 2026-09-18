@@ -35,6 +35,174 @@ Selected entries and reports:
   Earlier profile-crawl evidence remains in the [Turing Award crawl](#2026-09-13---turing-award-reconciliation-and-profile-crawl) and [Fellows crawl](#2026-09-13---acm-fellows-profile-crawl-review).
 - **Missing individual ACM pages:** [Eleven Fellows and their former URLs](#2026-09-13---unavailable-individual-acm-profiles), with the evidence for clearing those links while retaining the award rows.
 
+## 2026-09-18 07:42 EDT - Correct CSRankings Identity Links From PR Review
+
+Addressed the four findings in [PR #64's review](https://github.com/lintool/acm-bigcows/pull/64#issuecomment-5729433999).
+The [correction audit](csrankings_pr_review_2026-09-18.csv) records two rejected name links and 34 wrong-person DBLP URLs excluded from the profile table, with the original values and individual reasons.
+These corrections supersede the affected associations in the earlier alignment and synchronization snapshots; the dated audits retain their original review-time values.
+
+Cleared `csrankings_name` and its alignment date for ACM Fellows Hui Zhang and B. Chandrasekaran, and removed their unreferenced profile-table rows.
+The [reviewed DBLP evidence](dblp_profile_quality_2026-09-17.csv) identifies Hui Zhang as `Hui Zhang 0001` at Carnegie Mellon/Conviva, while the rejected `Hui Zhang 0005` source row is at University College London with a different Scholar ID.
+The same evidence identifies the AI Fellow as `B. Chandrasekaran 0001` at Ohio State, while the rejected `B. Chandrasekaran 0002` source row is at VU Amsterdam with homepage `https://balakrishnanc.github.io`.
+No replacement name key was inferred.
+
+Cleared 34 profile-table DBLP fields whose exact URLs were classified as `identity_mismatch` by the completed DBLP review, including C.-C. Jay Kuo's mistaken association with coastal-altimetry researcher Chung-yen Kuo.
+Preserved the accepted CSRankings name links for those 34 recipients; an incorrect roster DBLP URL does not invalidate a separately supported name association.
+This exclusion is based on reviewed identity evidence, not a blanket filter on `N` ratings.
+The earlier Wei Wang exception remains blank, giving 35 blank DBLP cells and 794 nonempty DBLP URLs across 829 profile rows.
+
+The exact union now contains 827 Fellows links and 17 Turing links with 15 shared keys: 829 unique profiles, including the five historical records.
+The remaining 811 Fellows and 64 Turing rows have no accepted CSRankings name link.
+Only the two rejected Fellows name links and their alignment dates changed in the award rosters; all preexisting award fields, publication URLs, ratings, row ordering, Turing data, Scholar data and visualization datasets were preserved.
+The profile-table build date remains `2026-09-18`; this correction reused retained evidence and did not fetch new source profiles.
+
+Changed the legacy builder's default output to `../bigcows-crawler/.cache/csrankings-legacy-profiles.csv` and made it reject the canonical table as an output or report destination, including symlink aliases.
+Added regression coverage for this protection, exact profile-key coverage and the rejected identities.
+All 12 targeted roster and citation-data tests passed.
+Retained input snapshots, proposed outputs and independent field-by-field validation in `../bigcows-crawler/.cache/csrankings-pr64-review-2026-09-18/`.
+
+## 2026-09-18 07:18 EDT - Synchronize the CSRankings Profile Lookup Table
+
+Synchronized `data/csrankings_profiles.csv` to the exact union of accepted `csrankings_name` keys in both award rosters.
+All 829 populated Fellows links and 17 populated Turing links now resolve exactly once to 831 unique profile rows, with no missing or unreferenced keys.
+The table grew from 641 to 831 rows: 194 exact keys were added and four unreferenced keys were removed.
+Removed the rejected legacy namesake associations `Chun-Lei Liu` and `David Clark 0001`, and replaced old spelling keys `Nikil D. Dutt` and `Tamal K. Dey` with the accepted source keys `Nikil Dutt` and `Tamal Krishna Dey`.
+
+Copied the five original CSRankings fields from the refreshed alphabetical faculty files for 826 rows.
+Retained the documented historical source records for Donald Greenberg, Georg Gottlob, Judith S. Olson, Luca Cardelli and Ruby B. Lee, which remain absent from the fresh sources.
+Among the 637 retained exact keys, the source refresh changed two affiliations, two homepages and 18 ORCID values; Scholar IDs were unchanged.
+Sorted the table by case-insensitive name with exact-name tie-breaking and set every `crawl_date` to `2026-09-18`, the UTC synchronization date rather than a claim of a fresh source fetch or new identity review.
+
+The table contains 830 distinct nonempty normalized DBLP URLs from the linked award rows.
+Left `Wei Wang 0010` blank in the table's DBLP column because the stored roster URL identifies the HKUST namesake, while the accepted CSRankings key identifies the UCLA Fellow; see the [broader identity review](csrankings_broader_alignment_2026-09-18.md).
+This synchronization does not change publication-profile quality ratings or repair the conflicting roster URL.
+
+Retained input snapshots, source hashes, row provenance, proposed output and independent validation under `../bigcows-crawler/.cache/csrankings-profile-sync-2026-09-18/`.
+Validation checked schema, exact name coverage, uniqueness, original source fields, historical exceptions, date semantics and shared-recipient DBLP agreement.
+Both award CSVs, the Scholar profile CSV and both generated visualization datasets remained byte-for-byte unchanged during this synchronization.
+Updated the current maintenance instructions to use accepted name keys and explicitly prevent the legacy name-inference builder from overwriting this table.
+
+## 2026-09-18 07:02 EDT - Exhaustively Check Remaining CSRankings Identifier Matches
+
+Performed a dedicated read-only join of every award row against all 641 records in `data/csrankings_profiles.csv`, using its 590 usable Scholar IDs and 641 DBLP author IDs independently of name similarity and quality flags.
+Extracted case-sensitive Scholar `user` IDs and normalized DBLP author IDs across recognized DBLP hosts, HTTP/HTTPS, encoded paths, trailing slashes, page-format suffixes, query strings and fragments.
+Ignored blank identifiers and the `NOSCHOLARPAGE` sentinel; every nonempty roster profile URL parsed successfully.
+
+Among all Fellows, 528 rows matched both identifiers and 113 matched DBLP only; among all Turing winners, seven matched both and eight matched DBLP only.
+There were no Scholar-only matches.
+Of the 809 still-unlinked Fellows, 807 had no identifier match and two reproduced the previously rejected legacy DBLP associations: David D. Clark to David Clark 0001 at UCL, and C. L. Liu to Chun-Lei Liu at Berkeley.
+None of the 64 still-unlinked Turing winners had an identifier match in the local table.
+
+Rechecked the residual identity evidence: [MIT's David D. Clark profile](https://ilpstex.mit.edu/content/faculty-profiles/david-d-clark) identifies the Internet researcher, while [UCL's research description](https://www.ucl.ac.uk/engineering/computer-science/research/research-groups-and-centres/software-systems-engineering-group/research-topics) associates its David Clark with software/program analysis.
+The [University of Macau citation](https://www.um.edu.mo/dhonois2004/lcl_sp_e.htm), available in primary-source search results, identifies Chung Laung Liu as a 1994 ACM Fellow; it does not support the different Chun-Lei Liu candidate.
+No additional link was accepted from those inherited DBLP mappings.
+
+Retained the audit script, all 1,719 row-level join results, residual candidates and input hashes under `../bigcows-crawler/.cache/csrankings-identifier-pass-2026-09-18/`.
+Verified that all four canonical CSVs and both generated visualization datasets are byte-for-byte unchanged.
+Coverage remains 829 linked Fellows and 17 linked Turing winners.
+
+## 2026-09-18 06:45 EDT - Cross-Check CSRankings Profile Identifiers and Retain Five Historical Links
+
+Used `scholarid` and normalized `dblp_profile` in `data/csrankings_profiles.csv` as additional evidence at the user's request.
+The [identifier audit](csrankings_profile_evidence_2026-09-18.csv) covers all 656 award rows with a local-table identifier association: 647 corroborated existing links, two corroborated spelling variants, five supported historical links and two were rejected as misleading legacy mappings.
+The source table's DBLP associations were inferred by the earlier name matcher, so they were not treated as independent identity proof.
+
+Added historical links for Judith S. Olson, Georg Gottlob, Luca Cardelli, Ruby B. Lee and Donald Greenberg, dated `2026-09-18`.
+All five have matching normalized DBLP URLs and corroborating institutional evidence; four also have matching Scholar IDs, while Greenberg's source value is the `NOSCHOLARPAGE` sentinel.
+These five source records are absent from both refreshed alphabetical and combined CSVs and remain linked explicitly through the retained local profile table.
+Their identities, evidence and historical-source status are documented in the [broader review](csrankings_broader_alignment_2026-09-18.md#local-profile-table-follow-up).
+Rejected the old table's David D. Clark and C. L. Liu mappings rather than perpetuating their namesake associations.
+
+The Fellows roster now has 829 links and 809 blanks; the Turing roster remains at 17 links and 64 blanks.
+Verified the five name/date additions, preservation of all other cells and row order, source-key existence and uniqueness, and agreement for all 63 shared recipients.
+Retained snapshots, the historical source table, hashes, scripts and validation under `../bigcows-crawler/.cache/csrankings-profile-evidence-2026-09-18/`.
+The source profile tables, existing publication-profile URLs and ratings, and both visualization datasets are unchanged.
+
+## 2026-09-18 06:41 EDT - Broaden CSRankings Alignment with Identity and Institution Evidence
+
+Reviewed all 1,057 previously unlinked award rows using alternate names, upstream DBLP aliases, reviewed Scholar identifiers, institutions and selected institutional pages corroborating research areas.
+Added 178 Fellows links and one Turing link, Richard S. Sutton, with alignment date `2026-09-18`.
+The Fellows roster now has 824 linked and 814 blank rows; the Turing roster has 17 linked and 64 blank rows.
+The [review report](csrankings_broader_alignment_2026-09-18.md) and [complete row audit](csrankings_broader_alignment_2026-09-18.csv) record the methodology, evidence, candidates and decisions.
+
+Accepted 143 associations using a shared Scholar ID with reviewed identity context, 31 using an exact reviewed DBLP name with institutional corroboration, and five using institutional/research evidence.
+Rejected misleading shared-ID candidates for Chris S Wallace and HongJiang Zhang, and recorded the conflicting stored DBLP identity for Wei Wang separately from the accepted UCLA CSRankings link.
+Preserved all existing profile URLs and quality ratings; this batch changes only previously blank CSRankings name/date pairs.
+
+Verified source-key membership and uniqueness, original roster values and ordering, preservation of existing name/date pairs, and consistency for all 63 shared recipients.
+Retained inputs, hashes, scripts, full candidate evidence and validation results under `../bigcows-crawler/.cache/csrankings-broader-alignment-2026-09-18/`.
+The canonical CSRankings and Scholar profile tables and both visualization datasets remain byte-for-byte unchanged.
+Visualization regeneration remains deferred at the user's request.
+
+## 2026-09-18 06:36 EDT - Record CSRankings Name Alignment Dates
+
+Added `csrankings_name_alignment_date` immediately after `csrankings_name` in both award rosters at the user's request.
+Populated `2026-09-18` for the 646 linked Fellows and 16 linked Turing winners using the recorded UTC completion dates of their respective alignment batches.
+Left the date blank for all 992 unlinked Fellows and 65 unlinked Turing winners.
+This field records when the name association was established or explicitly revalidated, rather than the source download date; future manual link changes should update it, and removing a link should clear it.
+
+Verified every pre-existing value and row position in both rosters, and checked name/date consistency for all 1,719 rows.
+Retained the input snapshots, hashes, authoring script and completion report under `../bigcows-crawler/.cache/csrankings-alignment-dates-2026-09-18/`.
+The CSRankings and Scholar profile tables and both generated visualization datasets remain byte-for-byte unchanged.
+Visualization regeneration remains deferred.
+
+## 2026-09-18 06:34 EDT - Add Explicit CSRankings Name Links to Turing Winners
+
+Appended `csrankings_name` to `data/turing_award_winners.csv` at the user's request, preserving all 81 rows, their ordering and every existing field value.
+Applied the same conservative name-alignment rules and refreshed 26-file faculty cache as the Fellows pass below.
+Accepted 16 unique normalized name matches and left 65 unmatched rows blank; there were no ambiguous candidates or initial-expansion matches.
+Stored the exact CSRankings name keys, including `Manuel Blum 0001` with its source disambiguator.
+All 16 keys exist exactly once in the faculty sources and are unique within the Turing roster.
+The [complete Turing row audit](turing_csrankings_name_alignment_2026-09-18.csv) records every recipient and the result for manual follow-up.
+
+Checked link consistency for all 63 shared recipients identified by exact roster name or normalized DBLP URL; every shared link, including blanks, agrees with the Fellows roster.
+Gilles Brassard accounts for the one Turing link outside the 15 linked recipients shared with the Fellows roster.
+As with the Fellows pass, unmatched names are unresolved under the matching rules rather than confirmed absences from CSRankings.
+
+Retained the original roster, source hashes, matching and authoring scripts, candidate report and validation results under `../bigcows-crawler/.cache/csrankings-turing-alignment-2026-09-18/`.
+Verified all original Turing values and row positions, key uniqueness, source membership and row-audit agreement.
+The Fellows roster, CSRankings and Scholar profile tables, and both generated visualization datasets remain byte-for-byte unchanged by this batch.
+Visualization regeneration remains deferred at the user's request, and downstream joins have not yet migrated to the new field.
+
+## 2026-09-18 06:31 EDT - Add Explicit CSRankings Name Links to Fellows
+
+At the user's request, appended `csrankings_name` to `data/acm_fellows.csv`, preserving all 1,638 rows, their ordering and every existing field value.
+The new field contains the exact name key from the refreshed alphabetical CSRankings faculty sources, including any disambiguation number, rather than an invented profile URL.
+The pass covers every Fellow regardless of DBLP link availability or quality.
+
+Linked 646 Fellows: 630 unique normalized name matches and 16 compatible initial expansions with equal token counts and token-by-token compatibility in order.
+Initial-expansion matches also required an identical surname token and a spelled-out first given token in the roster.
+The normalization handles surname-first order, punctuation, accents, honorifics, suffixes and numeric disambiguators as documented in the [matching reference](../README_FOR_AGENTS.md#csrankings-dblp-alignment), while the stored key retains the source's exact spelling.
+Every assigned key exists exactly once among the 32,413 source records and is assigned to only one Fellow.
+This is a name-based association pass, not independent identity verification.
+
+Left 992 links blank: 975 unmatched names, 13 ambiguous names and four name variations requiring manual review.
+The four variations are `Arpaci-Dusseau, Andrea`, `Arpaci-Dusseau, Remzi`, `Mellor-Crummey, John` and `Liu, C.L.`.
+The first three have candidate names with additional middle initials; the last has only initials in the roster, so the candidate `Chun-Lei Liu` was not accepted.
+The [complete row audit](csrankings_name_alignment_2026-09-18.csv) records statuses and candidate names with affiliations for manual review.
+Unmatched means the conservative rules found no candidate; it does not establish absence from CSRankings.
+No matches were inferred from the combined alias-expanded CSV or the alias/name-change helper files in this batch.
+
+Retained the input snapshot, input hashes, matching and authoring scripts, full candidate report and validation results under `../bigcows-crawler/.cache/csrankings-fellows-alignment-2026-09-18/`.
+Validated every original roster value and row position, source-key existence and uniqueness, one-to-one assignments and row-audit agreement.
+The Turing roster, existing CSRankings and Scholar profile tables, and both generated visualization datasets remain byte-for-byte unchanged.
+The existing DBLP-based builder and university-analysis consumers still use their previous joins; migration to the explicit name key and rebuilding the profile table remain separate work.
+
+## 2026-09-18 00:05 EDT - Refresh CSRankings Source Files
+
+Refreshed all 26 alphabetical faculty source files, `csrankings-a.csv` through `csrankings-z.csv`, from the [CSRankings repository](https://github.com/emeryberger/CSrankings/tree/gh-pages).
+All 26 downloads returned HTTP 200 and passed CSV schema and row-count validation before replacing the default cache under `../bigcows-crawler/.cache/csrankings/`.
+Every source file changed; the combined source row count increased from 32,136 to 32,413, with no duplicate exact names across the refreshed files.
+The previous cache was downloaded on May 1, 2026; the refreshed report records each file's actual September 18 UTC fetch time, independently of any alignment build date.
+
+The upstream repository contains additional CSVs beyond the 26 alphabetical faculty files.
+Also downloaded `csrankings.csv` (34,617 rows), `dblp-aliases.csv` (114,423 rows), and `name-changes.csv` (3 rows), retaining them separately for the upcoming name-alignment review.
+The [upstream Makefile](https://github.com/emeryberger/CSrankings/blob/gh-pages/Makefile) documents alias expansion when building the combined `csrankings.csv`; its rows should not simply be added to the alphabetical source rows.
+
+Retained the previous files and report, fresh downloads, supplemental files, fetch log, command manifest, SHA-256 hashes, and validation report under `../bigcows-crawler/.cache/csrankings-refresh-2026-09-18-000215/`.
+Updated the default `../bigcows-crawler/.cache/csrankings-report.json` to describe the installed source cache.
+All four canonical data CSVs and both generated visualization datasets remain byte-for-byte unchanged; this batch refreshed sources only and did not rebuild the CSRankings alignment.
+
 ## 2026-09-17 23:48 EDT - Clarify Finalized Rosters and Historical Documentation
 
 Recorded the user's instruction that both reconciled award CSVs are finalized and must not change during general repository cleanup without an explicit new data-change request.
