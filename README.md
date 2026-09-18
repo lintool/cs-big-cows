@@ -11,7 +11,8 @@ See the [source policy](AGENTS.md#acm-source-of-truth), [Fellows reconciliation 
 - [ACM Fellows](data/acm_fellows.csv): canonical dataset, including ACM, DBLP, and Google Scholar profile links and crawl dates.
 - [Turing Award winners](data/turing_award_winners.csv): canonical dataset with profile links and crawl dates, organized by award year.
 - [Google Scholar profiles](data/google_scholar_profiles.csv): profile links, affiliations, interests, and citation statistics for ACM Fellows and Turing Award winners.
-- [CSRankings profiles](data/csrankings_profiles.csv): faculty rows matched by name to award recipients with stored DBLP links.
+- [CSRankings profiles](data/csrankings_profiles.csv): faculty records referenced by the exact `csrankings_name` keys in either award roster, including documented historical records.
+  Original source fields are preserved; `dblp_profile` reproduces CSRankings' own name-generated link, separately from our reviewed award-profile URLs.
 
 The CSVs are ready to download or use from a clone.
 Both award tables include Y/N quality assessments for DBLP and Google Scholar profiles; see the [DBLP review](docs/dblp_profile_quality_2026-09-17.md), [Fellows Scholar review](docs/acm_scholar_quality_2026-09-17.md), and [Turing Scholar review](docs/turing_scholar_quality_2026-09-17.md) for criteria, findings, and inspection limits.
@@ -19,7 +20,9 @@ See [Data Notes](docs/data_notes.md) for provenance, reconciliation history, and
 The [data dictionary](README_FOR_AGENTS.md#data-layout) explains both award schemas, Scholar statistics, joins, dates, and missing values.
 A missing profile means the corresponding URL cell is blank; always distinguish ACM, DBLP, and Scholar when reporting coverage.
 A quality rating of `N` can describe either a missing link or a poor linked profile.
-Profile crawl dates record accepted page captures; the CSRankings `crawl_date` instead records the alignment build date.
+Profile crawl dates record accepted page captures; `csrankings_name_alignment_date` records the name-link decision in each award roster.
+The CSRankings lookup table has no date column.
+See the [current profile-review status](docs/profile_review_status.md) for remaining verification and capture/import work.
 
 ## Visualizations
 
@@ -46,7 +49,7 @@ python scripts/analyze_acm_fellow_universities.py --min-count 5
 ```
 
 The [analysis reference](README_FOR_AGENTS.md#acm-fellow-university-analysis) explains the joins, normalization, and available options.
-Maintainers can also [rebuild CSRankings alignments](README_FOR_AGENTS.md#csrankings-dblp-alignment) or [regenerate the visualization](README_FOR_AGENTS.md#google-scholar-citation-visualization).
+Maintainers can also [synchronize accepted CSRankings name links](README_FOR_AGENTS.md#csrankings-name-links) or [regenerate the visualization](README_FOR_AGENTS.md#google-scholar-citation-visualization).
 
 ## Updating the Data
 

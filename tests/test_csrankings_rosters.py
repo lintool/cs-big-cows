@@ -18,6 +18,13 @@ spec.loader.exec_module(builder)
 
 
 class RosterAlignmentTests(unittest.TestCase):
+    def test_canonical_ordering(self):
+        for filename in ["acm_fellows.csv", "turing_award_winners.csv"]:
+            rows = builder.read_csv(ROOT / "data" / filename)
+            self.assertEqual(rows, sorted(rows, key=lambda row: (-int(row["year"]), row["name"].lower())), filename)
+        profiles = builder.read_csv(builder.CANONICAL_OUTPUT)
+        self.assertEqual(profiles, sorted(profiles, key=lambda row: (row["name"].lower(), row["name"])))
+
     def test_initials_are_not_degree_suffixes(self):
         self.assertFalse(builder.compatible_name("Smith, John D.", "John Smith"))
         self.assertTrue(builder.compatible_name("Smith, D.", "David Smith"))
@@ -65,19 +72,17 @@ class RosterAlignmentTests(unittest.TestCase):
                             read.assert_not_called()
                         self.assertEqual(canonical.read_text(), "preserved table\n")
 
-    def test_canonical_profile_keys_and_reviewed_identity_exclusions(self):
+    def test_canonical_profile_keys_and_rejected_name_links(self):
         rosters = builder.read_csv(ROOT / "data/acm_fellows.csv") + builder.read_csv(ROOT / "data/turing_award_winners.csv")
         profiles = builder.read_csv(builder.CANONICAL_OUTPUT)
+        self.assertEqual(list(profiles[0]), builder.OUTPUT_COLUMNS)
+        self.assertNotIn("crawl_date", profiles[0])
         expected = {r["csrankings_name"] for r in rosters if r["csrankings_name"]}
         actual = [r["name"] for r in profiles]
         self.assertEqual(set(actual), expected)
         self.assertEqual(len(actual), len(set(actual)))
         rejected_names = {"Hui Zhang 0005", "B. Chandrasekaran 0002"}
         self.assertFalse(expected & rejected_names)
-        review = builder.read_csv(ROOT / "docs/dblp_profile_quality_2026-09-17.csv")
-        rejected_urls = {r["dblp_profile"] for r in review if r["category"] == "identity_mismatch" and r["dblp_profile"]}
-        for row in profiles:
-            self.assertNotIn(row["dblp_profile"], rejected_urls, row["name"])
 
     def test_url_deduplication_preserves_distinct_people_with_same_name(self):
         rows = builder.unique_dblp_rows([
@@ -91,7 +96,7 @@ class RosterAlignmentTests(unittest.TestCase):
             {"name": "Alice First", "profile": "https://dblp.org/pid/1/3"},
         ])
 
-    def test_cli_includes_turing_only_people_and_keeps_alignment_date_separate(self):
+    def test_cli_includes_turing_only_people_without_legacy_crawl_date(self):
         def write(path, fields, rows):
             with path.open("w", newline="") as stream:
                 writer = csv.DictWriter(stream, fieldnames=fields)
@@ -117,12 +122,17 @@ class RosterAlignmentTests(unittest.TestCase):
             ])
             output, report = tmp / "output.csv", tmp / "report.json"
             with patch.object(sys, "argv", ["builder", "--fellows", str(fellows), "--turing", str(turing),
-                    "--cache-dir", str(tmp), "--output", str(output), "--report", str(report), "--crawl-date", "2026-10-01"]):
+                    "--cache-dir", str(tmp), "--output", str(output), "--report", str(report)]):
                 self.assertEqual(builder.main(), 0)
             result = builder.read_csv(output)
             self.assertEqual([r["name"] for r in result], ["Alice Example", "Bob Example"])
-            self.assertEqual({r["crawl_date"] for r in result}, {"2026-10-01"})
+            self.assertEqual([r["dblp_profile"] for r in result], [
+                "https://dblp.org/pers/hd/e/Example:Alice", "https://dblp.org/pers/hd/e/Example:Bob"])
+            self.assertEqual(list(result[0]), builder.OUTPUT_COLUMNS)
+            self.assertNotIn("crawl_date", result[0])
             counts = json.loads(report.read_text())
+            self.assertNotIn("crawl_date", counts)
+            self.assertIn("generated_at", counts)
             self.assertEqual((counts["dblp_profiles_rows"], counts["included_rows"], counts["unmatched_dblp_profiles"], counts["ambiguous_dblp_profiles"]), (4, 2, 1, 1))
             self.assertEqual((counts["fellows"], counts["turing"]), (str(fellows), str(turing)))
 
@@ -145,7 +155,9 @@ class RosterAlignmentTests(unittest.TestCase):
                     if not row[field]:
                         self.assertEqual(captured, "", (row["name"], field))
                         continue
-                    self.assertEqual(date.fromisoformat(captured).isoformat(), captured)
+                    # A reviewed URL can lack an accepted crawler capture.
+                    if captured:
+                        self.assertEqual(date.fromisoformat(captured).isoformat(), captured)
                     profile = builder.unique_dblp_rows([row])[0]["profile"] if field == "dblp_profile" else row[field]
                     key = (field, profile)
                     self.assertEqual(dates.setdefault(key, captured), captured, key)

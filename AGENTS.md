@@ -15,6 +15,9 @@ This authority concerns award data, not independent DBLP or Google Scholar profi
 The user has confirmed that `data/acm_fellows.csv` and `data/turing_award_winners.csv` are finalized after reconciliation.
 Do not change their rows, fields or ordering during consistency sweeps, documentation cleanup or code maintenance.
 Further changes to either award CSV require an explicit user request to change that data; general requests to fix repository inconsistencies do not reopen the finalized rows.
+The user has explicitly configured the [Check Profiles skill](skills/check-profiles/SKILL.md) to correct obvious publication-profile and CSRankings-link errors when invoked, including dependent dates and quality flags.
+An explicit request to apply that skill carries this standing authorization within its stated scope; automatic skill discovery, general consistency sweeps, read-only reviews and dry runs do not.
+ACM names, award years, citations, award-profile links and roster membership remain subject to the source-of-truth and finalized-data rules above.
 
 ## Visualization Regeneration
 
@@ -32,7 +35,9 @@ Before starting a crawl, read the [crawler workflow](README_FOR_AGENTS.md#crawle
 ## Publication Profile Quality
 
 Before matching or rating DBLP or Google Scholar profiles for either award roster, follow the authoritative [publication profile quality criteria](README_FOR_AGENTS.md#publication-profile-quality), including the linked review reports and explicit user decisions.
+Use [Check Profiles](skills/check-profiles/SKILL.md) for a holistic review of Scholar, DBLP and CSRankings identities, publication coverage and contamination.
 Use the [missing-profile definitions](README_FOR_AGENTS.md#missing-profiles-and-review-status) when reporting coverage or review queues.
+Consult the [current review status](docs/profile_review_status.md) before resuming verification; historical checkpoint prose is not the current open-case queue.
 
 ## Documentation Audiences
 
