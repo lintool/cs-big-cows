@@ -56,7 +56,8 @@ for (const [award, filename] of [['fellows', 'scholar_data.js'], ['turing', 'tur
   const rowCount = () => (node('#table').markup.match(/class="row"/g) || []).length;
   assert.equal(rowCount(), data.metadata.joinedRows);
   assert.equal(properties['--year-count'], 41);
-  assert.equal(node('#summary').textContent, 'Cites are Scholar’s reported all-time total; the per-year histogram displays 1986–2026.');
+  assert.equal(node('#citation-source').textContent, 'All citation statistics from Google Scholar, as of 2026-09-17.');
+  assert.equal(node('#summary').textContent, 'Cites are Google Scholar’s reported all-time total; the per-year histogram displays 1986–2026.');
   assert.ok(node('#table').markup.includes('data-tooltip="1986:'));
   assert.ok(!node('#table').markup.includes('data-tooltip="1985:'));
   assert.ok(node('#table').markup.includes('data-tooltip="2026:'));
@@ -102,7 +103,7 @@ for (const [award, filename] of [['fellows', 'scholar_data.js'], ['turing', 'tur
   assert.ok(!/<a[^>]*>[^<]+<\/a>/.test(node('#table').markup), 'Names must not be links');
   const missing = data.rows.find(row => !row.hasScholar);
   node('#search').events.input({target: {value: missing.name.toUpperCase()}});
-  assert.ok(node('#table').markup.includes('No Scholar data'));
+  assert.ok(node('#table').markup.includes('No Google Scholar data'));
   node('#showMissing').events.change({target: {checked: false}});
   assert.equal(rowCount(), 0);
   assert.equal(node('#empty').classes.visible, true);
@@ -115,7 +116,7 @@ for (const [award, filename] of [['fellows', 'scholar_data.js'], ['turing', 'tur
   assert.equal(mismatch.node('#empty').classes.visible, true);
   const nextYear = load(award, script, 2027);
   assert.equal(nextYear.properties['--year-count'], 42);
-  assert.equal(nextYear.node('#summary').textContent, 'Cites are Scholar’s reported all-time total; the per-year histogram displays 1986–2027.');
+  assert.equal(nextYear.node('#summary').textContent, 'Cites are Google Scholar’s reported all-time total; the per-year histogram displays 1986–2027.');
   console.log(`${award}: default rows, missing rows, search, empty state, year range, and wrong-dataset guard passed`);
 }
 assert.equal(load('turing').node('#empty').classes.visible, true);

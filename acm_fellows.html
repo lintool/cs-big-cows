@@ -20,27 +20,27 @@
         <div class="metadata">
           <dl id="coverage" class="coverage-stats" aria-label="Dataset coverage"></dl>
           <ul class="view-summary data-notes">
-            <li>All citation statistics from Google Scholar.</li>
+            <li id="citation-source">All citation statistics from Google Scholar.</li>
             <li id="summary" aria-live="polite"></li>
-            <li>Gray histograms indicate Scholar profiles of questionable data quality.</li>
+            <li>Gray histograms indicate Google Scholar profiles of questionable data quality.</li>
             <li>Darker bars precede the award year; lighter bars include the award year and all later years.</li>
             <li><strong>cites at award</strong> estimates citations before the award year: total citations minus captured annual citations from the award year onward, including the award year.
               For a 2023 award, we subtract citations in 2023 and every later captured year.
-              This is approximate because histories may be incomplete and Scholar records can change; blank values mean the required data is unavailable.</li>
+              This is approximate because histories may be incomplete and Google Scholar records can change; blank values mean the required data is unavailable.</li>
           </ul>
           <div class="data-resources">
             <h2>Data and Sources</h2>
             <div class="data-links">
               <a href="https://github.com/lintool/acm-bigcows/blob/master/data/acm_fellows.csv">ACM Fellows <span class="file-type">CSV</span></a>
-              <a href="https://github.com/lintool/acm-bigcows/blob/master/data/google_scholar_profiles.csv">Scholar Statistics <span class="file-type">CSV</span></a>
+              <a href="https://github.com/lintool/acm-bigcows/blob/master/data/google_scholar_profiles.csv">Google Scholar Statistics <span class="file-type">CSV</span></a>
               <a href="https://github.com/lintool/acm-bigcows/blob/master/docs/data_notes.md">Data Notes <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
       </details>
       <div class="controls">
-        <input id="search" type="search" aria-label="Search author" placeholder="Search author" autocomplete="off">
-        <label class="toggle"><input id="showMissing" type="checkbox"> Show missing Scholar data</label>
+        <input id="search" type="search" aria-label="Search" placeholder="Search..." autocomplete="off">
+        <label class="toggle"><input id="showMissing" type="checkbox"> Show researchers with missing Google Scholar profiles</label>
       </div>
     </div>
   </header>

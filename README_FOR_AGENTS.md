@@ -760,14 +760,14 @@ Generate data only when the underlying dataset refresh is ready to be reflected 
 Presentation changes do not require rebuilding data.
 See [Data Notes](docs/data_notes.md) for the history of imported Scholar statistics and displayed snapshots, capture dates, missing links and known attribution concerns.
 
-The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show missing Scholar data` checkbox.
+The renderer keeps one row per recipient in the selected award roster, hides missing citation histories by default, and provides author search and a `Show researchers with missing Google Scholar profiles` checkbox.
 Search accepts a directory name in its stored surname-first order or given-name-first order, ignoring case, commas and repeated whitespace.
 Recipient names are plain text, followed by small ACM, Google Scholar and DBLP profile icons for the nonblank roster links.
 Scholar links use Google's multicolor G, and DBLP links use its blue-and-yellow site icon; both images are bundled locally with provenance in [assets/README.md](assets/README.md).
 The ACM diamond is also a local SVG asset; its 18px display size remains distinct from the 15px Google and DBLP icons.
 Each icon link has a service tooltip, an accessible label naming the recipient, and a visible keyboard-focus indicator; links remain available even when citation statistics are missing.
 The three service positions are fixed across rows; missing links leave empty, noninteractive slots so the remaining icons do not shift.
-Under each title, an initially collapsed, keyboard-accessible About the Data panel contains total coverage counts, the Google Scholar source note, the displayed year range, and links to the award CSV, shared Scholar statistics CSV, and data notes.
+Under each title, an initially collapsed, keyboard-accessible About the Data panel contains total coverage counts, the Google Scholar source note (dated by the latest included citation capture, not the build date), the displayed year range, and links to the award CSV, shared Scholar statistics CSV, and data notes.
 Search and the missing-data toggle remain visible outside the panel.
 Display order defaults to award year descending, then last name ascending, without changing canonical CSV or generated data order.
 Last-name sorting uses the text before the comma for surname-first directory names, or the final name token for given-name-first names, excluding suffixes Jr., Sr., II, III, and IV, with the full name breaking ties.

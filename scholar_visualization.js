@@ -43,8 +43,11 @@
   }));
 
   const table = document.getElementById('table');
+  const captureDates = DATA.rows.filter(row => row.hasScholar && row.crawlDate).map(row => row.crawlDate).sort();
+  const latestCaptureDate = captureDates.at(-1);
+  document.getElementById('citation-source').textContent = `All citation statistics from Google Scholar${latestCaptureDate ? `, as of ${latestCaptureDate}` : ''}.`;
   const summary = document.getElementById('summary');
-  summary.textContent = `Cites are Scholar’s reported all-time total; the per-year histogram displays ${YEAR_MIN}–${YEAR_MAX}.`;
+  summary.textContent = `Cites are Google Scholar’s reported all-time total; the per-year histogram displays ${YEAR_MIN}–${YEAR_MAX}.`;
   const empty = document.getElementById('empty');
   const hideTooltip = setupTooltip(table, document.getElementById('citation-tooltip'));
   const withData = DATA.rows.filter(row => row.hasScholar).length;
@@ -151,7 +154,7 @@
   }
 
   function chart(row) {
-    if (!row.hasScholar) return '<div class="chart-cell missing" role="cell">No Scholar data</div>';
+    if (!row.hasScholar) return '<div class="chart-cell missing" role="cell">No Google Scholar data</div>';
     const values = YEARS.map(year => row.citationByYear[year] || 0);
     const max = Math.max(...values) || 1;
     const bars = YEARS.map((year, index) => {
@@ -164,7 +167,7 @@
       return `<div class="${cls}" style="height:${height}%" data-tooltip="${label}" aria-label="${label}"></div>`;
     }).join('');
     const lowQuality = row.scholarQuality === 'N';
-    return `<div class="chart-cell" role="cell"><div class="chart${lowQuality ? ' quality-low' : ''}" aria-label="Citation history for ${escapeHtml(row.name)}${lowQuality ? '; Scholar profile quality N' : ''}">${bars}</div></div>`;
+    return `<div class="chart-cell" role="cell"><div class="chart${lowQuality ? ' quality-low' : ''}" aria-label="Citation history for ${escapeHtml(row.name)}${lowQuality ? '; Google Scholar profile quality N' : ''}">${bars}</div></div>`;
   }
 
   function escapeHtml(value) {
